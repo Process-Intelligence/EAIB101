@@ -1,102 +1,592 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1900 — Содбилэг.О | EAIB101</title>
-<meta name="description" content="EAIB101 хичээлийн оюутан Содбилэг.О (B26FA1900) — ажлын хуудас.">
-<style>
-*, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цалингийн ба НДШ, ХХАТ, Хөдөлмөрийн хуулийн Тооцоолуур</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #0284c7;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #cbd5e1;
+            --highlight: #f0f9ff;
+            --accent-green: #15803d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: var(--primary-color);
+        }
+
+        .student-info {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            background: var(--highlight);
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #bae6fd;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+            color: var(--primary-color);
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 8px;
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+        }
+
+        .input-group input {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--highlight);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .num-col {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .highlight-row {
+            background-color: #f0fdf4;
+            font-weight: bold;
+            color: var(--accent-green);
+        }
+
+        .legal-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .test-section {
+            margin-top: 35px;
+            border-top: 2px dashed var(--border-color);
+            padding-top: 20px;
+        }
+
+        .test-table {
+            font-size: 12px;
+        }
+
+        .test-table th {
+            background-color: #f1f5f9;
+        }
+
+        .explanation-box {
+            background: #fffbe0;
+            border: 1px solid #ffe58f;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <span class="badge mono">B26FA1900</span>
-      <h1>Содбилэг.О</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/student/B26FA1900/index.html</code>
-      </div>
+<div class="container">
+    <header>
+        <div>
+            <h1>Цалингийн Тооцоолуур (НДШ, ХХАТ, Хөдөлмөрийн хууль)</h1>
+            <p style="font-size: 12px; color: var(--text-muted);">Нийгмийн даатгалын ерөнхий хууль (2024) & Монгол Улсын Хөдөлмөрийн тухай хуулийн дагуу</p>
+        </div>
+        <div class="student-info">
+            Оюутны код: B26FA1900 | Нэр: Содбилэг Отгонбаяр (Sodbileg Otgonbayar)
+        </div>
+    </header>
 
-      <footer><a href="/">← Ангийн бүх оюутан</a></footer>
-    </article>
-  </main>
+    <!-- INPUT SECTION -->
+    <div class="section-title">1. Анхдагч ба цагийн мэдээлэл оруулах</div>
+    <div class="grid-inputs">
+        <div class="input-group">
+            <label for="baseSalary">Үндсэн сарын цалин (₮):</label>
+            <input type="text" id="baseSalary" value="2,500,000">
+        </div>
+        <div class="input-group">
+            <label for="workDaysMonth">Сарын стандарт ажлын өдөр:</label>
+            <input type="number" id="workDaysMonth" value="22" min="1" max="31">
+        </div>
+        <div class="input-group">
+            <label for="daysWorked">Ажилласан өдөр:</label>
+            <input type="number" id="daysWorked" value="22" min="0" max="31">
+        </div>
+        <div class="input-group">
+            <label for="bonusPay">Нэмэгдэл / Бонус / Шагналт цалин (₮):</label>
+            <input type="text" id="bonusPay" value="0">
+        </div>
+    </div>
+
+    <div class="section-title">2. Илүү цаг ба нэмэгдэл цагийн мэдээлэл (Хуулийн нэмэгдэлтэй)</div>
+    <div class="grid-inputs">
+        <div class="input-group">
+            <label for="overtimeHours">Илүү цаг (Өдөр):</label>
+            <input type="number" id="overtimeHours" value="0" min="0">
+            <span class="legal-note">1.5 дахин (Хуулийн 109.1)</span>
+        </div>
+        <div class="input-group">
+            <label for="nightHours">Шөнийн цаг (22:00-06:00):</label>
+            <input type="number" id="nightHours" value="0" min="0">
+            <span class="legal-note">1.2 дахин (Хуулийн 109.3)</span>
+        </div>
+        <div class="input-group">
+            <label for="nightOvertimeHours">Шөнийн илүү цаг (Дахардаж буй):</label>
+            <input type="number" id="nightOvertimeHours" value="0" min="0">
+            <span class="legal-note">1.5 × 1.2 = 1.8 дахин (Хуулийн 109.1, 109.3)</span>
+        </div>
+        <div class="input-group">
+            <label for="restDayHours">Амралтын өдрийн цаг:</label>
+            <input type="number" id="restDayHours" value="0" min="0">
+            <span class="legal-note">1.5 дахин (Хуулийн 109.2)</span>
+        </div>
+        <div class="input-group">
+            <label for="holidayHours">Нийтээр амрах баяр ёслолын өдрийн цаг:</label>
+            <input type="number" id="holidayHours" value="0" min="0">
+            <span class="legal-note">2.0 дахин (Хуулийн 109.2)</span>
+        </div>
+    </div>
+
+    <!-- OUTPUT GROSS BREAKDOWN -->
+    <div class="section-title">3. Нийт бодогдсон орлогын бүрэлдэхүүн (Gross Pay Breakdown)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Орлогын төрөл</th>
+                <th>Тайлбар / Хуулийн заалт</th>
+                <th class="num-col">Дүн (₮)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ажилласан өдрийн үндсэн цалин</td>
+                <td>Бодит ажилласан өдөрт ногдох цалин</td>
+                <td class="num-col" id="outWorkedBase">0 ₮</td>
+            </tr>
+            <tr>
+                <td>Илүү цагийн нэмэгдэл (Өдөр)</td>
+                <td>Хөдөлмөрийн тухай хууль 109.1 санал болгож тооцсон (1.5x)</td>
+                <td class="num-col" id="outOvertimePay">0 ₮</td>
+            </tr>
+            <tr>
+                <td>Шөнийн цагийн нэмэгдэл</td>
+                <td>Хөдөлмөрийн тухай хууль 109.3 (1.2x)</td>
+                <td class="num-col" id="outNightPay">0 ₮</td>
+            </tr>
+            <tr>
+                <td>Шөнийн илүү цагийн дахардаж буй нэмэгдэл</td>
+                <td>Хөдөлмөрийн тухай хууль 109.1, 109.3 давхар нэмэгдэл (1.8x)</td>
+                <td class="num-col" id="outNightOTPay">0 ₮</td>
+            </tr>
+            <tr>
+                <td>Долоо хоногийн амралтын өдрийн цалин</td>
+                <td>Хөдөлмөрийн тухай хууль 109.2 (1.5x)</td>
+                <td class="num-col" id="outRestPay">0 ₮</td>
+            </tr>
+            <tr>
+                <td>Баяр ёслолын өдрийн цалин</td>
+                <td>Хөдөлмөрийн тухай хууль 109.2 (2.0x)</td>
+                <td class="num-col" id="outHolidayPay">0 ₮</td>
+            </tr>
+            <tr>
+                <td>Нэмэгдэл / Бонус / Шагналт цалин</td>
+                <td>Шууд олгож буй нэмэгдэл орлого</td>
+                <td class="num-col" id="outBonusPay">0 ₮</td>
+            </tr>
+            <tr class="highlight-row">
+                <td>Нийт бодогдсон цалин (Gross Pay)</td>
+                <td>НДШ ба ХХАТ суутгахаас өмнөх нийт дүнгээр тооцогдох цалин</td>
+                <td class="num-col" id="outTotalGross">0 ₮</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- DEDUCTIONS TABLE -->
+    <div class="section-title">4. Суутгал ба Гарт олгох цалингийн тооцоо (Deductions & Net Pay)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Үзүүлэлт</th>
+                <th>Хууль, эрх зүйн үндэслэл / Формула</th>
+                <th class="num-col">Дүн (₮)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Ажилтны нийгмийн даатгалын шимтгэл (НДШ)</td>
+                <td>11.5% (Дээд хязгаар: ХӨДХДХ 792,000₮ × 10 = 7,920,000₮)</td>
+                <td class="num-col" id="outShiitgel">0 ₮</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Татвар ногдуулах орлого (ТНО)</td>
+                <td>Нийт бодогдсон цалин − Ажилтны суутгуулсан НДШ</td>
+                <td class="num-col" id="outTaxableIncome">0 ₮</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Хөнгөлөлт тооцохоос өмнөх ХХАТ</td>
+                <td>Шаталсан хувь: 10M хүртэл 10%, 10M-15M 15%, 15M+ 20%</td>
+                <td class="num-col" id="outTaxBeforeCredit">0 ₮</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Эдлэх татварын хөнгөлөлт</td>
+                <td>Жилийн орлогын шатлалаас хамаарсан сарын хөнгөлөлт (ХХАТ-аас ихгүй)</td>
+                <td class="num-col" id="outCreditApplied">0 ₮</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Суутгуулсан ХХАТ (Эцсийн татвар)</td>
+                <td>Хөнгөлөлт тооцохоос өмнөх ХХАТ − Татварын хөнгөлөлт (Сөрөг болохгүй)</td>
+                <td class="num-col" id="outIncomeTax">0 ₮</td>
+            </tr>
+            <tr class="highlight-row">
+                <td>6</td>
+                <td>Гарт олгох цэвэр цалин (Net Pay)</td>
+                <td>Нийт бодогдсон цалин − НДШ − Суутгуулсан ХХАТ</td>
+                <td class="num-col" id="outNetPay">0 ₮</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- TEST CASES SECTION -->
+    <div class="test-section">
+        <div class="section-title">5. Тооцооллын шалгуур болон туршилтын тохиолдлууд (Test Cases)</div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+            Нийгмийн даатгалын ерөнхий хууль (2024.01.01) болон ХХАТ-ын хуулийг legalinfo.mn дээр баталгаажуулсан шалгуур үзүүлэлтүүд.
+        </p>
+        <table class="test-table">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Туршилтын тохиолдол</th>
+                    <th>Үндсэн цалин</th>
+                    <th>НДШ (11.5%)</th>
+                    <th>Татвар ногдох орлого</th>
+                    <th>ХХАТ (Хөнгөлөлтийн дараа)</th>
+                    <th>Гарт олгох (Net)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Бага цалин (Анхан шат)</td>
+                    <td>800,000 ₮</td>
+                    <td>92,000 ₮</td>
+                    <td>708,000 ₮</td>
+                    <td>50,800 ₮</td>
+                    <td>657,200 ₮</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Дундаж цалин (Бүрэн хөнгөлөлт)</td>
+                    <td>1,500,000 ₮</td>
+                    <td>172,500 ₮</td>
+                    <td>1,327,500 ₮</td>
+                    <td>116,750 ₮</td>
+                    <td>1,210,750 ₮</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Өндөр цалин (Шаталсан хөнгөлөлт)</td>
+                    <td>2,500,000 ₮</td>
+                    <td>287,500 ₮</td>
+                    <td>2,212,500 ₮</td>
+                    <td>207,250 ₮</td>
+                    <td>2,005,250 ₮</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>НДШ Дээд хязгаар тулсан (7.92M)</td>
+                    <td>9,000,000 ₮</td>
+                    <td>910,800 ₮</td>
+                    <td>8,089,200 ₮</td>
+                    <td>808,920 ₮</td>
+                    <td>7,280,280 ₮</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Өндөр орлого (15% ХХАТ шатлал)</td>
+                    <td>12,000,000 ₮</td>
+                    <td>910,800 ₮</td>
+                    <td>11,089,200 ₮</td>
+                    <td>1,163,380 ₮</td>
+                    <td>9,925,820 ₮</td>
+                </tr>
+                <tr style="background-color: #fefce8;">
+                    <td>6</td>
+                    <td>Нэмэлт 1: Хагас сар (11/22 өдөр)</td>
+                    <td>2,500,000 ₮</td>
+                    <td>143,750 ₮</td>
+                    <td>1,106,250 ₮</td>
+                    <td>94,625 ₮</td>
+                    <td>1,011,625 ₮</td>
+                </tr>
+                <tr style="background-color: #fefce8;">
+                    <td>7</td>
+                    <td>Нэмэлт 2: Шөнийн 1 цаг илүү цаг</td>
+                    <td>2,500,000 ₮ (1ч шөнө ИЦ)</td>
+                    <td>289,332 ₮</td>
+                    <td>2,226,593 ₮</td>
+                    <td>208,659 ₮</td>
+                    <td>2,018,602 ₮</td>
+                </tr>
+                <tr style="background-color: #fefce8;">
+                    <td>8</td>
+                    <td>Нэмэлт 3: Баяр ёслолын 1 бүтэн өдөр (8ч)</td>
+                    <td>2,500,000 ₮ (1 өдөр баяр)</td>
+                    <td>300,568 ₮</td>
+                    <td>2,312,895 ₮</td>
+                    <td>217,290 ₮</td>
+                    <td>2,100,553 ₮</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // --- HELPER FUNCTIONS ---
+    function parseNumber(val) {
+        if (!val) return 0;
+        const clean = val.toString().replace(/,/g, '').trim();
+        const parsed = parseFloat(clean);
+        return isNaN(parsed) ? 0 : parsed;
+    }
+
+    function formatNumber(num) {
+        const rounded = Math.round(num);
+        return rounded.toLocaleString('en-US');
+    }
+
+    function setupInputFormatting(elementId) {
+        const input = document.getElementById(elementId);
+        input.addEventListener('input', function(e) {
+            let cursorPosition = this.selectionStart;
+            let originalLength = this.value.length;
+            
+            let cleanVal = this.value.replace(/[^0-9]/g, '');
+            if (cleanVal === '') {
+                this.value = '';
+                calculatePayroll();
+                return;
+            }
+            let formatted = parseInt(cleanVal, 10).toLocaleString('en-US');
+            this.value = formatted;
+
+            let newLength = formatted.length;
+            cursorPosition = cursorPosition + (newLength - originalLength);
+            this.setSelectionRange(cursorPosition, cursorPosition);
+            calculatePayroll();
+        });
+    }
+
+    // --- MAIN CALCULATION ENGINE ---
+    function calculatePayroll() {
+        // 1. Inputs
+        const baseSalary = parseNumber(document.getElementById('baseSalary').value);
+        const workDaysMonth = Math.max(1, parseNumber(document.getElementById('workDaysMonth').value));
+        const daysWorked = Math.max(0, parseNumber(document.getElementById('daysWorked').value));
+        const bonusPay = parseNumber(document.getElementById('bonusPay').value);
+
+        const overtimeHours = Math.max(0, parseNumber(document.getElementById('overtimeHours').value));
+        const nightHours = Math.max(0, parseNumber(document.getElementById('nightHours').value));
+        const nightOvertimeHours = Math.max(0, parseNumber(document.getElementById('nightOvertimeHours').value));
+        const restDayHours = Math.max(0, parseNumber(document.getElementById('restDayHours').value));
+        const holidayHours = Math.max(0, parseNumber(document.getElementById('holidayHours').value));
+
+        // 2. Hourly & Daily Standard Rates (Labour Law Norms)
+        // Article 84.1: Standard work day = 8 hours. Standard monthly hourly rate = Monthly base salary / Total monthly standard hours
+        const dailyRate = baseSalary / workDaysMonth;
+        const hourlyRate = dailyRate / 8;
+
+        // 3. Gross Earnings Calculations (Labour Law Article 109)
+        const workedBasePay = dailyRate * daysWorked;
+        
+        // Article 109.1: Overtime paid at least 1.5 times average hourly rate
+        const overtimePay = overtimeHours * hourlyRate * 1.5;
+
+        // Article 109.3: Night work (22:00-06:00) paid with 1.2 rate supplement or equivalent
+        const nightPay = nightHours * hourlyRate * 1.2;
+
+        // Overlapping Night + Overtime Stacking rule: 1.5 (OT) * 1.2 (Night) = 1.8 multiplier
+        const nightOTPay = nightOvertimeHours * hourlyRate * (1.5 * 1.2);
+
+        // Article 109.2: Rest day work paid at least 1.5 times
+        const restPay = restDayHours * hourlyRate * 1.5;
+
+        // Article 109.2: Public holiday work paid at least 2.0 times
+        const holidayPay = holidayHours * hourlyRate * 2.0;
+
+        // Total Gross Salary
+        const totalGrossSalary = workedBasePay + overtimePay + nightPay + nightOTPay + restPay + holidayPay + bonusPay;
+
+        // 4. Social Insurance Contribution (General Law on Social Insurance 2024)
+        // Article 23.2: Ceiling is 10 times minimum wage (792,000 MNT * 10 = 7,920,000 MNT)
+        const minWageCeiling = 7920000;
+        const socialInsuranceBase = Math.min(totalGrossSalary, minWageCeiling);
+        const socialInsuranceRate = 0.115; // 11.5%
+        const socialInsuranceWithheld = socialInsuranceBase * socialInsuranceRate;
+
+        // 5. Taxable Income
+        const taxableIncome = Math.max(0, totalGrossSalary - socialInsuranceWithheld);
+
+        // 6. Progressive PIT Calculation (Law on Personal Income Tax)
+        let taxBeforeCredit = 0;
+        if (taxableIncome <= 10000000) {
+            taxBeforeCredit = taxableIncome * 0.10;
+        } else if (taxableIncome <= 15000000) {
+            taxBeforeCredit = (10000000 * 0.10) + ((taxableIncome - 10000000) * 0.15);
+        } else {
+            taxBeforeCredit = (10000000 * 0.10) + (5000000 * 0.15) + ((taxableIncome - 15000000) * 0.20);
+        }
+
+        // 7. Monthly Tax Credit Sliding Scale (Annualized taxable income check)
+        const annualTaxableEquivalent = taxableIncome * 12;
+        let eligibleMonthlyCredit = 0;
+
+        if (annualTaxableEquivalent <= 6000000) {
+            eligibleMonthlyCredit = 20000;
+        } else if (annualTaxableEquivalent <= 12000000) {
+            eligibleMonthlyCredit = 18000;
+        } else if (annualTaxableEquivalent <= 18000000) {
+            eligibleMonthlyCredit = 16000;
+        } else if (annualTaxableEquivalent <= 24000000) {
+            eligibleMonthlyCredit = 14000;
+        } else if (annualTaxableEquivalent <= 30000000) {
+            eligibleMonthlyCredit = 12000;
+        } else if (annualTaxableEquivalent <= 36000000) {
+            eligibleMonthlyCredit = 10000;
+        } else {
+            eligibleMonthlyCredit = 0;
+        }
+
+        // Credit applied cannot exceed calculated tax before credit
+        const creditApplied = Math.min(taxBeforeCredit, eligibleMonthlyCredit);
+
+        // Final PIT Withheld
+        const incomeTaxWithheld = Math.max(0, taxBeforeCredit - creditApplied);
+
+        // Net Pay
+        const netPay = totalGrossSalary - socialInsuranceWithheld - incomeTaxWithheld;
+
+        // 8. Update UI Elements
+        document.getElementById('outWorkedBase').innerText = formatNumber(workedBasePay) + ' ₮';
+        document.getElementById('outOvertimePay').innerText = formatNumber(overtimePay) + ' ₮';
+        document.getElementById('outNightPay').innerText = formatNumber(nightPay) + ' ₮';
+        document.getElementById('outNightOTPay').innerText = formatNumber(nightOTPay) + ' ₮';
+        document.getElementById('outRestPay').innerText = formatNumber(restPay) + ' ₮';
+        document.getElementById('outHolidayPay').innerText = formatNumber(holidayPay) + ' ₮';
+        document.getElementById('outBonusPay').innerText = formatNumber(bonusPay) + ' ₮';
+        document.getElementById('outTotalGross').innerText = formatNumber(totalGrossSalary) + ' ₮';
+
+        document.getElementById('outShiitgel').innerText = formatNumber(socialInsuranceWithheld) + ' ₮';
+        document.getElementById('outTaxableIncome').innerText = formatNumber(taxableIncome) + ' ₮';
+        document.getElementById('outTaxBeforeCredit').innerText = formatNumber(taxBeforeCredit) + ' ₮';
+        document.getElementById('outCreditApplied').innerText = formatNumber(creditApplied) + ' ₮';
+        document.getElementById('outIncomeTax').innerText = formatNumber(incomeTaxWithheld) + ' ₮';
+        document.getElementById('outNetPay').innerText = formatNumber(netPay) + ' ₮';
+    }
+
+    // Attach Event Listeners
+    setupInputFormatting('baseSalary');
+    setupInputFormatting('bonusPay');
+
+    ['workDaysMonth', 'daysWorked', 'overtimeHours', 'nightHours', 'nightOvertimeHours', 'restDayHours', 'holidayHours'].forEach(id => {
+        document.getElementById(id).addEventListener('input', calculatePayroll);
+    });
+
+    // Initial calculation run
+    calculatePayroll();
+</script>
 </body>
 </html>
