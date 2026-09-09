@@ -1,102 +1,298 @@
-<!doctype html>
-<html lang="mn">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1912 — Цээмаа.А | EAIB101</title>
-<meta name="description" content="EAIB101 хичээлийн оюутан Цээмаа.А (B26FA1912) — ажлын хуудас.">
-<style>
-*, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+  <meta charset="UTF-8">
+  <title>Mongolian Complete Payslip & Salary Calculator</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 20px; background: #f8f9fa; color: #212529; }
+    .card { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); max-width: 900px; margin: auto; }
+    h2, h3 { color: #111; margin-top: 0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+    .field { margin-bottom: 12px; }
+    label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+    input[type="number"], input[type="text"] { width: 100%; padding: 8px 10px; font-size: 15px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid #dee2e6; font-size: 14px; }
+    th { background: #f1f3f5; font-weight: 600; }
+    td.amount { text-align: right; font-family: monospace; font-size: 15px; }
+    .law-comment { font-size: 11px; color: #6c757d; display: block; margin-top: 2px; }
+    .section-title { font-weight: bold; font-size: 16px; margin-top: 20px; border-bottom: 2px solid #0056b3; padding-bottom: 4px; color: #0056b3; }
+    .test-cases { margin-top: 30px; overflow-x: auto; }
+    .test-cases table { font-size: 12px; }
+    .test-cases th, .test-cases td { text-align: right; }
+    .test-cases th:first-child, .test-cases td:first-child { text-align: left; }
+  </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <span class="badge mono">B26FA1912</span>
-      <h1>Цээмаа.А</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/student/B26FA1912/index.html</code>
-      </div>
+<div class="card">
+  <h2>Mongolian Complete Payslip Calculator</h2>
+  
+  <div class="section-title">1. Base Pay & Working Norms</div>
+  <div class="grid">
+    <div class="field">
+      <label for="baseSalary">Base Monthly Salary (MNT)</label>
+      <input type="text" id="baseSalary" value="2,500,000" oninput="handleCurrencyInput(this)">
+    </div>
+    <div class="field">
+      <label for="allowance">Bonus / Additional Pay (MNT)</label>
+      <input type="text" id="allowance" value="0" oninput="handleCurrencyInput(this)">
+    </div>
+    <div class="field">
+      <label for="workingDaysNorm">Standard Working Days in Month (Art. 84)</label>
+      <input type="number" id="workingDaysNorm" value="21.3" step="0.1" oninput="recalculate()">
+    </div>
+    <div class="field">
+      <label for="daysWorked">Actual Days Worked</label>
+      <input type="number" id="daysWorked" value="21.3" step="0.1" oninput="recalculate()">
+    </div>
+  </div>
 
-      <footer><a href="/">← Ангийн бүх оюутан</a></footer>
-    </article>
-  </main>
+  <div class="section-title">2. Premium Hours Worked (Labour Law Art. 109)</div>
+  <div class="grid">
+    <div class="field">
+      <label for="overtimeHours">Standard Overtime Hours (1.5x - Art. 109.1)</label>
+      <input type="number" id="overtimeHours" value="0" step="0.5" oninput="recalculate()">
+    </div>
+    <div class="field">
+      <label for="nightHours">Night Shift Hours (1.2x - Art. 109.2)</label>
+      <input type="number" id="nightHours" value="0" step="0.5" oninput="recalculate()">
+    </div>
+    <div class="field">
+      <label for="restDayHours">Rest Day / Holiday Hours (2.0x - Art. 109.3)</label>
+      <input type="number" id="restDayHours" value="0" step="0.5" oninput="recalculate()">
+    </div>
+    <div class="field">
+      <label for="nightOvertimeHours">Overtime worked at Night (1.7x stacked - Art. 109.1 + 109.2)</label>
+      <input type="number" id="nightOvertimeHours" value="0" step="0.5" oninput="recalculate()">
+    </div>
+  </div>
+
+  <div class="section-title">3. Gross Salary Earnings Breakdown</div>
+  <table>
+    <thead>
+      <tr><th>Earning Component</th><th style="text-align: right;">Amount (MNT)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Prorated Base Pay <span class="law-comment">Labour Law Art. 84 (Standard norm = 8 hrs/day)</span></td><td class="amount" id="outProratedBase">0</td></tr>
+      <tr><td>Bonus / Additional Allowances</td><td class="amount" id="outAllowance">0</td></tr>
+      <tr><td>Overtime Pay Premium (1.5x) <span class="law-comment">Labour Law Art. 109.1 (Checked on legalinfo.mn Jan 1, 2022)</span></td><td class="amount" id="outOvertimePay">0</td></tr>
+      <tr><td>Night Shift Premium (1.2x) <span class="law-comment">Labour Law Art. 109.2 (Checked on legalinfo.mn Jan 1, 2022)</span></td><td class="amount" id="outNightPay">0</td></tr>
+      <tr><td>Rest Day / Holiday Pay (2.0x) <span class="law-comment">Labour Law Art. 109.3 (Checked on legalinfo.mn Jan 1, 2022)</span></td><td class="amount" id="outRestDayPay">0</td></tr>
+      <tr><td>Night Overtime Pay (1.7x Stacked) <span class="law-comment">Additive: 1.0 (base) + 0.5 (overtime) + 0.2 (night)</span></td><td class="amount" id="outNightOtPay">0</td></tr>
+      <tr style="font-weight: bold; background: #e9ecef;"><td>TOTAL GROSS SALARY</td><td class="amount" id="outGross">0</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">4. Deductions & Net Pay</div>
+  <table>
+    <thead>
+      <tr><th>Deduction / Tax Calculation Line</th><th style="text-align: right;">Amount (MNT)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Social Insurance Withheld
+          <span class="law-comment">General Law on Social Insurance Art. 19.1 & 19.4: 11.5% employee contribution capped at 10x Minimum Wage (7,920,000 MNT gross limit; checked legalinfo.mn Apr 1, 2025)</span>
+        </td>
+        <td class="amount" id="outShi">0</td>
+      </tr>
+      <tr>
+        <td>Taxable Income
+          <span class="law-comment">Personal Income Tax Law Art. 14.1: Social Insurance is subtracted BEFORE tax (checked legalinfo.mn Jan 1, 2023)</span>
+        </td>
+        <td class="amount" id="outTaxable">0</td>
+      </tr>
+      <tr>
+        <td>Tax Before Credit
+          <span class="law-comment">Personal Income Tax Law Art. 21.1: Brackets: 10% (&le;10M), 15% (10M–15M), 20% (&gt;15M) (checked legalinfo.mn Jan 1, 2023)</span>
+        </td>
+        <td class="amount" id="outTaxBefore">0</td>
+      </tr>
+      <tr>
+        <td>Credit Applied
+          <span class="law-comment">Personal Income Tax Law Art. 23.1: 20,000 MNT monthly credit applied after tax, tax never below zero (checked legalinfo.mn Jan 1, 2023)</span>
+        </td>
+        <td class="amount" id="outCredit">0</td>
+      </tr>
+      <tr>
+        <td>Income Tax Withheld
+          <span class="law-comment">Tax Before Credit minus Credit Applied</span>
+        </td>
+        <td class="amount" id="outPit">0</td>
+      </tr>
+      <tr style="font-weight: bold; background: #d4edda;">
+        <td>NET PAY
+          <span class="law-comment">Gross Salary minus Social Insurance minus Income Tax Withheld</span>
+        </td>
+        <td class="amount" id="outNet">0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="test-cases">
+    <h3>Original Step 2 Test Cases (Verified Fixed Gross Values)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Case Description</th>
+          <th>Gross</th>
+          <th>SHI (11.5%)</th>
+          <th>Taxable</th>
+          <th>Tax Before</th>
+          <th>Credit</th>
+          <th>PIT</th>
+          <th>Net Pay</th>
+        </tr>
+      </thead>
+      <tbody id="testTableBody"></tbody>
+    </table>
+
+    <h3 style="margin-top: 20px;">Step 4 Complex Pay Test Cases</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Case Description</th>
+          <th>Gross</th>
+          <th>SHI</th>
+          <th>Taxable</th>
+          <th>Tax Before</th>
+          <th>Credit</th>
+          <th>PIT</th>
+          <th>Net Pay</th>
+        </tr>
+      </thead>
+      <tbody id="step4TestTableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // LEGAL STATUTORY PARAMETERS:
+  // - General Law on Social Insurance Art. 19.1, 19.4: Employee SHI = 11.5%.
+  //   Minimum Wage = 792,000 MNT (effective Apr 1, 2025). Monthly Ceiling = 10 * 792,000 = 7,920,000 MNT. Max SHI = 910,800 MNT.
+  // - Personal Income Tax Law Art. 14.1, 21.1, 23.1: Excludes SHI from tax base. 10%/15%/20% progressive tiers. Monthly credit = 20,000 MNT.
+  // - Labour Law Art. 84, 109.1, 109.2, 109.3: Standard norm = 21.3 days/month (166.4 hrs). Multipliers: OT=1.5x, Night=1.2x, Holiday=2.0x.
+
+  const SHI_RATE = 0.115;
+  const MONTHLY_MIN_WAGE = 792000;
+  const SHI_CEILING = 10 * MONTHLY_MIN_WAGE; // 7,920,000 MNT
+  const MONTHLY_CREDIT = 20000;
+
+  function parseInputValue(id) {
+    const val = document.getElementById(id).value.replace(/,/g, '');
+    return parseFloat(val) || 0;
+  }
+
+  function handleCurrencyInput(input) {
+    let raw = input.value.replace(/,/g, '').replace(/\D/g, '');
+    if (raw === '') { input.value = ''; }
+    else { input.value = parseInt(raw, 10).toLocaleString('en-US'); }
+    recalculate();
+  }
+
+  function formatNumber(num) {
+    return Math.round(num).toLocaleString('en-US');
+  }
+
+  function computePayrollFromGross(grossSalary) {
+    if (isNaN(grossSalary) || grossSalary <= 0) {
+      return { shi: 0, taxable: 0, taxBefore: 0, credit: 0, pit: 0, net: 0 };
+    }
+    const cappedGross = Math.min(grossSalary, SHI_CEILING);
+    const shi = Math.round(cappedGross * SHI_RATE);
+    const taxable = Math.max(0, grossSalary - shi);
+
+    let taxBefore = 0;
+    if (taxable <= 10000000) {
+      taxBefore = taxable * 0.10;
+    } else if (taxable <= 15000000) {
+      taxBefore = (10000000 * 0.10) + ((taxable - 10000000) * 0.15);
+    } else {
+      taxBefore = (10000000 * 0.10) + (5000000 * 0.15) + ((taxable - 15000000) * 0.20);
+    }
+    taxBefore = Math.round(taxBefore);
+
+    const credit = Math.min(taxBefore, MONTHLY_CREDIT);
+    const pit = Math.max(0, taxBefore - credit);
+    const net = grossSalary - shi - pit;
+
+    return { shi, taxable, taxBefore, credit, pit, net };
+  }
+
+  function recalculate() {
+    const baseSalary = parseInputValue('baseSalary');
+    const allowance = parseInputValue('allowance');
+    const normDays = parseInputValue('workingDaysNorm') || 21.3;
+    const daysWorked = parseInputValue('daysWorked');
+    
+    const otHours = parseInputValue('overtimeHours');
+    const nightHours = parseInputValue('nightHours');
+    const restHours = parseInputValue('restDayHours');
+    const nightOtHours = parseInputValue('nightOvertimeHours');
+
+    // Labour Law Art 84: Hourly rate = Base Salary / (Norm Days * 8)
+    const hourlyRate = normDays > 0 ? (baseSalary / normDays) / 8 : 0;
+
+    const proratedBase = normDays > 0 ? (baseSalary / normDays) * daysWorked : 0;
+    const otPay = otHours * hourlyRate * 1.5;
+    const nightPay = nightHours * hourlyRate * 1.2;
+    const restPay = restHours * hourlyRate * 2.0;
+    const nightOtPay = nightOtHours * hourlyRate * 1.7; // Stacked additive: 1.0 base + 0.5 OT + 0.2 Night
+
+    const grossSalary = proratedBase + allowance + otPay + nightPay + restPay + nightOtPay;
+    const res = computePayrollFromGross(grossSalary);
+
+    document.getElementById('outProratedBase').innerText = formatNumber(proratedBase);
+    document.getElementById('outAllowance').innerText = formatNumber(allowance);
+    document.getElementById('outOvertimePay').innerText = formatNumber(otPay);
+    document.getElementById('outNightPay').innerText = formatNumber(nightPay);
+    document.getElementById('outRestDayPay').innerText = formatNumber(restPay);
+    document.getElementById('outNightOtPay').innerText = formatNumber(nightOtPay);
+    document.getElementById('outGross').innerText = formatNumber(grossSalary);
+
+    document.getElementById('outShi').innerText = formatNumber(res.shi);
+    document.getElementById('outTaxable').innerText = formatNumber(res.taxable);
+    document.getElementById('outTaxBefore').innerText = formatNumber(res.taxBefore);
+    document.getElementById('outCredit').innerText = formatNumber(res.credit);
+    document.getElementById('outPit').innerText = formatNumber(res.pit);
+    document.getElementById('outNet').innerText = formatNumber(res.net);
+  }
+
+  // Populate Test Cases Tables
+  const step2Cases = [
+    { name: "Zero Salary", gross: 0 },
+    { name: "Low Salary (Tax = 0)", gross: 200000 },
+    { name: "Ordinary Middle Salary", gross: 2500000 },
+    { name: "Exact Band Boundary (10M Taxable)", gross: 11299435 },
+    { name: "Above Contribution Ceiling", gross: 10000000 }
+  ];
+
+  const tbodyStep2 = document.getElementById('testTableBody');
+  step2Cases.forEach(c => {
+    const r = computePayrollFromGross(c.gross);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${c.name}</td><td>${formatNumber(c.gross)}</td><td>${formatNumber(r.shi)}</td><td>${formatNumber(r.taxable)}</td><td>${formatNumber(r.taxBefore)}</td><td>${formatNumber(r.credit)}</td><td>${formatNumber(r.pit)}</td><td><strong>${formatNumber(r.net)}</strong></td>`;
+    tbodyStep2.appendChild(tr);
+  });
+
+  // Step 4 cases based on 2,500,000 base salary (Hourly ~14,671.36 MNT)
+  const base2M5 = 2500000;
+  const hrRate = (base2M5 / 21.3) / 8;
+  const step4Cases = [
+    { name: "Half a Month (10.65 days)", gross: base2M5 / 2 },
+    { name: "Full Month + 1 Night OT Hour", gross: base2M5 + (hrRate * 1.7) },
+    { name: "Full Month + Full Day on Public Holiday (8 hrs)", gross: base2M5 + (8 * hrRate * 2.0) }
+  ];
+
+  const tbodyStep4 = document.getElementById('step4TestTableBody');
+  step4Cases.forEach(c => {
+    const r = computePayrollFromGross(c.gross);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${c.name}</td><td>${formatNumber(c.gross)}</td><td>${formatNumber(r.shi)}</td><td>${formatNumber(r.taxable)}</td><td>${formatNumber(r.taxBefore)}</td><td>${formatNumber(r.credit)}</td><td>${formatNumber(r.pit)}</td><td><strong>${formatNumber(r.net)}</strong></td>`;
+    tbodyStep4.appendChild(tr);
+  });
+
+  recalculate();
+</script>
 </body>
 </html>

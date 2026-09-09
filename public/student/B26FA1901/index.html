@@ -1,102 +1,452 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1901 — Төгөлдөр.Э | EAIB101</title>
-<meta name="description" content="EAIB101 хичээлийн оюутан Төгөлдөр.Э (B26FA1901) — ажлын хуудас.">
-<style>
-*, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B26FA1901 — Calculation of the Employee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
     :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+      --primary: #1e40af;
+      --primary-hover: #1d4ed8;
+      --accent: #059669;
+      --accent-bg: #ecfdf5;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --radius: 14px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
     }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.5; padding: 32px 16px; }
+    .container { max-width: 1050px; margin: 0 auto; }
+
+    .nav-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--card-bg); border: 1px solid var(--border); padding: 16px 24px;
+      border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 24px;
+    }
+    .brand-title { font-size: 20px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+    .brand-title span { font-weight: 500; color: var(--text-muted); font-size: 14px; margin-left: 8px; }
+    .badge-year { background: #eff6ff; color: var(--primary); font-weight: 700; font-size: 12px; padding: 6px 12px; border-radius: 20px; border: 1px solid #bfdbfe; }
+
+    .grid-layout { display: grid; grid-template-columns: 420px 1fr; gap: 24px; }
+    @media (max-width: 880px) { .grid-layout { grid-template-columns: 1fr; } }
+
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px; }
+    .card h2 { font-size: 16px; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+
+    .mode-switch { display: flex; background: #f1f5f9; padding: 4px; border-radius: 8px; margin-bottom: 16px; }
+    .mode-switch button { flex: 1; border: none; background: transparent; padding: 8px; font-size: 12px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-radius: 6px; }
+    .mode-switch button.active { background: #ffffff; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group.full { grid-column: span 2; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper input, .form-group select {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; background: #f8fafc;
+    }
+    .input-wrapper input:focus, .form-group select:focus { border-color: var(--primary); background: #ffffff; }
+    .input-wrapper .unit { position: absolute; right: 10px; font-size: 12px; font-weight: 600; color: var(--text-muted); pointer-events: none; }
+
+    .net-hero { background: var(--accent-bg); border: 1px solid #a7f3d0; border-radius: var(--radius); padding: 20px; margin-bottom: 20px; text-align: center; }
+    .net-hero span { display: block; font-size: 12px; font-weight: 700; color: #065f46; text-transform: uppercase; }
+    .net-hero strong { display: block; font-size: 32px; font-weight: 800; color: var(--accent); margin-top: 4px; }
+
+    .breakdown-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 12px; }
+    .breakdown-table tr { border-bottom: 1px dashed var(--border); }
+    .breakdown-table td { padding: 8px 0; color: var(--text-muted); }
+    .breakdown-table td.val { text-align: right; font-weight: 600; color: var(--text); }
+    .breakdown-table tr.total-row td { font-weight: 700; color: var(--text); border-top: 1px solid var(--border); border-bottom: none; padding-top: 10px; }
+
+    .employer-card { background: #ffffff; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px; }
+    .employer-card div { display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--text-muted); }
+    .employer-card div:last-child { margin-bottom: 0; font-weight: 700; color: var(--text); border-top: 1px solid #f1f5f9; padding-top: 6px; }
+
+    .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 8px; }
+    .link-item { display: block; padding: 8px 12px; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; color: var(--primary); text-decoration: none; font-size: 12px; font-weight: 600; }
+  </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <span class="badge mono">B26FA1901</span>
-      <h1>Төгөлдөр.Э</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/student/B26FA1901/index.html</code>
+<div class="container">
+  <div class="nav-header">
+    <div class="brand-title">
+      B26FA1901
+      <span>Calculation of the Employee</span>
+    </div>
+    <span class="badge-year">Labor Law Compliant (2021)</span>
+  </div>
+
+  <div class="grid-layout">
+    <!-- Input Panel -->
+    <div class="card">
+      <h2>⚙️ Input Parameters</h2>
+      
+      <div class="mode-switch">
+        <button id="btnGross" class="active" onclick="setMode('gross')">Gross → Net</button>
+        <button id="btnNet" onclick="setMode('net')">Net → Gross</button>
       </div>
 
-      <footer><a href="/">← Ангийн бүх оюутан</a></footer>
-    </article>
-  </main>
+      <div class="form-group full">
+        <label id="inputLabel" for="salaryInput">Base Monthly Salary</label>
+        <div class="input-wrapper">
+          <input type="number" id="salaryInput" value="3000000" min="0" step="50000" oninput="calculate()">
+          <span class="unit">MNT</span>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="daysInMonth">Days in Month</label>
+          <div class="input-wrapper">
+            <input type="number" id="daysInMonth" value="22" min="1" max="31" oninput="calculate()">
+            <span class="unit">Days</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="daysWorked">Days Worked</label>
+          <div class="input-wrapper">
+            <input type="number" id="daysWorked" value="22" min="0" max="31" oninput="calculate()">
+            <span class="unit">Days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="hoursWorked">Hours Worked</label>
+          <div class="input-wrapper">
+            <input type="number" id="hoursWorked" value="176" min="0" oninput="calculate()">
+            <span class="unit">Hrs</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="overtimeHours">Overtime Hours</label>
+          <div class="input-wrapper">
+            <input type="number" id="overtimeHours" value="0" min="0" oninput="calculate()">
+            <span class="unit">Hrs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="nightHours">Night Hours</label>
+          <div class="input-wrapper">
+            <input type="number" id="nightHours" value="0" min="0" oninput="calculate()">
+            <span class="unit">Hrs</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="restDayHours">Rest-Day Hours</label>
+          <div class="input-wrapper">
+            <input type="number" id="restDayHours" value="0" min="0" oninput="calculate()">
+            <span class="unit">Hrs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="publicHolidayHours">Public Holiday Hrs</label>
+          <div class="input-wrapper">
+            <input type="number" id="publicHolidayHours" value="0" min="0" oninput="calculate()">
+            <span class="unit">Hrs</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bonusPay">Bonus / Add. Pay</label>
+          <div class="input-wrapper">
+            <input type="number" id="bonusPay" value="0" min="0" oninput="calculate()">
+            <span class="unit">MNT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group full">
+        <label for="riskClass">Occupational Risk Level (ҮОМШӨ)</label>
+        <select id="riskClass" onchange="calculate()">
+          <option value="0.003">0.3% — Low Risk (Office, Retail)</option>
+          <option value="0.012" selected>1.2% — Medium Risk (Manufacturing)</option>
+          <option value="0.022">2.2% — High Risk (Mining, Construction)</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label for="period">Display Period</label>
+        <select id="period" onchange="calculate()">
+          <option value="1" selected>Monthly Breakdown</option>
+          <option value="12">Annualized Summary</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Output Panel -->
+    <div>
+      <div class="net-hero">
+        <span id="heroLabel">Take-Home Pay (Net Salary)</span>
+        <strong id="resNet">0 ₮</strong>
+      </div>
+
+      <div class="card">
+        <h2>💰 Line-by-Line Gross Pay Breakdown</h2>
+        <table class="breakdown-table">
+          <tbody>
+            <tr>
+              <td>Prorated Base Pay</td>
+              <td class="val" id="resBaseProrated">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Overtime Premium (1.5× base rate) [Art. 109.1]</td>
+              <td class="val" id="resOtPay">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Night Premium (+0.2× to +0.5× base rate) [Art. 109.3]</td>
+              <td class="val" id="resNightPay">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Rest-Day Premium (1.5× base rate) [Art. 109.2]</td>
+              <td class="val" id="resRestPay">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Public Holiday Premium (2.0× base rate) [Art. 109.4]</td>
+              <td class="val" id="resHolidayPay">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Bonus / Additional Allowance</td>
+              <td class="val" id="resBonus">0 ₮</td>
+            </tr>
+            <tr class="total-row">
+              <td>Total Gross Earned Pay</td>
+              <td class="val" id="resTotalGross">0 ₮</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>📊 Employee Deductions (Recalculated)</h2>
+        <table class="breakdown-table">
+          <tbody>
+            <tr>
+              <td>Social Insurance (НДШ 9.5%)</td>
+              <td class="val" id="resEmpSS">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Health Insurance (ЭМД 2.0%)</td>
+              <td class="val" id="resEmpHI">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Taxable Base Income</td>
+              <td class="val" id="resTaxable">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Gross Tax (ХХОАТ Base)</td>
+              <td class="val" id="resPitGross">0 ₮</td>
+            </tr>
+            <tr>
+              <td>Tax Relief Credit (Хөнгөлөлт)</td>
+              <td class="val" style="color: var(--accent);" id="resCredit">-0 ₮</td>
+            </tr>
+            <tr class="total-row">
+              <td>Net Income Tax Payable</td>
+              <td class="val" id="resPit">0 ₮</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>🏢 Employer Financial Impact</h2>
+        <div class="employer-card">
+          <div>
+            <span>Employer SI Contribution:</span>
+            <strong id="resEmployerContrib">0 ₮</strong>
+          </div>
+          <div>
+            <span>Total Cost to Employer:</span>
+            <strong id="resEmployerTotal">0 ₮</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔗 Official Portals & Regulatory Resources</h2>
+    <div class="links-grid">
+      <a class="link-item" href="https://legalinfo.mn" target="_blank" rel="noopener">📜 LegalInfo.mn (Law Database)</a>
+      <a class="link-item" href="https://mta.gov.mn" target="_blank" rel="noopener">🏛️ Mongolian Tax Administration</a>
+      <a class="link-item" href="https://ndaatgal.mn" target="_blank" rel="noopener">🛡️ Social Insurance General Agency</a>
+      <a class="link-item" href="https://etax.mta.gov.mn" target="_blank" rel="noopener">💻 E-Tax Online Portal</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SS_CAP = 7920000;
+  let calcMode = 'gross';
+
+  function setMode(mode) {
+    calcMode = mode;
+    document.getElementById('btnGross').classList.toggle('active', mode === 'gross');
+    document.getElementById('btnNet').classList.toggle('active', mode === 'net');
+    
+    document.getElementById('inputLabel').textContent = mode === 'gross' 
+      ? 'Base Monthly Salary' 
+      : 'Target Net Take-Home Pay';
+    
+    document.getElementById('heroLabel').textContent = mode === 'gross'
+      ? 'Take-Home Pay (Net Salary)'
+      : 'Required Base Salary';
+
+    calculate();
+  }
+
+  function formatMNT(num) {
+    return Math.round(num).toLocaleString('mn-MN') + ' ₮';
+  }
+
+  function calcAnnualPIT(annualTaxable) {
+    if (annualTaxable <= 0) return 0;
+    if (annualTaxable <= 120000000) {
+      return annualTaxable * 0.10;
+    } else if (annualTaxable <= 180000000) {
+      return 12000000 + (annualTaxable - 120000000) * 0.15;
+    } else {
+      return 21000000 + (annualTaxable - 180000000) * 0.20;
+    }
+  }
+
+  function calcAnnualCredit(annualTaxable) {
+    if (annualTaxable <= 6000000) return 240000;
+    if (annualTaxable <= 12000000) return 216000;
+    if (annualTaxable <= 18000000) return 192000;
+    if (annualTaxable <= 24000000) return 168000;
+    if (annualTaxable <= 30000000) return 144000;
+    if (annualTaxable <= 36000000) return 120000;
+    return 0;
+  }
+
+  function computeFromGross(baseSalary, inputs) {
+    const { daysInMonth, daysWorked, overtimeHrs, nightHrs, restDayHrs, publicHolidayHrs, bonus, riskRate } = inputs;
+
+    // Article 84.1: Standard working day is 8 hours. Norm hours = daysInMonth * 8
+    const monthlyNormHours = (daysInMonth > 0 ? daysInMonth : 22) * 8; // Article 84.1
+    const hourlyRate = baseSalary / monthlyNormHours; // Standard norm conversion rate
+
+    // Article 109.1 & Proration
+    const proratedBasePay = (baseSalary / (daysInMonth || 22)) * daysWorked; // Prorated basic salary
+    const otPay = overtimeHrs * (hourlyRate * 1.5); // Article 109.1 (1.5x multiplier)
+    const nightPay = nightHrs * (hourlyRate * 0.2); // Article 109.3 (0.2x additional rate)
+    const restPay = restDayHrs * (hourlyRate * 1.5); // Article 109.2 (1.5x multiplier)
+    const holidayPay = publicHolidayHrs * (hourlyRate * 2.0); // Article 109.4 (2.0x multiplier)
+
+    // Article 109.5: Overtime/holiday/rest day night work premium stacking is additive (base + stacked premiums)
+    const totalGross = proratedBasePay + otPay + nightPay + restPay + holidayPay + bonus;
+
+    // Tax & Insurance applies to ALL remuneration lines (Article 109 payments form gross taxable earnings)
+    const cappedBase = Math.min(totalGross, SS_CAP);
+    
+    const employeeSS = cappedBase * 0.095;
+    const employeeHI = totalGross * 0.02;
+    
+    const monthlyTaxable = Math.max(0, totalGross - employeeSS - employeeHI);
+    const annualTaxable = monthlyTaxable * 12;
+    
+    const monthlyPitGross = (calcAnnualPIT(annualTaxable) / 12);
+    const monthlyCredit = (calcAnnualCredit(annualTaxable) / 12);
+    const pitPayable = Math.max(0, monthlyPitGross - monthlyCredit);
+    
+    const net = totalGross - employeeSS - employeeHI - pitPayable;
+
+    const employerSS = (cappedBase * (0.085 + 0.010 + 0.006 + riskRate)) + (totalGross * 0.02);
+    const employerCost = totalGross + employerSS;
+
+    return {
+      baseSalary,
+      proratedBasePay,
+      otPay,
+      nightPay,
+      restPay,
+      holidayPay,
+      bonus,
+      totalGross,
+      employeeSS,
+      employeeHI,
+      taxable: monthlyTaxable,
+      pitGross: monthlyPitGross,
+      credit: monthlyCredit,
+      pit: pitPayable,
+      net,
+      employerSS,
+      employerCost
+    };
+  }
+
+  function computeFromNet(targetNet, inputs) {
+    let low = targetNet, high = targetNet * 3.0, bestBase = low;
+    for (let i = 0; i < 40; i++) {
+      let mid = (low + high) / 2;
+      let res = computeFromGross(mid, inputs);
+      if (res.net < targetNet) {
+        low = mid;
+      } else {
+        high = mid;
+        bestBase = mid;
+      }
+    }
+    return computeFromGross(bestBase, inputs);
+  }
+
+  function calculate() {
+    const salaryInput = Math.max(0, Number(document.getElementById('salaryInput').value) || 0);
+    const inputs = {
+      daysInMonth: Number(document.getElementById('daysInMonth').value) || 22,
+      daysWorked: Number(document.getElementById('daysWorked').value) || 0,
+      hoursWorked: Number(document.getElementById('hoursWorked').value) || 0,
+      overtimeHrs: Number(document.getElementById('overtimeHours').value) || 0,
+      nightHrs: Number(document.getElementById('nightHours').value) || 0,
+      restDayHrs: Number(document.getElementById('restDayHours').value) || 0,
+      publicHolidayHrs: Number(document.getElementById('publicHolidayHours').value) || 0,
+      bonus: Number(document.getElementById('bonusPay').value) || 0,
+      riskRate: Number(document.getElementById('riskClass').value)
+    };
+
+    const mult = Number(document.getElementById('period').value);
+
+    let r = calcMode === 'gross' 
+      ? computeFromGross(salaryInput, inputs) 
+      : computeFromNet(salaryInput, inputs);
+
+    document.getElementById('resNet').textContent = formatMNT((calcMode === 'gross' ? r.net : r.baseSalary) * mult);
+    document.getElementById('resBaseProrated').textContent = formatMNT(r.proratedBasePay * mult);
+    document.getElementById('resOtPay').textContent = formatMNT(r.otPay * mult);
+    document.getElementById('resNightPay').textContent = formatMNT(r.nightPay * mult);
+    document.getElementById('resRestPay').textContent = formatMNT(r.restPay * mult);
+    document.getElementById('resHolidayPay').textContent = formatMNT(r.holidayPay * mult);
+    document.getElementById('resBonus').textContent = formatMNT(r.bonus * mult);
+    document.getElementById('resTotalGross').textContent = formatMNT(r.totalGross * mult);
+
+    document.getElementById('resEmpSS').textContent = formatMNT(r.employeeSS * mult);
+    document.getElementById('resEmpHI').textContent = formatMNT(r.employeeHI * mult);
+    document.getElementById('resTaxable').textContent = formatMNT(r.taxable * mult);
+    document.getElementById('resPitGross').textContent = formatMNT(r.pitGross * mult);
+    document.getElementById('resCredit').textContent = '-' + formatMNT(r.credit * mult);
+    document.getElementById('resPit').textContent = formatMNT(r.pit * mult);
+
+    document.getElementById('resEmployerContrib').textContent = formatMNT(r.employerSS * mult);
+    document.getElementById('resEmployerTotal').textContent = formatMNT(r.employerCost * mult);
+  }
+
+  calculate();
+</script>
+
 </body>
 </html>

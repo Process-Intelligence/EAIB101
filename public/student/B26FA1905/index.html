@@ -1,102 +1,176 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1905 — Чандманьбаатар.Т | EAIB101</title>
-<meta name="description" content="EAIB101 хичээлийн оюутан Чандманьбаатар.Т (B26FA1905) — ажлын хуудас.">
-<style>
-*, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цалин, Татвар, Шимтгэл Тооцоолуур - B26FA1905</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .student-id {
+            text-align: center;
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            box-sizing: border-box;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.2s ease;
+            background-color: #f8fafc;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .result {
+            margin-top: 24px;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .result-item span:last-child {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        
+        .result-item:last-child span:last-child {
+            color: var(--primary-color);
+        }
+    </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <span class="badge mono">B26FA1905</span>
-      <h1>Чандманьбаатар.Т</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/student/B26FA1905/index.html</code>
-      </div>
+<div class="container">
+    <h2>Цалин Тооцоолуур</h2>
+    <div class="student-id">Оюутны код: B26FA1905</div>
+    
+    <div class="form-group">
+        <label for="grossSalary">Сарын нийт цалин (Gross Salary)</label>
+        <input type="number" id="grossSalary" placeholder="Жишээ: 2000000" value="2000000" oninput="calculateSalary()">
+    </div>
 
-      <footer><a href="/">← Ангийн бүх оюутан</a></footer>
-    </article>
-  </main>
+    <div class="result" id="resultBox">
+        <div class="result-item">
+            <span>Нийгмийн даатгал (11.5%):</span>
+            <span><span id="ndsh">0</span> ₮</span>
+        </div>
+        <div class="result-item">
+            <span>Татвар ногдох орлого:</span>
+            <span><span id="taxableIncome">0</span> ₮</span>
+        </div>
+        <div class="result-item">
+            <span>ХХОАТ (10%):</span>
+            <span><span id="xhoat">0</span> ₮</span>
+        </div>
+        <div class="result-item">
+            <span>Гар дээр олгох цалин:</span>
+            <span><span id="netSalary">0</span> ₮</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateSalary() {
+        let gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+
+        // Хуулийн дагуух суутгалууд (НДШ 11.5%, ХХОАТ 10%)
+        let ndsh = gross * 0.115;
+        let taxableIncome = gross - ndsh;
+        let xhoat = taxableIncome * 0.10;
+        let netSalary = taxableIncome - xhoat;
+
+        // Үр дүнг дэлгэцэнд харуулах
+        document.getElementById('ndsh').innerText = ndsh.toLocaleString();
+        document.getElementById('taxableIncome').innerText = taxableIncome.toLocaleString();
+        document.getElementById('xhoat').innerText = xhoat.toLocaleString();
+        document.getElementById('netSalary').innerText = netSalary.toLocaleString();
+    }
+
+    // Хуудас ачаалахад шууд тооцоолох
+    window.onload = calculateSalary;
+</script>
+
 </body>
 </html>

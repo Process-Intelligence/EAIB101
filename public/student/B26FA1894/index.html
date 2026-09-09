@@ -1,102 +1,223 @@
-<!doctype html>
-<html lang="mn">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1894 — Гарьд.Э | EAIB101</title>
-<meta name="description" content="EAIB101 хичээлийн оюутан Гарьд.Э (B26FA1894) — ажлын хуудас.">
-<style>
-*, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+<!DOCTYPE html>
+<!-- saved from url=(0031)file:///Users/Shared/index.html -->
+<html lang="mn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Mongolian Salary &amp; Tax Calculator</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 900px; margin: 30px auto; padding: 0 20px; background: #f8f9fa; color: #212529; }
+    h1, h2 { color: #1a252c; border-bottom: 2px solid #dee2e6; padding-bottom: 8px; }
+    .card { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    label { font-weight: 600; width: 40%; }
+    input { width: 55%; padding: 10px; font-size: 16px; border: 1px solid #ced4da; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { border: 1px solid #dee2e6; padding: 10px; text-align: right; }
+    th { background: #f1f3f5; text-align: left; }
+    .highlight { background: #e7f5ff; font-weight: bold; }
+  </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <span class="badge mono">B26FA1894</span>
-      <h1>Гарьд.Э</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/student/B26FA1894/index.html</code>
-      </div>
+  <h1>Mongolian Payslip Calculator</h1>
 
-      <footer><a href="/">← Ангийн бүх оюутан</a></footer>
-    </article>
-  </main>
-</body>
-</html>
+  <div class="card">
+    <h2>1. Gross Salary Input</h2>
+    <div class="form-group">
+      <label for="grossInput">Gross Monthly Salary (MNT):</label>
+      <input type="text" id="grossInput" value="2,500,000" oninput="formatAndCalculate(this)">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. Salary &amp; Tax Breakdown</h2>
+    <table>
+      <tbody><tr><th>Social Insurance Withheld (НДШ)</th><td id="outSHD">287,500</td></tr>
+      <tr><th>Taxable Income (Татвар ногдох орлого)</th><td id="outTaxable">2,212,500</td></tr>
+      <tr><th>Tax Before Credit (Бодогдсон татвар)</th><td id="outTaxRaw">221,250</td></tr>
+      <tr><th>Credit Applied (Татварын хөнгөлөлт)</th><td id="outCredit">14,000</td></tr>
+      <tr><th>Income Tax Withheld (ХХОАТ)</th><td id="outPIT">207,250</td></tr>
+      <tr class="highlight"><th>Net Pay (Гарт олгох цалин)</th><td id="outNet">2,005,250</td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>3. Test Cases Verification</h2>
+    <table id="testTable">
+      <thead>
+        <tr>
+          <th style="text-align:center">Case</th>
+          <th>Gross Pay</th>
+          <th>Insurance</th>
+          <th>Taxable</th>
+          <th>Tax Raw</th>
+          <th>Credit</th>
+          <th>Income Tax</th>
+          <th>Net Pay</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+      <td style="text-align:left"><b>1. Low Salary</b></td>
+      <td>200,000</td>
+      <td>23,000</td>
+      <td>177,000</td>
+      <td>17,700</td>
+      <td>17,700</td>
+      <td>0</td>
+      <td><b>177,000</b></td>
+    </tr><tr>
+      <td style="text-align:left"><b>2. Ordinary Salary</b></td>
+      <td>2,500,000</td>
+      <td>287,500</td>
+      <td>2,212,500</td>
+      <td>221,250</td>
+      <td>14,000</td>
+      <td>207,250</td>
+      <td><b>2,005,250</b></td>
+    </tr><tr>
+      <td style="text-align:left"><b>3. Band Boundary</b></td>
+      <td>11,299,435</td>
+      <td>759,000</td>
+      <td>10,540,435</td>
+      <td>1,081,065</td>
+      <td>0</td>
+      <td>1,081,065</td>
+      <td><b>9,459,370</b></td>
+    </tr><tr>
+      <td style="text-align:left"><b>4. Above Ceiling</b></td>
+      <td>8,000,000</td>
+      <td>759,000</td>
+      <td>7,241,000</td>
+      <td>724,100</td>
+      <td>0</td>
+      <td>724,100</td>
+      <td><b>6,516,900</b></td>
+    </tr><tr>
+      <td style="text-align:left"><b>5. Zero Salary</b></td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><b>0</b></td>
+    </tr></tbody>
+    </table>
+  </div>
+
+<script>
+/**
+ * LEGAL REFERENCES (Verified on legalinfo.mn):
+ * 1. General Law on Social Insurance (2023-07-07, effective 2024-01-01), Art 15.3, 19.1:
+ *    - Employee rate: 11.5%
+ *    - Monthly Base Ceiling: 10x Minimum Wage (₮660,000 x 10 = ₮6,600,000). Max SHD = ₮759,000.
+ * 2. Personal Income Tax Law (2022-12-22, effective 2023-01-01), Art 14.1, 21.1, 23.1:
+ *    - Order: Taxable Income = Gross Pay - SHD (Art 14.1.1)
+ *    - Monthly PIT Brackets (Art 21.1):
+ *        0 - 10,000,000 MNT: 10%
+ *        10,000,000 - 15,000,000 MNT: 1,000,000 + 15% of excess over 10M
+ *        Above 15,000,000 MNT: 1,750,000 + 20% of excess over 15M
+ *    - Monthly Tax Credit (Art 23.1):
+ *        ₮20,000/mo max for standard lower income bands, scaled down for higher incomes (₮0 above ₮36M annual).
+ */
+
+function computePayroll(gross) {
+  // 1. Social Insurance
+  const SHD_RATE = 0.115; // Art 19.1
+  const SHD_CEILING = 6600000; // Art 15.3 (10 x 660,000 MNT)
+  const shd = Math.min(gross, SHD_CEILING) * SHD_RATE;
+
+  // 2. Taxable Income
+  const taxable = Math.max(0, gross - shd);
+
+  // 3. Tax Before Credit
+  let taxRaw = 0;
+  if (taxable <= 10000000) {
+    taxRaw = taxable * 0.10;
+  } else if (taxable <= 15000000) {
+    taxRaw = 1000000 + (taxable - 10000000) * 0.15;
+  } else {
+    taxRaw = 1750000 + (taxable - 15000000) * 0.20;
+  }
+
+  // 4. Tax Credit Calculation (Art 23.1)
+  let maxCredit = 0;
+  const annualTaxable = taxable * 12;
+  if (annualTaxable <= 12000000) maxCredit = 20000;
+  else if (annualTaxable <= 18000000) maxCredit = 18000;
+  else if (annualTaxable <= 24000000) maxCredit = 16000;
+  else if (annualTaxable <= 30000000) maxCredit = 14000;
+  else if (annualTaxable <= 36000000) maxCredit = 10000;
+  else maxCredit = 0;
+
+  const credit = Math.min(taxRaw, maxCredit);
+
+  // 5. Final Income Tax
+  const pit = Math.max(0, taxRaw - credit);
+
+  // 6. Net Pay
+  const net = gross - shd - pit;
+
+  return {
+    gross: Math.round(gross),
+    shd: Math.round(shd),
+    taxable: Math.round(taxable),
+    taxRaw: Math.round(taxRaw),
+    credit: Math.round(credit),
+    pit: Math.round(pit),
+    net: Math.round(net)
+  };
+}
+
+function fmt(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function formatAndCalculate(input) {
+  let val = input.value.replace(/,/g, '');
+  if (isNaN(val) || val === '') val = '0';
+  const gross = parseFloat(val);
+  
+  const res = computePayroll(gross);
+  document.getElementById('outSHD').innerText = fmt(res.shd);
+  document.getElementById('outTaxable').innerText = fmt(res.taxable);
+  document.getElementById('outTaxRaw').innerText = fmt(res.taxRaw);
+  document.getElementById('outCredit').innerText = fmt(res.credit);
+  document.getElementById('outPIT').innerText = fmt(res.pit);
+  document.getElementById('outNet').innerText = fmt(res.net);
+}
+
+function renderTestCases() {
+  const cases = [
+    { name: "1. Low Salary", gross: 200000 },
+    { name: "2. Ordinary Salary", gross: 2500000 },
+    { name: "3. Band Boundary", gross: 11299435 },
+    { name: "4. Above Ceiling", gross: 8000000 },
+    { name: "5. Zero Salary", gross: 0 }
+  ];
+
+  const tbody = document.querySelector("#testTable tbody");
+  tbody.innerHTML = "";
+
+  cases.forEach(c => {
+    const r = computePayroll(c.gross);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td style="text-align:left"><b>${c.name}</b></td>
+      <td>${fmt(r.gross)}</td>
+      <td>${fmt(r.shd)}</td>
+      <td>${fmt(r.taxable)}</td>
+      <td>${fmt(r.taxRaw)}</td>
+      <td>${fmt(r.credit)}</td>
+      <td>${fmt(r.pit)}</td>
+      <td><b>${fmt(r.net)}</b></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Initial calculation
+formatAndCalculate(document.getElementById('grossInput'));
+renderTestCases();
+</script>
+
+</body></html>
