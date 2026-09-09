@@ -57,8 +57,36 @@ npm run dev        # http://localhost:8787
 
 ## Deploy
 
+Deploys are **automatic**. This Worker is connected to this repository through
+[Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/), so
+every push to `main` builds and deploys the site. There is no build step — the
+deploy command uploads `public/` straight to Cloudflare.
+
+| Build setting | Value |
+| --- | --- |
+| Production branch | `main` |
+| Build command | none |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | `/` |
+
+Pushes to any other branch upload a preview version
+(`npx wrangler versions upload`) rather than deploying to production, so student
+submissions can be reviewed on a preview URL before they reach the live site.
+
+Build status and logs live in the Cloudflare dashboard under
+**Workers & Pages → `eaib101` → Settings → Builds**. A build typically takes a
+couple of minutes; the site is live once the build reports success.
+
+> The Worker name in the Cloudflare dashboard must match `name` in
+> `wrangler.jsonc` — both are `eaib101`. If they ever diverge, builds fail.
+
+### Deploying by hand
+
+Only needed if the Git integration is disconnected:
+
 ```bash
-npx wrangler login # once
+npm install
+npx wrangler login
 npm run deploy
 ```
 
