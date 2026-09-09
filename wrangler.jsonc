@@ -1,0 +1,18 @@
+{
+  // Cloudflare Worker that serves the class site as static assets.
+  // Deploy:  npx wrangler deploy      Preview:  npx wrangler dev
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "eaib101",
+  "compatibility_date": "2026-09-09",
+  "assets": {
+    // Everything under public/ is uploaded and served straight from the edge.
+    // There is no Worker script, so asset requests are free and always fast.
+    "directory": "./public",
+
+    // /student/B26FA1091  ->  /student/B26FA1091/index.html
+    "html_handling": "auto-trailing-slash",
+
+    // Unknown paths get public/404.html with a 404 status.
+    "not_found_handling": "404-page"
+  }
+}

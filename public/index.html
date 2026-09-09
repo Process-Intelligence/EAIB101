@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EAIB101 — Оюутны ажлууд</title>
+<meta name="description" content="EAIB101 хичээлийн оюутнуудын ажлын хуудсууд.">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+  :root {
+    color-scheme: light dark;
+    --bg: #f4f4f2;
+    --panel: #ffffff;
+    --ink: #1c1b19;
+    --muted: #6b6963;
+    --line: #e2e1dc;
+    --accent: #b4522a;
+    --accent-soft: #fbeee7;
+    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14140f;
+      --panel: #1e1e18;
+      --ink: #f0efe9;
+      --muted: #a09d94;
+      --line: #32312a;
+      --accent: #e8875c;
+      --accent-soft: #2e211a;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  code, .mono {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+  header { margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 .35rem; letter-spacing: -.02em; }
+  .sub { color: var(--muted); margin: 0; }
+  ul { list-style: none; margin: 0; padding: 0;
+       display: grid; gap: .75rem;
+       grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+  .student {
+    display: flex; flex-direction: column; gap: .35rem;
+    padding: 1rem 1.1rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
+    transition: transform .12s ease, border-color .12s ease;
+  }
+  .student:hover, .student:focus-visible { transform: translateY(-2px); border-color: var(--accent); }
+  .code { font-size: .8125rem; letter-spacing: .06em; color: var(--accent); }
+  .name { font-size: 1.0625rem; font-weight: 600; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+           color: var(--muted); font-size: .9375rem; }
+  @media (prefers-reduced-motion: reduce) { .student { transition: none; } }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>EAIB101</h1>
+      <p class="sub">Оюутны ажлын хуудсууд · 27 оюутан</p>
+    </header>
+
+    <ul>
+      <li>
+        <a class="student" href="/student/B26FA1091/">
+          <span class="code mono">B26FA1091</span>
+          <span class="name">Балжидмаа.Б</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1891/">
+          <span class="code mono">B26FA1891</span>
+          <span class="name">Төгс-Эрдэнэ.Т</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1892/">
+          <span class="code mono">B26FA1892</span>
+          <span class="name">Аз-Эрдэнэ.Г</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1893/">
+          <span class="code mono">B26FA1893</span>
+          <span class="name">Ган-Эрдэнэ.Г</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1894/">
+          <span class="code mono">B26FA1894</span>
+          <span class="name">Гарьд.Э</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1895/">
+          <span class="code mono">B26FA1895</span>
+          <span class="name">Ерөөлт.Г</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1896/">
+          <span class="code mono">B26FA1896</span>
+          <span class="name">Мөнх-Оргил.С</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1897/">
+          <span class="code mono">B26FA1897</span>
+          <span class="name">Нинжин.Х</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1898/">
+          <span class="code mono">B26FA1898</span>
+          <span class="name">Номуулин.Г</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1899/">
+          <span class="code mono">B26FA1899</span>
+          <span class="name">Одгэрэл.П</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1900/">
+          <span class="code mono">B26FA1900</span>
+          <span class="name">Содбилэг.О</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1901/">
+          <span class="code mono">B26FA1901</span>
+          <span class="name">Төгөлдөр.Э</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1902/">
+          <span class="code mono">B26FA1902</span>
+          <span class="name">Тэнүүнмандал.И</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1903/">
+          <span class="code mono">B26FA1903</span>
+          <span class="name">Уянга.Х</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1904/">
+          <span class="code mono">B26FA1904</span>
+          <span class="name">Хурхамба.Х</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1905/">
+          <span class="code mono">B26FA1905</span>
+          <span class="name">Чандманьбаатар.Т</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1906/">
+          <span class="code mono">B26FA1906</span>
+          <span class="name">Эгшиглэн.А</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1907/">
+          <span class="code mono">B26FA1907</span>
+          <span class="name">Амарбат.М</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1908/">
+          <span class="code mono">B26FA1908</span>
+          <span class="name">Аръяа.Н</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1909/">
+          <span class="code mono">B26FA1909</span>
+          <span class="name">Дашням.Д</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1910/">
+          <span class="code mono">B26FA1910</span>
+          <span class="name">Лутням.О</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1911/">
+          <span class="code mono">B26FA1911</span>
+          <span class="name">Содбаяр.С</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1912/">
+          <span class="code mono">B26FA1912</span>
+          <span class="name">Цээмаа.А</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA1913/">
+          <span class="code mono">B26FA1913</span>
+          <span class="name">Эрхэмболор.Б</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FA2077/">
+          <span class="code mono">B26FA2077</span>
+          <span class="name">Марал.Б</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/B26FM1524/">
+          <span class="code mono">B26FM1524</span>
+          <span class="name">Амин-Эрдэнэ.А</span>
+        </a>
+      </li>
+      <li>
+        <a class="student" href="/student/C26SS1017/">
+          <span class="code mono">C26SS1017</span>
+          <span class="name">Аминхайр.Г</span>
+        </a>
+      </li>
+    </ul>
+
+    <footer>Оюутны хуудас нээхийн тулд нэр дээр нь дарна уу.</footer>
+  </main>
+</body>
+</html>
