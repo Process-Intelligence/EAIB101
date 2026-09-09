@@ -1,102 +1,369 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1911 — Содбаяр.С | EAIB101</title>
-<meta name="description" content="EAIB101 хичээлийн оюутан Содбаяр.С (B26FA1911) — ажлын хуудас.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Цалингийн тооцоолуур 2026 – Ажлын цаг + НДШ + ХХОАТ</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.5;
+    padding: 20px 12px 48px;
   }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
     border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 24px rgba(0,0,0,.07);
+    padding: 28px 24px 32px;
   }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
+  h1 {
+    font-size: 1.35rem;
+    color: #1e3a5f;
+    margin-bottom: 6px;
   }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
+  .sub {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin-bottom: 22px;
   }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
+  h2 {
+    font-size: 1.05rem;
+    color: #1e40af;
+    margin: 22px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #dbeafe;
+  }
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+  }
+  @media (max-width: 560px) {
+    .grid2 { grid-template-columns: 1fr; }
+  }
+  .field label {
     display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
+    font-weight: 600;
+    font-size: 0.84rem;
+    margin-bottom: 4px;
+    color: #334155;
   }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+  .field input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .field input:focus { border-color: #2563eb; }
+  .hint {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 3px;
+  }
+  .check-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin: 10px 0 6px;
+    font-size: 0.88rem;
+  }
+  .check-row label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 0.92rem;
+  }
+  td {
+    padding: 9px 8px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  td:last-child {
+    text-align: right;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  tr.section td {
+    background: #f8fafc;
+    font-weight: 700;
+    color: #1e40af;
+    border-bottom: 1px solid #bfdbfe;
+  }
+  tr.total td {
+    border-top: 2px solid #2563eb;
+    border-bottom: none;
+    padding-top: 12px;
+    font-size: 1.05rem;
+    color: #166534;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 560px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.82rem;
+  }
+  .card h3 {
+    font-size: 0.88rem;
+    color: #1e3a5f;
+    margin-bottom: 8px;
+  }
+  .card ul {
+    padding-left: 1.15em;
+  }
+  .card li { margin-bottom: 4px; }
+  .sodbayar {
+    text-align: right;
+    margin-top: 24px;
+    font-weight: 700;
+    color: #2563eb;
+    font-size: 1.05rem;
+  }
+  .footer {
+    margin-top: 16px;
+    font-size: 0.78rem;
+    color: #94a3b8;
+    text-align: center;
+  }
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <span class="badge mono">B26FA1911</span>
-      <h1>Содбаяр.С</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
+<div class="wrap">
+  <h1>Цалингийн тооцоолуур</h1>
+  <p class="sub">Ажилласан хоног, илүү цаг, шөнийн цаг, баярын өдөр бүгд нийт цалинг тодорхойлно — тэдгээр нь доорх татвар, шимтгэлийг бас өөрчилнө.</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/student/B26FA1911/index.html</code>
-      </div>
+  <!-- INPUTS -->
+  <h2>1. Үндсэн мэдээлэл</h2>
+  <div class="grid2">
+    <div class="field">
+      <label>Сарын үндсэн цалин (₮)</label>
+      <input type="text" id="base" value="2,500,000">
+    </div>
+    <div class="field">
+      <label>Сарын ажлын цагийн норм</label>
+      <input type="text" id="normHours" value="168">
+      <div class="hint">Ихэвчлэн 168 (21 өдөр × 8 цаг)</div>
+    </div>
+    <div class="field">
+      <label>Сард ажиллавал зохих хоног</label>
+      <input type="text" id="reqDays" value="21">
+    </div>
+    <div class="field">
+      <label>Ажилласан хоног</label>
+      <input type="text" id="workedDays" value="21">
+    </div>
+  </div>
 
-      <footer><a href="/">← Ангийн бүх оюутан</a></footer>
-    </article>
-  </main>
+  <h2>2. Нэмэгдэл цаг, төлбөр</h2>
+  <div class="grid2">
+    <div class="field">
+      <label>Илүү цаг (цаг)</label>
+      <input type="text" id="otH" value="0">
+    </div>
+    <div class="field">
+      <label>Шөнийн цаг (цаг)</label>
+      <input type="text" id="nightH" value="0">
+    </div>
+    <div class="field">
+      <label>Амралтын өдрийн цаг</label>
+      <input type="text" id="restH" value="0">
+    </div>
+    <div class="field">
+      <label>Баярын өдрийн цаг</label>
+      <input type="text" id="holH" value="0">
+    </div>
+    <div class="field">
+      <label>Шагнал, урамшуулал (₮)</label>
+      <input type="text" id="bonus" value="0">
+    </div>
+  </div>
+
+  <div class="check-row">
+    <label><input type="checkbox" id="nightOnOt"> Илүү цаг шөнө (давхарлана)</label>
+    <label><input type="checkbox" id="nightOnRest"> Амралтын өдөр шөнө</label>
+    <label><input type="checkbox" id="nightOnHol"> Баярын өдөр шөнө</label>
+  </div>
+
+  <!-- RESULTS -->
+  <h2>3. Тооцооны үр дүн</h2>
+  <table>
+    <tr class="section"><td colspan="2">Цалингийн бүтэц</td></tr>
+    <tr><td>1 цагийн үндсэн хөлс</td><td id="rHourly">0</td></tr>
+    <tr><td>Үндсэн цалин (ажилласан хоногоор)</td><td id="rBase">0</td></tr>
+    <tr><td>Илүү цагийн нэмэгдэл (0.5×)</td><td id="rOt">0</td></tr>
+    <tr><td>Шөнийн нэмэгдэл (0.2×)</td><td id="rNight">0</td></tr>
+    <tr><td>Амралтын өдрийн нэмэгдэл (0.5×)</td><td id="rRest">0</td></tr>
+    <tr><td>Баярын өдрийн нэмэгдэл (1×)</td><td id="rHol">0</td></tr>
+    <tr><td>Шагнал, урамшуулал</td><td id="rBonus">0</td></tr>
+    <tr><td><strong>Нийт олговол зохих (gross)</strong></td><td id="rGross">0</td></tr>
+
+    <tr class="section"><td colspan="2">Суутгал (НДШ → ХХОАТ)</td></tr>
+    <tr><td>НДШ (11.5%, дээд 910,800₮)</td><td id="rSI">0</td></tr>
+    <tr><td>Татвар ногдуулах орлого</td><td id="rTaxable">0</td></tr>
+    <tr><td>Хөнгөлөлтөөс өмнөх татвар</td><td id="rTaxBefore">0</td></tr>
+    <tr><td>Хөнгөлөлт (сард 792,000₮)</td><td id="rRelief">0</td></tr>
+    <tr><td>ХХОАТ</td><td id="rPIT">0</td></tr>
+    <tr class="total"><td>Гарт олгох цэвэр цалин</td><td id="rNet">0</td></tr>
+  </table>
+
+  <!-- LAW CARDS -->
+  <div class="two-col">
+    <div class="card">
+      <h3>Хөдөлмөрийн тухай хуулиас</h3>
+      <ul>
+        <li>Ажлын өдөр 8 цаг, долоо хоног 40 цаг. Сарын норм ихэвчлэн 168 цаг.</li>
+        <li>Илүү цаг: 1.5× (нөхөн амруулбал нэмэгдэл олгохгүй).</li>
+        <li>Шөнө (22:00–06:00): 1.2×. Амралтын өдөр 1.5×, баяр 2×.</li>
+        <li>Давхарласан үед шөнийн нэмэгдлийг бусад нэмэгдэл дээр нэмнэ (109.5).</li>
+        <li>Бүх нэмэгдэл хөлсөнд НДШ, ХХОАТ хамаарна.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Суутгалын дараалал</h3>
+      <ul>
+        <li>1. Нийт олговол зохих цалин (үндсэн + нэмэгдэл + шагнал)</li>
+        <li>2. − Ажилтны НДШ (11.5%, дээд лимиттэй)</li>
+        <li>3. = Татвар ногдуулах орлого</li>
+        <li>4. × ХХОАТ − хөнгөлөлт</li>
+        <li>5. = Гарт олгох цэвэр цалин</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="sodbayar">Содбаяр</p>
+  <p class="footer">2026 оны байдлаар · legalinfo.mn · Хууль өөрчлөгдөж болзошгүй</p>
+</div>
+
+<script>
+(function () {
+  const SI_RATE = 0.115;
+  const SI_CAP = 910800;
+  const SI_BASE_CAP = 7920000;
+  const RELIEF_ANNUAL = 9504000;
+
+  function parseNum(str) {
+    return parseInt(String(str).replace(/[^\d]/g, ''), 10) || 0;
+  }
+  function fmt(n) {
+    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+  function annualTax(a) {
+    if (a <= 0) return 0;
+    if (a <= 120000000) return a * 0.10;
+    if (a <= 180000000) return 12000000 + (a - 120000000) * 0.15;
+    return 21000000 + (a - 180000000) * 0.20;
+  }
+
+  function calc() {
+    const baseMonthly = parseNum(document.getElementById('base').value);
+    const normH = parseNum(document.getElementById('normHours').value) || 168;
+    const reqDays = parseNum(document.getElementById('reqDays').value) || 21;
+    const workedDays = parseNum(document.getElementById('workedDays').value);
+    const otH = parseNum(document.getElementById('otH').value);
+    const nightH = parseNum(document.getElementById('nightH').value);
+    const restH = parseNum(document.getElementById('restH').value);
+    const holH = parseNum(document.getElementById('holH').value);
+    const bonus = parseNum(document.getElementById('bonus').value);
+
+    const nightOnOt = document.getElementById('nightOnOt').checked;
+    const nightOnRest = document.getElementById('nightOnRest').checked;
+    const nightOnHol = document.getElementById('nightOnHol').checked;
+
+    const hourly = baseMonthly / normH;
+
+    // Base pay proportional to worked days
+    const dayRate = baseMonthly / reqDays;
+    const basePay = dayRate * workedDays;
+
+    // Premiums (extra only)
+    const otExtra = otH * hourly * 0.5;
+    const restExtra = restH * hourly * 0.5;
+    const holExtra = holH * hourly * 1.0;
+    let nightExtra = nightH * hourly * 0.2;
+    if (nightOnOt) nightExtra += otH * hourly * 0.2;
+    if (nightOnRest) nightExtra += restH * hourly * 0.2;
+    if (nightOnHol) nightExtra += holH * hourly * 0.2;
+
+    const gross = basePay + otExtra + restExtra + holExtra + nightExtra + bonus;
+
+    // SI
+    const siBase = Math.min(gross, SI_BASE_CAP);
+    const si = Math.min(Math.round(siBase * SI_RATE), SI_CAP);
+
+    // Tax
+    const taxable = gross - si;
+    const annualTaxable = taxable * 12;
+    const taxBeforeAnnual = annualTax(annualTaxable);
+    const reliefAnnual = Math.min(taxBeforeAnnual, RELIEF_ANNUAL * 0.10);
+    let taxAfterAnnual = taxBeforeAnnual - reliefAnnual;
+    if (taxAfterAnnual < 0) taxAfterAnnual = 0;
+
+    const taxBefore = Math.round(taxBeforeAnnual / 12);
+    const relief = Math.round(reliefAnnual / 12);
+    const pit = Math.round(taxAfterAnnual / 12);
+    const net = gross - si - pit;
+
+    // Display
+    document.getElementById('rHourly').textContent = fmt(hourly);
+    document.getElementById('rBase').textContent = fmt(basePay);
+    document.getElementById('rOt').textContent = fmt(otExtra);
+    document.getElementById('rNight').textContent = fmt(nightExtra);
+    document.getElementById('rRest').textContent = fmt(restExtra);
+    document.getElementById('rHol').textContent = fmt(holExtra);
+    document.getElementById('rBonus').textContent = fmt(bonus);
+    document.getElementById('rGross').textContent = fmt(gross);
+    document.getElementById('rSI').textContent = fmt(si);
+    document.getElementById('rTaxable').textContent = fmt(taxable);
+    document.getElementById('rTaxBefore').textContent = fmt(taxBefore);
+    document.getElementById('rRelief').textContent = fmt(relief);
+    document.getElementById('rPIT').textContent = fmt(pit);
+    document.getElementById('rNet').textContent = fmt(net);
+  }
+
+  // Live update + comma formatting
+  function bind(id) {
+    const el = document.getElementById(id);
+    el.addEventListener('input', function () {
+      const pos = this.selectionStart;
+      const oldLen = this.value.length;
+      const num = parseNum(this.value);
+      this.value = num ? fmt(num) : '';
+      const newLen = this.value.length;
+      try { this.setSelectionRange(pos + (newLen - oldLen), pos + (newLen - oldLen)); } catch(e){}
+      calc();
+    });
+  }
+  ['base','normHours','reqDays','workedDays','otH','nightH','restH','holH','bonus'].forEach(bind);
+  ['nightOnOt','nightOnRest','nightOnHol'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', calc);
+  });
+
+  calc();
+})();
+</script>
 </body>
 </html>
