@@ -2,101 +2,299 @@
 <html lang="mn">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA2077 — Марал.Б | EAIB101</title>
-<meta name="description" content="EAIB101 хичээлийн оюутан Марал.Б (B26FA2077) — ажлын хуудас.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mongolia Salary, Tax & Insurance Calculator</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+:root{--navy:#202b68;--ink:#18213f;--muted:#66708a;--line:#dfe3ee;--bg:#f7f8fc;--card:#fff;--accent:#e9b949;--ok:#e8f5ee;--danger:#fff0f0}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+header{background:var(--navy);color:#fff;padding:42px 20px} .wrap{max-width:1120px;margin:auto}
+.kicker{text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--accent);font-weight:800}
+h1{font-family:Georgia,serif;font-size:44px;line-height:1.05;margin:8px 0 10px} h2{font-family:Georgia,serif;font-size:30px;margin:0 0 18px}
+h3{margin:0 0 10px}.sub{opacity:.85;max-width:760px}
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:24px 0}
+.progress div{background:#fff;border:1px solid var(--line);padding:10px;border-radius:10px;font-size:12px;font-weight:700;text-align:center}
+.progress .active{background:var(--navy);color:#fff}
+section{margin:28px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 5px 18px #1b24520d}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+ul{margin:8px 0 0;padding-left:20px}.note{background:#eef0f8;border-left:4px solid var(--navy);padding:14px;border-radius:8px}
+.source{font-size:12px;color:var(--muted);margin-top:12px}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}input,select{width:100%;padding:12px;border:1px solid #cfd5e3;border-radius:9px;font-size:15px;background:#fff}
+.field{margin-bottom:12px}.btn{border:0;background:var(--navy);color:#fff;padding:12px 17px;border-radius:9px;font-weight:800;cursor:pointer}.btn.secondary{background:#e8eaf3;color:var(--navy)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+.result{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.result .item{padding:14px;background:#f5f6fa;border-radius:10px}.item small{display:block;color:var(--muted)}.item strong{font-size:20px}
+.big{font-size:28px;font-weight:900}.ok{background:var(--ok)!important}.danger{background:var(--danger)!important}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left}th{background:#f2f4f9}
+.code{background:#10162f;color:#f4f6ff;border-radius:10px;padding:16px;overflow:auto;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}
+footer{padding:30px 20px 50px;color:var(--muted);font-size:12px}
+@media(max-width:760px){.grid,.grid3{grid-template-columns:1fr}.progress{grid-template-columns:1fr 1fr}h1{font-size:34px}.result{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <span class="badge mono">B26FA2077</span>
-      <h1>Марал.Б</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
+<header><div class="wrap">
+<div class="kicker">Problem Set 01 · MNT</div>
+<h1>Salary, Tax & Insurance</h1>
+<p class="sub">Монгол ажилтны сарын цалин, НДШ, ЭМД, ХХОАТ болон нэмэгдэл хөлсийг нэг хуудсаар тооцоолох calculator.</p>
+</div></header>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/student/B26FA2077/index.html</code>
-      </div>
+<main class="wrap">
+<div class="progress">
+<div class="active">01 · Research</div><div>02 · Build</div><div>03 · Compare</div><div>04 · Payslip</div>
+</div>
 
-      <footer><a href="/">← Ангийн бүх оюутан</a></footer>
-    </article>
-  </main>
+<section>
+<div class="kicker">STEP 1 · FIND IN THE LAW</div>
+<h2>Хуулиар шалгасан үндсэн дүрмүүд</h2>
+<div class="grid">
+<div class="card">
+<h3>Ажилтны даатгал</h3>
+<ul>
+<li>Тэтгэврийн даатгал — <b>8.5%</b></li>
+<li>Тэтгэмжийн даатгал — <b>0.8%</b></li>
+<li>Ажилгүйдлийн даатгал — <b>0.2%</b></li>
+<li>Эрүүл мэндийн даатгал — <b>2.0%</b></li>
+<li><b>Ажилтны нийт суутгал = 11.5%</b></li>
+</ul>
+<p class="source">Эх сурвалж: Нийгмийн даатгалын ерөнхий хууль, 18.1; ЭМД-ын 2026 оны хувь хэмжээний тухай тогтоол. 2026-09-09 шалгасан.</p>
+</div>
+<div class="card">
+<h3>ХХОАТ</h3>
+<ul>
+<li>Цалин, хөдөлмөрийн орлогоос ЭМД + НДШ-ийг хассаны дараах дүнг татвар ногдох орлогод хэрэглэнэ.</li>
+<li>0–120 сая ₮/жил — <b>10%</b></li>
+<li>120–180 сая ₮ — <b>12 сая + давсан хэсгийн 15%</b></li>
+<li>180 сая ₮-оос дээш — <b>21 сая + давсан хэсгийн 20%</b></li>
+<li>Цалингийн татварын хөнгөлөлт нь жилийн орлогын түвшнээс хамаарна.</li>
+</ul>
+<p class="source">Эх сурвалж: ХХОАТ-ын тухай хууль, 14.1, 21.1, 23-р зүйл. 2026-09-09 шалгасан.</p>
+</div>
+</div>
+<div class="card" style="margin-top:18px">
+<h3>Даатгалын дээд хэмжээ</h3>
+<p>Албан журмын даатгуулагчийн НДШ тооцох сарын цалингийн дээд хэмжээг 2025-04-01-ээс <b>7,920,000 ₮</b> гэж мэдээлсэн. Энэ calculator нь НДШ/ЭМД-д зориулж орлогыг энэ дээд хэмжээгээр хязгаарлана.</p>
+<p class="source">Эх сурвалж: НДЕГ-ийн 2025 оны тайлан/тайлбар. 2026-09-09 шалгасан.</p>
+</div>
+</section>
+
+<section>
+<div class="kicker">STEP 2 · BUILD IT</div>
+<h2>What your calculator must do</h2>
+<div class="grid">
+<div class="card">
+<h3>Оролт</h3>
+<div class="field"><label>Gross monthly salary (₮)</label><input id="gross" type="number" min="0" step="1000" value="3000000"></div>
+<div class="field"><label>Tax credit — автоматаар</label><select id="creditMode"><option value="auto">Хуулийн хүснэгтээр</option><option value="none">0 ₮ (test mode)</option></select></div>
+<button class="btn" onclick="calculate()">Calculate</button>
+<div class="result">
+<div class="item"><small>НДШ + ЭМД</small><strong id="insurance">—</strong></div>
+<div class="item"><small>Татвар ногдох орлого</small><strong id="taxable">—</strong></div>
+<div class="item"><small>ХХОАТ (хөнгөлөлтийн дараа)</small><strong id="tax">—</strong></div>
+<div class="item ok"><small>Гар дээр авах цалин</small><strong id="net">—</strong></div>
+</div>
+</div>
+<div class="card">
+<h3>2026 calculator rules</h3>
+<table>
+<tr><th>Item</th><th>Rate / rule</th></tr>
+<tr><td>Employee social insurance</td><td>9.5%</td></tr>
+<tr><td>Health insurance</td><td>2.0%</td></tr>
+<tr><td>Total insurance</td><td>11.5%, capped at 7.92m base</td></tr>
+<tr><td>PIT</td><td>10% / 15% / 20% progressive</td></tr>
+<tr><td>Tax credit</td><td>20k, 18k, 16k, 14k, 12k, 10k, then 0 per month</td></tr>
+</table>
+</div>
+</div>
+<div class="note" style="margin-top:18px">⚠️ Хуулийн хувь хэмжээ өөрчлөгдөж болох тул submission хийхээсээ өмнө дээрх эх сурвалжуудтай дахин тулгаж шалга.</div>
+</section>
+
+<section>
+<div class="kicker">STEP 3 · SAME JOB, TWO PROMPTS</div>
+<h2>Run both. Then write down the difference.</h2>
+<div class="grid">
+<div class="card">
+<h3>Prompt A</h3>
+<div class="code">Make an HTML page that calculates Mongolian salary tax and social insurance.</div>
+<h3 style="margin-top:16px">Анхаарах зүйл</h3>
+<ul><li>Rate хаанаас авсан?</li><li>Article / source нэрлэсэн үү?</li><li>Insurance tax-аас өмнө хассан уу?</li><li>Credit-ийг tax-ийн дараа хэрэглэсэн үү?</li></ul>
+</div>
+<div class="card">
+<h3>Prompt B</h3>
+<div class="code">Write a single-file HTML calculator. No libraries, no CDN.
+
+Rules:
+- Employee social insurance = 9.5% of gross salary, capped at 7,920,000.
+- Health insurance = 2% of the same capped base.
+- Taxable income = gross - employee insurance.
+- PIT: 10% up to 120m/year; 12m + 15% of excess to 180m/year; 21m + 20% of excess.
+- Apply the salary tax credit after tax; never below zero.
+- Add a comment naming the law, article, and date checked.</div>
+<h3 style="margin-top:16px">Давуу тал</h3>
+<p>Prompt B нь хувь, дараалал, дээд хязгаар, source requirement-ийг тодорхой өгсөн тул буруу таах боломж бага.</p>
+</div>
+</div>
+<div class="card" style="margin-top:18px">
+<h3>6 sentence conclusion template</h3>
+<ol>
+<li>Prompt A нь ерөнхий хүсэлт байсан тул exact rates-ийг баталгаажуулах шаардлагатай.</li>
+<li>Prompt B нь шалгасан дүрмүүдийг шууд өгсөн.</li>
+<li>Insurance нь PIT тооцохоос өмнө хасагдана.</li>
+<li>Tax credit нь tax тооцсоны дараа хэрэглэгдэнэ.</li>
+<li>НДШ-ийн дээд суурь нь өндөр цалингийн үр дүнд нөлөөлнө.</li>
+<li>Иймээс хууль, article, date-ийг code comment-д үлдээх нь хамгийн чухал.</li>
+</ol>
+</div>
+</section>
+
+<section>
+<div class="kicker">STEP 4 · MAKE IT A REAL PAYSLIP</div>
+<h2>Одоо цалин өөрөө calculation</h2>
+<div class="grid">
+<div class="card">
+<h3>Ажлын мэдээлэл</h3>
+<div class="grid3">
+<div class="field"><label>Үндсэн сарын цалин</label><input id="base" type="number" value="3000000"></div>
+<div class="field"><label>Ажилласан өдөр</label><input id="days" type="number" value="22"></div>
+<div class="field"><label>Сарын ажлын өдөр</label><input id="monthDays" type="number" value="22"></div>
+</div>
+<div class="grid3">
+<div class="field"><label>Өдөрт ажиллах цаг</label><input id="hoursDay" type="number" value="8"></div>
+<div class="field"><label>Илүү цаг</label><input id="ot" type="number" value="0"></div>
+<div class="field"><label>Шөнийн цаг</label><input id="night" type="number" value="0"></div>
+</div>
+<div class="grid3">
+<div class="field"><label>Долоо хоногийн амралтын цаг</label><input id="weekend" type="number" value="0"></div>
+<div class="field"><label>Нийтээр амрах баярын цаг</label><input id="holiday" type="number" value="0"></div>
+<div class="field"><label>Бонус / нэмэлт цалин</label><input id="bonus" type="number" value="0"></div>
+</div>
+<button class="btn" onclick="payslip()">Make payslip</button>
+</div>
+<div class="card">
+<h3>Тооцооны үр дүн</h3>
+<table id="slip">
+<tr><td>Үндсэн цалин</td><td id="rBase">—</td></tr>
+<tr><td>Илүү цагийн нэмэгдэл (1.5×)</td><td id="rOt">—</td></tr>
+<tr><td>Шөнийн нэмэгдэл (1.2×)</td><td id="rNight">—</td></tr>
+<tr><td>Амралтын өдрийн нэмэгдэл (1.5×)</td><td id="rWeekend">—</td></tr>
+<tr><td>Баярын өдрийн нэмэгдэл (2×)</td><td id="rHoliday">—</td></tr>
+<tr><td>Бонус</td><td id="rBonus">—</td></tr>
+<tr><th>Gross pay</th><th id="rGross">—</th></tr>
+<tr><td>НДШ + ЭМД</td><td id="rIns">—</td></tr>
+<tr><td>ХХОАТ</td><td id="rTax">—</td></tr>
+<tr><th>NET PAY</th><th id="rNet" class="big">—</th></tr>
+</table>
+</div>
+</div>
+<div class="card" style="margin-top:18px">
+<h3>Proof / test cases</h3>
+<div class="grid3">
+<div class="item"><small>1 · Tax = 0 test</small><b>Gross бага цалин оруулаад татвар 0 болохыг шалга.</b></div>
+<div class="item"><small>2 · Ordinary</small><b>3,000,000 ₮ salary дээр гарах дүнг гар тооцоотой тулга.</b></div>
+<div class="item"><small>3 · Boundary</small><b>Татварын 120m/180m жилийн босгыг шалга.</b></div>
+</div>
+<p class="source">Хөдөлмөрийн тухай хуулийн 109.1–109.5: илүү цаг/амралтын өдөр 1.5×, шөнийн цаг 1.2×, нийтээр амрах баярын өдөр 2×; шөнийн нэмэгдэл нь давхар нөхцөлд нэмэгдэнэ. 2026-09-09 шалгасан.</p>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h3>Source comments included in this file</h3>
+<p>Кодын доод хэсэгт хууль, зүйл, шалгасан огноог comment хэлбэрээр оруулсан. Интернетгүйгээр double-click хийж ажиллуулж болно.</p>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap">Salary, Tax & Insurance · Single-file HTML · No external libraries</div></footer>
+
+<script>
+/*
+LAW CHECK — 2026-09-09
+1) Personal Income Tax Law: Article 14.1 (insurance deducted before PIT);
+   Article 21.1 (10% / 15% / 20% salary-income brackets applicable in 2026);
+   Article 23 salary tax credit.
+   https://legalinfo.mn/mn/claw/16231007375991/1632448547484394
+2) General Social Insurance Law: Article 18.1 — employee pension 8.5%,
+   benefit 0.8%, unemployment 0.2%; workplace injury is employer-side.
+   https://legalinfo.mn/mn/detail?lawId=16760148379551
+3) 2026 Health Insurance rate: employee 2%, employer 2%.
+   https://legalinfo.mn/mn/detail?lawId=17434916300742
+4) Labour Law Article 109.1-109.5 — overtime/weekend 1.5x,
+   night 1.2x, public holiday 2x; night premium is added to the other premium.
+   https://legalinfo.mn/mn/detail?lawId=16230709635751
+5) Social insurance contribution base ceiling reported by NDGA:
+   7,920,000 MNT/month from 2025-04-01.
+   https://www.ndaatgal.mn/wp-content/uploads/2025/06/НДЕГ-ын-ГТТ-2025_compressed-1.pdf
+*/
+
+const CAP = 7920000;
+const EMP_SOCIAL = 0.095;
+const HEALTH = 0.02;
+
+// Salary tax credit, monthly equivalent:
+// annual taxable income: 0-6m => 20k/month;
+// 6-12m => 18k; 12-18m => 16k; 18-24m => 14k;
+// 24-30m => 12k; 30-36m => 10k; >=36m => 0.
+function taxCreditMonthly(taxableMonthly){
+  const y = taxableMonthly * 12;
+  if(y <= 6000000) return 20000;
+  if(y <= 12000000) return 18000;
+  if(y <= 18000000) return 16000;
+  if(y <= 24000000) return 14000;
+  if(y <= 30000000) return 12000;
+  if(y <= 36000000) return 10000;
+  return 0;
+}
+function pitMonthly(taxableMonthly){
+  const y = taxableMonthly * 12;
+  let annualTax;
+  if(y <= 120000000) annualTax = y * 0.10;
+  else if(y <= 180000000) annualTax = 12000000 + (y - 120000000) * 0.15;
+  else annualTax = 21000000 + (y - 180000000) * 0.20;
+  return annualTax / 12;
+}
+function money(n){return new Intl.NumberFormat('mn-MN',{maximumFractionDigits:0}).format(Math.max(0,n)) + ' ₮';}
+function calcGross(gross, credit=true){
+  const insBase = Math.min(Math.max(0,gross), CAP);
+  const social = insBase * EMP_SOCIAL;
+  const health = insBase * HEALTH;
+  const insurance = social + health;
+  const taxable = Math.max(0,gross - insurance);
+  const rawTax = pitMonthly(taxable);
+  const creditAmt = credit ? taxCreditMonthly(taxable) : 0;
+  const tax = Math.max(0, rawTax - creditAmt);
+  return {insurance,taxable,rawTax,credit:creditAmt,tax,net:Math.max(0,gross-insurance-tax)};
+}
+function calculate(){
+  const gross = Number(document.getElementById('gross').value)||0;
+  const credit = document.getElementById('creditMode').value === 'auto';
+  const r = calcGross(gross,credit);
+  document.getElementById('insurance').textContent=money(r.insurance);
+  document.getElementById('taxable').textContent=money(r.taxable);
+  document.getElementById('tax').textContent=money(r.tax);
+  document.getElementById('net').textContent=money(r.net);
+}
+function val(id){return Number(document.getElementById(id).value)||0;}
+function payslip(){
+  const base=val('base'), days=val('days'), monthDays=Math.max(1,val('monthDays'));
+  const h=val('hoursDay'), ot=val('ot'), night=val('night'), weekend=val('weekend'), holiday=val('holiday'), bonus=val('bonus');
+  const earnedBase=base*Math.min(days/monthDays,1);
+  const hourly=base/(monthDays*h);
+  const otPay=hourly*ot*1.5;
+  const nightPay=hourly*night*1.2;
+  const weekendPay=hourly*weekend*1.5;
+  const holidayPay=hourly*holiday*2;
+  const gross=earnedBase+otPay+nightPay+weekendPay+holidayPay+bonus;
+  const r=calcGross(gross,true);
+  document.getElementById('rBase').textContent=money(earnedBase);
+  document.getElementById('rOt').textContent=money(otPay);
+  document.getElementById('rNight').textContent=money(nightPay);
+  document.getElementById('rWeekend').textContent=money(weekendPay);
+  document.getElementById('rHoliday').textContent=money(holidayPay);
+  document.getElementById('rBonus').textContent=money(bonus);
+  document.getElementById('rGross').textContent=money(gross);
+  document.getElementById('rIns').textContent=money(r.insurance);
+  document.getElementById('rTax').textContent=money(r.tax);
+  document.getElementById('rNet').textContent=money(r.net);
+}
+calculate(); payslip();
+</script>
 </body>
 </html>

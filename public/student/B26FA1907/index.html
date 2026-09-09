@@ -1,102 +1,988 @@
-<!doctype html>
-<html lang="mn">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1907 — Амарбат.М | EAIB101</title>
-<meta name="description" content="EAIB101 хичээлийн оюутан Амарбат.М (B26FA1907) — ажлын хуудас.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mongolia 2026 Salary Tax Calculator</title>
+
 <style>
-*, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    * {
+        box-sizing: border-box;
     }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f8;
+        color: #18212b;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        padding: 40px 16px;
+    }
+
+    .calculator {
+        width: 100%;
+        max-width: 620px;
+
+        background: white;
+        border-radius: 18px;
+        padding: 30px;
+
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+        margin: 0 0 8px;
+        font-size: 26px;
+    }
+
+    .subtitle {
+        margin: 0 0 28px;
+        color: #66727e;
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #4267b2;
+        margin: 26px 0 14px;
+    }
+
+    .section-title:first-of-type {
+        margin-top: 0;
+    }
+
+    .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 14px;
+    }
+
+    .field-row.single {
+        grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 480px) {
+        .field-row {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 7px;
+        font-size: 13.5px;
+    }
+
+    .input-hint {
+        font-size: 11.5px;
+        color: #8b95a1;
+        margin-top: 5px;
+        line-height: 1.4;
+    }
+
+    .input-container {
+        position: relative;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 100%;
+
+        padding: 13px 16px;
+
+        border: 2px solid #d9dee4;
+        border-radius: 10px;
+
+        font-size: 16px;
+        font-weight: 500;
+        font-family: inherit;
+
+        outline: none;
+    }
+
+    #grossSalary {
+        padding-right: 55px;
+        font-size: 21px;
+    }
+
+    input:focus {
+        border-color: #4267b2;
+    }
+
+    .currency {
+        position: absolute;
+
+        right: 16px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        font-weight: 700;
+        color: #697581;
+    }
+
+    .results {
+        margin-top: 10px;
+
+        border-top: 1px solid #e5e8eb;
+    }
+
+    .result-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 20px;
+
+        padding: 13px 0;
+
+        border-bottom: 1px solid #edf0f2;
+        font-size: 14.5px;
+    }
+
+    .result-name {
+        color: #4d5965;
+    }
+
+    .result-value {
+        font-weight: 700;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    .result-row.subtotal .result-name,
+    .result-row.subtotal .result-value {
+        color: #18212b;
+        font-weight: 800;
+    }
+
+    .result-row.subtotal {
+        border-bottom: 2px solid #d9dee4;
+        border-top: 1px solid #d9dee4;
+        margin-top: 4px;
+    }
+
+    .net-pay {
+        margin-top: 10px;
+
+        padding: 19px;
+
+        border-radius: 12px;
+
+        background: #eef5ff;
+        border: 1px solid #d8e7ff;
+
+        border-bottom: 1px solid #d8e7ff !important;
+    }
+
+    .net-pay .result-name {
+        color: #183b68;
+        font-weight: 700;
+    }
+
+    .net-pay .result-value {
+        color: #183b68;
+        font-size: 21px;
+    }
+
+    .note {
+        margin-top: 24px;
+
+        font-size: 12px;
+        line-height: 1.6;
+
+        color: #727d87;
+    }
+
+    .note b {
+        color: #4d5965;
+    }
+
+    @media (max-width: 480px) {
+        .calculator {
+            padding: 22px;
+        }
+
+        h1 {
+            font-size: 23px;
+        }
+
+        .result-row {
+            padding: 12px 0;
+        }
+    }
 </style>
 </head>
+
+
 <body>
-  <main class="wrap">
-    <article class="card">
-      <span class="badge mono">B26FA1907</span>
-      <h1>Амарбат.М</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/student/B26FA1907/index.html</code>
-      </div>
+<div class="calculator">
 
-      <footer><a href="/">← Ангийн бүх оюутан</a></footer>
-    </article>
-  </main>
+    <h1>Mongolia Salary Tax Calculator</h1>
+
+    <p class="subtitle">
+        2026 monthly payroll calculator — base salary, worked time,
+        overtime/night/rest-day/holiday premiums, bonus, then tax &amp; social insurance
+    </p>
+
+
+    <!-- ============================================================
+         BASE SALARY
+         ============================================================ -->
+
+    <div class="section-title">Base salary</div>
+
+    <div class="field-row single">
+        <div class="field">
+            <label class="input-label" for="grossSalary">
+                Base monthly salary (full month, no overtime)
+            </label>
+            <div class="input-container">
+                <input
+                    id="grossSalary"
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    placeholder="3,500,000"
+                    value="3,500,000"
+                >
+                <span class="currency">₮</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         DAYS WORKED
+         ============================================================ -->
+
+    <div class="section-title">Days worked</div>
+
+    <div class="field-row">
+        <div class="field">
+            <label class="input-label" for="daysInMonth">Working days in the month</label>
+            <input id="daysInMonth" type="number" min="1" max="31" step="1" value="22">
+        </div>
+        <div class="field">
+            <label class="input-label" for="daysWorked">Days actually worked</label>
+            <input id="daysWorked" type="number" min="0" max="31" step="0.5" value="22">
+        </div>
+    </div>
+    <p class="input-hint">
+        Base pay is prorated: daily rate = base salary ÷ working days in the month,
+        then × days actually worked. The hourly rate used for every premium below
+        is the daily rate ÷ 8, since Article 70.2 of the Labor Law of Mongolia sets
+        the standard working day at 8 hours.
+    </p>
+
+
+    <!-- ============================================================
+         OVERTIME / PREMIUM HOURS
+         ============================================================ -->
+
+    <div class="section-title">Overtime &amp; premium hours (this month)</div>
+
+    <div class="field-row">
+        <div class="field">
+            <label class="input-label" for="overtimeHours">Overtime hours (weekday)</label>
+            <input id="overtimeHours" type="number" min="0" step="0.5" value="0">
+        </div>
+        <div class="field">
+            <label class="input-label" for="restDayHours">Rest-day hours worked</label>
+            <input id="restDayHours" type="number" min="0" step="0.5" value="0">
+        </div>
+    </div>
+
+    <div class="field-row">
+        <div class="field">
+            <label class="input-label" for="holidayHours">Public-holiday hours worked</label>
+            <input id="holidayHours" type="number" min="0" step="0.5" value="0">
+        </div>
+        <div class="field">
+            <label class="input-label" for="nightHours">Of the above, hours worked at night</label>
+            <input id="nightHours" type="number" min="0" step="0.5" value="0">
+        </div>
+    </div>
+    <p class="input-hint">
+        "Night hours" is a top-up, not a separate bucket: enter how many of the hours
+        above (overtime, rest-day, holiday, or ordinary hours) fell between 22:00 and
+        06:00, the night-hours window fixed by Article 72.1. It adds a night premium
+        on top of whichever rate already applies to that hour.
+    </p>
+
+
+    <!-- ============================================================
+         BONUS
+         ============================================================ -->
+
+    <div class="section-title">Bonus</div>
+
+    <div class="field-row single">
+        <div class="field">
+            <label class="input-label" for="bonus">Bonus / additional pay</label>
+            <div class="input-container">
+                <input id="bonus" type="text" inputmode="numeric" autocomplete="off" placeholder="0" value="0">
+                <span class="currency">₮</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         GROSS PAY BREAKDOWN (before any deduction)
+         ============================================================ -->
+
+    <div class="section-title">Gross pay — before any deduction</div>
+
+    <div class="results" id="grossResults">
+
+        <div class="result-row">
+            <span class="result-name">Base pay (days worked)</span>
+            <span class="result-value" id="basePay">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Overtime pay (1.5×)</span>
+            <span class="result-value" id="overtimePay">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Rest-day pay (1.5×)</span>
+            <span class="result-value" id="restDayPay">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Public-holiday pay (2.0×)</span>
+            <span class="result-value" id="holidayPay">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Night premium (+0.2×)</span>
+            <span class="result-value" id="nightPremium">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Bonus / additional pay</span>
+            <span class="result-value" id="bonusOut">₮0</span>
+        </div>
+
+        <div class="result-row subtotal">
+            <span class="result-name">Total gross pay</span>
+            <span class="result-value" id="grossTotal">₮0</span>
+        </div>
+
+    </div>
+
+
+    <!-- ============================================================
+         DEDUCTIONS (the original six lines, unchanged formulas)
+         ============================================================ -->
+
+    <div class="section-title">Tax &amp; social insurance — recalculated from the new gross</div>
+
+    <div class="results">
+
+        <div class="result-row">
+            <span class="result-name">Social insurance withheld</span>
+            <span class="result-value" id="socialInsurance">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Taxable income</span>
+            <span class="result-value" id="taxableIncome">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Tax before credit</span>
+            <span class="result-value" id="taxBeforeCredit">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Credit applied</span>
+            <span class="result-value" id="creditApplied">₮0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-name">Income tax withheld</span>
+            <span class="result-value" id="incomeTax">₮0</span>
+        </div>
+
+        <div class="result-row net-pay">
+            <span class="result-name">Net pay</span>
+            <span class="result-value" id="netPay">₮0</span>
+        </div>
+
+    </div>
+
+
+    <p class="note">
+
+        <b>Gross pay rules and their source (Labor Law of Mongolia):</b><br>
+        • Standard working day = 8 hours, standard working week = 40 hours — Article 70.1–70.2.<br>
+        • Night hours = 22:00–06:00 — Article 72.1.<br>
+        • Overtime worked on an ordinary weekday, or on a weekly rest day, with no substitute
+        day off given: at least 1.5× average compensation — Article 53.1.<br>
+        • Work on a public holiday with no substitute day off given: at least 2.0× average
+        compensation — Article 52.1.<br>
+        • Work during night hours with no equivalent rest given: extra compensation on top of
+        the hour's normal rate — Article 54.1. The law leaves the exact rate to the collective
+        agreement/contract of employment; this calculator uses a commonly cited practical rate
+        of +0.2× (i.e. 1.2× total) as a default assumption. Confirm the actual contractual rate
+        for real payroll use.<br><br>
+
+        <b>2026 tax/SI assumptions (unchanged from the original calculator):</b>
+        employee social insurance = 9.5%, with a monthly contribution base ceiling of
+        ₮7,920,000. Employee health insurance = 2%, uncapped. Both are computed on the
+        new total gross pay above (base pay + overtime + rest-day + holiday + night
+        premium + bonus), not on the base salary alone. Health insurance is included in
+        taxable income and net pay but is not shown as its own output line. Income tax
+        brackets and credits are annual; the calculator annualizes monthly taxable
+        income, computes the annual tax and credit, then converts back to a monthly
+        amount.<br><br>
+
+        <b>Regression check:</b> with days worked = working days in the month, and
+        overtime/rest-day/holiday/night hours and bonus all at 0, total gross pay equals
+        the base monthly salary exactly, and every deduction line below reproduces the
+        original calculator's numbers unchanged.
+
+    </p>
+
+</div>
+
+
+<script>
+
+/* ============================================================
+   MONGOLIA 2026 SALARY TAX CALCULATOR
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. TAX CONSTANTS  (unchanged from the original calculator)
+   ------------------------------------------------------------ */
+
+const SOCIAL_INSURANCE_RATE = 0.095;
+
+const HEALTH_INSURANCE_RATE = 0.02;
+
+const SOCIAL_INSURANCE_CEILING = 7920000;
+
+
+/* ------------------------------------------------------------
+   1b. LABOR-LAW PAY MULTIPLIERS (new)
+
+   Every multiplier below is commented with the article of the
+   Labor Law of Mongolia it comes from.
+   ------------------------------------------------------------ */
+
+// Article 70.2: normal working day = 8 hours. Used to turn a
+// daily rate into an hourly rate.
+const STANDARD_HOURS_PER_DAY = 8;
+
+// Article 53.1: overtime worked on an ordinary weekday, with no
+// substitute rest day given, is paid at least 1.5x.
+const OVERTIME_MULTIPLIER = 1.5;
+
+// Article 53.1: work on a weekly rest day, with no substitute
+// rest day given, is paid at least 1.5x (same article as overtime).
+const REST_DAY_MULTIPLIER = 1.5;
+
+// Article 52.1: work on a public holiday, with no substitute day
+// off given, is paid at double (2.0x) the normal rate.
+const HOLIDAY_MULTIPLIER = 2.0;
+
+// Article 54.1: night-hour work (22:00-06:00, per Article 72.1)
+// receives "extra compensation" on top of the hour's normal rate.
+// The law leaves the exact amount to the collective agreement /
+// contract of employment, so this uses a commonly cited practical
+// top-up of +0.2x (i.e. 1.2x total) as a default assumption.
+const NIGHT_PREMIUM_TOPUP = 0.2;
+
+
+/* ------------------------------------------------------------
+   2. FORMAT MONEY
+   ------------------------------------------------------------ */
+
+function formatMoney(number) {
+
+    return "₮" + Math.round(number).toLocaleString("en-US");
+
+}
+
+
+/* ------------------------------------------------------------
+   3. READ NUMBER FROM INPUT
+   ------------------------------------------------------------ */
+
+function parseSalary(value) {
+
+    /*
+       Remove everything except numbers.
+
+       Example:
+
+       "3,500,000" → "3500000"
+    */
+
+    const numbersOnly = value.replace(/[^\d]/g, "");
+
+    if (numbersOnly === "") {
+        return 0;
+    }
+
+    return Number(numbersOnly);
+
+}
+
+function parseHours(value) {
+
+    const n = parseFloat(value);
+
+    if (isNaN(n) || n < 0) {
+        return 0;
+    }
+
+    return n;
+
+}
+
+
+/* ------------------------------------------------------------
+   4. CALCULATE ANNUAL INCOME TAX  (unchanged)
+   ------------------------------------------------------------ */
+
+function calculateAnnualTax(annualTaxableIncome) {
+
+    /*
+       Annual taxable income:
+
+       Up to ₮120,000,000
+       → 10%
+
+       ₮120,000,001 – ₮180,000,000
+       → ₮12,000,000
+         + 15% of amount above ₮120,000,000
+
+       Above ₮180,000,000
+       → ₮21,000,000
+         + 20% of amount above ₮180,000,000
+    */
+
+
+    if (annualTaxableIncome <= 120000000) {
+
+        return annualTaxableIncome * 0.10;
+
+    }
+
+
+    if (annualTaxableIncome <= 180000000) {
+
+        return (
+            12000000
+            +
+            (annualTaxableIncome - 120000000) * 0.15
+        );
+
+    }
+
+
+    return (
+        21000000
+        +
+        (annualTaxableIncome - 180000000) * 0.20
+    );
+
+}
+
+
+/* ------------------------------------------------------------
+   5. CALCULATE ANNUAL TAX CREDIT  (unchanged)
+   ------------------------------------------------------------ */
+
+function calculateAnnualCredit(annualTaxableIncome) {
+
+    /*
+       Annual taxable income       Annual credit
+
+       0 – 6,000,000                 240,000
+       6,000,001 – 12,000,000        216,000
+       12,000,001 – 18,000,000       192,000
+       18,000,001 – 24,000,000       168,000
+       24,000,001 – 30,000,000       144,000
+       30,000,001 – 36,000,000       120,000
+       Above 36,000,000                    0
+    */
+
+
+    if (annualTaxableIncome <= 6000000) {
+
+        return 240000;
+
+    }
+
+
+    if (annualTaxableIncome <= 12000000) {
+
+        return 216000;
+
+    }
+
+
+    if (annualTaxableIncome <= 18000000) {
+
+        return 192000;
+
+    }
+
+
+    if (annualTaxableIncome <= 24000000) {
+
+        return 168000;
+
+    }
+
+
+    if (annualTaxableIncome <= 30000000) {
+
+        return 144000;
+
+    }
+
+
+    if (annualTaxableIncome <= 36000000) {
+
+        return 120000;
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* ------------------------------------------------------------
+   6. GROSS PAY BREAKDOWN (new)
+
+   Base pay is prorated from days worked. Overtime, rest-day,
+   holiday and night hours are paid on top of that, using an
+   hourly rate derived from the base salary and the standard
+   8-hour day (Article 70.2).
+   ------------------------------------------------------------ */
+
+function calculateGrossPay(baseSalary, daysInMonth, daysWorked, overtimeHours, restDayHours, holidayHours, nightHours, bonus) {
+
+    // Guard against a zero or missing "days in month" value.
+    const safeDaysInMonth = daysInMonth > 0 ? daysInMonth : 1;
+
+    // Days worked cannot exceed days in the month.
+    const safeDaysWorked = Math.min(daysWorked, safeDaysInMonth);
+
+    const dailyRate = baseSalary / safeDaysInMonth;
+
+    const hourlyRate = dailyRate / STANDARD_HOURS_PER_DAY;
+
+    const basePay = dailyRate * safeDaysWorked;
+
+    const overtimePay = overtimeHours * hourlyRate * OVERTIME_MULTIPLIER;
+
+    const restDayPay = restDayHours * hourlyRate * REST_DAY_MULTIPLIER;
+
+    const holidayPay = holidayHours * hourlyRate * HOLIDAY_MULTIPLIER;
+
+    // Night premium is a top-up on whichever hours were also
+    // worked at night — it is not a full alternate rate.
+    const nightPremium = nightHours * hourlyRate * NIGHT_PREMIUM_TOPUP;
+
+    const grossPay =
+        basePay
+        + overtimePay
+        + restDayPay
+        + holidayPay
+        + nightPremium
+        + bonus;
+
+    return {
+        dailyRate,
+        hourlyRate,
+        basePay,
+        overtimePay,
+        restDayPay,
+        holidayPay,
+        nightPremium,
+        bonus,
+        grossPay
+    };
+
+}
+
+
+/* ------------------------------------------------------------
+   7. MAIN CALCULATION
+   ------------------------------------------------------------ */
+
+function calculateSalary() {
+
+    const salaryInput = document.getElementById("grossSalary");
+    const bonusInput = document.getElementById("bonus");
+
+    const baseSalary = parseSalary(salaryInput.value);
+    const bonus = parseSalary(bonusInput.value);
+
+    const daysInMonth = parseHours(document.getElementById("daysInMonth").value);
+    const daysWorked = parseHours(document.getElementById("daysWorked").value);
+    const overtimeHours = parseHours(document.getElementById("overtimeHours").value);
+    const restDayHours = parseHours(document.getElementById("restDayHours").value);
+    const holidayHours = parseHours(document.getElementById("holidayHours").value);
+    const nightHours = parseHours(document.getElementById("nightHours").value);
+
+
+    /* --------------------------------------------------------
+       EMPTY / ZERO INPUT
+       -------------------------------------------------------- */
+
+    if (baseSalary === 0 && bonus === 0) {
+
+        [
+            "basePay", "overtimePay", "restDayPay", "holidayPay",
+            "nightPremium", "bonusOut", "grossTotal",
+            "socialInsurance", "taxableIncome", "taxBeforeCredit",
+            "creditApplied", "incomeTax", "netPay"
+        ].forEach(function (id) {
+            document.getElementById(id).textContent = "₮0";
+        });
+
+        return;
+
+    }
+
+
+    /* --------------------------------------------------------
+       GROSS PAY BREAKDOWN
+       -------------------------------------------------------- */
+
+    const gross = calculateGrossPay(
+        baseSalary,
+        daysInMonth,
+        daysWorked,
+        overtimeHours,
+        restDayHours,
+        holidayHours,
+        nightHours,
+        bonus
+    );
+
+    const grossSalary = gross.grossPay;
+
+
+    /* --------------------------------------------------------
+       SOCIAL INSURANCE
+
+       Contribution base stops increasing after the ceiling.
+       Same rule as before, now applied to the new total gross.
+       -------------------------------------------------------- */
+
+    const socialInsuranceBase = Math.min(
+        grossSalary,
+        SOCIAL_INSURANCE_CEILING
+    );
+
+
+    const socialInsurance =
+        socialInsuranceBase * SOCIAL_INSURANCE_RATE;
+
+
+    /* --------------------------------------------------------
+       HEALTH INSURANCE
+
+       Health insurance is not one of the six displayed lines,
+       but it must still be deducted from salary and taxable
+       employment income.
+       -------------------------------------------------------- */
+
+    const healthInsurance =
+        grossSalary * HEALTH_INSURANCE_RATE;
+
+
+    /* --------------------------------------------------------
+       TAXABLE MONTHLY INCOME
+       -------------------------------------------------------- */
+
+    const taxableMonthlyIncome = Math.max(
+        0,
+        grossSalary
+        -
+        socialInsurance
+        -
+        healthInsurance
+    );
+
+
+    /* --------------------------------------------------------
+       CONVERT TO ANNUAL TAXABLE INCOME
+       -------------------------------------------------------- */
+
+    const annualTaxableIncome =
+        taxableMonthlyIncome * 12;
+
+
+    /* --------------------------------------------------------
+       ANNUAL TAX
+       -------------------------------------------------------- */
+
+    const annualTax =
+        calculateAnnualTax(annualTaxableIncome);
+
+
+    /* --------------------------------------------------------
+       ANNUAL CREDIT
+       -------------------------------------------------------- */
+
+    const annualCredit =
+        calculateAnnualCredit(annualTaxableIncome);
+
+
+    /* --------------------------------------------------------
+       CONVERT TAX TO MONTHLY
+       -------------------------------------------------------- */
+
+    const taxBeforeCredit =
+        annualTax / 12;
+
+
+    const monthlyCredit =
+        annualCredit / 12;
+
+
+    /* --------------------------------------------------------
+       CREDIT IS APPLIED AFTER TAX IS CALCULATED
+
+       Tax can NEVER go below zero.
+       -------------------------------------------------------- */
+
+    const creditApplied =
+        Math.min(
+            monthlyCredit,
+            taxBeforeCredit
+        );
+
+
+    const incomeTax =
+        Math.max(
+            0,
+            taxBeforeCredit - creditApplied
+        );
+
+
+    /* --------------------------------------------------------
+       NET PAY
+
+       Gross pay
+       - social insurance
+       - health insurance
+       - income tax
+       -------------------------------------------------------- */
+
+    const netPay =
+        Math.max(
+            0,
+            grossSalary
+            -
+            socialInsurance
+            -
+            healthInsurance
+            -
+            incomeTax
+        );
+
+
+    /* --------------------------------------------------------
+       DISPLAY GROSS PAY BREAKDOWN
+       -------------------------------------------------------- */
+
+    document.getElementById("basePay").textContent = formatMoney(gross.basePay);
+    document.getElementById("overtimePay").textContent = formatMoney(gross.overtimePay);
+    document.getElementById("restDayPay").textContent = formatMoney(gross.restDayPay);
+    document.getElementById("holidayPay").textContent = formatMoney(gross.holidayPay);
+    document.getElementById("nightPremium").textContent = formatMoney(gross.nightPremium);
+    document.getElementById("bonusOut").textContent = formatMoney(gross.bonus);
+    document.getElementById("grossTotal").textContent = formatMoney(gross.grossPay);
+
+
+    /* --------------------------------------------------------
+       DISPLAY DEDUCTION RESULTS  (same six lines as before)
+       -------------------------------------------------------- */
+
+    document.getElementById("socialInsurance").textContent =
+        formatMoney(socialInsurance);
+
+
+    document.getElementById("taxableIncome").textContent =
+        formatMoney(taxableMonthlyIncome);
+
+
+    document.getElementById("taxBeforeCredit").textContent =
+        formatMoney(taxBeforeCredit);
+
+
+    document.getElementById("creditApplied").textContent =
+        formatMoney(creditApplied);
+
+
+    document.getElementById("incomeTax").textContent =
+        formatMoney(incomeTax);
+
+
+    document.getElementById("netPay").textContent =
+        formatMoney(netPay);
+
+
+    /* --------------------------------------------------------
+       FORMAT CURRENCY INPUTS WITH THOUSAND SEPARATORS
+       -------------------------------------------------------- */
+
+    salaryInput.value = baseSalary.toLocaleString("en-US");
+    bonusInput.value = bonus.toLocaleString("en-US");
+
+}
+
+
+/* ------------------------------------------------------------
+   8. RECALCULATE WHILE TYPING
+   ------------------------------------------------------------ */
+
+[
+    "grossSalary", "bonus", "daysInMonth", "daysWorked",
+    "overtimeHours", "restDayHours", "holidayHours", "nightHours"
+].forEach(function (id) {
+    document.getElementById(id).addEventListener("input", calculateSalary);
+});
+
+
+/* ------------------------------------------------------------
+   9. INITIAL CALCULATION
+   ------------------------------------------------------------ */
+
+calculateSalary();
+
+</script>
+
 </body>
 </html>
