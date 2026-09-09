@@ -94,7 +94,29 @@ This publishes to `eaib101.<your-subdomain>.workers.dev`. Change `name` in
 `wrangler.jsonc` to use a different Worker name, or attach a custom domain from
 the Cloudflare dashboard.
 
+## The homepage
+
+`public/index.html` is generated. It lists every student on the roster, marks
+each one **Илгээсэн** (submitted) or **Хүлээгдэж буй** (pending), and shows the
+overall count. A folder is "pending" while it still holds the generated
+placeholder page.
+
+Regenerate it after adding or replacing any student page:
+
+```bash
+npm run index
+```
+
+The output is committed — Cloudflare runs no build command, so whatever is in
+`public/index.html` at push time is what ships.
+
 ## Adding a student
 
-Create `public/student/<STUDENT_ID>/index.html`, then add a matching entry to the
-list in `public/index.html` so they show up on the homepage.
+1. Add `{ "id": "...", "name": "..." }` to `scripts/students.json`.
+2. Create `public/student/<STUDENT_ID>/index.html`.
+3. Run `npm run index` and commit both.
+
+## Receiving a submission
+
+Replace the whole of `public/student/<STUDENT_ID>/index.html` with the student's
+file, then run `npm run index` so the homepage count updates.
