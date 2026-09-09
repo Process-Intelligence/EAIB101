@@ -5,6 +5,7 @@
   "description": "EAIB101 student page hosting on Cloudflare Workers",
   "scripts": {
     "dev": "wrangler dev",
+    "build": "echo 'No build step: static assets are served from public/'",
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
