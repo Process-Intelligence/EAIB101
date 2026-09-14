@@ -1,107 +1,276 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1840 — Тэнгис.Г | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Тэнгис.Г (B26FA1840), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цалин ба Татварын Тооцоолуур</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        h1 {
+            font-size: 22px;
+            margin-top: 0;
+            color: #1a252f;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .info-box {
+            background-color: #eef7fe;
+            border-left: 4px solid #3498db;
+            padding: 12px 16px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .input-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+        input[type="number"]:focus {
+            border-color: #3498db;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-size: 14px;
+            color: #555;
+        }
+        td {
+            font-size: 15px;
+        }
+        .amount {
+            text-align: right;
+            font-weight: 500;
+        }
+        .net-salary {
+            background-color: #eafaf1;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .verification {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #ddd;
+        }
+        .verification h2 {
+            font-size: 18px;
+            color: #2c3e50;
+        }
+        .verification table {
+            font-size: 13px;
+        }
+        .verification th {
+            background-color: #eaeaea;
+        }
+    </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1840</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Тэнгис.Г</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1840/index.html</code>
-      </div>
+<div class="container">
+    <h1>Цалин ба Татварын Тооцоолуур</h1>
+    
+    <div class="info-box">
+        <strong>Шалгасан шалгуур дүрэм:</strong><br>
+        • Legalinfo.mn дээрээс <strong>2024 оны 01 сарын 01</strong>-ний байдлаар хүчин төгөлдөр шалгасан.<br>
+        • Ажилтны НДШ: Нийт цалингийн <strong>11.5%</strong><br>
+        • НДШ бодох сарын цалингийн дээд хэмжээ: <strong>6,600,000 ₮</strong> (Шимтгэлийн сарын дээд хэмжээ: 759,000 ₮)<br>
+        • Татвар ногдох орлого = нийт цалин - ажилтны НДШ<br>
+        • ХХОАТ-ын сарын шатлал: 0–10 сая ₮ хүртэл <strong>10%</strong> | 10–20 сая ₮ хүртэл <strong>15%</strong> (1 сая ₮ + 10 саянаас дээш гарсан орлогод 15%) | 20 сая ₮-өөс дээш <strong>20%</strong> (2.5 сая ₮ + 20 саянаас дээш гарсан орлогод 20%)<br>
+        • ХХОАТ-ын сарын хөнгөлөлт (орлогын түвшнээр): 0–500,000 ₮: <strong>20,000 ₮</strong> | 500,001–1,000,000 ₮: <strong>18,000 ₮</strong> | 1,000,001–1,500,000 ₮: <strong>16,000 ₮</strong> | 1,500,001–2,000,000 ₮: <strong>14,000 ₮</strong> | 2,000,001–2,500,000 ₮: <strong>12,000 ₮</strong> | 2,500,001 ₮-өөс дээш: <strong>10,000 ₮</strong><br>
+        • Татвар сөрөг байж болохгүй.
+    </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+    <div class="input-group">
+        <label for="salaryInput">Сарын нийт цалин (₮):</label>
+        <input type="number" id="salaryInput" placeholder="Цалингаа оруулна уу..." oninput="calculate()" value="1500000">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Үзүүлэлт</th>
+                <th style="text-align: right;">Дүн (₮)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Нийт цалин</td>
+                <td class="amount" id="resGross">0</td>
+            </tr>
+            <tr>
+                <td>НДШ (11.5%)</td>
+                <td class="amount" id="resNds">0</td>
+            </tr>
+            <tr>
+                <td>Татвар ногдох орлого</td>
+                <td class="amount" id="resTaxable">0</td>
+            </tr>
+            <tr>
+                <td>Хөнгөлөлтөөс өмнөх татвар</td>
+                <td class="amount" id="resTaxBeforeDiscount">0</td>
+            </tr>
+            <tr>
+                <td>ХХОАТ-ын сарын хөнгөлөлт</td>
+                <td class="amount" id="resDiscount">0</td>
+            </tr>
+            <tr>
+                <td>Хувь хүний орлогын албан татвар (ХХОАТ)</td>
+                <td class="amount" id="resPit">0</td>
+            </tr>
+            <tr class="net-salary">
+                <td>Гарт олгох цалин</td>
+                <td class="amount" id="resNet">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="verification">
+        <h2>Шалгах хэсэг (Таван тооцоолол)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Нийт цалин</th>
+                    <th>НДШ</th>
+                    <th>Татвар ногдох</th>
+                    <th>Хөнг. өмнөх татвар</th>
+                    <th>Хөнгөлөлт</th>
+                    <th>ХХОАТ</th>
+                    <th>Гарт олгох</th>
+                </tr>
+            </thead>
+            <tbody id="testTableBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function formatNumber(num) {
+        return Math.round(num).toLocaleString('en-US');
+    }
+
+    function computeSalaryDetails(gross) {
+        if (isNaN(gross) || gross < 0) gross = 0;
+
+        // 1. НДШ (11.5%, max salary 6,600,000 => max fee 759,000)
+        let ndsBase = Math.min(gross, 6600000);
+        let nds = ndsBase * 0.115;
+
+        // 2. Татвар ногдох орлого
+        let taxable = gross - nds;
+
+        // 3. Татварын шатлал
+        let taxBeforeDiscount = 0;
+        if (taxable <= 10000000) {
+            taxBeforeDiscount = taxable * 0.10;
+        } else if (taxable <= 20000000) {
+            taxBeforeDiscount = 1000000 + (taxable - 10000000) * 0.15;
+        } else {
+            taxBeforeDiscount = 2500000 + (taxable - 20000000) * 0.20;
+        }
+
+        // 4. Сарын хөнгөлөлт (нийт цалингийн орлогын хэмжээнээс хамаарна)
+        let discount = 0;
+        if (gross > 0 && gross <= 500000) {
+            discount = 20000;
+        } else if (gross <= 1000000) {
+            discount = 18000;
+        } else if (gross <= 1500000) {
+            discount = 16000;
+        } else if (gross <= 2000000) {
+            discount = 14000;
+        } else if (gross <= 2500000) {
+            discount = 12000;
+        } else if (gross > 2500000) {
+            discount = 10000;
+        }
+
+        // 5. ХХОАТ (сөрөг байж болохгүй)
+        let pit = Math.max(0, taxBeforeDiscount - discount);
+
+        // 6. Гарт олгох цалин
+        let net = gross - nds - pit;
+
+        return { gross, nds, taxable, taxBeforeDiscount, discount, pit, net };
+    }
+
+    function calculate() {
+        let grossInput = parseFloat(document.getElementById('salaryInput').value) || 0;
+        let res = computeSalaryDetails(grossInput);
+
+        document.getElementById('resGross').innerText = formatNumber(res.gross);
+        document.getElementById('resNds').innerText = formatNumber(res.nds);
+        document.getElementById('resTaxable').innerText = formatNumber(res.taxable);
+        document.getElementById('resTaxBeforeDiscount').innerText = formatNumber(res.taxBeforeDiscount);
+        document.getElementById('resDiscount').innerText = formatNumber(res.discount);
+        document.getElementById('resPit').innerText = formatNumber(res.pit);
+        document.getElementById('resNet').innerText = formatNumber(res.net);
+    }
+
+    function renderVerificationTable() {
+        let testSalaries = [500000, 1200000, 2000000, 7000000, 15000000];
+        let tbody = document.getElementById('testTableBody');
+        tbody.innerHTML = '';
+
+        testSalaries.forEach(sal => {
+            let res = computeSalaryDetails(sal);
+            let row = `<tr>
+                <td>${formatNumber(res.gross)} ₮</td>
+                <td>${formatNumber(res.nds)} ₮</td>
+                <td>${formatNumber(res.taxable)} ₮</td>
+                <td>${formatNumber(res.taxBeforeDiscount)} ₮</td>
+                <td>${formatNumber(res.discount)} ₮</td>
+                <td>${formatNumber(res.pit)} ₮</td>
+                <td><strong>${formatNumber(res.net)} ₮</strong></td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    window.onload = function() {
+        calculate();
+        renderVerificationTable();
+    };
+</script>
+
 </body>
 </html>
