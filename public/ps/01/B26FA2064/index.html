@@ -1,23 +1,10 @@
-// The generated placeholder page for a student who has not submitted a given
-// problem set yet.
-//
-// Deliberately self-contained — it carries its own CSS rather than linking the
-// shared stylesheet, so it renders correctly even when opened straight off
-// disk. It carries the text in PLACEHOLDER_MARKER (see roster.mjs); that is how
-// the build tells a placeholder apart from a real submission.
-
-import { esc } from './roster.mjs'
-
-export function placeholderPage({ id, name, set }) {
-  const path = `public/ps/${set.id}/${id}/index.html`
-  const setLabel = `Бодлого ${set.id}${set.title ? ` — ${set.title}` : ''}`
-  return `<!doctype html>
+<!doctype html>
 <html lang="mn">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(id)} — ${esc(name)} | ${esc(setLabel)}</title>
-<meta name="description" content="EAIB101 — ${esc(name)} (${esc(id)}), ${esc(setLabel)}. Ажил хараахан илгээгдээгүй байна.">
+<title>B26FA2064 — Бат-Итгэлт.Г | Бодлого 01 — Salary, Tax and Insurance</title>
+<meta name="description" content="EAIB101 — Бат-Итгэлт.Г (B26FA2064), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   :root {
@@ -101,22 +88,20 @@ export function placeholderPage({ id, name, set }) {
   <main class="wrap">
     <article class="card">
       <div class="badges">
-        <span class="badge mono">${esc(id)}</span>
-        <span class="badge set">${esc(setLabel)}</span>
+        <span class="badge mono">B26FA2064</span>
+        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
       </div>
-      <h1>${esc(name)}</h1>
+      <h1>Бат-Итгэлт.Г</h1>
       <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
       <div class="notice">
         <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
         <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">${esc(path)}</code>
+        <code class="path">public/ps/01/B26FA2064/index.html</code>
       </div>
 
-      <footer><a href="/ps/${esc(set.id)}/">← ${esc(setLabel)}</a></footer>
+      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
     </article>
   </main>
 </body>
 </html>
-`
-}

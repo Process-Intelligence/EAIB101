@@ -1,0 +1,7 @@
+# Submissions used to live at /student/<ID>/ before the site was organised by
+# problem set. Everything there was a Problem Set 01 submission, so old links
+# and bookmarks are sent to the new location. One dynamic rule.
+#
+# Cloudflare reads this file natively and does not serve it as an asset:
+# https://developers.cloudflare.com/workers/static-assets/redirects/
+/student/* /ps/01/:splat 301

@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бодлого 01 — Salary, Tax and Insurance | EAIB101</title>
+<meta name="description" content="EAIB101 — Бодлого 01: Salary, Tax and Insurance. 10/55 илгээсэн.">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <input class="navtoggle" type="checkbox" id="navtoggle" autocomplete="off">
+  <div class="shell">
+    <aside class="side">
+      <div class="sidehead">
+        <a class="brand" href="/">
+          <span class="brand-class">EAIB101</span>
+          <span class="brand-course">AI &amp; Prompt Engineering</span>
+        </a>
+        <label class="navbtn" for="navtoggle">Цэс</label>
+      </div>
+      <nav class="nav" aria-label="Хичээлийн цэс">
+        <ul class="navlist">
+        <li><a class="navlink" href="/"><span class="navname">Тойм</span></a></li>
+        </ul>
+        <p class="navtitle">Бодлогууд</p>
+        <ul class="navlist">
+        <li><a class="navlink is-current" href="/ps/01/" aria-current="page"><span class="navnum mono">01</span><span class="navname">Salary, Tax and Insurance</span><span class="navcount mono">10/55</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/02/"><span class="navnum mono">02</span><span class="navname">Удахгүй</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/03/"><span class="navnum mono">03</span><span class="navname">Удахгүй</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/04/"><span class="navnum mono">04</span><span class="navname">Удахгүй</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/05/"><span class="navnum mono">05</span><span class="navname">Удахгүй</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/06/"><span class="navnum mono">06</span><span class="navname">Удахгүй</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/07/"><span class="navnum mono">07</span><span class="navname">Удахгүй</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/08/"><span class="navnum mono">08</span><span class="navname">Удахгүй</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/09/"><span class="navnum mono">09</span><span class="navname">Удахгүй</span></a></li>
+        <li><a class="navlink is-planned" href="/ps/10/"><span class="navnum mono">10</span><span class="navname">Удахгүй</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="main">
+      <div class="wrap">
+      <header class="phead">
+        <p class="eyebrow">Problem Set 01</p>
+        <h1>Salary, Tax and Insurance</h1>
+        <p class="tagline">Read the law first. Then let the machine write the code.</p>
+        <div class="meta">
+          <span class="chip is-open">Нээлттэй</span>
+          <span class="chip">One session</span>
+          <span class="chip">Research → Build → Compare prompts</span>
+        </div>
+      </header>
+
+      <section class="sec brief">
+        <h2>The task</h2>
+        <div class="card">
+          <p>Every payslip in Mongolia carries the same two deductions, and almost nobody who receives one can explain them. Today you find out how they actually work — by reading the law, not by asking a model — and then build a page that calculates them correctly for any salary.</p>
+          <h3>Where to look</h3>
+          <div class="meta">
+            <span class="chip">legalinfo.mn</span>
+            <span class="chip">mta.gov.mn</span>
+            <span class="chip">ndaatgal.mn</span>
+            <span class="chip">Any free AI</span>
+            <span class="chip">Any text editor</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Алхмууд</h2>
+        <div class="steps">
+      <article class="step">
+        <p class="step-n">Step 1</p>
+        <h3>Find these in the law, before you open any AI tool</h3>
+        <div class="block">
+          <ul>
+            <li>Which two laws govern this. Find both on legalinfo.mn and write down their full names</li>
+            <li>The employee's social insurance contribution rate — and, separately, what the employer pays</li>
+            <li>The upper limit on the monthly salary used to calculate contributions</li>
+            <li>Every income tax band and the rate that applies to each</li>
+            <li>The monthly tax credit: how much, and who is entitled to it</li>
+            <li>Whether social insurance is subtracted from salary before income tax is calculated, or after</li>
+            <li>The date each rule takes effect — some amendments are passed in one year and start in another</li>
+          </ul>
+        </div>
+        <div class="note"><p>Do not ask AI for the rates. It will confidently give you numbers that were correct in some other year.</p></div>
+      </article>
+      <article class="step">
+        <p class="step-n">Step 2</p>
+        <h3>Build it</h3>
+        <p class="step-lead">What your calculator must do</p>
+        <div class="block">
+          <p class="block-title">The page</p>
+          <ul>
+            <li>One input: gross monthly salary in tögrög</li>
+            <li>Six output lines, each labelled: social insurance withheld, taxable income, tax before credit, credit applied, income tax withheld, net pay</li>
+            <li>Contributions stop rising above the ceiling</li>
+            <li>The credit is applied after tax is calculated, and tax never goes below zero</li>
+            <li>Recalculates as you type; thousand separators, no decimals</li>
+            <li>One .html file that opens by double-click with no internet</li>
+          </ul>
+        </div>
+        <div class="block">
+          <p class="block-title">Five test cases — calculate these by hand first</p>
+          <ul>
+            <li>A salary low enough that income tax comes to zero</li>
+            <li>An ordinary salary in the middle of the range</li>
+            <li>A salary sitting exactly on a band boundary</li>
+            <li>A salary above the contribution ceiling</li>
+            <li>A salary of zero</li>
+            <li>Your page must show all five and match your hand calculation exactly</li>
+          </ul>
+        </div>
+        <div class="block">
+          <p class="block-title">Accepted only if</p>
+          <ul>
+            <li>Every rate in your code carries a comment naming the law, the article, and the date you checked it</li>
+            <li>All five hand calculations match the page, to the tögrög</li>
+            <li>You can say in one sentence why insurance is subtracted before tax — or why it is not</li>
+            <li>Nothing in the file was accepted from AI without you checking it against the law yourself</li>
+          </ul>
+        </div>
+        <div class="note"><p>If the page and your hand calculation disagree, one of them is wrong. Find out which before you submit.</p></div>
+      </article>
+      <article class="step">
+        <p class="step-n">Step 3</p>
+        <h3>The same job, two prompts</h3>
+        <p class="step-lead">Run both. Then write down the difference.</p>
+        <div class="block">
+          <p class="block-title">Prompt A</p>
+          <pre><code>Make an HTML page that calculates
+Mongolian salary tax and social
+insurance.</code></pre>
+        </div>
+        <div class="block">
+          <p class="block-title">Watch for</p>
+          <ul>
+            <li>Where did its rates come from?</li>
+            <li>Did it name a year, an article, a source?</li>
+            <li>Did it subtract insurance before tax?</li>
+            <li>Did it handle the ceiling at all?</li>
+            <li>Would you sign your name under it?</li>
+          </ul>
+        </div>
+        <div class="block">
+          <p class="block-title">Prompt B — fill the brackets with what you found</p>
+          <pre><code>Write a single-file HTML calculator. No libraries, no CDN.
+
+Rules I verified myself on legalinfo.mn on [date]:
+- Employee social insurance: [rate]% of gross salary
+- Contributions stop above [amount] MNT per month
+- Taxable income = gross salary - employee social insurance
+- Income tax bands: [every band and its rate]
+- Monthly tax credit: [amount] MNT, applied after tax is computed
+- Tax may never be negative
+
+Build:
+- One input: gross monthly salary
+- A table showing: insurance, taxable income, tax before credit,
+  credit, income tax, net pay
+- Thousand separators, no decimals, recalculate on every keystroke
+- A test section showing these cases: [your five cases]
+
+Use only the rates above. Invent nothing. If anything needed is
+missing, stop and ask me instead of guessing.</code></pre>
+        </div>
+        <div class="block">
+          <p class="block-title">Then write the conclusion — six sentences, no more</p>
+          <ul>
+            <li>Which numbers did Prompt A invent, and how did you catch it?</li>
+            <li>Which requirement did A silently skip that B got right?</li>
+            <li>How long did each version take to make correct?</li>
+            <li>What in Prompt B did the work — name the one line that mattered most.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="step">
+        <p class="step-n">Step 4</p>
+        <h3>Make it a real payslip</h3>
+        <p class="step-lead">Now the salary itself is a calculation</p>
+        <p class="step-intro">Nobody is paid a flat monthly figure. Days worked, overtime, night hours and holidays all decide what the gross number actually is — and every one of them changes the tax and the insurance underneath it.</p>
+        <div class="block">
+          <p class="block-title">Find in the labour law</p>
+          <ul>
+            <li>The standard working day and week, and the norm used to turn a monthly salary into an hourly rate</li>
+            <li>The premium for overtime, and whether it may be given as time off instead of pay</li>
+            <li>The premium for work at night, and for work on a rest day or a public holiday</li>
+            <li>What happens when two of these overlap — do the premiums stack, and in what order</li>
+            <li>Which of these payments social insurance and income tax actually apply to</li>
+          </ul>
+        </div>
+        <div class="block">
+          <p class="block-title">Add to your page</p>
+          <ul>
+            <li>Days worked, and days in the working month</li>
+            <li>Hours worked, and hours of overtime</li>
+            <li>Night hours, rest-day hours, public-holiday hours</li>
+            <li>Bonus or additional pay, entered as its own field</li>
+            <li>A gross pay breakdown, line by line, before any deduction — then the same six deduction lines as before, recalculated from the new gross</li>
+          </ul>
+        </div>
+        <div class="block">
+          <p class="block-title">Prove you did not break what already worked</p>
+          <ul>
+            <li>Full month, no overtime, no night hours: all five original cases must return exactly the same numbers as before</li>
+            <li>Add three new hand calculations — half a month, one overtime hour at night, a full day on a public holiday</li>
+            <li>Every new multiplier carries a comment naming the article it came from</li>
+            <li>Extend Prompt B; do not start a new chat. In two sentences, say what the model broke when you added the new rules</li>
+          </ul>
+        </div>
+        <div class="note"><p>Adding a parameter is easy. Adding one without breaking the five things that already worked is the actual skill.</p></div>
+      </article>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Илгээсэн ажлууд</h2>
+      <div class="progress">
+        <div class="progress-head">
+          <span><b>10</b> / 55 илгээсэн</span>
+          <span class="pct">18%</span>
+        </div>
+        <div class="bar" role="img" aria-label="Бодлого 01: 10 of 55 students have submitted">
+          <span style="width: 18%"></span>
+        </div>
+      </div>
+      <input class="tabinput" type="radio" name="group" id="tab-entrepreneur" autocomplete="off" checked>
+      <input class="tabinput" type="radio" name="group" id="tab-financial-leadership" autocomplete="off">
+
+      <div class="tabs">
+        <label class="tab" for="tab-entrepreneur">
+          <span class="tab-name">Энтрепренершип хөтөлбөр</span>
+          <span class="tab-count mono">10/27</span>
+        </label>
+        <label class="tab" for="tab-financial-leadership">
+          <span class="tab-name">Санхүүгийн манлайлал хөтөлбөр</span>
+          <span class="tab-count mono">0/28</span>
+        </label>
+      </div>
+
+      <section class="panel" id="panel-entrepreneur" aria-label="Энтрепренершип хөтөлбөр">
+      <div class="progress">
+        <div class="progress-head">
+          <span><b>10</b> / 27 илгээсэн</span>
+          <span class="pct">37%</span>
+        </div>
+        <div class="bar" role="img" aria-label="Энтрепренершип хөтөлбөр: 10 of 27 students have submitted">
+          <span style="width: 37%"></span>
+        </div>
+      </div>
+        <ul class="grid">
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1091/">
+              <span class="row">
+                <span class="code mono">B26FA1091</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Балжидмаа.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1891/">
+              <span class="row">
+                <span class="code mono">B26FA1891</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Төгс-Эрдэнэ.Т</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1892/">
+              <span class="row">
+                <span class="code mono">B26FA1892</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Аз-Эрдэнэ.Г</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1893/">
+              <span class="row">
+                <span class="code mono">B26FA1893</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Ган-Эрдэнэ.Г</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA1894/">
+              <span class="row">
+                <span class="code mono">B26FA1894</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Гарьд.Э</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1895/">
+              <span class="row">
+                <span class="code mono">B26FA1895</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Ерөөлт.Г</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1896/">
+              <span class="row">
+                <span class="code mono">B26FA1896</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Мөнх-Оргил.С</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1897/">
+              <span class="row">
+                <span class="code mono">B26FA1897</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Нинжин.Х</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1898/">
+              <span class="row">
+                <span class="code mono">B26FA1898</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Номуулин.Г</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1899/">
+              <span class="row">
+                <span class="code mono">B26FA1899</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Одгэрэл.П</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA1900/">
+              <span class="row">
+                <span class="code mono">B26FA1900</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Содбилэг.О</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA1901/">
+              <span class="row">
+                <span class="code mono">B26FA1901</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Төгөлдөр.Э</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1902/">
+              <span class="row">
+                <span class="code mono">B26FA1902</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Тэнүүнмандал.И</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1903/">
+              <span class="row">
+                <span class="code mono">B26FA1903</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Уянга.Х</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1904/">
+              <span class="row">
+                <span class="code mono">B26FA1904</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Хурхамба.Х</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA1905/">
+              <span class="row">
+                <span class="code mono">B26FA1905</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Чандманьбаатар.Т</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1906/">
+              <span class="row">
+                <span class="code mono">B26FA1906</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Эгшиглэн.А</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA1907/">
+              <span class="row">
+                <span class="code mono">B26FA1907</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Амарбат.М</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1908/">
+              <span class="row">
+                <span class="code mono">B26FA1908</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Аръяа.Н</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1909/">
+              <span class="row">
+                <span class="code mono">B26FA1909</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Дашням.Д</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA1910/">
+              <span class="row">
+                <span class="code mono">B26FA1910</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Лутням.О</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA1911/">
+              <span class="row">
+                <span class="code mono">B26FA1911</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Содбаяр.С</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA1912/">
+              <span class="row">
+                <span class="code mono">B26FA1912</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Цээмаа.А</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1913/">
+              <span class="row">
+                <span class="code mono">B26FA1913</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Эрхэмболор.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/B26FA2077/">
+              <span class="row">
+                <span class="code mono">B26FA2077</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Марал.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FM1524/">
+              <span class="row">
+                <span class="code mono">B26FM1524</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Амин-Эрдэнэ.А</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-submitted" href="/ps/01/C26SS1017/">
+              <span class="row">
+                <span class="code mono">C26SS1017</span>
+                <span class="tag">Илгээсэн</span>
+              </span>
+              <span class="name">Аминхайр.Г</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel" id="panel-financial-leadership" aria-label="Санхүүгийн манлайлал хөтөлбөр">
+      <div class="progress">
+        <div class="progress-head">
+          <span><b>0</b> / 28 илгээсэн</span>
+          <span class="pct">0%</span>
+        </div>
+        <div class="bar" role="img" aria-label="Санхүүгийн манлайлал хөтөлбөр: 0 of 28 students have submitted">
+          <span style="width: 0%"></span>
+        </div>
+      </div>
+        <ul class="grid">
+          <li>
+            <a class="student is-pending" href="/ps/01/B25FA1043/">
+              <span class="row">
+                <span class="code mono">B25FA1043</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Энэрэл.Д</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1819/">
+              <span class="row">
+                <span class="code mono">B26FA1819</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Аадий.А</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1820/">
+              <span class="row">
+                <span class="code mono">B26FA1820</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Алтанбилэг.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1821/">
+              <span class="row">
+                <span class="code mono">B26FA1821</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Алтансоёмбо.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1822/">
+              <span class="row">
+                <span class="code mono">B26FA1822</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Арвижихсайхан.Г</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1823/">
+              <span class="row">
+                <span class="code mono">B26FA1823</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Ирмүүнзул.Д</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1824/">
+              <span class="row">
+                <span class="code mono">B26FA1824</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Мөнхбилгүүн.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1825/">
+              <span class="row">
+                <span class="code mono">B26FA1825</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Мөнхзолбоо.М</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1826/">
+              <span class="row">
+                <span class="code mono">B26FA1826</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Мөнх-Оргил.Н</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1827/">
+              <span class="row">
+                <span class="code mono">B26FA1827</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Мөнх-Эрдэнэ.А</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1828/">
+              <span class="row">
+                <span class="code mono">B26FA1828</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Намуун.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1829/">
+              <span class="row">
+                <span class="code mono">B26FA1829</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Нандин-Эрдэнэ.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1830/">
+              <span class="row">
+                <span class="code mono">B26FA1830</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Нарангэрэл.М</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1831/">
+              <span class="row">
+                <span class="code mono">B26FA1831</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Нарансолонго.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1832/">
+              <span class="row">
+                <span class="code mono">B26FA1832</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Номинтуяа.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1833/">
+              <span class="row">
+                <span class="code mono">B26FA1833</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Очир-Эрдэнэ.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1835/">
+              <span class="row">
+                <span class="code mono">B26FA1835</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Өнөбаясгалан.А</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1836/">
+              <span class="row">
+                <span class="code mono">B26FA1836</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Сарангуа.Д</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1837/">
+              <span class="row">
+                <span class="code mono">B26FA1837</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Содонбилэг.Э</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1838/">
+              <span class="row">
+                <span class="code mono">B26FA1838</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Солонго.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1840/">
+              <span class="row">
+                <span class="code mono">B26FA1840</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Тэнгис.Г</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1841/">
+              <span class="row">
+                <span class="code mono">B26FA1841</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Уянга.М</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1842/">
+              <span class="row">
+                <span class="code mono">B26FA1842</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Цэлмэг.Ж</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1843/">
+              <span class="row">
+                <span class="code mono">B26FA1843</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Эгшиглэн.М</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1844/">
+              <span class="row">
+                <span class="code mono">B26FA1844</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Энхбилэг.С</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1845/">
+              <span class="row">
+                <span class="code mono">B26FA1845</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Эрдэнэсүрэн.Э</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA1846/">
+              <span class="row">
+                <span class="code mono">B26FA1846</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Юмжирдулам.Б</span>
+            </a>
+          </li>
+          <li>
+            <a class="student is-pending" href="/ps/01/B26FA2064/">
+              <span class="row">
+                <span class="code mono">B26FA2064</span>
+                <span class="tag">Хүлээгдэж буй</span>
+              </span>
+              <span class="name">Бат-Итгэлт.Г</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+      </section>
+
+      <footer class="page"><a href="/">← Тойм</a></footer>
+      </div>
+    </main>
+  </div>
+<style>
+  #tab-entrepreneur:checked ~ #panel-entrepreneur { display: block; }
+  #tab-entrepreneur:checked ~ .tabs .tab[for="tab-entrepreneur"] {
+    background: var(--accent-soft); border-color: var(--accent); color: var(--ink);
+  }
+  #tab-entrepreneur:checked ~ .tabs .tab[for="tab-entrepreneur"] .tab-count { background: var(--panel); }
+  #tab-entrepreneur:focus-visible ~ .tabs .tab[for="tab-entrepreneur"] {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  #tab-financial-leadership:checked ~ #panel-financial-leadership { display: block; }
+  #tab-financial-leadership:checked ~ .tabs .tab[for="tab-financial-leadership"] {
+    background: var(--accent-soft); border-color: var(--accent); color: var(--ink);
+  }
+  #tab-financial-leadership:checked ~ .tabs .tab[for="tab-financial-leadership"] .tab-count { background: var(--panel); }
+  #tab-financial-leadership:focus-visible ~ .tabs .tab[for="tab-financial-leadership"] {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+</style>
+<script>
+// Deep links: #<group-id> opens that tab and switching tabs updates the URL, so
+// a tab can be shared. Without JS the tabs still work — this only syncs the
+// address bar.
+(function () {
+  var groups = ["entrepreneur","financial-leadership"];
+  var wanted = decodeURIComponent(location.hash.slice(1));
+  groups.forEach(function (id) {
+    var input = document.getElementById('tab-' + id);
+    if (!input) return;
+    if (id === wanted) input.checked = true;
+    input.addEventListener('change', function () {
+      if (input.checked) history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
+</script>
+</body>
+</html>

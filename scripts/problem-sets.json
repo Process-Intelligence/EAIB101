@@ -1,0 +1,176 @@
+{
+  "class": "EAIB101",
+  "course": "AI & Prompt Engineering",
+  "sets": [
+    {
+      "id": "01",
+      "title": "Salary, Tax and Insurance",
+      "status": "published",
+      "tagline": "Read the law first. Then let the machine write the code.",
+      "session": "One session",
+      "flow": "Research → Build → Compare prompts",
+      "task": "Every payslip in Mongolia carries the same two deductions, and almost nobody who receives one can explain them. Today you find out how they actually work — by reading the law, not by asking a model — and then build a page that calculates them correctly for any salary.",
+      "sources": ["legalinfo.mn", "mta.gov.mn", "ndaatgal.mn", "Any free AI", "Any text editor"],
+      "steps": [
+        {
+          "n": "Step 1",
+          "title": "Find these in the law, before you open any AI tool",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Which two laws govern this. Find both on legalinfo.mn and write down their full names",
+                "The employee's social insurance contribution rate — and, separately, what the employer pays",
+                "The upper limit on the monthly salary used to calculate contributions",
+                "Every income tax band and the rate that applies to each",
+                "The monthly tax credit: how much, and who is entitled to it",
+                "Whether social insurance is subtracted from salary before income tax is calculated, or after",
+                "The date each rule takes effect — some amendments are passed in one year and start in another"
+              ]
+            },
+            {
+              "type": "note",
+              "text": "Do not ask AI for the rates. It will confidently give you numbers that were correct in some other year."
+            }
+          ]
+        },
+        {
+          "n": "Step 2",
+          "title": "Build it",
+          "lead": "What your calculator must do",
+          "blocks": [
+            {
+              "type": "list",
+              "title": "The page",
+              "items": [
+                "One input: gross monthly salary in tögrög",
+                "Six output lines, each labelled: social insurance withheld, taxable income, tax before credit, credit applied, income tax withheld, net pay",
+                "Contributions stop rising above the ceiling",
+                "The credit is applied after tax is calculated, and tax never goes below zero",
+                "Recalculates as you type; thousand separators, no decimals",
+                "One .html file that opens by double-click with no internet"
+              ]
+            },
+            {
+              "type": "list",
+              "title": "Five test cases — calculate these by hand first",
+              "items": [
+                "A salary low enough that income tax comes to zero",
+                "An ordinary salary in the middle of the range",
+                "A salary sitting exactly on a band boundary",
+                "A salary above the contribution ceiling",
+                "A salary of zero",
+                "Your page must show all five and match your hand calculation exactly"
+              ]
+            },
+            {
+              "type": "list",
+              "title": "Accepted only if",
+              "items": [
+                "Every rate in your code carries a comment naming the law, the article, and the date you checked it",
+                "All five hand calculations match the page, to the tögrög",
+                "You can say in one sentence why insurance is subtracted before tax — or why it is not",
+                "Nothing in the file was accepted from AI without you checking it against the law yourself"
+              ]
+            },
+            {
+              "type": "note",
+              "text": "If the page and your hand calculation disagree, one of them is wrong. Find out which before you submit."
+            }
+          ]
+        },
+        {
+          "n": "Step 3",
+          "title": "The same job, two prompts",
+          "lead": "Run both. Then write down the difference.",
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Prompt A",
+              "text": "Make an HTML page that calculates\nMongolian salary tax and social\ninsurance."
+            },
+            {
+              "type": "list",
+              "title": "Watch for",
+              "items": [
+                "Where did its rates come from?",
+                "Did it name a year, an article, a source?",
+                "Did it subtract insurance before tax?",
+                "Did it handle the ceiling at all?",
+                "Would you sign your name under it?"
+              ]
+            },
+            {
+              "type": "code",
+              "title": "Prompt B — fill the brackets with what you found",
+              "text": "Write a single-file HTML calculator. No libraries, no CDN.\n\nRules I verified myself on legalinfo.mn on [date]:\n- Employee social insurance: [rate]% of gross salary\n- Contributions stop above [amount] MNT per month\n- Taxable income = gross salary - employee social insurance\n- Income tax bands: [every band and its rate]\n- Monthly tax credit: [amount] MNT, applied after tax is computed\n- Tax may never be negative\n\nBuild:\n- One input: gross monthly salary\n- A table showing: insurance, taxable income, tax before credit,\n  credit, income tax, net pay\n- Thousand separators, no decimals, recalculate on every keystroke\n- A test section showing these cases: [your five cases]\n\nUse only the rates above. Invent nothing. If anything needed is\nmissing, stop and ask me instead of guessing."
+            },
+            {
+              "type": "list",
+              "title": "Then write the conclusion — six sentences, no more",
+              "items": [
+                "Which numbers did Prompt A invent, and how did you catch it?",
+                "Which requirement did A silently skip that B got right?",
+                "How long did each version take to make correct?",
+                "What in Prompt B did the work — name the one line that mattered most."
+              ]
+            }
+          ]
+        },
+        {
+          "n": "Step 4",
+          "title": "Make it a real payslip",
+          "lead": "Now the salary itself is a calculation",
+          "intro": "Nobody is paid a flat monthly figure. Days worked, overtime, night hours and holidays all decide what the gross number actually is — and every one of them changes the tax and the insurance underneath it.",
+          "blocks": [
+            {
+              "type": "list",
+              "title": "Find in the labour law",
+              "items": [
+                "The standard working day and week, and the norm used to turn a monthly salary into an hourly rate",
+                "The premium for overtime, and whether it may be given as time off instead of pay",
+                "The premium for work at night, and for work on a rest day or a public holiday",
+                "What happens when two of these overlap — do the premiums stack, and in what order",
+                "Which of these payments social insurance and income tax actually apply to"
+              ]
+            },
+            {
+              "type": "list",
+              "title": "Add to your page",
+              "items": [
+                "Days worked, and days in the working month",
+                "Hours worked, and hours of overtime",
+                "Night hours, rest-day hours, public-holiday hours",
+                "Bonus or additional pay, entered as its own field",
+                "A gross pay breakdown, line by line, before any deduction — then the same six deduction lines as before, recalculated from the new gross"
+              ]
+            },
+            {
+              "type": "list",
+              "title": "Prove you did not break what already worked",
+              "items": [
+                "Full month, no overtime, no night hours: all five original cases must return exactly the same numbers as before",
+                "Add three new hand calculations — half a month, one overtime hour at night, a full day on a public holiday",
+                "Every new multiplier carries a comment naming the article it came from",
+                "Extend Prompt B; do not start a new chat. In two sentences, say what the model broke when you added the new rules"
+              ]
+            },
+            {
+              "type": "note",
+              "text": "Adding a parameter is easy. Adding one without breaking the five things that already worked is the actual skill."
+            }
+          ]
+        }
+      ]
+    },
+    { "id": "02", "title": "", "status": "planned" },
+    { "id": "03", "title": "", "status": "planned" },
+    { "id": "04", "title": "", "status": "planned" },
+    { "id": "05", "title": "", "status": "planned" },
+    { "id": "06", "title": "", "status": "planned" },
+    { "id": "07", "title": "", "status": "planned" },
+    { "id": "08", "title": "", "status": "planned" },
+    { "id": "09", "title": "", "status": "planned" },
+    { "id": "10", "title": "", "status": "planned" }
+  ]
+}

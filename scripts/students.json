@@ -3,7 +3,7 @@
   "groups": [
     {
       "id": "entrepreneur",
-      "label": "Entrepreneur Program",
+      "label": "Энтрепренершип хөтөлбөр",
       "students": [
         { "id": "B26FA1091", "name": "Балжидмаа.Б" },
         { "id": "B26FA1891", "name": "Төгс-Эрдэнэ.Т" },
@@ -36,7 +36,7 @@
     },
     {
       "id": "financial-leadership",
-      "label": "Financial Leadership Program",
+      "label": "Санхүүгийн манлайлал хөтөлбөр",
       "students": [
         { "id": "B25FA1043", "name": "Энэрэл.Д" },
         { "id": "B26FA1819", "name": "Аадий.А" },
