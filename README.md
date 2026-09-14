@@ -7,11 +7,26 @@ Every student has their own folder. Students submit a static HTML document and i
 is served directly from Cloudflare's edge — there is no Worker script, no build
 step and no framework.
 
+## Groups
+
+The semester has two program groups, and the homepage shows one tab per group:
+
+| Group | `id` in `students.json` | Students |
+| --- | --- | --- |
+| Entrepreneur Program | `entrepreneur` | 27 |
+| Financial Leadership Program | `financial-leadership` | 28 |
+
+Student IDs are unique across both groups, so every student keeps one folder
+under `public/student/` and a student's URL never changes if they move groups —
+only their entry in `scripts/students.json` does.
+
 ## URLs
 
 | Path | Serves |
 | --- | --- |
-| `/` | Class homepage listing all 27 students |
+| `/` | Class homepage — tabs for both groups, 55 students |
+| `/#entrepreneur` | Homepage with the Entrepreneur Program tab open |
+| `/#financial-leadership` | Homepage with the Financial Leadership tab open |
 | `/student/<STUDENT_ID>/` | That student's page |
 | anything else | `public/404.html` with a 404 status |
 
@@ -21,12 +36,18 @@ step and no framework.
 
 ```
 public/                                  <- everything in here is published
-├── index.html                           <- class homepage
+├── index.html                           <- class homepage (generated)
 ├── 404.html                             <- not-found page
 └── student/
     ├── B26FA1091/index.html
     ├── B26FA1891/index.html
-    └── ...                              <- 27 folders, one per student
+    └── ...                              <- 55 folders, one per student
+scripts/
+├── students.json                        <- the roster, grouped by program
+├── roster.mjs                           <- loads + validates the roster
+├── placeholder.mjs                      <- the "not submitted yet" page
+├── scaffold.mjs                         <- creates missing student pages
+└── build-index.mjs                      <- regenerates public/index.html
 wrangler.jsonc                           <- Worker config (not published)
 package.json
 ```
@@ -96,10 +117,10 @@ the Cloudflare dashboard.
 
 ## The homepage
 
-`public/index.html` is generated. It lists every student on the roster, marks
-each one **Илгээсэн** (submitted) or **Хүлээгдэж буй** (pending), and shows the
-overall count. A folder is "pending" while it still holds the generated
-placeholder page.
+`public/index.html` is generated. It gives each group its own tab, marks every
+student **Илгээсэн** (submitted) or **Хүлээгдэж буй** (pending), and shows a
+count and progress bar per group plus a total in the header. A folder is
+"pending" while it still holds the generated placeholder page.
 
 Regenerate it after adding or replacing any student page:
 
@@ -110,11 +131,31 @@ npm run index
 The output is committed — Cloudflare runs no build command, so whatever is in
 `public/index.html` at push time is what ships.
 
+The tabs are plain CSS (a hidden radio per group), so they work with JavaScript
+disabled. The small inline script only keeps the URL hash in sync, which is what
+makes `/#financial-leadership` shareable.
+
 ## Adding a student
 
-1. Add `{ "id": "...", "name": "..." }` to `scripts/students.json`.
-2. Create `public/student/<STUDENT_ID>/index.html`.
-3. Run `npm run index` and commit both.
+1. Add `{ "id": "...", "name": "..." }` to the right group's `students` array in
+   `scripts/students.json`.
+2. Run `npm run scaffold` — it creates `public/student/<STUDENT_ID>/index.html`
+   with the placeholder page. Existing files are never overwritten, so this is
+   safe to re-run at any time.
+3. Run `npm run index` and commit everything.
+
+`npm run scaffold` and `npm run index` both refuse to run on a roster with a
+duplicate student ID, and both warn about folders under `public/student/` that
+no group claims.
+
+## Adding a group
+
+1. Append `{ "id": "...", "label": "...", "students": [...] }` to `groups` in
+   `scripts/students.json`. The `id` must be URL-safe — it becomes the tab's
+   deep link (`/#<id>`).
+2. Run `npm run scaffold` then `npm run index`.
+
+The homepage generates one tab per group, so no template edits are needed.
 
 ## Receiving a submission
 
