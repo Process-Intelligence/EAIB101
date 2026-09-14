@@ -1,107 +1,348 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1823 — Ирмүүнзул.Д | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Ирмүүнзул.Д (B26FA1823), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цалин, Татвар, НДШ Тооцоолуур</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #059669;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --border-color: #cbd5e1;
+            --highlight-bg: #eff6ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-calc {
+            width: 100%;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-calc:hover {
+            background-color: #1d4ed8;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 14px;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item.highlight {
+            background-color: #f0fdf4;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #bbf7d0;
+            margin-top: 10px;
+        }
+
+        .result-item.highlight .val {
+            color: var(--accent-color);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .val {
+            font-weight: 600;
+        }
+
+        .law-info {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 15px;
+            background-color: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #94a3b8;
+        }
+    </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1823</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Ирмүүнзул.Д</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1823/index.html</code>
-      </div>
+<div class="container">
+    <div class="header">
+        <h1>Монгол Улсын Цалин, Татвар & НДШ Тооцоолуур</h1>
+    </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+    <div class="calculator-grid">
+        <!-- Оруулга хэсэг -->
+        <div class="card">
+            <h2>1. Цалингийн мэдээлэл оруулах</h2>
+            <div class="form-group">
+                <label for="grossSalary">Үндсэн / Бодолцсон сарын цалин (₮):</label>
+                <input type="number" id="grossSalary" value="2500000" step="50000" min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="minWage">Хөдөлмөрийн хөлсний доод хэмжээ (ХХДХ):</label>
+                <input type="number" id="minWage" value="660000" step="10000">
+                <small style="color: #64748b; font-size: 11px;">НДШ-ийн дээд хязгаар (10 × ХХДХ)-ийг тодорхойлно.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="riskRate">Ажил олгогчийн ҮОМШӨ даатгалын хувь (%):</label>
+                <select id="riskRate">
+                    <option value="1.0">1.0% (Эрсдэл багатай)</option>
+                    <option value="2.0">2.0% (Дунд эрсдэлтэй)</option>
+                    <option value="3.0">3.0% (Өндөр эрсдэлтэй)</option>
+                </select>
+            </div>
+
+            <button class="btn-calc" onclick="calculateSalary()">Бодох</button>
+        </div>
+
+        <!-- Үр дүн -->
+        <div class="card">
+            <h2>2. Тооцооллын үр дүн</h2>
+            
+            <div class="result-item">
+                <span>Бодолцсон цалин:</span>
+                <span class="val" id="resGross">0 ₮</span>
+            </div>
+
+            <div class="result-item">
+                <span>Ажилтны НДШ (11.5%):</span>
+                <span class="val" id="resEeNdsh" style="color: #dc2626;">-0 ₮</span>
+            </div>
+
+            <div class="result-item">
+                <span>Татвар ногдох орлого:</span>
+                <span class="val" id="resTaxBase">0 ₮</span>
+            </div>
+
+            <div class="result-item">
+                <span>ХҮОАТ (Шатлалаар):</span>
+                <span class="val" id="resPitGross">0 ₮</span>
+            </div>
+
+            <div class="result-item">
+                <span>Сарын татварын хөнгөлөлт:</span>
+                <span class="val" id="resRelief" style="color: #2563eb;">-0 ₮</span>
+            </div>
+
+            <div class="result-item">
+                <span>ХҮОАТ (Суутгах дүнгээр):</span>
+                <span class="val" id="resPitNet" style="color: #dc2626;">-0 ₮</span>
+            </div>
+
+            <div class="result-item highlight">
+                <span>ГАРТ ОЛГОХ ЦАЛИН:</span>
+                <span class="val" id="resNet">0 ₮</span>
+            </div>
+
+            <div style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 10px;">
+                <div class="result-item">
+                    <span>Ажил олгогчийн төлөх НДШ:</span>
+                    <span class="val" id="resErNdsh" style="color: #475569;">0 ₮</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Хуулийн лавлах -->
+    <div class="card">
+        <h2>3. Хууль тогтоомжийн зохицуулалт ба онууд</h2>
+        
+        <div class="law-info">
+            <strong>1. Нийгмийн даатгалын шимтгэл (НДШ) ба Дээд хязгаар:</strong><br>
+            • Ажилтны төлөх НДШ: 11.5%, Ажил олгогчийн төлөх НДШ: 12.5% - 14.5%<br>
+            • НДШ бодох сарын орлогын дээд хязгаар: 10 × ХХДХ (Одоогоор 6,600,000 ₮).<br>
+            • <strong>Мөрдөж эхэлсэн хугацаа:</strong> Шинэчилсэн Нийгмийн даатгалын ерөнхий хууль <strong>2024 оны 1 сарын 1-нээс</strong> хэрэгжсэн.
+        </div>
+
+        <div class="law-info">
+            <strong>2. Хувь хүний орлогын албан татвар (ХҮОАТ):</strong><br>
+            • НДШ (11.5%)-ийг татвар бодохоос <strong>ӨМНӨ</strong> хасна.<br>
+            • Татварын шатлал: 0 - 10 сая ₮ хүртэл 10%, 10 - 15 сая ₮ хүртэл 15%, 15 сая ₮-өөс дээш 20%.<br>
+            • Сарын хөнгөлөлт: Жилийн орлогын түвшнээс хамаарч сар бүр 10,000 ₮ - 20,000 ₮.<br>
+            • <strong>Мөрдөж эхэлсэн хугацаа:</strong> Өөрчлөлт 2022 онд батлагдаж, <strong>2023 оны 1 сарын 1-нээс</strong> мөрдөгдөж эхэлсэн.
+        </div>
+
+        <div class="law-info">
+            <strong>3. Хөдөлмөрийн тухай хууль (7 дугаар бүлэг - Цалин хөлс):</strong><br>
+            • Цалингаас суутгал хийх зохицуулалт <strong>2022 оны 1 сарын 1-нээс</strong> шинэчлэн мөрдөгдөж байгаа бөгөөд хууль ёсны суутгал болон зөвшөөрөгдсөн хэмжээнээс илүү суутгахыг хориглоно.
+        </div>
+    </div>
+</div>
+
+<script>
+    function fmt(num) {
+        return Math.round(num).toLocaleString('mn-MN') + ' ₮';
+    }
+
+    function calculateSalary() {
+        const gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+        const minWage = parseFloat(document.getElementById('minWage').value) || 0;
+        const riskRate = parseFloat(document.getElementById('riskRate').value) || 1.0;
+
+        // НДШ дээд хязгаар (10 x ХХДХ)
+        const maxNdshBase = minWage * 10;
+        const ndshBase = Math.min(gross, maxNdshBase);
+
+        // Ажилтны ба Ажил олгогчийн НДШ
+        const eeNdsh = ndshBase * 0.115;
+        const erRate = (11.5 + riskRate) / 100;
+        const erNdsh = ndshBase * erRate;
+
+        // Татвар ногдох орлого (НДШ-ийг өмнө нь хасна)
+        const taxBase = gross - eeNdsh;
+
+        // ХҮОАТ шатлалаар
+        let pitGross = 0;
+        if (taxBase <= 10000000) {
+            pitGross = taxBase * 0.10;
+        } else if (taxBase <= 15000000) {
+            pitGross = 1000000 + (taxBase - 10000000) * 0.15;
+        } else {
+            pitGross = 1750000 + (taxBase - 15000000) * 0.20;
+        }
+
+        // Сарын хөнгөлөлт (Жилийн суутгалын суурь орлогоос хамаарна)
+        const annualBase = taxBase * 12;
+        let monthlyRelief = 0;
+
+        if (taxBase > 0) {
+            if (annualBase <= 6000000) {
+                monthlyRelief = 20000;
+            } else if (annualBase <= 12000000) {
+                monthlyRelief = 18000;
+            } else if (annualBase <= 18000000) {
+                monthlyRelief = 16000;
+            } else if (annualBase <= 24000000) {
+                monthlyRelief = 14000;
+            } else {
+                monthlyRelief = 10000;
+            }
+        }
+
+        // Бодит ХҮОАТ ба Гарт олгох цалин
+        const pitNet = Math.max(0, pitGross - monthlyRelief);
+        const netSalary = gross - eeNdsh - pitNet;
+
+        // Утгуудыг шинэчлэх
+        document.getElementById('resGross').innerText = fmt(gross);
+        document.getElementById('resEeNdsh').innerText = '-' + fmt(eeNdsh);
+        document.getElementById('resTaxBase').innerText = fmt(taxBase);
+        document.getElementById('resPitGross').innerText = fmt(pitGross);
+        document.getElementById('resRelief').innerText = '-' + fmt(monthlyRelief);
+        document.getElementById('resPitNet').innerText = '-' + fmt(pitNet);
+        document.getElementById('resNet').innerText = fmt(netSalary);
+        document.getElementById('resErNdsh').innerText = fmt(erNdsh);
+    }
+
+    // Автоматаар ажиллах болон оролт өөрчлөгдөхөд дахин бодох
+    window.onload = calculateSalary;
+    document.getElementById('grossSalary').addEventListener('input', calculateSalary);
+    document.getElementById('minWage').addEventListener('input', calculateSalary);
+    document.getElementById('riskRate').addEventListener('change', calculateSalary);
+</script>
+
 </body>
 </html>

@@ -1,107 +1,614 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1825 — Мөнхзолбоо.М | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Мөнхзолбоо.М (B26FA1825), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Цалингийн дэлгэрэнгүй тооцоолуур</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
+  :root{
+    --bg:#F3F4EF;
+    --ink:#171B18;
+    --ink-soft:#5F6660;
+    --line:#DCDED7;
+    --panel:#FFFFFF;
+
+    --net:#1E7A5C;
+    --net-tint:#DDEEE6;
+    --si:#2E4A78;
+    --si-tint:#DEE4F1;
+    --tax:#B4552B;
+    --tax-tint:#F4E3D6;
+    --extra:#6B4292;
+    --extra-tint:#EAE1F0;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    padding:44px 18px 90px;
   }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
+
+  .wrap{ max-width:620px; margin:0 auto; }
+
+  header{
+    margin-bottom:30px;
   }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  header h1{
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:26px;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
   }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
+
+  header p{
+    margin:0;
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.5;
   }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
+
+  .input-block{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:20px 22px;
+    margin-bottom:22px;
   }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
+
+  .input-block label{
+    display:block;
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--ink-soft);
+    margin-bottom:8px;
   }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
+
+  .input-block .row{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
   }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+
+  .input-block input{
+    flex:1;
+    min-width:0;
+    border:none;
+    outline:none;
+    font-family:'Sora', sans-serif;
+    font-weight:600;
+    font-size:30px;
+    color:var(--ink);
+    padding:0;
+    background:transparent;
+  }
+
+  .input-block .cur{ font-size:16px; color:var(--ink-soft); }
+
+  /* proportion bar */
+  .bar{
+    display:flex;
+    height:34px;
+    overflow:hidden;
+    margin-bottom:10px;
+  }
+  .bar div{ display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif; font-size:11.5px; font-weight:600; color:#fff; transition:flex-basis 0.25s ease; white-space:nowrap; overflow:hidden; }
+  .bar .b-net{ background:var(--net); }
+  .bar .b-si{ background:var(--si); }
+  .bar .b-tax{ background:var(--tax); }
+
+  .legend{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .legend i{ width:9px; height:9px; display:inline-block; }
+  .legend .i-net{ background:var(--net); }
+  .legend .i-si{ background:var(--si); }
+  .legend .i-tax{ background:var(--tax); }
+
+  .group{
+    margin-bottom:22px;
+  }
+
+  .group .g-head{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Sora', sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    letter-spacing:0.01em;
+    margin-bottom:10px;
+  }
+
+  .group .g-head i{ width:10px; height:10px; display:inline-block; }
+  .group.si .g-head i{ background:var(--si); }
+  .group.tax .g-head i{ background:var(--tax); }
+  .group.net .g-head i{ background:var(--net); }
+  .group.extra .g-head i{ background:var(--extra); }
+
+  .group .g-body{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--line);
+  }
+  .group.si .g-body{ border-left-color:var(--si); }
+  .group.tax .g-body{ border-left-color:var(--tax); }
+  .group.net .g-body{ border-left-color:var(--net); }
+  .group.extra .g-body{ border-left-color:var(--extra); }
+
+  /* extra pay inputs */
+  .extra-inputs{
+    padding:14px 18px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .extra-field{
+    display:grid;
+    grid-template-columns:1fr 90px;
+    align-items:center;
+    gap:10px;
+    padding:8px 0;
+  }
+
+  .extra-field label{
+    font-size:13.5px;
+  }
+  .extra-field label small{
+    display:block;
+    color:var(--ink-soft);
+    font-size:11px;
+    margin-top:2px;
+  }
+
+  .extra-field input[type="number"]{
+    width:100%;
+    text-align:right;
+    font-family:'Sora', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    border:1px solid var(--line);
+    border-radius:0;
+    padding:7px 8px;
+    background:var(--extra-tint);
+    color:var(--ink);
+    outline:none;
+  }
+
+  .schedule-row{
+    display:flex;
+    gap:10px;
+    padding:8px 0 14px;
+  }
+  .schedule-row .sf{ flex:1; }
+  .schedule-row .sf label{ display:block; font-size:11.5px; color:var(--ink-soft); margin-bottom:5px; }
+  .schedule-row .sf input{
+    width:100%;
+    font-family:'Sora', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    border:1px solid var(--line);
+    padding:7px 8px;
+    background:#FAFAF7;
+    color:var(--ink);
+    outline:none;
+    text-align:center;
+  }
+
+  .comp-toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 0 2px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+
+  .hourly-note{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    padding:10px 18px 0;
+  }
+  .hourly-note b{ color:var(--extra); }
+
+  /* law reference cards */
+  .law-block{ margin-bottom:22px; }
+  .law-block .g-head i{ background:var(--extra); }
+
+  .law-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--extra);
+    padding:14px 18px;
+    margin-bottom:2px;
+  }
+  .law-card + .law-card{ border-top:1px solid var(--line); margin-top:0; }
+
+  .law-card .q{
+    font-family:'Sora', sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    margin-bottom:6px;
+  }
+  .law-card .a{
+    font-size:13px;
+    line-height:1.65;
+    color:var(--ink);
+  }
+  .law-card .art{
+    display:inline-block;
+    margin-top:8px;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+
+  .badge{
+    display:inline-block;
+    font-size:10.5px;
+    font-weight:600;
+    padding:2px 7px;
+    margin:8px 6px 0 0;
+    border-radius:2px;
+  }
+  .badge.b-si{ background:var(--si-tint); color:var(--si); }
+  .badge.b-tax{ background:var(--tax-tint); color:var(--tax); }
+
+  .item{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    padding:12px 18px;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .item:last-child{ border-bottom:none; }
+
+  .item .name small{
+    display:block;
+    color:var(--ink-soft);
+    font-size:11.5px;
+    margin-top:2px;
+  }
+
+  .item .amt{
+    font-family:'Sora', sans-serif;
+    font-weight:500;
+    font-size:14.5px;
+    white-space:nowrap;
+  }
+
+  .item.subtotal{
+    background:#FAFAF7;
+    font-weight:600;
+  }
+  .item.subtotal .amt{ font-weight:700; }
+
+  .item.negative .amt{ color:var(--tax); }
+  .item.negative.si-item .amt{ color:var(--si); }
+
+  .result{
+    background:var(--net);
+    color:#fff;
+    padding:24px 22px;
+  }
+
+  .result .r-label{
+    font-size:13px;
+    opacity:0.85;
+    margin-bottom:6px;
+  }
+
+  .result .r-amt{
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:34px;
+    letter-spacing:-0.01em;
+  }
+
+  .result .r-sub{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,0.25);
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    opacity:0.9;
+  }
+
+  .footnote{
+    margin-top:26px;
+    font-size:12px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding-top:16px;
+  }
+
+  .footnote b{ color:var(--ink); font-weight:600; }
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1825</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Мөнхзолбоо.М</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1825/index.html</code>
+<div class="wrap">
+
+  <header>
+    <h1>Цалингийн дэлгэрэнгүй тооцоолуур</h1>
+    <p>Үндсэн цалин, нийгмийн даатгал (11.5%), ХХОАТ болон Хөдөлмөрийн тухай хуулиас илүү цаг, шөнө, амралт, баярын өдрийн нэмэгдэл хөлсийг нэгтгэн тооцно.</p>
+  </header>
+
+  <div class="input-block">
+    <label for="gross">Сарын гэрээт цалин</label>
+    <div class="row">
+      <input type="text" inputmode="numeric" id="gross" value="1,500,000">
+      <span class="cur">₮</span>
+    </div>
+  </div>
+
+  <div class="bar" id="bar">
+    <div class="b-net" id="bar-net" style="flex-basis:70%"></div>
+    <div class="b-si" id="bar-si" style="flex-basis:19%"></div>
+    <div class="b-tax" id="bar-tax" style="flex-basis:11%"></div>
+  </div>
+  <div class="legend">
+    <span><i class="i-net"></i>Гарт олгох</span>
+    <span><i class="i-si"></i>Нийгмийн даатгал</span>
+    <span><i class="i-tax"></i>Орлогын албан татвар</span>
+  </div>
+
+  <div class="group si">
+    <div class="g-head"><i></i>Нийгмийн даатгалын шимтгэл</div>
+    <div class="g-body">
+      <div class="item subtotal negative si-item"><div class="name">Нийгмийн даатгалын шимтгэл<small>11.5%</small></div><div class="amt" id="siTotal">0</div></div>
+    </div>
+  </div>
+
+  <div class="group tax">
+    <div class="g-head"><i></i>Хувь хүний орлогын албан татвар</div>
+    <div class="g-body">
+      <div class="item"><div class="name">Татвар ногдох орлого<small>Цалин − НДШ</small></div><div class="amt" id="taxable">0</div></div>
+      <div class="item negative"><div class="name">Суутгах татвар<small>10%</small></div><div class="amt" id="taxGross">0</div></div>
+      <div class="item"><div class="name">Татварын хөнгөлөлт<small id="bracketNote">жилийн орлогын шатлалаас хамаарна</small></div><div class="amt" id="credit">0</div></div>
+      <div class="item subtotal negative"><div class="name">Нийт ХХОАТ</div><div class="amt" id="taxTotal">0</div></div>
+    </div>
+  </div>
+
+  <div class="group extra">
+    <div class="g-head"><i></i>Нэмэгдэл хөлс (илүү цаг · шөнө · амралт · баяр)</div>
+    <div class="g-body">
+      <div class="extra-inputs">
+        <div class="schedule-row">
+          <div class="sf">
+            <label>7 хоногийн ажлын цаг</label>
+            <input type="number" id="weeklyHours" value="40" min="1" max="56">
+          </div>
+          <div class="sf">
+            <label>7 хоногийн ажлын өдөр</label>
+            <input type="number" id="weeklyDays" value="5" min="1" max="7">
+          </div>
+        </div>
+
+        <div class="extra-field">
+          <label>Илүү цагаар ажилласан<small>стандарт ажлын цагаас хэтэрсэн, өдөрт 4 цагаас ихгүй</small></label>
+          <input type="number" id="otHours" value="0" min="0">
+        </div>
+        <div class="extra-field">
+          <label>Долоо хоногийн амралтын өдөр ажилласан<small>цагаар</small></label>
+          <input type="number" id="weekendHours" value="0" min="0">
+        </div>
+        <div class="extra-field">
+          <label>Нийтээр амрах баярын өдөр ажилласан<small>цагаар</small></label>
+          <input type="number" id="holidayHours" value="0" min="0">
+        </div>
+        <div class="extra-field">
+          <label>Дээрхээс шөнийн цагтай (22:00–06:00) давхцсан<small>шөнийн нэмэгдэл нэмж бодогдоно</small></label>
+          <input type="number" id="nightHours" value="0" min="0">
+        </div>
+
+        <div class="comp-toggle">
+          <input type="checkbox" id="compTime">
+          <label for="compTime">Илүү цагийг мөнгөөр бус чөлөөгөөр нөхнө (ХтХ 109.1) — нэмэгдэл хөлс тооцохгүй</label>
+        </div>
       </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+      <div class="hourly-note" id="hourlyNote">1 цагийн дундаж цалин: <b>0 ₮</b></div>
+
+      <div class="item"><div class="name">Илүү цагийн нэмэгдэл<small>1.5 дахин (ХтХ 109.1)</small></div><div class="amt" id="otPay">0</div></div>
+      <div class="item"><div class="name">Амралтын өдрийн нэмэгдэл<small>1.5 дахин (ХтХ 109.2)</small></div><div class="amt" id="weekendPay">0</div></div>
+      <div class="item"><div class="name">Баярын өдрийн нэмэгдэл<small>2 дахин (ХтХ 109.4)</small></div><div class="amt" id="holidayPay">0</div></div>
+      <div class="item"><div class="name">Шөнийн цагийн нэмэгдэл<small>+20%, дээрхэн дээр нэмж (ХтХ 109.3, 109.5)</small></div><div class="amt" id="nightPay">0</div></div>
+      <div class="item subtotal"><div class="name">Нийт нэмэгдэл хөлс (татвар суутгахын өмнө)</div><div class="amt" id="extraGross">0</div></div>
+      <div class="item negative"><div class="name">НДШ + ХХОАТ суутгал<small>11.5% + 10%, нэмэгдэл хөлсөнд адил ногдоно</small></div><div class="amt" id="extraDeduct">−0</div></div>
+      <div class="item subtotal"><div class="name">Нэмэгдэл хөлс, гарт олгох</div><div class="amt" id="extraNet">0</div></div>
+    </div>
+  </div>
+
+  <div class="group net">
+    <div class="g-head"><i></i>Үр дүн</div>
+    <div class="result">
+      <div class="r-label">Сарын гарт олгох нийт дүн</div>
+      <div class="r-amt" id="net">0 ₮</div>
+      <div class="r-sub">
+        <span id="effRate">Нийт суутгал: 0%</span>
+        <span id="annualNet">Жилд: 0 ₮</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="group law-block">
+    <div class="g-head"><i></i>Хөдөлмөрийн тухай хуулиас</div>
+
+    <div class="law-card">
+      <div class="q">Сарын цалинг цагийн хөлс болгож бодох жишиг</div>
+      <div class="a">Долоо хоногийн ажлын цаг (жишээ нь 40) болон ажлын өдрийн тоог (жишээ нь 5) үндэслэн сарын дундаж ажлын цаг тооцож, сарын цалинг түүнд хуваан 1 цагийн дундаж хөлсийг гаргана. Энэ хэмжээгээр илүү цаг, шөнийн цаг, амралт, баярын өдрийн нэмэгдлийг тооцдог.</div>
+      <span class="art">ХтХ 47–48, Дундаж цалин хөлс тодорхойлох журам</span>
+    </div>
+
+    <div class="law-card">
+      <div class="q">Илүү цагийн нэмэгдэл, мөнгөний оронд чөлөө олгох эсэх</div>
+      <div class="a">Илүү цагаар ажилласан ажилтанд дундаж цалин хөлсийг 1.5 дахин, түүнээс дээш хэмжээгээр нэмэгдүүлж олгоно. Ажил олгогч нэмэгдэл хөлс олгохын оронд ажилтныг нөхөн амруулахыг сонгож болно. Нэг өдөрт ажиллах илүү цагийн хязгаар 4 цагаас илүүгүй.</div>
+      <span class="art">ХтХ 109.1</span>
+      <div><span class="badge b-si">НДШ ногдоно</span><span class="badge b-tax">ХХОАТ ногдоно</span></div>
+    </div>
+
+    <div class="law-card">
+      <div class="q">Шөнийн, амралтын өдрийн, нийтээр амрах баярын өдрийн нэмэгдэл</div>
+      <div class="a">Шөнийн цагаар (22:00–06:00) ажилласан бол 1.2 дахин (буюу +20%); долоо хоногийн амралтын өдөр ажилласан бол 1.5 дахин; нийтээр амрах баярын өдөр ажилласан бол 2 дахин ба түүнээс дээш хэмжээгээр дундаж цалин хөлсийг нэмэгдүүлж олгоно.</div>
+      <span class="art">ХтХ 109.2, 109.3, 109.4</span>
+      <div><span class="badge b-si">НДШ ногдоно</span><span class="badge b-tax">ХХОАТ ногдоно</span></div>
+    </div>
+
+    <div class="law-card">
+      <div class="q">Хоёр нэмэгдэл давхцвал юу болох</div>
+      <div class="a">Илүү цаг, амралт, баярын өдөр шөнийн цагтай давхацвал дээрх нэмэгдэл хөлс дээр шөнийн цагийн нэмэгдлийг нэмж олгоно — өөрөөр хэлбэл нэмэгдлүүд харилцан үржигдэхгүй, зэрэгцээ нэмэгдэж бодогдоно.</div>
+      <span class="art">ХтХ 109.5</span>
+    </div>
+
+    <div class="law-card">
+      <div class="q">Аль нь НДШ, ХХОАТ ногдох вэ</div>
+      <div class="a">Цалин хөлс нь үндсэн цалин, нэмэгдэл хөлс, нэмэгдэл, шагнал урамшлаас бүрдэнэ. Илүү цаг, шөнө, амралт, баярын өдрийн нэмэгдэл хөлс бүгд энэ бүрэлдэхүүнд багтдаг тул үндсэн цалинтай адилаар НДШ (11.5%) болон ХХОАТ (10%)-д хамаарна.</div>
+      <span class="art">ХтХ 47.1, Нийгмийн даатгалын хууль, ХХОАТ-ын тухай хууль</span>
+    </div>
+  </div>
+
+  <div class="footnote">
+    <b>Тооцооны үндэслэл:</b> Нийгмийн даатгалын ерөнхий хууль 7.7 — даатгуулагчийн өөрөө мэдүүлсэн орлогоос төлөх тэтгэврийн даатгалын шимтгэл 11.5%. Хувь хүний орлогын албан татварын тухай хууль 21.2.4 — 10% татвар; 23.1 — жилийн татвар ногдох орлогын хэмжээнээс хамаарсан жилийн хөнгөлөлт (0–6 сая: 240,000₮, 6–12 сая: 216,000₮, 12–18 сая: 192,000₮, 18–24 сая: 168,000₮, 24–30 сая: 144,000₮, 30–36 сая: 120,000₮, 36 сая-аас дээш: 0₮), сард хуваан тооцно. Нэмэгдэл хөлсний хэсэгт татварын хөнгөлөлтийг дахин тооцоогүй болно. Ойролцоо тооцоолуур бөгөөд бусад орлого, тэтгэвэрт даатгуулаагүй тохиолдол зэргийг оруулаагүй болно.
+  </div>
+
+</div>
+
+<script>
+  const grossInput = document.getElementById('gross');
+
+  const SI_RATE = 0.115;
+  const PIT_RATE = 0.10;
+
+  const CREDIT_BRACKETS = [
+    { upTo: 6000000,  credit: 240000, label: '0–6 сая' },
+    { upTo: 12000000, credit: 216000, label: '6–12 сая' },
+    { upTo: 18000000, credit: 192000, label: '12–18 сая' },
+    { upTo: 24000000, credit: 168000, label: '18–24 сая' },
+    { upTo: 30000000, credit: 144000, label: '24–30 сая' },
+    { upTo: 36000000, credit: 120000, label: '30–36 сая' },
+    { upTo: Infinity, credit: 0, label: '36 сая+' }
+  ];
+
+  function fmt(n){ return Math.round(n).toLocaleString('mn-MN'); }
+  function parseNum(str){ const d = str.replace(/[^\d]/g,''); return d ? parseInt(d,10) : 0; }
+
+  function bracketFor(annualIncome){
+    for (const b of CREDIT_BRACKETS){ if (annualIncome <= b.upTo) return b; }
+    return CREDIT_BRACKETS[CREDIT_BRACKETS.length-1];
+  }
+
+  const weeklyHoursInput = document.getElementById('weeklyHours');
+  const weeklyDaysInput = document.getElementById('weeklyDays');
+  const otHoursInput = document.getElementById('otHours');
+  const weekendHoursInput = document.getElementById('weekendHours');
+  const holidayHoursInput = document.getElementById('holidayHours');
+  const nightHoursInput = document.getElementById('nightHours');
+  const compTimeInput = document.getElementById('compTime');
+
+  function calculate(){
+    const gross = parseNum(grossInput.value);
+
+    const siTotal = gross * SI_RATE;
+
+    const taxable = Math.max(gross - siTotal, 0);
+    const taxGross = taxable * PIT_RATE;
+
+    const annualTaxable = taxable * 12;
+    const bracket = bracketFor(annualTaxable);
+    const credit = bracket.credit / 12;
+
+    const taxTotal = Math.max(taxGross - credit, 0);
+    const netBase = gross - siTotal - taxTotal;
+
+    document.getElementById('siTotal').textContent = '−' + fmt(siTotal);
+
+    document.getElementById('taxable').textContent = fmt(taxable);
+    document.getElementById('taxGross').textContent = '−' + fmt(taxGross);
+    document.getElementById('credit').textContent = '+' + fmt(credit);
+    document.getElementById('bracketNote').textContent = 'жилийн орлого ' + bracket.label + ' сая ₮ шатланд';
+    document.getElementById('taxTotal').textContent = '−' + fmt(taxTotal);
+
+    // --- Нэмэгдэл хөлс ---
+    const weeklyHours = Math.max(parseFloat(weeklyHoursInput.value) || 40, 1);
+    const monthlyHours = weeklyHours * 52 / 12; // ~ 173.3 цаг 40 цагийн долоо хоногт
+    const hourlyWage = monthlyHours > 0 ? gross / monthlyHours : 0;
+
+    document.getElementById('hourlyNote').innerHTML =
+      '1 цагийн дундаж цалин: <b>' + fmt(hourlyWage) + ' ₮</b> (сард дундаж ' + monthlyHours.toFixed(1) + ' цаг)';
+
+    const otHours = Math.max(parseFloat(otHoursInput.value) || 0, 0);
+    const weekendHours = Math.max(parseFloat(weekendHoursInput.value) || 0, 0);
+    const holidayHours = Math.max(parseFloat(holidayHoursInput.value) || 0, 0);
+    const nightHours = Math.max(parseFloat(nightHoursInput.value) || 0, 0);
+
+    const otPay = compTimeInput.checked ? 0 : otHours * hourlyWage * 1.5;
+    const weekendPay = weekendHours * hourlyWage * 1.5;
+    const holidayPay = holidayHours * hourlyWage * 2;
+    const nightPay = nightHours * hourlyWage * 0.2; // +20%, нэмж бодогдоно
+
+    const extraGross = otPay + weekendPay + holidayPay + nightPay;
+    const extraSi = extraGross * SI_RATE;
+    const extraTaxable = Math.max(extraGross - extraSi, 0);
+    const extraTax = extraTaxable * PIT_RATE;
+    const extraDeduct = extraSi + extraTax;
+    const extraNet = extraGross - extraDeduct;
+
+    document.getElementById('otPay').textContent = fmt(otPay);
+    document.getElementById('weekendPay').textContent = fmt(weekendPay);
+    document.getElementById('holidayPay').textContent = fmt(holidayPay);
+    document.getElementById('nightPay').textContent = fmt(nightPay);
+    document.getElementById('extraGross').textContent = fmt(extraGross);
+    document.getElementById('extraDeduct').textContent = '−' + fmt(extraDeduct);
+    document.getElementById('extraNet').textContent = fmt(extraNet);
+
+    const net = netBase + extraNet;
+    const totalGross = gross + extraGross;
+    const totalDeduct = siTotal + taxTotal + extraDeduct;
+
+    document.getElementById('net').textContent = fmt(net) + ' ₮';
+    document.getElementById('annualNet').textContent = 'Жилд: ' + fmt(net*12) + ' ₮';
+
+    const deductionRate = totalGross > 0 ? (totalDeduct / totalGross * 100) : 0;
+    document.getElementById('effRate').textContent = 'Нийт суутгал: ' + deductionRate.toFixed(1) + '%';
+
+    if (totalGross > 0){
+      const netPct = Math.max(net/totalGross*100, 0);
+      const siPct = (siTotal+extraSi)/totalGross*100;
+      const taxPct = (taxTotal+extraTax)/totalGross*100;
+      document.getElementById('bar-net').style.flexBasis = netPct + '%';
+      document.getElementById('bar-si').style.flexBasis = siPct + '%';
+      document.getElementById('bar-tax').style.flexBasis = taxPct + '%';
+      document.getElementById('bar-net').textContent = netPct >= 12 ? netPct.toFixed(0)+'%' : '';
+      document.getElementById('bar-si').textContent = siPct >= 10 ? siPct.toFixed(0)+'%' : '';
+      document.getElementById('bar-tax').textContent = taxPct >= 10 ? taxPct.toFixed(0)+'%' : '';
+    }
+  }
+
+  grossInput.addEventListener('input', () => {
+    const num = parseNum(grossInput.value);
+    grossInput.value = num ? num.toLocaleString('mn-MN') : '';
+    calculate();
+  });
+
+  [weeklyHoursInput, weeklyDaysInput, otHoursInput, weekendHoursInput, holidayHoursInput, nightHoursInput, compTimeInput]
+    .forEach(el => el.addEventListener('input', calculate));
+
+  calculate();
+</script>
+
 </body>
 </html>

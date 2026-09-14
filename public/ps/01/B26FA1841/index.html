@@ -1,107 +1,274 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1841 — Уянга.М | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Уянга.М (B26FA1841), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Монгол Улсын цалин, НДШ, ХХОАТ тооцоолуур — 2026</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+:root{
+  --navy:#172554; --blue:#2563eb; --gold:#d4a72c; --bg:#f5f7fb;
+  --card:#ffffff; --muted:#64748b; --line:#dbe3ef; --green:#047857;
+  --red:#b91c1c; --soft:#eef4ff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,"Noto Sans",sans-serif;background:var(--bg);color:#172033}
+header{background:linear-gradient(120deg,#172554,#1e3a8a);color:white;padding:34px 18px 28px}
+.wrap{max-width:1180px;margin:auto}
+h1{margin:0 0 8px;font-size:clamp(26px,4vw,42px)}
+.subtitle{color:#dbeafe;line-height:1.6}
+.badge{display:inline-block;background:#fef3c7;color:#854d0e;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700;margin-top:10px}
+main{max-width:1180px;margin:28px auto;padding:0 18px 40px}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 10px 25px rgba(15,23,42,.05)}
+h2{font-size:20px;margin:0 0 16px;color:var(--navy)}
+h3{font-size:15px;margin:18px 0 10px;color:#334155}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#334155}
+input,select{width:100%;padding:12px 13px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;background:white}
+input:focus{outline:2px solid #bfdbfe;border-color:#60a5fa}
+.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.full{grid-column:1/-1}
+.help{font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px}
+button{border:0;border-radius:11px;padding:13px 16px;font-weight:800;cursor:pointer;font-size:14px}
+.primary{background:var(--blue);color:white;width:100%;margin-top:16px}
+.secondary{background:#e8eefb;color:#1e3a8a}
+.tests{display:flex;flex-wrap:wrap;gap:8px}
+.tests button{background:#fff;border:1px solid #cbd5e1;color:#334155}
+.tests button:hover{background:#eff6ff}
+.notice{margin-top:14px;padding:12px 14px;border-radius:10px;background:#fffbeb;border:1px solid #fde68a;color:#78350f;font-size:12px;line-height:1.5}
+.kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.kpi .box{background:var(--soft);border:1px solid #dbeafe;border-radius:14px;padding:14px}
+.kpi .box strong{display:block;font-size:20px;color:#0f172a;margin-top:5px}
+.kpi .big{grid-column:1/-1;background:#ecfdf5;border-color:#a7f3d0}
+.kpi .big strong{color:#065f46;font-size:27px}
+small{color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px}
+th,td{padding:10px;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#f8fafc;color:#475569}
+.right{text-align:right}
+.total td{font-weight:800;background:#f8fafc}
+.formula{margin-top:14px;padding:13px;border-left:4px solid var(--gold);background:#fffdf6;font-size:12px;line-height:1.65}
+.refs{margin-top:20px}
+.refs li{margin:7px 0;line-height:1.5}
+.refs a{color:#1d4ed8}
+details{margin-top:18px}
+summary{cursor:pointer;font-weight:800;color:#1e3a8a}
+.scenario{margin-top:18px;padding:15px;border:1px solid var(--line);border-radius:12px;background:#fafcff}
+.scenario h3{margin-top:0}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.fields,.kpi{grid-template-columns:1fr}.kpi .big{grid-column:auto}}
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1841</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Уянга.М</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
+<header>
+  <div class="wrap">
+    <h1>🇲🇳 Цалин, НДШ, ХХОАТ тооцоолуур</h1>
+    <div class="subtitle">Монгол Улсын 2026 оны мөрдөж буй хувь хэмжээ, шатлалд тулгуурласан сургалтын зориулалттай интерактив HTML хуудас.</div>
+    <div class="badge">Тооцоо: НДШ → татвар ногдох орлого → ХХОАТ → хөнгөлөлт → гарт олгох цалин</div>
+  </div>
+</header>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1841/index.html</code>
-      </div>
+<main>
+<div class="grid">
+<section class="card">
+<h2>1. Оролт</h2>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+<div class="fields">
+  <div>
+    <label>Үндсэн сарын цалин (₮)</label>
+    <input id="base" type="number" min="0" value="1500000">
+  </div>
+  <div>
+    <label>Сарын ердийн ажлын цаг</label>
+    <input id="regularHours" type="number" min="1" value="176">
+    <div class="help">Илүү/шөнийн/баярын цагийн жишиг цагийн хөлс гаргахад ашиглана.</div>
+  </div>
+
+  <div>
+    <label>Илүү цаг (цаг)</label>
+    <input id="otHours" type="number" min="0" value="0">
+  </div>
+  <div>
+    <label>Илүү цагийн үржүүлэгч</label>
+    <input id="otRate" type="number" min="1.5" step="0.1" value="1.5">
+  </div>
+
+  <div>
+    <label>Шөнийн цаг (цаг)</label>
+    <input id="nightHours" type="number" min="0" value="0">
+  </div>
+  <div>
+    <label>Шөнийн цагийн үржүүлэгч</label>
+    <input id="nightRate" type="number" min="1.2" step="0.1" value="1.2">
+  </div>
+
+  <div>
+    <label>Нийтээр амрах баярын өдөр ажилласан цаг</label>
+    <input id="holidayHours" type="number" min="0" value="0">
+  </div>
+  <div>
+    <label>Баярын өдрийн үржүүлэгч</label>
+    <input id="holidayRate" type="number" min="2" step="0.1" value="2">
+  </div>
+
+  <div>
+    <label>Шагнал, урамшуулал (₮)</label>
+    <input id="bonus" type="number" min="0" value="0">
+  </div>
+  <div>
+    <label>Бусад татвар/шимтгэл ногдох нэмэгдэл (₮)</label>
+    <input id="allowance" type="number" min="0" value="0">
+  </div>
+</div>
+
+<div class="notice">
+  <b>Анхаар:</b> Шөнийн цагийн нэмэгдэл болон зарим нэмэгдэл, урамшууллын яг бодогдох арга нь хөдөлмөрийн гэрээ, хамтын гэрээ, дотоод журмаас хамаарч өөр байж болно. Энэ загвар нь сургалтын жишиг тооцоонд 1.2, 1.5, 2.0 үржүүлэгчийг ашиглана.
+</div>
+
+<button class="primary" onclick="calculate()">Тооцоолох</button>
+
+<h3>Таван шалгах тохиолдол</h3>
+<div class="tests">
+  <button onclick="loadCase(0)">1. Бага цалин</button>
+  <button onclick="loadCase(1)">2. Дундаж цалин</button>
+  <button onclick="loadCase(2)">3. Шатлалын зааг</button>
+  <button onclick="loadCase(3)">4. НДШ дээд хязгаар</button>
+  <button onclick="loadCase(4)">5. Тэг цалин</button>
+</div>
+</section>
+
+<section class="card">
+<h2>2. Гаралт</h2>
+<div class="kpi">
+  <div class="box"><small>Нийт брутто цалин</small><strong id="grossKpi">0 ₮</strong></div>
+  <div class="box"><small>Нийт ажилтны НДШ + ЭМД</small><strong id="insKpi">0 ₮</strong></div>
+  <div class="box"><small>ХХОАТ</small><strong id="taxKpi">0 ₮</strong></div>
+  <div class="box big"><small>Гарт олгох цалин</small><strong id="netKpi">0 ₮</strong></div>
+</div>
+
+<table>
+<tbody>
+<tr><td>Үндсэн цалин</td><td class="right" id="baseOut">0 ₮</td></tr>
+<tr><td>Илүү цагийн хөлс</td><td class="right" id="otOut">0 ₮</td></tr>
+<tr><td>Шөнийн цагийн хөлс</td><td class="right" id="nightOut">0 ₮</td></tr>
+<tr><td>Баярын өдрийн хөлс</td><td class="right" id="holidayOut">0 ₮</td></tr>
+<tr><td>Шагнал + бусад нэмэгдэл</td><td class="right" id="bonusOut">0 ₮</td></tr>
+<tr class="total"><td>НИЙТ БРУТТО</td><td class="right" id="grossOut">0 ₮</td></tr>
+<tr><td>НДШ ногдох суурь (дээд хязгаартай)</td><td class="right" id="socialBaseOut">0 ₮</td></tr>
+<tr><td>Тэтгэврийн даатгал 8.5%</td><td class="right" id="pensionOut">0 ₮</td></tr>
+<tr><td>Тэтгэмжийн даатгал 0.8%</td><td class="right" id="benefitOut">0 ₮</td></tr>
+<tr><td>Ажилгүйдлийн даатгал 0.2%</td><td class="right" id="unempOut">0 ₮</td></tr>
+<tr><td>Эрүүл мэндийн даатгал 2%</td><td class="right" id="healthOut">0 ₮</td></tr>
+<tr class="total"><td>НИЙТ АЖИЛТНЫ ШИМТГЭЛ</td><td class="right" id="insOut">0 ₮</td></tr>
+<tr><td>Татвар ногдох сарын орлого</td><td class="right" id="taxableOut">0 ₮</td></tr>
+<tr><td>ХХОАТ (хөнгөлөлтөөс өмнө)</td><td class="right" id="grossTaxOut">0 ₮</td></tr>
+<tr><td>Сарын татварын хөнгөлөлт</td><td class="right" id="reliefOut">0 ₮</td></tr>
+<tr class="total"><td>ТӨЛӨХ ХХОАТ</td><td class="right" id="taxOut">0 ₮</td></tr>
+</tbody>
+</table>
+
+<div class="formula" id="formulaBox"></div>
+</section>
+</div>
+
+<section class="card scenario">
+<h2>3. Хуулийн логик ба ашигласан хувь хэмжээ</h2>
+<ul>
+<li><b>Ажилтны нийгмийн даатгал:</b> тэтгэврийн даатгал 8.5% + тэтгэмжийн даатгал 0.8% + ажилгүйдлийн даатгал 0.2% = <b>9.5%</b>.</li>
+<li><b>Эрүүл мэндийн даатгал:</b> 2026 онд ажилтан <b>2%</b>, ажил олгогч 2%.</li>
+<li><b>Нийт ажилтнаас суутгах даатгалын ачаалал:</b> <b>11.5%</b> (9.5% + 2%). Ажил олгогчийн төлөх шимтгэлийг ажилтны суутгалд оруулаагүй.</li>
+<li><b>НДШ-ийн дээд суурь:</b> 792,000₮ × 10 = <b>7,920,000₮/сар</b>.</li>
+<li><b>ХХОАТ 2026:</b> сарын тогтмол орлогыг жилийн дүн рүү шилжүүлэн одоогийн жилийн шатлалаар бодоод 12-т хуваасан. 0–120 сая ₮: 10%; 120–180 сая ₮: 12 сая + давсан дүнгийн 15%; 180 сая ₮-с дээш: 21 сая + давсан дүнгийн 20%.</li>
+<li><b>Татварын хөнгөлөлт:</b> 2026 онд хүчинтэй хуучин 23.1-ийн жилийн хөнгөлөлтийг сарын дүнгээр хөрвүүлсэн. Хөнгөлөлт нь <b>ХХОАТ-аас</b> хасагдана, татварын сууриас биш.</li>
+</ul>
+</section>
+
+<section class="card refs">
+<h2>4. Ашигласан албан эх сурвалж</h2>
+<ul>
+<li><a href="https://legalinfo.mn/mn/detail?lawId=16760148379551" target="_blank">Нийгмийн даатгалын ерөнхий хууль — Legalinfo</a></li>
+<li><a href="https://legalinfo.mn/mn/detail?lawId=12849" target="_blank">НДШ-ийн дээд хэмжээг тогтоох тухай — Legalinfo</a></li>
+<li><a href="https://legalinfo.mn/mn/detail?lawId=17434916300742" target="_blank">ЭМД-ийн шимтгэлийн 2026 оны хувь хэмжээ — Legalinfo</a></li>
+<li><a href="https://legalinfo.mn/mn/detail?lawId=14410" target="_blank">Хувь хүний орлогын албан татварын тухай — Legalinfo</a></li>
+<li><a href="https://www.mta.gov.mn/tax-calculate/salarytax" target="_blank">Татварын ерөнхий газрын цалингийн тооцоолуур</a></li>
+<li><a href="https://legalinfo.mn/mn/detail?lawId=16230709635751" target="_blank">Хөдөлмөрийн тухай хууль, 109 дүгээр зүйл — нэмэгдэл хөлс</a></li>
+</ul>
+<details>
+<summary>Техникийн тайлбар</summary>
+<p class="help">Энэ хуудас нь 2026-09-14-ний байдлаарх хуулийн логикийг сургалтын зориулалтаар хэрэгжүүлсэн. Цалингийн бодит тооцоонд татварын жилийн эцсийн нөхцөл, тухайн сарын хувьсах орлого, чөлөөлөлт, шимтгэл ногдох/ногдохгүй орлогын төрөл, хөдөлмөрийн гэрээний нөхцөл зэргээс шалтгаалан нягтлан бодогчийн албан тооцоотой бага зэрэг ялгаа гарч болно.</p>
+</details>
+</section>
+</main>
+
+<script>
+const fmt = n => new Intl.NumberFormat('mn-MN',{maximumFractionDigits:0}).format(Math.round(n)) + ' ₮';
+const val = id => Math.max(0, Number(document.getElementById(id).value) || 0);
+const set = (id,n)=>document.getElementById(id).textContent=fmt(n);
+
+function annualTax(annualTaxable){
+  if(annualTaxable <= 120000000) return annualTaxable * .10;
+  if(annualTaxable <= 180000000) return 12000000 + (annualTaxable-120000000)*.15;
+  return 21000000 + (annualTaxable-180000000)*.20;
+}
+function annualRelief(annualTaxable){
+  if(annualTaxable <= 6000000) return 240000;
+  if(annualTaxable <= 12000000) return 216000;
+  if(annualTaxable <= 18000000) return 192000;
+  if(annualTaxable <= 24000000) return 168000;
+  if(annualTaxable <= 30000000) return 144000;
+  if(annualTaxable <= 36000000) return 120000;
+  return 0;
+}
+function calculate(){
+  const base=val('base'), hrs=val('regularHours')||176;
+  const hourly=base/hrs;
+  const ot=val('otHours')*hourly*val('otRate');
+  const night=val('nightHours')*hourly*val('nightRate');
+  const holiday=val('holidayHours')*hourly*val('holidayRate');
+  const bonus=val('bonus')+val('allowance');
+  const gross=base+ot+night+holiday+bonus;
+
+  const socialBase=Math.min(gross,7920000);
+  const pension=socialBase*.085;
+  const benefit=socialBase*.008;
+  const unemp=socialBase*.002;
+  const health=socialBase*.02;
+  const insurance=pension+benefit+unemp+health;
+
+  const taxable=Math.max(0,gross-insurance);
+  const annualTaxable=taxable*12;
+  const grossTax=annualTax(annualTaxable)/12;
+  const relief=annualRelief(annualTaxable)/12;
+  const tax=Math.max(0,grossTax-relief);
+  const net=gross-insurance-tax;
+
+  set('grossKpi',gross); set('insKpi',insurance); set('taxKpi',tax); set('netKpi',net);
+  set('baseOut',base); set('otOut',ot); set('nightOut',night); set('holidayOut',holiday); set('bonusOut',bonus);
+  set('grossOut',gross); set('socialBaseOut',socialBase); set('pensionOut',pension); set('benefitOut',benefit);
+  set('unempOut',unemp); set('healthOut',health); set('insOut',insurance); set('taxableOut',taxable);
+  set('grossTaxOut',grossTax); set('reliefOut',relief); set('taxOut',tax);
+
+  let bracket = annualTaxable<=120000000 ? '10%' : annualTaxable<=180000000 ? '15% (давсан хэсэгт)' : '20% (давсан хэсэгт)';
+  document.getElementById('formulaBox').innerHTML =
+    '<b>Тооцооны дараалал:</b><br>' +
+    '1) Нийт брутто = үндсэн цалин + илүү цаг + шөнийн цаг + баярын өдрийн хөлс + шагнал/нэмэгдэл = <b>'+fmt(gross)+'</b><br>' +
+    '2) НДШ/ЭМД-ийн суурь = min('+fmt(gross)+', 7,920,000₮) = <b>'+fmt(socialBase)+'</b><br>' +
+    '3) Ажилтны шимтгэл = 8.5% + 0.8% + 0.2% + 2% = <b>'+fmt(insurance)+'</b><br>' +
+    '4) Татвар ногдох орлого = '+fmt(gross)+' − '+fmt(insurance)+' = <b>'+fmt(taxable)+'</b><br>' +
+    '5) Жилийн шатлалаар ХХОАТ ('+bracket+'), дараа нь сарын хөнгөлөлт '+fmt(relief)+'-ийг ХХОАТ-аас хасна.<br>' +
+    '6) <b>Гарт олгох = '+fmt(gross)+' − '+fmt(insurance)+' − '+fmt(tax)+' = '+fmt(net)+'</b>';
+}
+const cases=[
+  {base:792000,regularHours:176,otHours:0,otRate:1.5,nightHours:0,nightRate:1.2,holidayHours:0,holidayRate:2,bonus:0,allowance:0},
+  {base:2500000,regularHours:176,otHours:0,otRate:1.5,nightHours:0,nightRate:1.2,holidayHours:0,holidayRate:2,bonus:100000,allowance:50000},
+  {base:11300000,regularHours:176,otHours:0,otRate:1.5,nightHours:0,nightRate:1.2,holidayHours:0,holidayRate:2,bonus:0,allowance:0},
+  {base:10000000,regularHours:176,otHours:10,otRate:1.5,nightHours:0,nightRate:1.2,holidayHours:0,holidayRate:2,bonus:500000,allowance:0},
+  {base:0,regularHours:176,otHours:0,otRate:1.5,nightHours:0,nightRate:1.2,holidayHours:0,holidayRate:2,bonus:0,allowance:0}
+];
+function loadCase(i){
+  Object.entries(cases[i]).forEach(([k,v])=>document.getElementById(k).value=v);
+  calculate();
+}
+document.querySelectorAll('input').forEach(el=>el.addEventListener('input',calculate));
+calculate();
+</script>
 </body>
 </html>

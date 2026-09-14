@@ -1,107 +1,414 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B25FA1043 — Энэрэл.Д | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Энэрэл.Д (B25FA1043), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Монгол Цалин • Татвар • НДШ Тооцоолуур</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+:root{
+  --bg: #f1f3f5;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #d1d5db;
+  --primary: #1e3a8a; /* Navy Blue */
+  --primary-hover: #1e40af;
+  --accent: #d97706; /* Gold / Amber */
+  --gold-bg: #fffbeb;
+  --green: #047857;
+  --green-bg: #ecfdf5;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+*{box-sizing:border-box}
+body{
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin:0;
+  padding:32px 16px;
+  background: var(--bg);
+  color: var(--ink);
+}
+.container{max-width:1000px;margin:auto}
+.hero{
+  background: var(--primary);
+  color: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);
+  margin-bottom: 20px;
+  border-bottom: 4px solid var(--accent);
+}
+h1{text-align:left;margin:0 0 6px;font-size:28px;letter-spacing:-.5px;font-weight: 800;}
+.subtitle{text-align:left;color:#e2e8f0;margin:0;font-size:14px;font-weight: 500;}
+
+.section{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 16px;
+  box-shadow: var(--shadow);
+}
+.section-title{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 18px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.section-title:before{
+  content: "";
+  width: 4px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--accent);
+}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+label{display:block;font-weight:700;font-size:12px;margin-bottom:6px;color:#334155}
+input{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#f8fafc;
+  font-size:15px;
+  color:var(--ink);
+  transition: all .2s;
+}
+input:hover{border-color:var(--primary)}
+input:focus{
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+  background: #fff;
+}
+table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+th, td{padding: 14px 16px; border-bottom: 1px solid var(--line); font-size: 14px;}
+th{
+  text-align: left;
+  background: #f8fafc;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #475569;
+  font-weight: 700;
+}
+td:last-child, th:last-child{
+  text-align: right;
+  font-weight: 800;
+  font-size: 16px; /* Мөнгөний дүнг томруулж тодруулав */
+  color: #1e293b;
+}
+tr:last-child td{border-bottom: 0}
+
+.gross{background: var(--gold-bg);}
+.gross td:last-child{color: var(--accent); font-size: 18px;}
+
+.net{background: var(--green-bg);}
+.net td{font-size: 16px;}
+.net td:last-child{color: var(--green); font-size: 24px; font-weight: 900;}
+
+.tests{background: #f8fafc; border: 1px solid var(--line); box-shadow: none;}
+.test-grid{display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;}
+button{
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  color: #334155;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  transition: all .15s;
+}
+button:hover{
+  border-color: var(--primary);
+  background: #eff6ff;
+  color: var(--primary);
+}
+.tests .grid-btn button{background: var(--primary); color: #fff; border: 0;}
+.tests .grid-btn button:hover{background: var(--primary-hover);}
+
+.small{font-size: 12px; color: var(--muted); line-height: 1.6;}
+.result-ok{
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--green-bg);
+  color: var(--green);
+  font-weight: 700;
+  border: 1px solid #a7f3d0;
+}
+@media(max-width:700px){
+  body{padding: 16px 10px}
+  .hero{padding: 22px}
+  h1{font-size: 22px}
+  .section{padding: 16px}
+  .grid, .test-grid{grid-template-columns: 1fr}
+  table{font-size: 13px}
+  th, td{padding: 10px}
+  .test-grid{grid-template-columns: repeat(2, 1fr)}
+}
+
+/* Step 4 emphasis */
+.section.step4{
+  border: 2px solid #d97706;
+  background: linear-gradient(180deg,#fffdf7 0%,#ffffff 100%);
+}
+.step4 .rule-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+.step4 .rule{
+  padding:14px 16px;
+  border:1px solid #e2e8f0;
+  border-left:4px solid #d97706;
+  border-radius:10px;
+  background:#fff;
+}
+.step4 .rule strong{
+  display:block;
+  color:#1e3a8a;
+  margin-bottom:5px;
+}
+.step4 .formula{
+  margin-top:16px;
+  padding:14px 16px;
+  border-radius:10px;
+  background:#f8fafc;
+  border:1px dashed #94a3b8;
+  font-size:13px;
+  line-height:1.7;
+}
+@media(max-width:700px){
+  .step4 .rule-list{grid-template-columns:1fr}
+}
+
 </style>
 </head>
+
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B25FA1043</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Энэрэл.Д</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
+<div class="container">
+  <div class="hero">
+    <h1>Монгол Цалин • Татвар • НДШ</h1>
+    <div class="subtitle">Цалингийн хуудас · НДШ · ХХОАТ · Нэмэгдэл хөлс · Гар дээрх цалин</div>
+  </div>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B25FA1043/index.html</code>
+  <div class="section">
+    <div class="section-title">1. Ажилласан байдал ба орлого</div>
+    <div class="grid">
+      <div><label>Сарын үндсэн цалин (₮)</label><input id="baseSalary" type="number" value="1500000" min="0" oninput="calculate()"></div>
+      <div><label>Урамшуулал / нэмэлт цалин (₮)</label><input id="bonus" type="number" value="0" min="0" oninput="calculate()"></div>
+      <div><label>Сарын ажлын өдөр</label><input id="workingDays" type="number" value="21" min="1" oninput="calculate()"></div>
+      <div><label>Ажилласан өдөр</label><input id="daysWorked" type="number" value="21" min="0" oninput="calculate()"></div>
+      <div><label>Ердийн ажилласан цаг</label><input id="regularHours" type="number" value="168" min="0" oninput="calculate()"></div>
+      <div><label>Илүү цаг</label><input id="overtimeHours" type="number" value="0" min="0" oninput="calculate()"></div>
+      <div><label>Шөнийн цаг</label><input id="nightHours" type="number" value="0" min="0" oninput="calculate()"></div>
+      <div><label>Амралтын өдрийн цаг</label><input id="restHours" type="number" value="0" min="0" oninput="calculate()"></div>
+      <div><label>Баярын өдрийн цаг</label><input id="holidayHours" type="number" value="0" min="0" oninput="calculate()"></div>
+      <div><label>Цалинтай чөлөөний цаг (илүү цагийн оронд)</label><input id="timeOffHours" type="number" value="0" min="0" oninput="calculate()"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">2. Нэмэгдэл хөлсний задаргаа</div>
+    <table>
+      <tr><th>Үзүүлэлт</th><th>Дүн (₮)</th></tr>
+      <tr><td>Үндсэн цалин (ажилласан өдрөөр)</td><td id="resBase">0</td></tr>
+      <tr><td>Урамшуулал / нэмэлт цалин</td><td id="resBonus">0</td></tr>
+      <tr><td>Илүү цагийн хөлс — 1.5×</td><td id="resOT">0</td></tr>
+      <tr><td>Шөнийн нэмэгдэл — 20%</td><td id="resNight">0</td></tr>
+      <tr><td>Амралтын өдрийн нэмэгдэл — 100%</td><td id="resRest">0</td></tr>
+      <tr><td>Баярын өдрийн нэмэгдэл — 100%</td><td id="resHoliday">0</td></tr>
+      <tr><td>Цалинтай чөлөөний орлуулалт</td><td id="resTimeOff">0</td></tr>
+      <tr class="gross"><td><strong>Суутгалын өмнөх нийт цалин</strong></td><td id="resGross">0</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">3. НДШ ба ХХОАТ</div>
+    <table>
+      <tr><th>Үзүүлэлт</th><th>Дүн (₮)</th></tr>
+      <tr><td>Ажилтны НДШ — 9.5%</td><td id="resNDS">0</td></tr>
+      <tr><td>Татвар ногдох орлого</td><td id="resTaxable">0</td></tr>
+      <tr><td>Хөнгөлөлтөөс өмнөх ХХОАТ</td><td id="resPreTax">0</td></tr>
+      <tr><td>Татварын хөнгөлөлт</td><td id="resCredit">0</td></tr>
+      <tr><td>Суутгасан ХХОАТ</td><td id="resPIT">0</td></tr>
+      <tr class="net"><td><strong>ГАРТ ОЛГОХ ЦАЛИН</strong></td><td id="resNet">0</td></tr>
+    </table>
+    <div class="result-ok" id="status">Тооцоолол амжилттай шинэчлэгдлээ.</div>
+  </div>
+
+  <div class="section step4">
+    <div class="section-title">4. Хуулийн дагуу тооцох зарчим</div>
+
+    <div class="small">
+      Энэ хэсэг нь цалингийн тооцоололд ашигласан үндсэн зарчим, нэмэгдэл цагийн нөхцөл,
+      цалинтай чөлөө болон НДШ/ХХОАТ-ын дарааллыг тайлбарлана.
+    </div>
+
+    <div class="rule-list">
+      <div class="rule">
+        <strong>⏱ Ажлын цаг</strong>
+        Ердийн ажлын цагийн нормыг ажилтны ажлын горим, хөдөлмөрийн гэрээ болон холбогдох
+        зохицуулалтаар тодорхойлно. Demo-д сарын жишиг цагийг
+        <b>ажлын өдөр × 8 цаг</b> гэж авч цагийн хөлсийг гаргана.
       </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+      <div class="rule">
+        <strong>🌙 Нэмэгдэл давхцах</strong>
+        Илүү цаг, долоо хоногийн амралтын болон нийтээр амрах баярын өдөр шөнийн цагт
+        ажилласан бол үндсэн нэмэгдэл дээр <b>шөнийн нэмэгдлийг нэмж</b> тооцно.
+      </div>
+
+      <div class="rule">
+        <strong>🏖 Цалинтай чөлөө</strong>
+        Илүү цагийн мөнгөн хөлсний оронд нөхөн амралт хэрэглэх эсэх нь хууль болон
+        ажил олгогч/ажилтны зохицуулалтаас хамаарна. Demo-д цалинтай чөлөөний цаг нь
+        overtime-ийн мөнгөн хөлсийг орлуулна.
+      </div>
+
+      <div class="rule">
+        <strong>🧾 НДШ → ХХОАТ</strong>
+        НДШ-ийг эхлээд тооцож хасна. Үүний дараа үлдсэн дүнгээс
+        <b>татвар ногдох орлого → ХХОАТ → гар дээрх цалин</b> гэсэн дарааллаар тооцно.
+      </div>
+    </div>
+
+    <div class="formula">
+      <strong>Тооцооллын дараалал:</strong><br>
+      Нийт цалин → Ажилтны НДШ → Татвар ногдох орлого → ХХОАТ-ын хөнгөлөлт →
+      Суутгасан ХХОАТ → <strong>Гарт олгох цалин</strong>
+    </div>
+  </div>
+
+  <div class="section tests">
+    <div class="section-title">5. Шалгалтын 8 тохиолдол</div>
+    <div class="small" style="margin-bottom:12px">
+      Эхний 5 нь үндсэн шаардлага; сүүлийн 3 нь Step 4-ийн нэмэлт гар тооцооны нөхцөлүүд.
+    </div>
+    <div class="test-grid">
+      <button onclick="testBasic(0)">0 ₮</button>
+      <button onclick="testBasic(792000)">Бага цалин</button>
+      <button onclick="testBasic(1500000)">Дундаж</button>
+      <button onclick="testBoundary()">Шатлалын зааг</button>
+      <button onclick="testBasic(10000000)">НДШ дээдээс давсан</button>
+      <button onclick="testHalfMonth()">½ сарын ажил</button>
+      <button onclick="testNightOT()">1ц OT + шөнө</button>
+      <button onclick="testHoliday()">Бүтэн баярын өдөр</button>
+    </div>
+    <div id="testResult" class="small" style="margin-top:14px"></div>
+  </div>
+
+  <div class="section small">
+    <strong>Эх сурвалж / хууль:</strong><br>
+    • Нийгмийн даатгалын ерөнхий хууль, 18.1 — ажилтны НДШ 9.5%; 19.4 — албан журмын даатгуулагчийн сарын шимтгэл ногдох орлогын дээд хэмжээ нь тухайн үеийн ХХДХ × 10.<br>
+    • НДШ ногдох орлогод цалин, олговор, шагнал урамшуулал зэрэг хамаарахыг 19.1-д заасан[cite: 1].<br>
+    • ХХОАТ-ын 23.1-д жилийн орлогын шатлалаар хөнгөлөлт тогтоосон[cite: 2].<br>
+    • Хөдөлмөрийн тухай хуулийн 109.5-д илүү цаг, амралтын/баярын өдөр шөнийн цагт ажиллавал үндсэн нэмэгдэл дээр шөнийн нэмэгдлийг нэмж олгохоор заасан.<br>
+    • <strong>Анхаарах:</strong> 2026.07.02-ны НДШ болон ХХОАТ-ын өөрчлөлтүүдийн зарим нь 2027.01.01-ээс мөрдөгдөхөөр заасан тул энэ хувилбар 2026 оны одоогийн мөрдөж буй зохицуулалтад тулгуурласан.
+  </div>
+</div>
+
+<script>
+const NDS_RATE=0.095;
+const MIN_WAGE=792000;
+const NDS_CEILING=MIN_WAGE*10;
+const OT_MULTIPLIER=1.5;
+const NIGHT_PREMIUM=0.20;
+const REST_PREMIUM=1.00;
+const HOLIDAY_PREMIUM=1.00;
+
+function money(n){return Math.round(Math.max(0,n)).toLocaleString('en-US')+" ₮"}
+
+function calculate(){
+  const base=+baseSalary.value||0, bonus=+document.getElementById('bonus').value||0;
+  const workDays=Math.max(1,+workingDays.value||21);
+  const days=Math.max(0,+daysWorked.value||0);
+  const regular=Math.max(0,+regularHours.value||0);
+  const ot=Math.max(0,+overtimeHours.value||0);
+  const night=Math.max(0,+nightHours.value||0);
+  const rest=Math.max(0,+restHours.value||0);
+  const holiday=Math.max(0,+holidayHours.value||0);
+  const timeOff=Math.max(0,+timeOffHours.value||0);
+
+  const hourly=base/(workDays*8);
+  const workedBase=base*Math.min(days/workDays,1);
+  const paidOT=Math.max(0,ot-timeOff);
+  const otPay=paidOT*hourly*OT_MULTIPLIER;
+  const nightPay=night*hourly*NIGHT_PREMIUM;
+  const restPay=rest*hourly*REST_PREMIUM;
+  const holidayPay=holiday*hourly*HOLIDAY_PREMIUM;
+  const timeOffPay=timeOff*hourly;
+  const gross=workedBase+bonus+otPay+nightPay+restPay+holidayPay+timeOffPay;
+
+  const nds=Math.min(gross,NDS_CEILING)*NDS_RATE;
+  const taxable=Math.max(0,gross-nds);
+
+  let preTax=0;
+  if(taxable>15000000) preTax=1670800+(taxable-15000000)*0.20;
+  else if(taxable>10000000) preTax=920800+(taxable-10000000)*0.15;
+  else if(taxable>792000) preTax=(taxable-792000)*0.10;
+
+  const annual=taxable*12;
+  let annualCredit=0;
+  if(annual<=6000000) annualCredit=240000;
+  else if(annual<=12000000) annualCredit=216000;
+  else if(annual<=18000000) annualCredit=192000;
+  else if(annual<=24000000) annualCredit=168000;
+  else if(annual<=30000000) annualCredit=144000;
+  else if(annual<=36000000) annualCredit=120000;
+  const credit=preTax===0?0:Math.min(preTax,annualCredit/12);
+  const pit=Math.max(0,preTax-credit);
+  const net=gross-nds-pit;
+
+  const vals={resBase:workedBase,resBonus:bonus,resOT:otPay,resNight:nightPay,resRest:restPay,
+    resHoliday:holidayPay,resTimeOff:timeOffPay,resGross:gross,resNDS:nds,resTaxable:taxable,
+    resPreTax:preTax,resCredit:credit,resPIT:pit,resNet:net};
+  for(const [id,v] of Object.entries(vals)) document.getElementById(id).textContent=money(v);
+  document.getElementById('status').textContent="Тооцоолол амжилттай шинэчлэгдлээ.";
+}
+
+function resetExtras(){
+  ['bonus','overtimeHours','nightHours','restHours','holidayHours','timeOffHours'].forEach(id=>document.getElementById(id).value=0);
+  document.getElementById('workingDays').value=21;
+  document.getElementById('daysWorked').value=21;
+  document.getElementById('regularHours').value=168;
+}
+function testBasic(v){resetExtras();baseSalary.value=v;calculate();testResult.textContent="Үндсэн test: "+money(v)+" — үр дүнг дээрх хүснэгтээс шалгана."}
+function testBoundary(){
+  resetExtras();
+  const target=10000000;
+  const nds=Math.min(target,NDS_CEILING)*NDS_RATE;
+  baseSalary.value=Math.round(target+nds);
+  calculate();
+  testResult.textContent="Шатлалын заагийг шалгах тест: татвар ногдох орлогыг 10,000,000 ₮ орчимд тохирууллаа.";
+}
+function testHalfMonth(){
+  resetExtras(); baseSalary.value=1500000; workingDays.value=21; daysWorked.value=10; regularHours.value=80;
+  calculate(); testResult.textContent="½ сарын гар тооцооны тест: 10/21 өдөр, 80 цаг.";
+}
+function testNightOT(){
+  resetExtras(); baseSalary.value=1500000; overtimeHours.value=1; nightHours.value=1;
+  calculate(); testResult.textContent="1 цаг илүү + 1 цаг шөнийн нөхцөл: шөнийн нэмэгдэл тусдаа нэмэгдэнэ.";
+}
+function testHoliday(){
+  resetExtras(); baseSalary.value=1500000; holidayHours.value=8;
+  calculate(); testResult.textContent="Бүтэн баярын өдөр: 8 цагийн баярын нэмэгдлийг шалгана.";
+}
+window.onload=calculate;
+</script>
 </body>
 </html>

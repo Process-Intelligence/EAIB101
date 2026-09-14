@@ -1,107 +1,244 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1846 — Юмжирдулам.Б | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Юмжирдулам.Б (B26FA1846), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Монголын цалингийн татвар, даатгалын тооцоолуур — 2026</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+  *{box-sizing:border-box}
+  body{margin:0;background:#eef5ff;font-family:Arial,sans-serif;color:#172033}
+  .page{max-width:1050px;margin:28px auto;padding:0 18px}
+  .card{background:#fff;border:3px solid #1769d2;border-radius:16px;box-shadow:0 8px 25px rgba(23,105,210,.12);overflow:hidden}
+  header{background:#1769d2;color:#fff;padding:24px}
+  header h1{margin:0 0 7px;font-size:27px}
+  header p{margin:0;opacity:.92}
+  main{padding:24px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  label{display:block;font-weight:700;margin:0 0 7px}
+  input,select{width:100%;padding:12px;border:1px solid #b9c9df;border-radius:9px;font-size:16px}
+  .section{border:1px solid #d6e3f5;border-radius:12px;padding:17px;margin-bottom:18px}
+  .section h2{font-size:18px;margin:0 0 14px;color:#155db8}
+  button{width:100%;padding:13px;border:0;border-radius:9px;background:#1769d2;color:#fff;font-size:17px;font-weight:700;cursor:pointer}
+  button:hover{background:#0d55ad}
+  .results{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .result{padding:13px;border-radius:9px;background:#f4f8fd;border-left:4px solid #1769d2}
+  .result span{display:block;color:#52627a;font-size:13px}
+  .result strong{font-size:18px}
+  .net{background:#e9f7ee;border-left-color:#198754}
+  .net strong{color:#13733f}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{border:1px solid #cbd8e8;padding:9px;text-align:left}
+  th{background:#e8f1fc}
+  .note{background:#fff8df;border-left:4px solid #e3a400;padding:12px;margin-top:12px;font-size:14px}
+  .sources{font-size:14px;line-height:1.55}
+  .sources a{color:#075bb5}
+  footer{margin-top:18px;text-align:center;color:#5c6b80;font-size:13px}
+  @media(max-width:720px){.grid,.results{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1846</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
+<div class="page">
+<div class="card">
+<header>
+  <h1>Монголын цалингийн татвар, даатгалын тооцоолуур</h1>
+  <p>2026 оны мөрдөж буй үндсэн хувь хэмжээнд суурилсан хувийн хэрэглээний тооцоолуур</p>
+</header>
+<main>
+  <div class="section">
+    <h2>1. Ажилтны мэдээлэл</h2>
+    <div class="grid">
+      <div>
+        <label for="name">Нэр</label>
+        <input id="name" placeholder="Нэрээ бичнэ үү">
       </div>
-      <h1>Юмжирдулам.Б</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
-
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1846/index.html</code>
+      <div>
+        <label for="salary">Сарын үндсэн цалин (₮)</label>
+        <input id="salary" type="number" min="0" step="1000" value="2000000">
       </div>
+      <div>
+        <label for="workDays">Сард ажиллавал зохих хоног</label>
+        <input id="workDays" type="number" min="0" step="1" value="22">
+      </div>
+      <div>
+        <label for="workedDays">Ажилласан хоног</label>
+        <input id="workedDays" type="number" min="0" step="1" value="22">
+      </div>
+      <div>
+        <label for="workHours">Ажилласан цаг</label>
+        <input id="workHours" type="number" min="0" step="0.5" value="176">
+      </div>
+    </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+    <div class="section" style="margin-top:18px">
+      <h2>Нэмэгдэл цаг, цалин</h2>
+      <div class="grid">
+        <div>
+          <label for="overtime">Илүү цаг</label>
+          <input id="overtime" type="number" min="0" step="0.5" value="0">
+        </div>
+        <div>
+          <label for="night">Шөнийн цаг</label>
+          <input id="night" type="number" min="0" step="0.5" value="0">
+        </div>
+        <div>
+          <label for="weekend">Амралтын өдрийн цаг</label>
+          <input id="weekend" type="number" min="0" step="0.5" value="0">
+        </div>
+        <div>
+          <label for="holiday">Баярын өдрийн цаг</label>
+          <input id="holiday" type="number" min="0" step="0.5" value="0">
+        </div>
+        <div>
+          <label for="bonus">Шагнал</label>
+          <input id="bonus" type="number" min="0" step="1000" value="0">
+        </div>
+        <div>
+          <label for="incentive">Урамшуулал</label>
+          <input id="incentive" type="number" min="0" step="1000" value="0">
+        </div>
+      </div>
+      <div class="note">
+        <b>Нэмэгдэл хөлсний коэффициент:</b> илүү цаг 1.5×, амралтын өдөр 1.5×, шөнийн цаг 1.2×, баярын өдөр 2.0×. Шөнийн цаг нь илүү/амралт/баярын цагтай давхцвал шөнийн нэмэгдлийг давхар тооцно. Эдгээр нь Хөдөлмөрийн тухай хуулийн 109.1–109.5-д нийцүүлсэн үндсэн тохиргоо бөгөөд гэрээ, хамтын гэрээгээр илүү өндөр байж болно.
+      </div>
+    </div>
+    <br>
+    <button onclick="calculate()">ЦАЛИН ТООЦОХ</button>
+  </div>
+
+  <div class="section">
+    <h2>2. Тооцооны үр дүн</h2>
+    <div class="results">
+      <div class="result"><span>Үндсэн цалин (ажилласан хоногоор)</span><strong id="basePay">0 ₮</strong></div>
+      <div class="result"><span>Илүү цагийн цалин</span><strong id="otPay">0 ₮</strong></div>
+      <div class="result"><span>Шөнийн цагийн нэмэгдэл</span><strong id="nightPay">0 ₮</strong></div>
+      <div class="result"><span>Амралтын өдрийн цалин</span><strong id="weekendPay">0 ₮</strong></div>
+      <div class="result"><span>Баярын өдрийн цалин</span><strong id="holidayPay">0 ₮</strong></div>
+      <div class="result"><span>Шагнал</span><strong id="bonusPay">0 ₮</strong></div>
+      <div class="result"><span>Урамшуулал</span><strong id="incentivePay">0 ₮</strong></div>
+      <div class="result"><span>Суутгал хийхээс өмнөх шинэ нийт цалин</span><strong id="gross">0 ₮</strong></div>
+      <div class="result"><span>НДШ — ажилтан (9.5%)</span><strong id="social">0 ₮</strong></div>
+      <div class="result"><span>ЭМД — ажилтан (2%)</span><strong id="health">0 ₮</strong></div>
+      <div class="result"><span>ХХОАТ ногдуулах сарын суурь</span><strong id="taxbase">0 ₮</strong></div>
+      <div class="result"><span>ХХОАТ (хөнгөлөлтийн өмнө)</span><strong id="taxBefore">0 ₮</strong></div>
+      <div class="result"><span>ХХОАТ-ын сарын хөнгөлөлт</span><strong id="credit">20,000 ₮</strong></div>
+      <div class="result"><span>Төлөх ХХОАТ</span><strong id="tax">0 ₮</strong></div>
+      <div class="result net"><span>Гарт олгох цалин</span><strong id="net">0 ₮</strong></div>
+    </div>
+    <div class="note">
+      <b>Дараалал:</b> Үндсэн цалин + ажилласан хоногийн тохируулга + илүү/шөнийн/амралтын/баярын цагийн нэмэгдэл + шагнал + урамшуулал = <b>шинэ нийт цалин</b>.
+      Дараа нь өмнөх суутгалуудыг шинэ нийт цалингаас <b>дахин бодно</b>: НДШ → ЭМД → ХХОАТ.
+      Ингэснээр нэмэгдэл цалин орсон үед татвар, даатгалын суутгал автоматаар шинэчлэгдэнэ.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Ашигласан хувь хэмжээ ба эх сурвалж</h2>
+    <table>
+      <tr><th>Үзүүлэлт</th><th>Ажилтан</th><th>Эх сурвалж</th></tr>
+      <tr><td>Тэтгэврийн даатгал</td><td>8.5%</td><td>Нийгмийн даатгалын ерөнхий хууль, 18.1</td></tr>
+      <tr><td>Тэтгэмжийн даатгал</td><td>0.8%</td><td>Нийгмийн даатгалын ерөнхий хууль, 18.1</td></tr>
+      <tr><td>Ажилгүйдлийн даатгал</td><td>0.2%</td><td>Нийгмийн даатгалын ерөнхий хууль, 18.1</td></tr>
+      <tr><td>НДШ нийт</td><td><b>9.5%</b></td><td>Нийгмийн даатгалын ерөнхий хууль, 18.1</td></tr>
+      <tr><td>Эрүүл мэндийн даатгал</td><td><b>2%</b></td><td>2026 оны ЭМД-ын шимтгэлийн хувь хэмжээ</td></tr>
+      <tr><td>Илүү цаг</td><td><b>1.5×+</b></td><td>Хөдөлмөрийн тухай хууль, 109.1</td></tr>
+      <tr><td>Амралтын өдөр</td><td><b>1.5×+</b></td><td>Хөдөлмөрийн тухай хууль, 109.2</td></tr>
+      <tr><td>Шөнийн цаг</td><td><b>1.2×+</b></td><td>Хөдөлмөрийн тухай хууль, 109.3</td></tr>
+      <tr><td>Баярын өдөр</td><td><b>2.0×+</b></td><td>Хөдөлмөрийн тухай хууль, 109.4</td></tr>
+      <tr><td>ХХОАТ</td><td>10% / 15% / 20%</td><td>ХХОАТ-ын тухай хууль, 21.1 (жилийн татвар ногдуулах орлого)</td></tr>
+    </table>
+    <div class="note">
+      <b>НДШ-ийн дээд хязгаар:</b> албан журмын даатгуулагчийн шимтгэл ногдох сарын орлого нь тухайн үеийн сарын хөдөлмөрийн хөлсний доод хэмжээг 10 дахин нэмэгдүүлсэнтэй тэнцэх дээд хэмжээнд тооцогдоно. 2025.04.01-ээс хөдөлмөрийн хөлсний доод хэмжээ 792,000 ₮ болсон тул энэ тооцоолуурт <b>7,920,000 ₮</b>-ийн НДШ ногдох дээд суурь хэрэглэв.
+    </div>
+    <div class="note">
+      <b>Анхаарах:</b> НДШ-ийн үйлдвэрлэлийн осол, мэргэжлээс шалтгаалсан өвчний шимтгэлийг ажилтан төлөхгүй. Ажил олгогчийн хувь хэмжээ нь эрсдэлийн ангиллаас хамаарна. 2026.07.02-ны өөрчлөлтүүдийн зарим нь 2027.01.01-ээс хэрэгжинэ.
+    </div>
+  </div>
+
+  <div class="section sources">
+    <h2>4. Хуулийн эх сурвалж</h2>
+    <ul>
+      <li><a href="https://legalinfo.mn/mn/edtl/16532053891911" target="_blank">Хөдөлмөрийн тухай хууль (шинэчилсэн найруулга)</a> — 109.1–109.5: илүү, амралтын, шөнийн, баярын өдрийн нэмэгдэл.</li>
+      <li><a href="https://legalinfo.mn/mn/detail?lawId=16760148379551" target="_blank">Нийгмийн даатгалын ерөнхий хууль</a> — 18 дугаар зүйл.</li>
+      <li><a href="https://legalinfo.mn/mn/claw/16231007375991/1632448547484394" target="_blank">Хувь хүний орлогын албан татварын тухай хууль</a> — 14 дүгээр зүйлд цалингийн орлогоос ЭМД, НДШ-ийг хасаж татвар ногдуулах орлогыг тодорхойлно.</li>
+      <li><a href="https://legalinfo.mn/mn/detail?lawId=16532027552761" target="_blank">ХХОАТ-ын 21.1-д оруулсан өөрчлөлт</a> — 10%, 15%, 20%-ийн шатлал.</li>
+      <li><a href="https://legalinfo.mn/mn/detail?lawId=17434916300742" target="_blank">Эрүүл мэндийн даатгалын шимтгэлийн 2026 оны хувь хэмжээ</a> — ажилтан 2%, ажил олгогч 2%.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>5. Нэр оруулах хэсэг</h2>
+    <p>Тайлан/даалгаварт ашиглах бол дээрх <b>“Нэр”</b> хэсэгт өөрийн нэрээ бичиж болно. Жишээ: <b>Овог Нэр</b>.</p>
+  </div>
+</main>
+</div>
+<footer>2026 оны мэдээлэлд зориулсан тооцоолуур. Албан ёсны цалингийн тооцоонд тухайн ажилтны нөхцөл, хөнгөлөлт, чөлөөлөлт болон байгууллагын цалингийн журамд нийцүүлэн дахин шалгана.</footer>
+</div>
+
+<script>
+function money(n){return Math.round(n).toLocaleString('mn-MN') + ' ₮';}
+
+function annualPIT(annualBase){
+  if(annualBase <= 120000000) return annualBase * 0.10;
+  if(annualBase <= 180000000) return 12000000 + (annualBase-120000000)*0.15;
+  return 21000000 + (annualBase-180000000)*0.20;
+}
+
+function calculate(){
+  const salary = Math.max(0, Number(document.getElementById('salary').value) || 0);
+  const workDays = Math.max(0, Number(document.getElementById('workDays').value) || 0);
+  const workedDays = Math.max(0, Number(document.getElementById('workedDays').value) || 0);
+  const workHours = Math.max(0, Number(document.getElementById('workHours').value) || 0);
+  const overtime = Math.max(0, Number(document.getElementById('overtime').value) || 0);
+  const night = Math.max(0, Number(document.getElementById('night').value) || 0);
+  const weekend = Math.max(0, Number(document.getElementById('weekend').value) || 0);
+  const holiday = Math.max(0, Number(document.getElementById('holiday').value) || 0);
+  const bonus = Math.max(0, Number(document.getElementById('bonus').value) || 0);
+  const incentive = Math.max(0, Number(document.getElementById('incentive').value) || 0);
+
+  // Хялбар сарын тооцоолол: 1 өдрийн = үндсэн цалин / ажиллавал зохих хоног,
+  // 1 цагийн = 1 өдрийн / 8 цаг. Хэрэв байгууллага өөр норм хэрэглэвэл утгыг өөрчилнө.
+  const dayRate = workDays > 0 ? salary / workDays : 0;
+  const hourRate = 8 > 0 ? dayRate / 8 : 0;
+  const actualBase = workDays > 0 ? salary * Math.min(workedDays, workDays) / workDays : salary;
+
+  // Хуулийн доод нэмэгдлийн коэффициент.
+  const otPay = overtime * hourRate * 1.5;
+  const weekendPay = weekend * hourRate * 1.5;
+  const holidayPay = holiday * hourRate * 2.0;
+  const nightPay = night * hourRate * 0.2;
+
+  // Үндсэн цалин + нэмэгдэл + шагнал/урамшуулал = суутгалын өмнөх шинэ нийт цалин.
+  const gross = actualBase + otPay + nightPay + weekendPay + holidayPay + bonus + incentive;
+
+  // Шинэ нийт цалингаас суутгалуудыг ДАХИН бодно.
+  const socialBase = Math.min(gross, 7920000);
+  const social = socialBase * 0.095;
+  const health = gross * 0.02;
+  const monthlyTaxBase = Math.max(0, gross - social - health);
+  const annualTaxBase = monthlyTaxBase * 12;
+  const annualTax = annualPIT(annualTaxBase);
+  const monthlyTaxBeforeCredit = annualTax / 12;
+  const credit = 20000;
+  const tax = Math.max(0, monthlyTaxBeforeCredit - credit);
+  const net = gross - social - health - tax;
+
+  document.getElementById('basePay').textContent = money(actualBase);
+  document.getElementById('otPay').textContent = money(otPay);
+  document.getElementById('nightPay').textContent = money(nightPay);
+  document.getElementById('weekendPay').textContent = money(weekendPay);
+  document.getElementById('holidayPay').textContent = money(holidayPay);
+  document.getElementById('bonusPay').textContent = money(bonus);
+  document.getElementById('incentivePay').textContent = money(incentive);
+  document.getElementById('gross').textContent = money(gross);
+  document.getElementById('social').textContent = money(social);
+  document.getElementById('health').textContent = money(health);
+  document.getElementById('taxbase').textContent = money(monthlyTaxBase);
+  document.getElementById('taxBefore').textContent = money(monthlyTaxBeforeCredit);
+  document.getElementById('credit').textContent = money(credit);
+  document.getElementById('tax').textContent = money(tax);
+  document.getElementById('net').textContent = money(net);
+}
+calculate();
+</script>
 </body>
 </html>
