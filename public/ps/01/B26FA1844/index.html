@@ -1,107 +1,676 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1844 — Энхбилэг.С | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Энхбилэг.С (B26FA1844), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Цалингийн дэвтэр — Тооцоолуур</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Mono&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
+  :root{
+    --navy:#12213C;
+    --navy-deep:#0B1729;
+    --ivory:#F7F2E4;
+    --ivory-dim:#EAE2CC;
+    --gold:#C79A3F;
+    --gold-dim:#9C7A32;
+    --ink:#1B2A44;
+    --ink-soft:#5B6478;
+    --line:#D9CFB2;
+    --up:#3F6B4A;
+    --warn:#A5641E;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
+
+  * { box-sizing: border-box; }
+
+  html, body {
     margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
+    min-height: 100%;
+    background: var(--navy);
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(199,154,63,0.10), transparent 45%),
+      radial-gradient(circle at 85% 92%, rgba(199,154,63,0.07), transparent 40%);
+    font-family: "PT Serif", Georgia, serif;
+    color: var(--ivory);
   }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 48px 18px 80px;
   }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
+
+  .page { width: 100%; max-width: 480px; }
+
+  .masthead { text-align: center; margin-bottom: 28px; }
+  .masthead .eyebrow {
     display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
+    font-family: "PT Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    margin-bottom: 10px;
   }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
+  .masthead h1 {
+    font-size: 30px;
+    line-height: 1.25;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--ivory);
   }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
+  .masthead p {
+    font-size: 14.5px;
+    color: #C7CBDA;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* --- The passbook --- */
+  .book {
+    background: var(--ivory);
     color: var(--ink);
-    font-size: .875rem;
+    border-radius: 3px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.04);
+    overflow: hidden;
   }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+
+  .ornament {
+    height: 14px;
+    width: 100%;
+    background:
+      linear-gradient(135deg, transparent 50%, var(--gold) 50%) 0 0 / 14px 14px,
+      linear-gradient(-135deg, transparent 50%, var(--gold) 50%) 0 0 / 14px 14px;
+    background-color: var(--navy-deep);
+    opacity: 0.9;
+  }
+
+  .book-inner { padding: 30px 30px 8px; }
+
+  .field-label {
+    font-family: "PT Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+    display: block;
+    margin-bottom: 9px;
+  }
+
+  .amount-input-row {
+    display: flex;
+    align-items: baseline;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+  }
+  .amount-input-row input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: "PT Mono", monospace;
+    font-size: 30px;
+    color: var(--ink);
+    width: 100%;
+    min-width: 0;
+  }
+  .amount-input-row input:focus { outline: none; }
+  .amount-input-row input::placeholder { color: #B9AF92; }
+  .amount-input-row .unit {
+    font-family: "PT Serif", serif;
+    font-size: 18px;
+    color: var(--ink-soft);
+    padding-left: 8px;
+  }
+  .helper-line { font-size: 12.5px; color: var(--ink-soft); margin: 8px 0 22px; min-height: 16px; }
+
+  /* --- Advanced (worked days / overtime / bonus) panel --- */
+  details.advanced {
+    border-top: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--line);
+    margin-bottom: 20px;
+  }
+  details.advanced summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 14px 0;
+    font-family: "PT Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  details.advanced summary::-webkit-details-marker { display: none; }
+  details.advanced summary::before {
+    content: "+";
+    display: inline-flex;
+    width: 16px; height: 16px;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--ink-soft);
+    border-radius: 50%;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  details.advanced[open] summary::before { content: "–"; }
+
+  .advanced-body { padding: 2px 0 20px; }
+  .advanced-body .group-label {
+    font-family: "PT Mono", monospace;
+    font-size: 10.5px;
+    color: var(--gold-dim);
+    letter-spacing: 0.03em;
+    margin: 16px 0 10px;
+  }
+  .advanced-body .group-label:first-child { margin-top: 0; }
+
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+
+  .mini-field label {
+    font-family: "PT Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .mini-field .mini-row {
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 6px;
+  }
+  .mini-field input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: "PT Mono", monospace;
+    font-size: 16.5px;
+    color: var(--ink);
+    width: 100%;
+    min-width: 0;
+  }
+  .mini-field input:focus { outline: none; }
+  .mini-field input::placeholder { color: #B9AF92; }
+  .mini-field .mini-unit { font-size: 11.5px; color: var(--ink-soft); padding-left: 6px; white-space: nowrap; }
+
+  .hint-text {
+    font-size: 11.5px;
+    color: var(--warn);
+    margin-top: 12px;
+    display: none;
+    line-height: 1.5;
+  }
+
+  /* --- Composition breakdown (gross build-up) --- */
+  .comp-block { display: none; margin-bottom: 4px; }
+  .comp-block .hero-label {
+    font-family: "PT Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    display: block;
+  }
+  .comp-block .ledger { padding-top: 12px; }
+  .comp-block .row.total {
+    border-top: 1px solid var(--line);
+    margin-top: 4px;
+    padding-top: 12px;
+  }
+  .comp-block .row.total .label,
+  .comp-block .row.total .value { font-weight: 700; }
+
+  /* --- Hero result --- */
+  .hero {
+    text-align: center;
+    padding: 6px 0 22px;
+    border-top: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--line);
+    margin-bottom: 20px;
+  }
+  .hero .hero-label {
+    font-family: "PT Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 18px;
+    display: block;
+  }
+  .hero .hero-number {
+    font-family: "PT Mono", monospace;
+    font-weight: 400;
+    font-size: 44px;
+    color: var(--gold-dim);
+    letter-spacing: -0.01em;
+  }
+  .hero .hero-number .sym { font-size: 24px; color: var(--ink-soft); }
+
+  /* --- Ledger rows --- */
+  .ledger { padding: 4px 0 6px; }
+  .ledger .row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 9px 0;
+  }
+  .ledger .row .label {
+    font-size: 14.5px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .ledger .row .leader {
+    flex: 1;
+    border-bottom: 1px dotted #BDB28E;
+    transform: translateY(-4px);
+  }
+  .ledger .row .value {
+    font-family: "PT Mono", monospace;
+    font-size: 14.5px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .ledger .row .value.minus { color: var(--warn); }
+  .ledger .row .value.plus { color: var(--up); }
+  .ledger .row.sub .label, .ledger .row.sub .value { font-size: 12.5px; color: var(--ink-soft); }
+  .ledger .row.cap {
+    display: none;
+    font-size: 12px;
+    color: var(--warn);
+    padding: 0 0 10px;
+    font-family: "PT Mono", monospace;
+  }
+
+  details.notes {
+    border-top: 1px solid var(--line);
+    margin-top: 6px;
+  }
+  details.notes summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 16px 0;
+    font-family: "PT Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  details.notes summary::-webkit-details-marker { display: none; }
+  details.notes summary::before {
+    content: "+";
+    display: inline-flex;
+    width: 16px; height: 16px;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--ink-soft);
+    border-radius: 50%;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  details.notes[open] summary::before { content: "–"; }
+  details.notes .notes-body {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    padding: 0 0 24px;
+  }
+  details.notes .notes-body ul { margin: 8px 0; padding-left: 18px; }
+  details.notes .notes-body li { margin-bottom: 5px; }
+
+  .book-foot {
+    background: var(--navy-deep);
+    color: #93A0B8;
+    font-family: "PT Mono", monospace;
+    font-size: 11px;
+    text-align: center;
+    padding: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  a { color: var(--gold-dim); }
+
+  input:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--gold-dim);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 400px) {
+    .book-inner { padding: 24px 20px 4px; }
+    .hero .hero-number { font-size: 36px; }
+    .masthead h1 { font-size: 25px; }
+    .field-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  }
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1844</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Энхбилэг.С</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1844/index.html</code>
+<div class="page">
+
+  <div class="masthead">
+    <span class="eyebrow">MN · 2026</span>
+    <h1>Гартаа авах цалингаа мэдэх нь</h1>
+    <p>Нийт цалингаа оруулбал НДШ, ХХОАТ-ыг ялгаж, гарт олгох дүнг шууд харуулна. Ажилласан хоног, илүү цаг, шагналаа нэмвэл эдгээрийг ч тооцоонд оруулна.</p>
+  </div>
+
+  <div class="book">
+    <div class="ornament"></div>
+    <div class="book-inner">
+
+      <label class="field-label" for="grossSalary">ҮНДСЭН (ГЭРЭЭТ) ЦАЛИН</label>
+      <div class="amount-input-row">
+        <input type="number" id="grossSalary" placeholder="0" min="0" inputmode="numeric" oninput="calculateSalary()" aria-describedby="helperLine">
+        <span class="unit">₮ / сар</span>
+      </div>
+      <div class="helper-line" id="helperLine">Жишээ нь 2,500,000 гэж бичээд үзээрэй.</div>
+
+      <details class="advanced" id="advancedDetails">
+        <summary>Ажилласан хоног, илүү цаг, шагнал нэмэх (сонголт)</summary>
+        <div class="advanced-body">
+
+          <div class="group-label">САРЫН АЖИЛСАН ХОНОГ</div>
+          <div class="field-grid">
+            <div class="mini-field">
+              <label for="normDays">Ажлын өдрийн норм</label>
+              <div class="mini-row">
+                <input type="number" id="normDays" min="0" placeholder="22" inputmode="numeric" oninput="calculateSalary()">
+                <span class="mini-unit">өдөр</span>
+              </div>
+            </div>
+            <div class="mini-field">
+              <label for="actualDays">Бодит ажилласан</label>
+              <div class="mini-row">
+                <input type="number" id="actualDays" min="0" placeholder="22" inputmode="numeric" oninput="calculateSalary()">
+                <span class="mini-unit">өдөр</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-label">НЭМЭГДЭЛ ХӨЛС НОГДОХ ЦАГ</div>
+          <div class="field-grid">
+            <div class="mini-field">
+              <label for="otHours">Илүү цаг (энгийн өдөр)</label>
+              <div class="mini-row">
+                <input type="number" id="otHours" min="0" placeholder="0" inputmode="numeric" oninput="calculateSalary()">
+                <span class="mini-unit">цаг</span>
+              </div>
+            </div>
+            <div class="mini-field">
+              <label for="restHours">Долоо хоногийн амралтын өдөр</label>
+              <div class="mini-row">
+                <input type="number" id="restHours" min="0" placeholder="0" inputmode="numeric" oninput="calculateSalary()">
+                <span class="mini-unit">цаг</span>
+              </div>
+            </div>
+            <div class="mini-field">
+              <label for="holHours">Нийтээр амрах баярын өдөр</label>
+              <div class="mini-row">
+                <input type="number" id="holHours" min="0" placeholder="0" inputmode="numeric" oninput="calculateSalary()">
+                <span class="mini-unit">цаг</span>
+              </div>
+            </div>
+            <div class="mini-field">
+              <label for="nightHours">Шөнийн цаг (ердийн ээлжинд)</label>
+              <div class="mini-row">
+                <input type="number" id="nightHours" min="0" placeholder="0" inputmode="numeric" oninput="calculateSalary()">
+                <span class="mini-unit">цаг</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-label">БУСАД</div>
+          <div class="field-grid">
+            <div class="mini-field" style="grid-column: 1 / -1;">
+              <label for="bonusAmount">Шагнал, урамшуулал (мөнгөн дүн)</label>
+              <div class="mini-row">
+                <input type="number" id="bonusAmount" min="0" placeholder="0" inputmode="numeric" oninput="calculateSalary()">
+                <span class="mini-unit">₮</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hint-text" id="hourlyRateNote">Илүү цаг, шөнийн цаг зэргийг мөнгөөр тооцохын тулд "Ажлын өдрийн норм"-оо эхлээд бөглөнө үү — цагийн хөлс үүнээс тооцогдоно.</div>
+          <div class="hint-text" id="otLimitNote">Анхаар: хуулиар нэг өдөрт 4 цагаас илүү, долоо хоногт 56 нийт цагаас илүү ажиллуулахыг хориглодог.</div>
+        </div>
+      </details>
+
+      <div class="comp-block" id="compBlock">
+        <span class="hero-label">ЦАЛИНГИЙН БҮРДЭЛ</span>
+        <div class="ledger">
+          <div class="row">
+            <span class="label">Үндсэн цалин (тохируулсан)</span>
+            <span class="leader"></span>
+            <span class="value" id="compBase">0 ₮</span>
+          </div>
+          <div class="row">
+            <span class="label">Илүү цагийн хөлс, ×1.5</span>
+            <span class="leader"></span>
+            <span class="value plus" id="compOT">+0 ₮</span>
+          </div>
+          <div class="row">
+            <span class="label">Амралтын өдрийн хөлс, ×1.5</span>
+            <span class="leader"></span>
+            <span class="value plus" id="compRest">+0 ₮</span>
+          </div>
+          <div class="row">
+            <span class="label">Баярын өдрийн хөлс, ×2</span>
+            <span class="leader"></span>
+            <span class="value plus" id="compHol">+0 ₮</span>
+          </div>
+          <div class="row">
+            <span class="label">Шөнийн цагийн нэмэгдэл, +20%</span>
+            <span class="leader"></span>
+            <span class="value plus" id="compNight">+0 ₮</span>
+          </div>
+          <div class="row">
+            <span class="label">Шагнал, урамшуулал</span>
+            <span class="leader"></span>
+            <span class="value plus" id="compBonus">+0 ₮</span>
+          </div>
+          <div class="row total">
+            <span class="label">Нийт (НДШ, ХХОАТ ногдох)</span>
+            <span class="leader"></span>
+            <span class="value" id="compTotal">0 ₮</span>
+          </div>
+        </div>
       </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+      <div class="hero" id="heroBlock" style="display:none;">
+        <span class="hero-label">ГАРТ ОЛГОХ ЦАЛИН</span>
+        <div class="hero-number" id="resNet"><span class="sym">₮</span>0</div>
+      </div>
+
+      <div class="ledger" id="ledger" style="display:none;">
+        <div class="row">
+          <span class="label">НДШ, 11.5%</span>
+          <span class="leader"></span>
+          <span class="value minus" id="resNDSH">−0 ₮</span>
+        </div>
+        <div class="row cap" id="capRow">↳ дээд хязгаарт хүрсэн тул 7,920,000₮ дээр тооцов</div>
+
+        <div class="row sub">
+          <span class="label">Татвар ногдох орлого</span>
+          <span class="leader"></span>
+          <span class="value" id="resTaxable">0 ₮</span>
+        </div>
+
+        <div class="row">
+          <span class="label">ХХОАТ, 10%</span>
+          <span class="leader"></span>
+          <span class="value minus" id="resPreTax">−0 ₮</span>
+        </div>
+        <div class="row sub">
+          <span class="label">Сарын хөнгөлөлт</span>
+          <span class="leader"></span>
+          <span class="value plus" id="resDiscount">+0 ₮</span>
+        </div>
+        <div class="row">
+          <span class="label">Нийт суутгасан ХХОАТ</span>
+          <span class="leader"></span>
+          <span class="value minus" id="resPIT">−0 ₮</span>
+        </div>
+      </div>
+
+      <details class="notes">
+        <summary>Хувь хэмжээ, эх сурвалжийн тухай</summary>
+        <div class="notes-body">
+          <strong>НДШ (ажилтны хэсэг): 11.5%</strong> — Тэтгэврийн даатгал 8.5%, Тэтгэмжийн даатгал 0.8%, Эрүүл мэндийн даатгал 2.0%, Ажилгүйдлийн даатгал 0.2%. Энэ шимтгэл ногдох орлогын дээд хязгаар нь хөдөлмөрийн хөлсний доод хэмжээний 10 дахин, 2026 онд сард 7,920,000₮. Үүнээс дээш орлогод НДШ нэмж суутгахгүй тул дээд тал нь 910,800₮ байна.
+          <br><br>
+          <strong>ХХОАТ: 10%</strong> — НДШ хассаны дараах орлогод ногдоно. Сарын орлогоос хамааран дараах хөнгөлөлт хасагдана:
+          <ul>
+            <li>0–500,000₮: 20,000₮</li>
+            <li>500,000–1,000,000₮: 18,000₮</li>
+            <li>1,000,000–1,500,000₮: 16,000₮</li>
+            <li>1,500,000–2,000,000₮: 14,000₮</li>
+            <li>2,000,000–2,500,000₮: 12,000₮</li>
+            <li>2,500,000–3,000,000₮: 10,000₮</li>
+            <li>3,000,000₮-с дээш: хөнгөлөлтгүй</li>
+          </ul>
+          Жилийн орлого 120 сая₮-с давсан өндөр орлоготой иргэдэд илүү шатлалтай (10–20%) татвар хамаарч болзошгүй тул тэдгээрийн хувьд энэ тооцоолуур зөвхөн сарын үндсэн цалинд суурилсан ойролцоо дүн өгнө.
+          <br><br>
+          <strong>Ажилласан хоног, илүү цаг:</strong> Хөдөлмөрийн тухай хуулийн (2021 оны шинэчилсэн найруулга) 109 дүгээр зүйлд заасан хамгийн бага нэмэгдэл хөлс: илүү цагаар ажилласанд ×1.5, долоо хоногийн амралтын өдөр ажилласанд ×1.5, нийтээр амрах баярын өдөр ажилласанд ×2, шөнийн цагаар ажилласанд +20% нэмэгдэл. Эдгээр нь <em>доод хязгаар</em> тул хамтын гэрээ, хөдөлмөрийн гэрээгээр илүү хувь тохирсон бол тэрхүү хувиа ашиглана уу. Мөн ажилтныг цаг мөнгөөр биш нөхөн амралтаар нөхөж байгаа бол эдгээр талбарыг бөглөх шаардлагагүй.
+          <br><br>
+          <strong>Шагнал, урамшуулал:</strong> Хөдөлмөрийн тухай хуулийн 101.1-д цалин хөлсний бүрдэлд орно гэж заасан тул НДШ, ХХОАТ хоёуланд нь ногдоно гэж энэ тооцоолуур үздэг. Ажлын харилцаанаас гадуурх нэг удаагийн тусламж, дэмжлэг мэтийг үүнд оруулж болохгүй.
+          <br><br>
+          Хамгийн сүүлийн үеийн мэдээллийг Нийгмийн даатгалын ерөнхий газар (ndaatgal.mn) болон Татварын ерөнхий газраас нягтлана уу.
+        </div>
+      </details>
+
+    </div>
+    <div class="book-foot">ЗӨВХӨН ОЙРОЛЦОО ТООЦОО · ХУУЛЬ ЁСНЫ БАРИМТ БИШ</div>
+  </div>
+
+</div>
+
+<script>
+  const NDSH_RATE = 0.115;
+  const NDSH_MAX_BASE = 7920000;
+  const PIT_RATE = 0.10;
+
+  const OVERTIME_MULT = 1.5;
+  const RESTDAY_MULT = 1.5;
+  const HOLIDAY_MULT = 2.0;
+  const NIGHT_PREMIUM = 0.2;
+
+  const DISCOUNT_BRACKETS = [
+    { upTo: 500000,   amount: 20000 },
+    { upTo: 1000000,  amount: 18000 },
+    { upTo: 1500000,  amount: 16000 },
+    { upTo: 2000000,  amount: 14000 },
+    { upTo: 2500000,  amount: 12000 },
+    { upTo: 3000000,  amount: 10000 },
+    { upTo: Infinity, amount: 0 }
+  ];
+
+  function formatNum(num) {
+    return Math.round(num).toLocaleString('en-US');
+  }
+
+  function num(id) {
+    const v = parseFloat(document.getElementById(id).value);
+    return isNaN(v) ? 0 : v;
+  }
+
+  function getMonthlyDiscount(taxableIncome) {
+    for (const b of DISCOUNT_BRACKETS) if (taxableIncome <= b.upTo) return b.amount;
+    return 0;
+  }
+
+  // Builds the full monthly gross from base salary + worked-day proration +
+  // overtime/rest-day/holiday/night allowances + bonus. If none of the
+  // advanced fields are used, this returns exactly baseSalary, so the
+  // original five deduction lines are unchanged for the plain use case.
+  function computeGross(baseSalary) {
+    const normDays = num('normDays');
+    const actualDays = num('actualDays');
+    const otHours = num('otHours');
+    const restHours = num('restHours');
+    const holHours = num('holHours');
+    const nightHours = num('nightHours');
+    const bonus = num('bonusAmount');
+
+    const advancedUsed = normDays > 0 || actualDays > 0 || otHours > 0 ||
+                          restHours > 0 || holHours > 0 || nightHours > 0 || bonus > 0;
+
+    let proratedBase = baseSalary;
+    if (normDays > 0 && actualDays > 0) {
+      const ratio = Math.min(actualDays / normDays, 1);
+      proratedBase = baseSalary * ratio;
+    }
+
+    const hourlyRate = normDays > 0 ? baseSalary / (normDays * 8) : 0;
+
+    const otPay = hourlyRate * OVERTIME_MULT * otHours;
+    const restPay = hourlyRate * RESTDAY_MULT * restHours;
+    const holPay = hourlyRate * HOLIDAY_MULT * holHours;
+    const nightPay = hourlyRate * NIGHT_PREMIUM * nightHours;
+
+    const gross = proratedBase + otPay + restPay + holPay + nightPay + bonus;
+
+    const hoursNeedNorm = normDays === 0 && (otHours > 0 || restHours > 0 || holHours > 0 || nightHours > 0);
+    const otOverLimit = actualDays > 0 && otHours > actualDays * 4;
+
+    return { advancedUsed, proratedBase, otPay, restPay, holPay, nightPay, bonus, gross, hoursNeedNorm, otOverLimit };
+  }
+
+  function calculateSalary() {
+    const baseSalary = parseFloat(document.getElementById('grossSalary').value);
+    const heroBlock = document.getElementById('heroBlock');
+    const ledger = document.getElementById('ledger');
+    const compBlock = document.getElementById('compBlock');
+    const helper = document.getElementById('helperLine');
+
+    if (isNaN(baseSalary) || baseSalary <= 0) {
+      heroBlock.style.display = 'none';
+      ledger.style.display = 'none';
+      compBlock.style.display = 'none';
+      document.getElementById('hourlyRateNote').style.display = 'none';
+      document.getElementById('otLimitNote').style.display = 'none';
+      helper.textContent = 'Жишээ нь 2,500,000 гэж бичээд үзээрэй.';
+      return;
+    }
+
+    const g = computeGross(baseSalary);
+
+    document.getElementById('hourlyRateNote').style.display = g.hoursNeedNorm ? 'block' : 'none';
+    document.getElementById('otLimitNote').style.display = g.otOverLimit ? 'block' : 'none';
+
+    if (g.advancedUsed) {
+      compBlock.style.display = 'block';
+      document.getElementById('compBase').innerText = formatNum(g.proratedBase) + ' ₮';
+      document.getElementById('compOT').innerText = '+' + formatNum(g.otPay) + ' ₮';
+      document.getElementById('compRest').innerText = '+' + formatNum(g.restPay) + ' ₮';
+      document.getElementById('compHol').innerText = '+' + formatNum(g.holPay) + ' ₮';
+      document.getElementById('compNight').innerText = '+' + formatNum(g.nightPay) + ' ₮';
+      document.getElementById('compBonus').innerText = '+' + formatNum(g.bonus) + ' ₮';
+      document.getElementById('compTotal').innerText = formatNum(g.gross) + ' ₮';
+    } else {
+      compBlock.style.display = 'none';
+    }
+
+    heroBlock.style.display = 'block';
+    ledger.style.display = 'block';
+
+    const gross = g.gross;
+    const ndshBase = Math.min(gross, NDSH_MAX_BASE);
+    const ndsh = ndshBase * NDSH_RATE;
+
+    const capRow = document.getElementById('capRow');
+    capRow.style.display = gross > NDSH_MAX_BASE ? 'block' : 'none';
+
+    const taxableIncome = gross - ndsh;
+    const preTaxPIT = taxableIncome * PIT_RATE;
+    const discount = getMonthlyDiscount(taxableIncome);
+    const finalPIT = Math.max(0, preTaxPIT - discount);
+    const netSalary = gross - ndsh - finalPIT;
+
+    document.getElementById('resNDSH').innerText = '−' + formatNum(ndsh) + ' ₮';
+    document.getElementById('resTaxable').innerText = formatNum(taxableIncome) + ' ₮';
+    document.getElementById('resPreTax').innerText = '−' + formatNum(preTaxPIT) + ' ₮';
+    document.getElementById('resDiscount').innerText = '+' + formatNum(discount) + ' ₮';
+    document.getElementById('resPIT').innerText = '−' + formatNum(finalPIT) + ' ₮';
+    document.getElementById('resNet').innerHTML = '<span class="sym">₮</span>' + formatNum(netSalary);
+
+    helper.textContent = gross > NDSH_MAX_BASE
+      ? 'НДШ ногдох дээд хэмжээнээс давсан цалин.'
+      : 'Дэлгэрэнгүй задаргааг доор харна уу.';
+  }
+</script>
+
 </body>
 </html>
