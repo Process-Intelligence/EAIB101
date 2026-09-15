@@ -1,107 +1,218 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1837 — Содонбилэг.Э | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Содонбилэг.Э (B26FA1837), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цалингийн Нэмэгдэл & Суутгал Тооцоолуур</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f0f4f8; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        h2, h3 { color: #1e3a8a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 4px; font-weight: 600; font-size: 0.9em; }
+        input { 
+            width: 100%; 
+            padding: 10px 12px; 
+            box-sizing: border-box; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            /* Сумыг алга болгож, чөлөөтэй шивэх боломж олгох */
+            -moz-appearance: textfield;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        button { width: 100%; padding: 12px; background-color: #2563eb; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        button:hover { background-color: #1d4ed8; }
+        .result-box { margin-top: 25px; padding: 20px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; }
+        .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed #cbd5e1; font-size: 0.95em; }
+        .row.bold { font-weight: bold; font-size: 1.05em; border-bottom: 2px solid #1e3a8a; color: #1e3a8a; }
+        .row.net { font-size: 1.2em; font-weight: bold; color: #16a34a; border-bottom: none; background: #dcfce7; padding: 10px; border-radius: 6px; margin-top: 10px; }
+        .info-card { margin-top: 25px; font-size: 0.85em; background: #eff6ff; padding: 15px; border-left: 4px solid #2563eb; border-radius: 4px; }
+        .footer { margin-top: 25px; text-align: center; font-size: 0.85em; color: #64748b; font-weight: bold; }
+    </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1837</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Содонбилэг.Э</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1837/index.html</code>
-      </div>
+<div class="container">
+    <h2>Цалин, Нэмэгдэл болон Суутгалын Тооцоолуур</h2>
+    
+    <h3>1. Үндсэн цалин ба Ажилласан цагийн мэдээлэл</h3>
+    <div class="grid-2">
+        <div class="form-group">
+            <label for="baseSalary">Сарын үндсэн цалин (₮):</label>
+            <input type="text" id="baseSalary" value="2000000" oninput="calculateDetailedPayroll()">
+        </div>
+        <div class="form-group">
+            <label for="workDaysMonth">Сард ажиллавал зохих хоног:</label>
+            <input type="text" id="workDaysMonth" value="22" oninput="calculateDetailedPayroll()">
+        </div>
+        <div class="form-group">
+            <label for="actualDays">Ажилласан хоног:</label>
+            <input type="text" id="actualDays" value="22" oninput="calculateDetailedPayroll()">
+        </div>
+        <div class="form-group">
+            <label for="bonus">Шагнал, урамшуулал (₮):</label>
+            <input type="text" id="bonus" value="0" oninput="calculateDetailedPayroll()">
+        </div>
+    </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+    <h3>2. Нэмэгдэл цагийн мэдээлэл (Цагаар)</h3>
+    <div class="grid-2">
+        <div class="form-group">
+            <label for="overtimeHours">Илүү цаг (1.5x):</label>
+            <input type="text" id="overtimeHours" value="0" oninput="calculateDetailedPayroll()">
+        </div>
+        <div class="form-group">
+            <label for="nightHours">Шөнийн цаг (+20% нэмэгдэл):</label>
+            <input type="text" id="nightHours" value="0" oninput="calculateDetailedPayroll()">
+        </div>
+        <div class="form-group">
+            <label for="holidayHours">Баяр, амралтын өдрийн цаг (2.0x):</label>
+            <input type="text" id="holidayHours" value="0" oninput="calculateDetailedPayroll()">
+        </div>
+    </div>
+
+    <button onclick="calculateDetailedPayroll()">Цалин Тооцоолох</button>
+
+    <div class="result-box" id="resultBox" style="display:none;">
+        <h3>3. Нийт Цалингийн Задаргаа (Суутгалаас өмнө)</h3>
+        <div class="row"><span>Нэг цагийн стандарт хөлс:</span><span id="r-hourly">0 ₮</span></div>
+        <div class="row"><span>Ажилласан хоногийн цалин:</span><span id="r-worked-pay">0 ₮</span></div>
+        <div class="row"><span>Илүү цагийн нэмэгдэл хөлс (1.5x):</span><span id="r-overtime-pay">0 ₮</span></div>
+        <div class="row"><span>Шөнийн цагийн нэмэгдэл (+20%):</span><span id="r-night-pay">0 ₮</span></div>
+        <div class="row"><span>Баяр/Амралтын өдрийн цалин (2.0x):</span><span id="r-holiday-pay">0 ₮</span></div>
+        <div class="row"><span>Шагнал, урамшуулал:</span><span id="r-bonus-pay">0 ₮</span></div>
+        <div class="row bold"><span>НИЙТ БОХИР ЦАЛИН (GROSS):</span><span id="r-gross">0 ₮</span></div>
+
+        <h3>4. Суутгалын бодолт (Шинэ Нийт Цалингаас)</h3>
+        <div class="row"><span>НДШ (Ажилтан - 11.5%):</span><span id="r-ndsh">- 0 ₮</span></div>
+        <div class="row"><span>Татвар тооцох орлого (Gross - НДШ):</span><span id="r-taxable">0 ₮</span></div>
+        <div class="row"><span>ХХОАТ (10%-20% шатлалаар):</span><span id="r-pit">- 0 ₮</span></div>
+        <div class="row"><span>ХХОАТ-ын хөнгөлөлт:</span><span id="r-discount">+ 0 ₮</span></div>
+        <div class="row"><span>Эцсийн суутгах ХХОАТ:</span><span id="r-final-pit">- 0 ₮</span></div>
+        <div class="row net"><span>ГАРТ ОЛГОХ ЦАЛИН (NET):</span><span id="r-net">0 ₮</span></div>
+    </div>
+
+    <div class="info-card">
+        <b>ХӨДӨЛМӨРИЙН ТУХАЙ ХУУЛИЙН ЗОХИЦУУЛАЛТ (2021/2022):</b>
+        <ul>
+            <li><b>Цагийн хөлс:</b> Сарын үндсэн цалинг сарын ажлын стандарт цагт (Ажиллавал зохих хоног × 8 цаг) хувааж олно (86-р зүйл).</li>
+            <li><b>Илүү цаг (109.1):</b> Илүү цагаар ажилласан бол 1.5 дахин нэмэгдүүлсэн хөлс олгоно. Талууд тохиролцсоноор чөлөөгөөр нөхөн амрааж болно.</li>
+            <li><b>Шөнийн цаг (109.3):</b> Шөнийн цагаар (22:00-06:00) ажиллавал цагийн хөлсийг 1.2 дахин-аас багагүй хэмжээгээр нэмэгдүүлж олгоно.</li>
+            <li><b>Баяр, амралтын өдөр (109.4, 109.5):</b> Амралтын болон нийтээр амрах баярын өдөр ажиллавал цагийн хөлсийг 2.0 дахин нэмэгдүүлнэ.</li>
+            <li><b>Давхардал (109.6):</b> Нэмэгдлүүд давхцвал тус бүрийн хувийг нэг цагийн хөлснөөс бодож, нэмж тооцно.</li>
+            <li><b>Татвар, НДШ ногдолт:</b> Илүү цаг, амралт баярын болон шөнийн нэмэгдэл, урамшуулал бүгд нийт цалинд орж НДШ болон ХХОАТ-д 100% суутгагдана.</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        Тооцоолуур боловсруулсан: Содонбилэг (Програмист / Ажилтан)
+    </div>
+</div>
+
+<script>
+// Тоо биш тэмдэгтүүдийг цэвэрлэх туслах функц
+function parseNumber(id) {
+    let val = document.getElementById(id).value;
+    val = val.replace(/,/g, '').replace(/[^0-9.]/g, ''); // Зөвхөн тоо ба цэг зөвшөөрнө
+    return parseFloat(val) || 0;
+}
+
+function calculateDetailedPayroll() {
+    const baseSalary = parseNumber('baseSalary');
+    const workDaysMonth = parseNumber('workDaysMonth') || 1;
+    const actualDays = parseNumber('actualDays');
+    const bonus = parseNumber('bonus');
+
+    const overtimeHours = parseNumber('overtimeHours');
+    const nightHours = parseNumber('nightHours');
+    const holidayHours = parseNumber('holidayHours');
+
+    // 1. Цагийн стандарт хөлс бодох (Өдөрт 8 цаг)
+    const totalStandardHours = workDaysMonth * 8;
+    const hourlyRate = totalStandardHours > 0 ? (baseSalary / totalStandardHours) : 0;
+
+    // 2. Орлогын хэсгүүдийг тооцох
+    const workedPay = (baseSalary / workDaysMonth) * actualDays;
+    const overtimePay = overtimeHours * (hourlyRate * 1.5);
+    const nightPay = nightHours * (hourlyRate * 0.20); 
+    const holidayPay = holidayHours * (hourlyRate * 2.0);
+
+    // Нийт бохир цалин (Gross)
+    const grossSalary = workedPay + overtimePay + nightPay + holidayPay + bonus;
+
+    // 3. НДШ Тооцоолох (Дээд хязгаар 7,920,000₮)
+    const minWage = 792000;
+    const ndshCapBase = minWage * 10;
+    const ndshRate = 0.115; // 11.5%
+
+    let ndshBase = grossSalary > ndshCapBase ? ndshCapBase : grossSalary;
+    let ndsh = ndshBase * ndshRate;
+
+    // 4. Татвар тооцох орлого (НДШ-ийг татвараас өмнө хасна)
+    let taxableIncome = grossSalary - ndsh;
+
+    // 5. ХХОАТ бодох (10%, 15%, 20% шатлал)
+    let pit = 0;
+    if (taxableIncome > 0) {
+        if (taxableIncome <= 10000000) {
+            pit = taxableIncome * 0.10;
+        } else if (taxableIncome <= 15000000) {
+            pit = 10000000 * 0.10 + (taxableIncome - 10000000) * 0.15;
+        } else {
+            pit = 10000000 * 0.10 + 5000000 * 0.15 + (taxableIncome - 15000000) * 0.20;
+        }
+    }
+
+    // 6. ХХОАТ-ын хөнгөлөлт (23.1-р зүйл)
+    let taxDiscount = 0;
+    if (taxableIncome > 0) {
+        if (taxableIncome <= 500000) taxDiscount = 24000;
+        else if (taxableIncome <= 1000000) taxDiscount = 20000;
+        else if (taxableIncome <= 1500000) taxDiscount = 18000;
+        else if (taxableIncome <= 2000000) taxDiscount = 16000;
+        else if (taxableIncome <= 2500000) taxDiscount = 14000;
+        else if (taxableIncome <= 3000000) taxDiscount = 12000;
+        else taxDiscount = 0;
+    }
+
+    let finalPit = Math.max(0, pit - taxDiscount);
+    let netSalary = grossSalary - ndsh - finalPit;
+
+    // 7. Дэлгэцэнд хэвлэх
+    document.getElementById('r-hourly').innerText = Math.round(hourlyRate).toLocaleString() + ' ₮';
+    document.getElementById('r-worked-pay').innerText = Math.round(workedPay).toLocaleString() + ' ₮';
+    document.getElementById('r-overtime-pay').innerText = Math.round(overtimePay).toLocaleString() + ' ₮';
+    document.getElementById('r-night-pay').innerText = Math.round(nightPay).toLocaleString() + ' ₮';
+    document.getElementById('r-holiday-pay').innerText = Math.round(holidayPay).toLocaleString() + ' ₮';
+    document.getElementById('r-bonus-pay').innerText = Math.round(bonus).toLocaleString() + ' ₮';
+    document.getElementById('r-gross').innerText = Math.round(grossSalary).toLocaleString() + ' ₮';
+
+    document.getElementById('r-ndsh').innerText = '- ' + Math.round(ndsh).toLocaleString() + ' ₮';
+    document.getElementById('r-taxable').innerText = Math.round(taxableIncome).toLocaleString() + ' ₮';
+    document.getElementById('r-pit').innerText = '- ' + Math.round(pit).toLocaleString() + ' ₮';
+    document.getElementById('r-discount').innerText = '+ ' + taxDiscount.toLocaleString() + ' ₮';
+    document.getElementById('r-final-pit').innerText = '- ' + Math.round(finalPit).toLocaleString() + ' ₮';
+    document.getElementById('r-net').innerText = Math.round(netSalary).toLocaleString() + ' ₮';
+
+    document.getElementById('resultBox').style.display = 'block';
+}
+
+// Хуудас ачаалагдах үед анхны тооцооллыг автоматаар харуулна
+window.onload = function() {
+    calculateDetailedPayroll();
+};
+</script>
+
 </body>
 </html>

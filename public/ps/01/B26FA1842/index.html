@@ -1,107 +1,323 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1842 — Цэлмэг.Ж | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Цэлмэг.Ж (B26FA1842), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Цалингийн тооцоолуур</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
+  :root{
+    --ink:#211c17;
+    --paper:#f4ece0;
+    --sky:#1c3f66;
+    --red:#a3352a;
+    --gold:#c99a3c;
+    --line:#ddd0b8;
+    --card:#fffdf8;
+    --muted:#867a68;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Georgia', 'Times New Roman', serif;
+    display:flex;
+    justify-content:center;
+    padding:36px 18px 60px;
   }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
+  .wrap{width:100%;max-width:480px;}
+  h1{
+    font-size:1.7rem;
+    font-weight:400;
+    letter-spacing:0.01em;
+    margin:0 0 10px;
+    color:var(--sky);
   }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  .flagbar{
+    display:flex;
+    height:5px;
+    width:64px;
+    margin-bottom:22px;
+    overflow:hidden;
   }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
+  .flagbar span{flex:1;}
+  .flagbar span:nth-child(1){background:var(--red);}
+  .flagbar span:nth-child(2){background:var(--gold);}
+  .flagbar span:nth-child(3){background:var(--sky);}
+  .sub{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:0.88rem;
+    color:#6b5f4d;
+    margin:0 0 28px;
+    line-height:1.5;
   }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:26px 22px;
   }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
+  label{
+    display:block;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:0.82rem;
+    color:#5b5f57;
+    margin-bottom:6px;
   }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
+  .amount-row{
+    display:flex;
+    align-items:baseline;
+    border-bottom:2px solid var(--sky);
+    padding-bottom:8px;
+    margin-bottom:22px;
   }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+  .amount-row span{
+    font-size:1.3rem;
+    color:var(--sky);
+    margin-right:6px;
+  }
+  input[type=text]{
+    flex:1;
+    border:none;
+    outline:none;
+    background:transparent;
+    font-family:'Georgia',serif;
+    font-size:1.7rem;
+    color:var(--ink);
+    width:100%;
+  }
+  .toggle{
+    display:flex;
+    gap:0;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:0.82rem;
+    margin-bottom:22px;
+    border:1px solid var(--line);
+  }
+  .toggle button{
+    flex:1;
+    padding:9px 6px;
+    border:none;
+    background:var(--card);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .toggle button.active{
+    background:var(--red);
+    color:#fff;
+  }
+  .toggle button:not(:last-child){border-right:1px solid var(--line);}
+
+  .rows{margin-top:6px;}
+  .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .row .label{font-size:0.9rem;color:#3a3d37;}
+  .row .label small{display:block;font-size:0.72rem;color:var(--muted);margin-top:2px;}
+  .row .value{font-size:0.95rem;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .row.minus .value{color:var(--red);}
+  .row.plus .value{color:var(--sky);}
+  .row.total{
+    border-bottom:none;
+    border-top:2px solid var(--gold);
+    margin-top:6px;
+    padding-top:16px;
+  }
+  .row.total .label{font-size:1rem;color:var(--sky);}
+  .row.total .value{
+    font-family:'Georgia',serif;
+    font-size:1.55rem;
+    color:var(--red);
+  }
+
+  .detailToggle{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:0.78rem;
+    color:var(--sky);
+    background:none;
+    border:none;
+    padding:14px 0 0;
+    cursor:pointer;
+    text-decoration:underline;
+  }
+  .detail{
+    display:none;
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px dashed var(--line);
+  }
+  .detail.open{display:block;}
+  .detail .row{padding:7px 0;}
+  .detail .row .label{font-size:0.82rem;color:var(--muted);}
+  .detail .row .value{font-size:0.85rem;}
+
+  .note{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:0.74rem;
+    color:var(--muted);
+    line-height:1.55;
+    margin-top:20px;
+  }
+  .note b{color:var(--sky);}
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1842</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Цэлмэг.Ж</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
+<div class="wrap">
+  <h1>Цалингийн тооцоолуур</h1>
+  <div class="flagbar"><span></span><span></span><span></span></div>
+  <p class="sub">Үндсэн цалингаа оруулаад гарт олгох цэвэр цалингаа шалгаарай — 2026 оны НДШ, ХХОАТ-ын дүрмээр.</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1842/index.html</code>
-      </div>
+  <div class="card">
+    <label for="salary">Үндсэн цалин (₮)</label>
+    <div class="amount-row">
+      <span>₮</span>
+      <input type="text" id="salary" inputmode="numeric" placeholder="1 500 000" value="1500000">
+    </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+    <div class="toggle">
+      <button id="btnGross" class="active">Гараас нь бодох</button>
+      <button id="btnNet">Гартаас буцааж бодох</button>
+    </div>
+
+    <div class="rows" id="results"></div>
+
+    <button class="detailToggle" id="detailBtn">Дэлгэрэнгүй задаргаа харах ▾</button>
+    <div class="detail" id="detail"></div>
+
+    <p class="note">
+      <b>НДШ (ажилтан) 9.5%</b> = тэтгэвэр 8.5% + тэтгэмж 0.8% + ажилгүйдэл 0.2% + ҮОМШӨ 0%, шимтгэл бодох дээд хязгаар = ХХДХ×10 (792,000₮×10 = 7,920,000₮). <b>Ажил олгогчийн НДШ 10.4%</b>-с эхэлнэ (тэтгэвэр 8.5% + тэтгэмж 1.0% + ажилгүйдэл 0.6% + ҮОМШӨ 0.3%); *ҮОМШӨ-ийн хувь ажлын байрны эрсдэлийн зэрэглэлээс хамааран 0.3% / 1.2% / 2.2% байж болох тул ажил олгогчийн нийт зардал өндөр эрсдэлтэй ажлын байранд илүү гарна. Энэ нь ажилтны гарт олгох дүнд нөлөөгүй, зөвхөн мэдээлэл. <b>ХХОАТ</b> НДШ хассан орлогод шаталсан: 0–10 сая₮ дээр 10%, 10–15 сая₮-н илүү дүнд 15%, 15 сая₮-с дээших илүү дүнд 20%. Сарын татварын хөнгөлөлт (10,000–20,000₮) орлогын түвшнээс шаталсан гэдгийг та дурьдсан ч тодорхой шатлалыг өгөөгүй тул <b>ойролцоо (≤3 сая=20,000₮, ≤6 сая=15,000₮, түүнээс дээш=10,000₮)</b> утгаар тооцов — залруулах хүснэгттэй бол хэлээрэй.
+    </p>
+  </div>
+</div>
+
+<script>
+const MIN_WAGE = 792000;
+const NDSH_CAP = MIN_WAGE * 10; // 7,920,000
+// Ажилтны төлөх шимтгэл: Тэтгэвэр 8.5% + Тэтгэмж 0.8% + Ажилгүйдэл 0.2% + ҮОМШӨ 0% = 9.5%
+const EMPLOYEE_NDSH_RATE = 0.095;
+// Ажил олгогчийн төлөх (суурь, эрсдэлийн хамгийн бага зэрэглэл): Тэтгэвэр 8.5% + Тэтгэмж 1.0% + Ажилгүйдэл 0.6% + ҮОМШӨ 0.3% = 10.4%
+const EMPLOYER_NDSH_RATE = 0.104;
+
+const salaryInput = document.getElementById('salary');
+const results = document.getElementById('results');
+const detail = document.getElementById('detail');
+const detailBtn = document.getElementById('detailBtn');
+const btnGross = document.getElementById('btnGross');
+const btnNet = document.getElementById('btnNet');
+let mode = 'gross';
+let detailOpen = false;
+
+function fmt(n){
+  n = Math.round(n);
+  return n.toLocaleString('mn-MN').replace(/,/g,' ');
+}
+function parseNum(v){
+  const n = parseFloat(String(v).replace(/[^0-9.]/g,''));
+  return isNaN(n) ? 0 : n;
+}
+
+function taxCredit(taxable){
+  if(taxable <= 3000000) return 20000;
+  if(taxable <= 6000000) return 15000;
+  return 10000;
+}
+
+function progressiveKhoat(taxable){
+  let tax;
+  if(taxable <= 10000000){
+    tax = taxable * 0.10;
+  } else if(taxable <= 15000000){
+    tax = 10000000*0.10 + (taxable-10000000)*0.15;
+  } else {
+    tax = 10000000*0.10 + 5000000*0.15 + (taxable-15000000)*0.20;
+  }
+  return tax;
+}
+
+function calcFromGross(gross){
+  const ndshBase = Math.min(gross, NDSH_CAP);
+  const ndsh = ndshBase * EMPLOYEE_NDSH_RATE;
+  const taxable = gross - ndsh;
+  const khoatRaw = progressiveKhoat(taxable);
+  const credit = taxCredit(taxable);
+  const khoat = Math.max(khoatRaw - credit, 0);
+  const net = taxable - khoat;
+  const employerNdsh = ndshBase * EMPLOYER_NDSH_RATE;
+  const employerTotal = gross + employerNdsh;
+  return {gross, ndshBase, ndsh, taxable, khoatRaw, credit, khoat, net, employerNdsh, employerTotal};
+}
+
+function grossFromNet(targetNet){
+  let lo = 0, hi = 500000000;
+  for(let i=0;i<60;i++){
+    const mid = (lo+hi)/2;
+    const r = calcFromGross(mid);
+    if(r.net < targetNet) lo = mid; else hi = mid;
+  }
+  return calcFromGross((lo+hi)/2);
+}
+
+function render(){
+  const val = parseNum(salaryInput.value);
+  const r = mode === 'gross' ? calcFromGross(val) : grossFromNet(val);
+
+  results.innerHTML = `
+    <div class="row">
+      <div class="label">Үндсэн цалин</div>
+      <div class="value">${fmt(r.gross)} ₮</div>
+    </div>
+    <div class="row minus">
+      <div class="label">НДШ (ажилтан)<small>9.5%, хязгаар ${fmt(NDSH_CAP)}₮</small></div>
+      <div class="value">− ${fmt(r.ndsh)} ₮</div>
+    </div>
+    <div class="row minus">
+      <div class="label">ХХОАТ<small>шаталсан, хөнгөлөлт хассан</small></div>
+      <div class="value">− ${fmt(r.khoat)} ₮</div>
+    </div>
+    <div class="row total">
+      <div class="label">Гарт олгох цалин</div>
+      <div class="value">${fmt(r.net)} ₮</div>
+    </div>
+  `;
+
+  detail.innerHTML = `
+    <div class="row"><div class="label">НДШ ногдох дүн</div><div class="value">${fmt(r.ndshBase)} ₮</div></div>
+    <div class="row"><div class="label">НДШ ногдох орлого (татвар тооцох суурь)</div><div class="value">${fmt(r.taxable)} ₮</div></div>
+    <div class="row"><div class="label">ХХОАТ (хөнгөлөлтийн өмнө)</div><div class="value">${fmt(r.khoatRaw)} ₮</div></div>
+    <div class="row plus"><div class="label">Татварын хөнгөлөлт</div><div class="value">− ${fmt(r.credit)} ₮</div></div>
+    <div class="row"><div class="label">Ажилтны шимтгэлийн задаргаа<small>Тэтгэвэр 8.5% / Тэтгэмж 0.8% / Ажилгүйдэл 0.2% / ҮОМШӨ 0%</small></div><div class="value"></div></div>
+    <div class="row"><div class="label">Ажил олгогчийн НДШ (10.4%)<small>Тэтгэвэр 8.5% / Тэтгэмж 1.0% / Ажилгүйдэл 0.6% / ҮОМШӨ 0.3%*</small></div><div class="value">${fmt(r.employerNdsh)} ₮</div></div>
+    <div class="row"><div class="label">Ажил олгогчид ногдох нийт зардал</div><div class="value">${fmt(r.employerTotal)} ₮</div></div>
+  `;
+}
+
+btnGross.addEventListener('click', () => {
+  mode = 'gross';
+  btnGross.classList.add('active');
+  btnNet.classList.remove('active');
+  salaryInput.value = 1500000;
+  render();
+});
+btnNet.addEventListener('click', () => {
+  mode = 'net';
+  btnNet.classList.add('active');
+  btnGross.classList.remove('active');
+  salaryInput.value = 1200000;
+  render();
+});
+detailBtn.addEventListener('click', () => {
+  detailOpen = !detailOpen;
+  detail.classList.toggle('open', detailOpen);
+  detailBtn.textContent = detailOpen ? 'Дэлгэрэнгүй задаргааг нуух ▴' : 'Дэлгэрэнгүй задаргаа харах ▾';
+});
+
+salaryInput.addEventListener('input', render);
+render();
+</script>
 </body>
 </html>
