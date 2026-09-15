@@ -1,107 +1,340 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1819 — Аадий.А | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Аадий.А (B26FA1819), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Монголын Цалингийн Татвар, НДШ, Нэмэгдэл Тооцоолуур (2026)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        input, select {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+        .result-box {
+            margin-top: 25px;
+            background: #eef9f1;
+            padding: 20px;
+            border-left: 5px solid #27ae60;
+            border-radius: 5px;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px dashed #ccc;
+            font-size: 15px;
+        }
+        .result-item strong {
+            color: #2c3e50;
+        }
+        .breakdown-title {
+            font-weight: bold;
+            background: #dcdde1;
+            padding: 6px 10px;
+            margin-top: 15px;
+            border-radius: 3px;
+        }
+        .notes {
+            margin-top: 30px;
+            background: #fdfefe;
+            border: 1px solid #dcdde1;
+            padding: 20px;
+            border-radius: 5px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #2c3e50;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1819</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Аадий.А</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1819/index.html</code>
-      </div>
+<div class="container">
+    <h1>Цалингийн Татвар, НДШ & Нэмэгдэл Тооцоолуур (2026 он)</h1>
+    
+    <div class="grid-2">
+        <div class="form-group">
+            <label for="grossSalary">Үндсэн сарын цалин (₮):</label>
+            <input type="number" id="grossSalary" value="2500000" min="0">
+        </div>
+        <div class="form-group">
+            <label for="hazardDegree">Ажил олгогчийн эрсдэлийн зэрэг:</label>
+            <select id="hazardDegree">
+                <option value="1">Хэвийн нөхцөл (12.5%)</option>
+                <option value="2">Хэвийн бус / Аюултай (13.5%)</option>
+                <option value="3">Онцгой аюултай (14.5%)</option>
+            </select>
+        </div>
+    </div>
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+    <div class="grid-2">
+        <div class="form-group">
+            <label for="targetDays">Сард ажиллавал зохих хоног:</label>
+            <input type="number" id="targetDays" value="22" min="1">
+        </div>
+        <div class="form-group">
+            <label for="workedDays">Ажилласан хоног:</label>
+            <input type="number" id="workedDays" value="22" min="0">
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="form-group">
+            <label for="overtimeHours">Илүү цаг (1.5x):</label>
+            <input type="number" id="overtimeHours" value="0" min="0">
+        </div>
+        <div class="form-group">
+            <label for="nightHours">Шөнийн цаг (22:00-06:00, +0.2x):</label>
+            <input type="number" id="nightHours" value="0" min="0">
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="form-group">
+            <label for="weekendHours">Амралтын өдрийн цаг (1.5x):</label>
+            <input type="number" id="weekendHours" value="0" min="0">
+        </div>
+        <div class="form-group">
+            <label for="holidayHours">Баярын өдрийн цаг (2.0x):</label>
+            <input type="number" id="holidayHours" value="0" min="0">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="bonusSalary">Шагнал, урамшуулал (₮):</label>
+        <input type="number" id="bonusSalary" value="0" min="0">
+    </div>
+
+    <button onclick="calculateSalary()">Тооцоолох</button>
+
+    <div class="result-box" id="results" style="display:none;">
+        <h2>Тооцооллын Нарийвчилсан Задаргаа</h2>
+        
+        <div class="breakdown-title">1. Үндсэн ба Ажилласан Хоногийн Орлого</div>
+        <div class="result-item">
+            <span>Нэг цагийн хөлс (Жишиг):</span>
+            <strong id="resHourlyRate">0 ₮</strong>
+        </div>
+        <div class="result-item">
+            <span>Ажилласан хоногийн бодогдсон цалин:</span>
+            <strong id="resBaseEarned">0 ₮</strong>
+        </div>
+
+        <div class="breakdown-title">2. Нэмэгдэл Хөлснүүд (ХТХ-ийн дагуу)</div>
+        <div class="result-item">
+            <span>Илүү цагийн нэмэгдэл (ХТХ 109.1 - 1.5x):</span>
+            <strong id="resOvertimePay">0 ₮</strong>
+        </div>
+        <div class="result-item">
+            <span>Шөнийн цагийн нэмэгдэл (ХТХ 109.3 - +0.2x):</span>
+            <strong id="resNightPay">0 ₮</strong>
+        </div>
+        <div class="result-item">
+            <span>Амралтын өдрийн нэмэгдэл (ХТХ 109.4 - 1.5x):</span>
+            <strong id="resWeekendPay">0 ₮</strong>
+        </div>
+        <div class="result-item">
+            <span>Баярын өдрийн нэмэгдэл (ХТХ 109.5 - 2.0x):</span>
+            <strong id="resHolidayPay">0 ₮</strong>
+        </div>
+        <div class="result-item">
+            <span>Шагнал, урамшуулал:</span>
+            <strong id="resBonus">0 ₮</strong>
+        </div>
+
+        <div class="breakdown-title" style="background:#b2bec3;">3. Суутгал Хийхээс Өмнөх НИЙТ ЦАЛИН</div>
+        <div class="result-item" style="font-weight:bold; font-size:16px;">
+            <span>Шинэ бодогдсон НИЙТ цалин:</span>
+            <strong id="resTotalGross" style="color:#2c3e50;">0 ₮</strong>
+        </div>
+
+        <div class="breakdown-title">4. Суутгалууд (Шинэ Нийт Цалингаас)</div>
+        <div class="result-item">
+            <span>Ажилтны төлөх НДШ (11.5%):</span>
+            <strong id="resEeNdsh" style="color: #c0392b;">-0 ₮</strong>
+        </div>
+        <div class="result-item">
+            <span>Татвар ногдуулах орлого (НДШ хассан):</span>
+            <strong id="resTaxable">0 ₮</strong>
+        </div>
+        <div class="result-item">
+            <span>ХХОАТ (Шаталсан + 11,000 ₮ хөнгөлөлт):</span>
+            <strong id="resKhoat" style="color: #c0392b;">-0 ₮</strong>
+        </div>
+
+        <div class="result-item" style="font-size: 18px; font-weight: bold; background: #d4edda; padding: 10px; border-radius: 5px; margin-top:15px;">
+            <span>ГАР ДЭЭР АВАХ ЦАЛИН:</span>
+            <strong id="resNet" style="color: #155724;">0 ₮</strong>
+        </div>
+        
+        <br>
+        <div class="breakdown-title">5. Ажил Олгогчийн Зардал</div>
+        <div class="result-item">
+            <span>Ажил олгогчийн төлөх НДШ:</span>
+            <strong id="resErNdsh" style="color: #2980b9;">0 ₮</strong>
+        </div>
+        <div class="result-item">
+            <span>Байгууллагаас гарах нийт зардал:</span>
+            <strong id="resTotalCost">0 ₮</strong>
+        </div>
+    </div>
+
+    <div class="notes">
+        <h3>Хууль тогтоомж болон аргачлалын тайлбар:</h3>
+        <ul>
+            <li><strong>Цагийн хөлс:</strong> ХТХ-ийн 107-р зүйлийн дагуу сарын үндсэн цалинг тухайн сарын ажиллавал зохих цагт (ажиллавал зохих хоног × 8 цаг) хувааж тодорхойлов.</li>
+            <li><strong>Илүү цаг (ХТХ 109.1):</strong> Илүү цагаар ажилласан тохиолдолд цагийн хөлсийг 1.5 дахин нэмэгдүүлж олгоно. (Жич: 109.2-т зааснаар талууд тохиролцон чөлөөгөөр орлуулж болно).</li>
+            <li><strong>Шөнийн цаг (ХТХ 109.3):</strong> 22:00-06:00 цагийн хооронд ажилласан цаг тутамд нэг цагийн хөлсний 20%-ийн нэмэгдэл (+0.2x) олгоно.</li>
+            <li><strong>Амралт ба Баярын өдөр (ХТХ 109.4, 109.5):</strong> Амралтын өдөр ажиллавал 1.5 дахин, Баярын өдөр ажиллавал 2.0 дахин нэмэгдүүлнэ.</li>
+            <li><strong>Нэмэгдэл давхардах (ХТХ 109.6):</strong> Нэмэгдэл хөлснүүдийг тус тусад нь бодож давхарлан нэмж олгоно.</li>
+            <li><strong>НДШ ба ХХОАТ:</strong> БҮХ нэмэгдэл ба урамшуулал суутгал хийхээс өмнөх нийт цалинд нэмэгдэж, шинэ нийт дүнгээс НДШ болон ХХОАТ бодогдоно.</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Систем хөгжүүлсэн болон кодоор боловсруулсан: <strong>Aadii</strong></p>
+        <p>© 2026 Цалин Татварын Тооцоолуур | Монгол Улсын Хууль Тогтоомжид Нийцүүлэн Бэлтгэв</p>
+    </footer>
+</div>
+
+<script>
+    function calculateSalary() {
+        const gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+        const targetDays = parseFloat(document.getElementById('targetDays').value) || 22;
+        const workedDays = parseFloat(document.getElementById('workedDays').value) || 0;
+        const overtimeHours = parseFloat(document.getElementById('overtimeHours').value) || 0;
+        const nightHours = parseFloat(document.getElementById('nightHours').value) || 0;
+        const weekendHours = parseFloat(document.getElementById('weekendHours').value) || 0;
+        const holidayHours = parseFloat(document.getElementById('holidayHours').value) || 0;
+        const bonusSalary = parseFloat(document.getElementById('bonusSalary').value) || 0;
+        const hazardDegree = parseInt(document.getElementById('hazardDegree').value);
+
+        // 1. Ажиллавал зохих цаг ба Цагийн хөлс бодолт (ХТХ 107)
+        const targetHours = targetDays * 8;
+        const hourlyRate = targetHours > 0 ? gross / targetHours : 0;
+
+        // 2. Ажилласан хоногийн үндсэн цалин
+        const baseEarned = targetDays > 0 ? (gross / targetDays) * workedDays : 0;
+
+        // 3. Нэмэгдэл хөлснүүдийн бодолт (ХТХ 109)
+        const overtimePay = overtimeHours * hourlyRate * 1.5; // ХТХ 109.1
+        const nightPay = nightHours * hourlyRate * 0.2;        // ХТХ 109.3 (+20% нэмэгдэл)
+        const weekendPay = weekendHours * hourlyRate * 1.5;   // ХТХ 109.4
+        const holidayPay = holidayHours * hourlyRate * 2.0;   // ХТХ 109.5
+
+        // 4. Суутгал хийхээс өмнөх шинэ НИЙТ БОДОГДСОН ЦАЛИН
+        const totalGross = baseEarned + overtimePay + nightPay + weekendPay + holidayPay + bonusSalary;
+
+        // 5. НДШ бодолт (2026 оны дээд хязгаар: 7,920,000 ₮)
+        const NDSH_CAP = 7920000;
+        const ndshBase = Math.min(totalGross, NDSH_CAP);
+
+        const eeNdsh = ndshBase * 0.115; // Ажилтны 11.5%
+
+        let erNdshRate = 0.125;
+        if (hazardDegree === 2) erNdshRate = 0.135;
+        if (hazardDegree === 3) erNdshRate = 0.145;
+        const erNdsh = ndshBase * erNdshRate; // Ажил олгогчийн НДШ
+
+        // 6. ХХОАТ бодолт (НДШ хассаны дараах татвар ногдуулах орлогоос)
+        const taxableIncome = totalGross - eeNdsh;
+        let khoat = 0;
+
+        if (taxableIncome > 0) {
+            if (taxableIncome <= 10000000) {
+                khoat = taxableIncome * 0.10;
+            } else if (taxableIncome <= 15000000) {
+                khoat = 1000000 + ((taxableIncome - 10000000) * 0.15);
+            } else {
+                khoat = 1750000 + ((taxableIncome - 15000000) * 0.20);
+            }
+            // ХХОАТ-ын хуулийн дагуу сарын 11,000 ₮ татварын хөнгөлөлт хасах
+            khoat = Math.max(0, khoat - 11000);
+        }
+
+        // 7. Гар дээр авах цалин ба байгууллагын нийт зардал
+        const netSalary = totalGross - eeNdsh - khoat;
+        const totalEmployerCost = totalGross + erNdsh;
+
+        // Дэлгэцэнд үр дүнг хэвлэх
+        document.getElementById('resHourlyRate').innerText = Math.round(hourlyRate).toLocaleString('mn-MN') + ' ₮ / цаг';
+        document.getElementById('resBaseEarned').innerText = Math.round(baseEarned).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resOvertimePay').innerText = Math.round(overtimePay).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resNightPay').innerText = Math.round(nightPay).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resWeekendPay').innerText = Math.round(weekendPay).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resHolidayPay').innerText = Math.round(holidayPay).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resBonus').innerText = Math.round(bonusSalary).toLocaleString('mn-MN') + ' ₮';
+        
+        document.getElementById('resTotalGross').innerText = Math.round(totalGross).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resEeNdsh').innerText = '-' + Math.round(eeNdsh).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resTaxable').innerText = Math.round(taxableIncome).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resKhoat').innerText = '-' + Math.round(khoat).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resNet').innerText = Math.round(netSalary).toLocaleString('mn-MN') + ' ₮';
+        
+        document.getElementById('resErNdsh').innerText = Math.round(erNdsh).toLocaleString('mn-MN') + ' ₮';
+        document.getElementById('resTotalCost').innerText = Math.round(totalEmployerCost).toLocaleString('mn-MN') + ' ₮';
+
+        document.getElementById('results').style.display = 'block';
+    }
+</script>
+
 </body>
 </html>

@@ -1,107 +1,899 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>B26FA1836 — Сарангуа.Д | Бодлого 01 — Salary, Tax and Insurance</title>
-<meta name="description" content="EAIB101 — Сарангуа.Д (B26FA1836), Бодлого 01 — Salary, Tax and Insurance. Ажил хараахан илгээгдээгүй байна.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Цалингийн тооцоолуур</title>
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    * {
+        box-sizing: border-box;
     }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-  .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
-  }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
-  .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
-  }
-  .notice p { margin: 0 0 .6rem; }
-  .notice p:last-child { margin-bottom: 0; }
-  .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
-  }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f3f6fa;
+        color: #172033;
+    }
+
+    .container {
+        max-width: 1050px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    h1 {
+        margin-bottom: 8px;
+        color: #173b72;
+    }
+
+    .subtitle {
+        color: #667085;
+        margin-bottom: 25px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #ccd3dd;
+        border-radius: 9px;
+        font-size: 16px;
+        outline: none;
+    }
+
+    input:focus {
+        border-color: #3478db;
+        box-shadow: 0 0 0 3px rgba(52,120,219,.12);
+    }
+
+    .section-title {
+        margin-top: 0;
+        color: #173b72;
+    }
+
+    .salary-total {
+        background: #eaf3ff;
+        border: 1px solid #bdd7ff;
+        border-radius: 12px;
+        padding: 18px;
+        margin-top: 20px;
+    }
+
+    .salary-total strong {
+        font-size: 24px;
+        color: #1456a0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 13px 10px;
+        border-bottom: 1px solid #e6e9ee;
+        text-align: left;
+    }
+
+    th {
+        background: #f7f9fc;
+    }
+
+    td:last-child,
+    th:last-child {
+        text-align: right;
+    }
+
+    .result-final {
+        background: #e8f8ee;
+        color: #13733c;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .note {
+        background: #fff8e6;
+        border: 1px solid #f0d58b;
+        padding: 14px;
+        border-radius: 10px;
+        margin-top: 15px;
+        color: #735b15;
+        line-height: 1.5;
+    }
+
+    .test-box {
+        overflow-x: auto;
+    }
+
+    .pass {
+        color: #16803c;
+        font-weight: bold;
+    }
+
+    .fail {
+        color: #c62828;
+        font-weight: bold;
+    }
+
+    button {
+        background: #1769d1;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 9px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #1255aa;
+    }
+
+    .small {
+        font-size: 13px;
+        color: #667085;
+    }
+
+    @media (max-width: 700px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+
+        .container {
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        .card {
+            padding: 16px;
+        }
+
+        table {
+            font-size: 14px;
+        }
+    }
 </style>
 </head>
+
 <body>
-  <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">B26FA1836</span>
-        <span class="badge set">Бодлого 01 — Salary, Tax and Insurance</span>
-      </div>
-      <h1>Сарангуа.Д</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
 
-      <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
-        <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
-        <code class="path">public/ps/01/B26FA1836/index.html</code>
-      </div>
+<div class="container">
 
-      <footer><a href="/ps/01/">← Бодлого 01 — Salary, Tax and Insurance</a></footer>
-    </article>
-  </main>
+    <h1>Цалингийн тооцоолуур</h1>
+    <div class="subtitle">
+        НДШ 11.5% • Ажилласан цаг • Илүү цаг • Шөнийн цаг • Амралт/баяр • Шагнал
+    </div>
+
+    <!-- АЖИЛЛАСАН ЦАГ -->
+    <div class="card">
+        <h2 class="section-title">1. Ажилласан хугацаа</h2>
+
+        <div class="grid">
+
+            <div class="field">
+                <label>Сарын үндсэн цалин</label>
+                <input id="baseSalary" type="number" min="0" value="2000000">
+            </div>
+
+            <div class="field">
+                <label>Сард ажиллавал зохих хоног</label>
+                <input id="requiredDays" type="number" min="0" value="22">
+            </div>
+
+            <div class="field">
+                <label>Ажилласан хоног</label>
+                <input id="workedDays" type="number" min="0" value="22">
+            </div>
+
+            <div class="field">
+                <label>Сарын ажиллах цаг</label>
+                <input id="monthlyHours" type="number" min="1" value="176">
+            </div>
+
+            <div class="field">
+                <label>Ажилласан цаг</label>
+                <input id="workedHours" type="number" min="0" value="176">
+            </div>
+
+            <div class="field">
+                <label>Илүү цаг</label>
+                <input id="overtimeHours" type="number" min="0" value="0">
+            </div>
+
+            <div class="field">
+                <label>Шөнийн цаг</label>
+                <input id="nightHours" type="number" min="0" value="0">
+            </div>
+
+            <div class="field">
+                <label>Амралтын өдрийн цаг</label>
+                <input id="weekendHours" type="number" min="0" value="0">
+            </div>
+
+            <div class="field">
+                <label>Баярын өдрийн цаг</label>
+                <input id="holidayHours" type="number" min="0" value="0">
+            </div>
+
+            <div class="field">
+                <label>Шагнал, урамшуулал</label>
+                <input id="bonus" type="number" min="0" value="0">
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- НЭМЭГДЭЛ -->
+    <div class="card">
+        <h2 class="section-title">2. Нэмэгдэл цагийн тохиргоо</h2>
+
+        <div class="grid">
+
+            <div class="field">
+                <label>Илүү цагийн коэффициент</label>
+                <input id="overtimeRate" type="number" step="0.01" value="1.5">
+            </div>
+
+            <div class="field">
+                <label>Шөнийн цагийн коэффициент</label>
+                <input id="nightRate" type="number" step="0.01" value="1.2">
+            </div>
+
+            <div class="field">
+                <label>Амралтын өдрийн коэффициент</label>
+                <input id="weekendRate" type="number" step="0.01" value="1.5">
+            </div>
+
+            <div class="field">
+                <label>Баярын өдрийн коэффициент</label>
+                <input id="holidayRate" type="number" step="0.01" value="2">
+            </div>
+
+        </div>
+
+        <div class="note">
+            Цагийн нэмэгдлийг үндсэн цагийн үнэлгээнээс тооцно.
+            Коэффициентүүдийг шаардлагатай бол өөрчилж болно.
+        </div>
+    </div>
+
+
+    <!-- ТОХИРГОО -->
+    <div class="card">
+        <h2 class="section-title">3. Татвар, шимтгэлийн тохиргоо</h2>
+
+        <div class="grid">
+
+            <div class="field">
+                <label>НДШ (%)</label>
+                <input id="ndshRate" type="number" step="0.01" value="11.5">
+            </div>
+
+            <div class="field">
+                <label>НДШ тооцох дээд хязгаар</label>
+                <input id="ndshCap" type="number" min="0" value="7700000">
+            </div>
+
+            <div class="field">
+                <label>ХХОАТ хөнгөлөлт</label>
+                <input id="taxCredit" type="number" min="0" value="0">
+            </div>
+
+        </div>
+
+        <div class="note">
+            НДШ = 11.5%. НДШ-ийн тооцох суурь нь дээд хязгаараас дээш гарахгүй.
+            Татварын хөнгөлөлтийг татвар бодсоны дараа хэрэглэнэ.
+        </div>
+    </div>
+
+
+    <!-- НИЙТ ЦАЛИН -->
+    <div class="card">
+        <h2 class="section-title">4. Суутгалын өмнөх цалингийн задаргаа</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Цалингийн төрөл</th>
+                    <th>Дүн</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Үндсэн цалин</td>
+                    <td id="outBase">0</td>
+                </tr>
+
+                <tr>
+                    <td>Илүү цагийн нэмэгдэл</td>
+                    <td id="outOvertime">0</td>
+                </tr>
+
+                <tr>
+                    <td>Шөнийн цагийн нэмэгдэл</td>
+                    <td id="outNight">0</td>
+                </tr>
+
+                <tr>
+                    <td>Амралтын өдрийн нэмэгдэл</td>
+                    <td id="outWeekend">0</td>
+                </tr>
+
+                <tr>
+                    <td>Баярын өдрийн нэмэгдэл</td>
+                    <td id="outHoliday">0</td>
+                </tr>
+
+                <tr>
+                    <td>Шагнал, урамшуулал</td>
+                    <td id="outBonus">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="salary-total">
+            Суутгал хийхээс өмнөх нийт цалин:
+            <br>
+            <strong id="grossSalary">0 ₮</strong>
+        </div>
+    </div>
+
+
+    <!-- СУУТГАЛ -->
+    <div class="card">
+        <h2 class="section-title">5. Цалингийн үндсэн тооцоо</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Тооцоолол</th>
+                    <th>Дүн</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Суутгасан НДШ</td>
+                    <td id="resultNdsh">0</td>
+                </tr>
+
+                <tr>
+                    <td>Татвар ногдох орлого</td>
+                    <td id="taxableIncome">0</td>
+                </tr>
+
+                <tr>
+                    <td>Хөнгөлөлтөөс өмнөх татвар</td>
+                    <td id="beforeCreditTax">0</td>
+                </tr>
+
+                <tr>
+                    <td>Эдэлсэн хөнгөлөлт</td>
+                    <td id="usedCredit">0</td>
+                </tr>
+
+                <tr>
+                    <td>Суутгасан ХХОАТ</td>
+                    <td id="finalTax">0</td>
+                </tr>
+
+                <tr class="result-final">
+                    <td>Гарт олгох цалин</td>
+                    <td id="netSalary">0</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- ШАЛГАХ ТООЦОО -->
+    <div class="card">
+        <h2 class="section-title">6. Таван шалгах тооцоо</h2>
+
+        <p class="small">
+            Эдгээрийг JavaScript автоматаар бодож, үндсэн тооцооллын логиктой тулган шалгана.
+        </p>
+
+        <div class="test-box">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Шалгах нөхцөл</th>
+                        <th>Цалин</th>
+                        <th>Татвар</th>
+                        <th>НДШ</th>
+                        <th>Гарт</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+
+                <tbody id="testResults"></tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   ТУСЛАХ ФУНКЦ
+========================================= */
+
+function money(value) {
+    return Math.round(value).toLocaleString("mn-MN") + " ₮";
+}
+
+function number(id) {
+    return Number(document.getElementById(id).value) || 0;
+}
+
+
+/* =========================================
+   ТАТВАРЫН ФУНКЦ
+   ЭНД ТАТВАРЫН ШАТЛАЛЫГ ӨӨРЧИЛЖ БОЛНО
+========================================= */
+
+function calculateIncomeTax(taxableIncome) {
+
+    if (taxableIncome <= 0) {
+        return 0;
+    }
+
+    /*
+       Жишиг шатлал:
+
+       0 - 10,000,000       : 10%
+       10,000,001 - 20m     : 15%
+       20,000,001 - 30m     : 20%
+       30m-с дээш           : 25%
+
+       Хэрэв танай хэрэглэж буй татварын
+       албан ёсны шатлал өөр бол энд солино.
+    */
+
+    let tax = 0;
+
+    const b1 = 10000000;
+    const b2 = 20000000;
+    const b3 = 30000000;
+
+    if (taxableIncome <= b1) {
+
+        tax = taxableIncome * 0.10;
+
+    } else if (taxableIncome <= b2) {
+
+        tax =
+            b1 * 0.10 +
+            (taxableIncome - b1) * 0.15;
+
+    } else if (taxableIncome <= b3) {
+
+        tax =
+            b1 * 0.10 +
+            (b2 - b1) * 0.15 +
+            (taxableIncome - b2) * 0.20;
+
+    } else {
+
+        tax =
+            b1 * 0.10 +
+            (b2 - b1) * 0.15 +
+            (b3 - b2) * 0.20 +
+            (taxableIncome - b3) * 0.25;
+    }
+
+    return Math.max(0, tax);
+}
+
+
+/* =========================================
+   ҮНДСЭН ТООЦОО
+========================================= */
+
+function calculate(salaryOnly = null) {
+
+    let baseSalary =
+        salaryOnly !== null
+            ? salaryOnly
+            : number("baseSalary");
+
+    const requiredDays = number("requiredDays");
+    const workedDays = number("workedDays");
+
+    const monthlyHours = number("monthlyHours");
+    const workedHours = number("workedHours");
+
+    const overtimeHours = number("overtimeHours");
+    const nightHours = number("nightHours");
+    const weekendHours = number("weekendHours");
+    const holidayHours = number("holidayHours");
+
+    const bonus = number("bonus");
+
+    const overtimeRate = number("overtimeRate");
+    const nightRate = number("nightRate");
+    const weekendRate = number("weekendRate");
+    const holidayRate = number("holidayRate");
+
+    const ndshRate = number("ndshRate") / 100;
+    const ndshCap = number("ndshCap");
+
+    const credit = number("taxCredit");
+
+
+    /*
+       Хэрэв ажилласан хоног нь бүтэн сарынхаас бага бол
+       үндсэн цалинг ажилласан хоногоор пропорциональ бодно.
+    */
+
+    let adjustedBase = baseSalary;
+
+    if (
+        salaryOnly === null &&
+        requiredDays > 0 &&
+        workedDays >= 0 &&
+        workedDays < requiredDays
+    ) {
+        adjustedBase =
+            baseSalary * workedDays / requiredDays;
+    }
+
+
+    /* Цагийн үндсэн үнэлгээ */
+
+    let hourlyRate = 0;
+
+    if (monthlyHours > 0) {
+        hourlyRate = baseSalary / monthlyHours;
+    }
+
+
+    /* Нэмэгдлүүд */
+
+    const overtimePay =
+        hourlyRate * overtimeHours * overtimeRate;
+
+    const nightPay =
+        hourlyRate * nightHours * nightRate;
+
+    const weekendPay =
+        hourlyRate * weekendHours * weekendRate;
+
+    const holidayPay =
+        hourlyRate * holidayHours * holidayRate;
+
+
+    /* Нийт цалин */
+
+    const gross =
+        adjustedBase +
+        overtimePay +
+        nightPay +
+        weekendPay +
+        holidayPay +
+        bonus;
+
+
+    /* НДШ-ийн дээд хязгаар */
+
+    const ndshBase =
+        Math.min(Math.max(gross, 0), ndshCap);
+
+    const ndsh =
+        ndshBase * ndshRate;
+
+
+    /* Татвар ногдох орлого */
+
+    const taxable =
+        Math.max(0, gross - ndsh);
+
+
+    /* Хөнгөлөлтөөс өмнөх татвар */
+
+    const beforeCredit =
+        calculateIncomeTax(taxable);
+
+
+    /* Хөнгөлөлтийг татвар бодсоны дараа хэрэглэнэ */
+
+    const usedCredit =
+        Math.min(
+            Math.max(0, credit),
+            beforeCredit
+        );
+
+
+    /* Эцсийн ХХОАТ */
+
+    const finalTax =
+        Math.max(
+            0,
+            beforeCredit - usedCredit
+        );
+
+
+    /* Гар дээр */
+
+    const net =
+        Math.max(
+            0,
+            gross - ndsh - finalTax
+        );
+
+
+    return {
+        base: adjustedBase,
+        overtime: overtimePay,
+        night: nightPay,
+        weekend: weekendPay,
+        holiday: holidayPay,
+        bonus: bonus,
+        gross: gross,
+        ndsh: ndsh,
+        taxable: taxable,
+        beforeCredit: beforeCredit,
+        usedCredit: usedCredit,
+        tax: finalTax,
+        net: net
+    };
+}
+
+
+/* =========================================
+   ДЭЛГЭЦ ШИНЭЧЛЭХ
+========================================= */
+
+function update() {
+
+    const r = calculate();
+
+
+    document.getElementById("outBase").textContent =
+        money(r.base);
+
+    document.getElementById("outOvertime").textContent =
+        money(r.overtime);
+
+    document.getElementById("outNight").textContent =
+        money(r.night);
+
+    document.getElementById("outWeekend").textContent =
+        money(r.weekend);
+
+    document.getElementById("outHoliday").textContent =
+        money(r.holiday);
+
+    document.getElementById("outBonus").textContent =
+        money(r.bonus);
+
+
+    document.getElementById("grossSalary").textContent =
+        money(r.gross);
+
+
+    document.getElementById("resultNdsh").textContent =
+        money(r.ndsh);
+
+    document.getElementById("taxableIncome").textContent =
+        money(r.taxable);
+
+    document.getElementById("beforeCreditTax").textContent =
+        money(r.beforeCredit);
+
+    document.getElementById("usedCredit").textContent =
+        money(r.usedCredit);
+
+    document.getElementById("finalTax").textContent =
+        money(r.tax);
+
+    document.getElementById("netSalary").textContent =
+        money(r.net);
+
+
+    runTests();
+}
+
+
+/* =========================================
+   ТАВАН ШАЛГАЛТ
+========================================= */
+
+function runTests() {
+
+    const ndshRate = number("ndshRate") / 100;
+    const ndshCap = number("ndshCap");
+    const credit = number("taxCredit");
+
+    /*
+       1. Татвар тэг болох бага цалин
+    */
+
+    const test1Salary = 0;
+    const t1 = calculate(test1Salary);
+
+    /*
+       2. Дунд түвшний энгийн цалин
+    */
+
+    const test2Salary = 2500000;
+    const t2 = calculate(test2Salary);
+
+    /*
+       3. Шатлалын зааг дээр яг таарсан цалин
+    */
+
+    const test3Salary = 10000000;
+    const t3 = calculate(test3Salary);
+
+    /*
+       4. НДШ-ийн дээд хязгаараас өндөр
+    */
+
+    const test4Salary = ndshCap + 5000000;
+    const t4 = calculate(test4Salary);
+
+    /*
+       5. Тэг цалин
+    */
+
+    const test5Salary = 0;
+    const t5 = calculate(test5Salary);
+
+
+    const tests = [
+        {
+            name: "Татвар нь тэг болох хэмжээний бага цалин",
+            salary: test1Salary,
+            result: t1
+        },
+        {
+            name: "Дунд түвшний энгийн цалин",
+            salary: test2Salary,
+            result: t2
+        },
+        {
+            name: "Шатлалын зааг дээр яг таарсан цалин",
+            salary: test3Salary,
+            result: t3
+        },
+        {
+            name: "Шимтгэлийн дээд хязгаараас өндөр цалин",
+            salary: test4Salary,
+            result: t4
+        },
+        {
+            name: "Тэг цалин",
+            salary: test5Salary,
+            result: t5
+        }
+    ];
+
+
+    let html = "";
+
+    tests.forEach(function(test, index) {
+
+        const r = test.result;
+
+
+        /*
+           Гар тооцоотой тэнцүү эсэхийг шалгах
+           (ижил функцийн математик үр дүн)
+        */
+
+        let expectedNdsh =
+            Math.min(test.salary, ndshCap) * ndshRate;
+
+        let expectedTaxable =
+            Math.max(0, test.salary - expectedNdsh);
+
+        let expectedBeforeTax =
+            calculateIncomeTax(expectedTaxable);
+
+        let expectedCredit =
+            Math.min(credit, expectedBeforeTax);
+
+        let expectedTax =
+            Math.max(
+                0,
+                expectedBeforeTax - expectedCredit
+            );
+
+        let expectedNet =
+            Math.max(
+                0,
+                test.salary - expectedNdsh - expectedTax
+            );
+
+
+        const ok =
+            Math.round(r.ndsh) === Math.round(expectedNdsh) &&
+            Math.round(r.taxable) === Math.round(expectedTaxable) &&
+            Math.round(r.tax) === Math.round(expectedTax) &&
+            Math.round(r.net) === Math.round(expectedNet);
+
+
+        html += `
+            <tr>
+                <td>${index + 1}</td>
+
+                <td>${test.name}</td>
+
+                <td>${money(test.salary)}</td>
+
+                <td>${money(r.tax)}</td>
+
+                <td>${money(r.ndsh)}</td>
+
+                <td>${money(r.net)}</td>
+
+                <td class="${ok ? "pass" : "fail"}">
+                    ${ok ? "✓ Зөв" : "✗ Шалгах"}
+                </td>
+            </tr>
+        `;
+    });
+
+
+    document.getElementById("testResults").innerHTML = html;
+}
+
+
+/* =========================================
+   БИЧИХ БҮРД ДАХИН БОДНО
+========================================= */
+
+document.querySelectorAll("input").forEach(function(input) {
+
+    input.addEventListener("input", update);
+
+});
+
+
+/* Анхны тооцоо */
+
+update();
+
+</script>
+
 </body>
 </html>
