@@ -2,3 +2,6 @@ node_modules/
 .wrangler/
 .dev.vars
 .DS_Store
+
+# Isolated git worktrees created by Claude Code workflows — transient, never committed
+.claude/worktrees/
