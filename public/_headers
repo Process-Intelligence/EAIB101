@@ -1,0 +1,17 @@
+# Response headers for Workers Static Assets. Cloudflare reads this file
+# natively and does not serve it. Rules match on the path; a later rule adds to
+# an earlier one for the same request.
+#
+# Every page: baseline hardening that cannot break a static site. No
+# Content-Security-Policy on purpose — student pages are the students' own
+# HTML and may legitimately load webfonts or a CSS framework from a CDN.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# The generated stylesheet is linked with a content hash (?v=…) by every
+# generated page, so each version can be cached for good.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

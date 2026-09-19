@@ -8,6 +8,7 @@
     "build": "echo 'No build step: static assets are served from public/'",
     "scaffold": "node scripts/scaffold.mjs",
     "index": "node scripts/build-site.mjs",
+    "check": "node scripts/build-site.mjs --check",
     "deploy": "wrangler deploy"
   },
   "devDependencies": {

@@ -9,7 +9,8 @@
     // There is no Worker script, so asset requests are free and always fast.
     "directory": "./public",
 
-    // /student/B26FA1091  ->  /student/B26FA1091/index.html
+    // /ps/01 and /ps/01/index.html both 307-redirect to /ps/01/, which serves
+    // ps/01/index.html; likewise for every student folder.
     "html_handling": "auto-trailing-slash",
 
     // Unknown paths get public/404.html with a 404 status.

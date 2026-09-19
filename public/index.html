@@ -3,12 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f4f0">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#151511">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%23a3461f%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2246%22%20font-family%3D%22Charter%2CGeorgia%2Cserif%22%20font-size%3D%2240%22%20font-weight%3D%22600%22%20text-anchor%3D%22middle%22%20fill%3D%22%23f5f4f0%22%3EE%3C%2Ftext%3E%3C%2Fsvg%3E">
 <title>EAIB101 — Оюутны ажлууд</title>
 <meta name="description" content="EAIB101 (AI &amp; Prompt Engineering) — 10 бодлого, 55 оюутан. 34/55 илгээсэн.">
-<link rel="stylesheet" href="/assets/site.css">
+<meta property="og:title" content="EAIB101 — Оюутны ажлууд">
+<meta property="og:description" content="EAIB101 (AI &amp; Prompt Engineering) — 10 бодлого, 55 оюутан. 34/55 илгээсэн.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="mn_MN">
+<link rel="stylesheet" href="/assets/site.css?v=c100627187">
 </head>
 <body>
-  <input class="navtoggle" type="checkbox" id="navtoggle" autocomplete="off">
+  <a class="skip" href="#main">Үндсэн хэсэг рүү</a>
+  <input class="navtoggle" type="checkbox" id="navtoggle" aria-controls="nav" autocomplete="off">
   <div class="shell">
     <aside class="side">
       <div class="sidehead">
@@ -18,13 +27,13 @@
         </a>
         <label class="navbtn" for="navtoggle">Цэс</label>
       </div>
-      <nav class="nav" aria-label="Хичээлийн цэс">
+      <nav class="nav" id="nav" aria-label="Хичээлийн цэс">
         <ul class="navlist">
         <li><a class="navlink is-current" href="/" aria-current="page"><span class="navname">Тойм</span></a></li>
         </ul>
         <p class="navtitle">Бодлогууд</p>
         <ul class="navlist">
-        <li><a class="navlink" href="/ps/01/"><span class="navnum mono">01</span><span class="navname">Salary, Tax and Insurance</span><span class="navcount mono">34/55</span></a></li>
+        <li><a class="navlink" href="/ps/01/"><span class="navnum mono">01</span><span class="navname" lang="en">Salary, Tax and Insurance</span><span class="navcount mono">34/55</span></a></li>
         <li><a class="navlink is-planned" href="/ps/02/"><span class="navnum mono">02</span><span class="navname">Удахгүй</span></a></li>
         <li><a class="navlink is-planned" href="/ps/03/"><span class="navnum mono">03</span><span class="navname">Удахгүй</span></a></li>
         <li><a class="navlink is-planned" href="/ps/04/"><span class="navnum mono">04</span><span class="navname">Удахгүй</span></a></li>
@@ -37,132 +46,99 @@
         </ul>
       </nav>
     </aside>
-    <main class="main">
+    <main class="main" id="main">
       <div class="wrap">
       <header class="phead">
-        <p class="eyebrow">AI &amp; Prompt Engineering</p>
+        <p class="eyebrow" lang="en">AI &amp; Prompt Engineering</p>
         <h1>EAIB101</h1>
         <p class="lede">10 бодлого · 2 хөтөлбөр · 55 оюутан</p>
       </header>
 
       <section class="sec">
-        <h2>Нийт илгээсэн байдал</h2>
-      <div class="progress">
+        <h2><span class="sec-n" aria-hidden="true">01</span><span>Нийт илгээсэн байдал</span></h2>
+      <div class="progress is-hero">
         <div class="progress-head">
           <span><b>34</b> / 55 илгээсэн</span>
           <span class="pct">62%</span>
         </div>
-        <div class="bar" role="img" aria-label="Нийт: 34 of 55 students have submitted">
-          <span style="width: 62%"></span>
-        </div>
+        <div class="bar" aria-hidden="true"><span style="width: 62%"></span></div>
       </div>
       </section>
 
       <section class="sec">
-        <h2>Бодлогууд</h2>
-        <ul class="pscards">
-        <li><a class="pscard is-open" href="/ps/01/">
-          <span class="row">
-            <span class="num mono">01</span>
-            <span class="tag">34/55</span>
+        <h2><span class="sec-n" aria-hidden="true">02</span><span>Бодлогууд</span><span class="sec-count">1/10 нээлттэй</span></h2>
+        <ol class="setlist">
+        <li><a class="setrow is-open" href="/ps/01/">
+          <span class="num mono">01</span>
+          <span class="title" lang="en">Salary, Tax and Insurance</span>
+          <span class="gauge">
+            <span class="bar" aria-hidden="true"><span style="width: 62%"></span></span>
+            <span class="count mono">34/55</span>
           </span>
-          <span class="title">Salary, Tax and Insurance</span>
-          <span class="bar" role="img" aria-label="34 of 55 submitted"><span style="width: 62%"></span></span>
         </a></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">02</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">02</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">03</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">03</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">04</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">04</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">05</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">05</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">06</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">06</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">07</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">07</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">08</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">08</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">09</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">09</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        <li><div class="pscard is-planned">
-          <span class="row">
-            <span class="num mono">10</span>
-            <span class="tag">Нээгээгүй</span>
-          </span>
+        <li><div class="setrow is-planned">
+          <span class="num mono">10</span>
           <span class="title is-empty">Удахгүй</span>
-
+          <span class="state">Нээгээгүй</span>
         </div></li>
-        </ul>
+        </ol>
       </section>
 
       <section class="sec">
-        <h2>Хөтөлбөрүүд</h2>
-        <ul class="grid">
-          <li>
-            <div class="student">
-              <span class="row">
-                <span class="code mono">27 оюутан</span>
-              </span>
-              <span class="name">Энтрепренершип хөтөлбөр</span>
-            </div>
-          </li>
-          <li>
-            <div class="student">
-              <span class="row">
-                <span class="code mono">28 оюутан</span>
-              </span>
-              <span class="name">Санхүүгийн манлайлал хөтөлбөр</span>
-            </div>
-          </li>
+        <h2><span class="sec-n" aria-hidden="true">03</span><span>Хөтөлбөрүүд</span></h2>
+        <ul class="grouplist">
+          <li><a class="grouprow" href="/ps/01/#entrepreneur">
+            <span class="grouprow-name">Энтрепренершип хөтөлбөр</span>
+            <span class="grouprow-size">27 оюутан</span>
+            <span class="grouprow-count"><b>10</b> / 27 илгээсэн</span>
+            <span class="bar" aria-hidden="true"><span style="width: 37%"></span></span>
+          </a></li>
+          <li><a class="grouprow" href="/ps/01/#financial-leadership">
+            <span class="grouprow-name">Санхүүгийн манлайлал хөтөлбөр</span>
+            <span class="grouprow-size">28 оюутан</span>
+            <span class="grouprow-count"><b>24</b> / 28 илгээсэн</span>
+            <span class="bar" aria-hidden="true"><span style="width: 86%"></span></span>
+          </a></li>
         </ul>
       </section>
 

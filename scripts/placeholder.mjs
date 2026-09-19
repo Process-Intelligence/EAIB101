@@ -3,117 +3,79 @@
 //
 // Deliberately self-contained — it carries its own CSS rather than linking the
 // shared stylesheet, so it renders correctly even when opened straight off
-// disk. It carries the text in PLACEHOLDER_MARKER (see roster.mjs); that is how
-// the build tells a placeholder apart from a real submission.
+// disk (which is also why its one link is relative). The palette and scales are
+// the same `tokens` the stylesheet is built from, so it always matches the
+// rest of the site. It carries PLACEHOLDER_MARKER (see roster.mjs); that is
+// how the build tells a placeholder apart from a real submission.
 
-import { esc } from './roster.mjs'
+import { esc, PLACEHOLDER_MARKER, PLACEHOLDER_SENTENCE } from './roster.mjs'
+import { tokens, baseCss, headMeta } from './layout.mjs'
 
 export function placeholderPage({ id, name, set }) {
   const path = `public/ps/${set.id}/${id}/index.html`
   const setLabel = `Бодлого ${set.id}${set.title ? ` — ${set.title}` : ''}`
   return `<!doctype html>
+${PLACEHOLDER_MARKER}
 <html lang="mn">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="eaib101-placeholder">
+${headMeta}
 <title>${esc(id)} — ${esc(name)} | ${esc(setLabel)}</title>
 <meta name="description" content="EAIB101 — ${esc(name)} (${esc(id)}), ${esc(setLabel)}. Ажил хараахан илгээгдээгүй байна.">
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  :root {
-    color-scheme: light dark;
-    --bg: #f4f4f2;
-    --panel: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b6963;
-    --line: #e2e1dc;
-    --accent: #b4522a;
-    --accent-soft: #fbeee7;
-    --shadow: 0 1px 2px rgba(28,27,25,.06), 0 8px 24px -12px rgba(28,27,25,.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --panel: #1e1e18;
-      --ink: #f0efe9;
-      --muted: #a09d94;
-      --line: #32312a;
-      --accent: #e8875c;
-      --accent-soft: #2e211a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-    }
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
+${tokens}
+${baseCss}
+  .wrap { max-width: var(--measure); margin: 0 auto; padding: var(--sp-7) var(--sp-4) var(--sp-8); }
+  .badges { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-5); }
   .badge {
-    display: inline-block;
-    font-size: .8125rem;
-    letter-spacing: .08em;
-    padding: .3rem .6rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--line);
+    display: inline-flex; align-items: center;
+    padding: .2rem .6rem; border-radius: var(--radius);
+    border: 1px solid var(--line); background: var(--panel);
+    font-size: var(--t-2); color: var(--muted);
   }
-  .badge.set { background: var(--bg); color: var(--muted); letter-spacing: 0; }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); margin: 1rem 0 .25rem; line-height: 1.2; }
-  .sub { color: var(--muted); margin: 0 0 1.75rem; }
+  .badge.id { color: var(--accent); letter-spacing: .04em; font-weight: 600; }
+  h1 { font-size: var(--t-7); line-height: 1.1; margin: 0 0 var(--sp-2); }
+  .sub { margin: 0 0 var(--sp-6); color: var(--muted); font-size: var(--t-4); }
   .notice {
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    background: var(--bg);
+    padding: var(--sp-4) var(--sp-5);
+    border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0;
+    background: var(--accent-soft);
   }
-  .notice p { margin: 0 0 .6rem; }
+  .notice p { margin: 0 0 var(--sp-3); }
   .notice p:last-child { margin-bottom: 0; }
   .path {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: .5rem .7rem;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    font-size: .875rem;
+    display: block; margin-top: var(--sp-3);
+    padding: var(--sp-2) var(--sp-3);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--panel); color: var(--ink);
+    font-size: var(--t-2); line-height: 1.5;
+    white-space: normal; overflow-wrap: anywhere;
   }
-  footer { margin-top: 2rem; font-size: .9375rem; color: var(--muted); }
+  footer { margin-top: var(--sp-7); padding-top: var(--sp-4); border-top: 1px solid var(--rule); font-size: var(--t-2); color: var(--muted); }
+  footer a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
 </style>
 </head>
 <body>
   <main class="wrap">
-    <article class="card">
-      <div class="badges">
-        <span class="badge mono">${esc(id)}</span>
-        <span class="badge set">${esc(setLabel)}</span>
-      </div>
-      <h1>${esc(name)}</h1>
-      <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
+    <article>
+      <header>
+        <div class="badges">
+          <span class="badge id mono">${esc(id)}</span>
+          <span class="badge set">${esc(setLabel)}</span>
+        </div>
+        <h1>${esc(name)}</h1>
+        <p class="sub">EAIB101 — оюутны ажлын хуудас</p>
+      </header>
 
       <div class="notice">
-        <p><strong>Түр зуурын хуудас.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
+        <p><strong>${esc(PLACEHOLDER_SENTENCE)}.</strong> Энэ оюутан энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
         <p>Өөрийн HTML-ээ байршуулахдаа дараах файлыг бүхэлд нь солино уу:</p>
         <code class="path">${esc(path)}</code>
       </div>
 
-      <footer><a href="/ps/${esc(set.id)}/">← ${esc(setLabel)}</a></footer>
+      <footer><a href="../">← ${esc(setLabel)}</a></footer>
     </article>
   </main>
 </body>
