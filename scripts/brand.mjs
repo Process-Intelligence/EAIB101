@@ -17,39 +17,46 @@ export const brand = {
     url: 'https://www.ufe.edu.mn/',
   },
 
-  // Put the official logo at public/assets/<file>. SVG is best (it stays sharp
-  // and carries its own colours); a PNG works too. When the file is present the
-  // build shows it in the sidebar and on the self-contained pages; when it is
-  // absent nothing is rendered and the pages fall back to the text mark.
+  // The official mark, cut from the university's logo file (public/assets/):
+  // the blue logo for light backgrounds, a white recolour for dark ones, and
+  // the shield emblem on its own for the favicon. When a file is missing the
+  // build renders nothing in its place, so the pages never show a broken image.
   logo: {
-    file: 'ufe-logo.svg',
-    alt: 'Санхүү эдийн засгийн их сургууль',
+    file: 'ufe-logo.png',
+    dark: 'ufe-logo-white.png',
+    mark: 'ufe-mark.png',
+    width: 906,
+    height: 192,
+    alt: 'Санхүү эдийн засгийн их сургууль — UFE',
   },
+
+  // UFE blue, read from the logo itself: #0045e7. On dark backgrounds the same
+  // hue is lifted so it still reads as text (7.4:1 on the dark background).
 
   colors: {
     light: {
-      bg: '#f5f4f0',
+      bg: '#f5f6fa',
       panel: '#ffffff',
-      ink: '#1c1b19',
-      muted: '#5f5d56',
-      line: '#e3e1da',
-      rule: '#b9b6ad',
-      accent: '#a3461f',
-      'accent-soft': '#f8e8df',
+      ink: '#13182a',
+      muted: '#5a6178',
+      line: '#e2e5ee',
+      rule: '#b6bccc',
+      accent: '#0045e7',
+      'accent-soft': '#e5ecff',
       ok: '#2b6743',
       'ok-soft': '#e3efe7',
     },
     dark: {
-      bg: '#151511',
-      panel: '#1e1e19',
-      ink: '#ecebe5',
-      muted: '#a8a59c',
-      line: '#33322b',
-      rule: '#4d4b43',
-      accent: '#ec8d61',
-      'accent-soft': '#33231b',
+      bg: '#0f1526',
+      panel: '#171d31',
+      ink: '#eceff6',
+      muted: '#a6adc2',
+      line: '#2a3350',
+      rule: '#4a5578',
+      accent: '#7fa3ff',
+      'accent-soft': '#1b2a55',
       ok: '#8ccfa4',
-      'ok-soft': '#1b2b22',
+      'ok-soft': '#16302a',
     },
   },
 }

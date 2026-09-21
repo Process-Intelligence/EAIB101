@@ -57,7 +57,8 @@ ${baseCss}
   footer a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
   footer small { display: block; font-size: var(--t-1); color: var(--muted); }
   footer small a { min-height: 0; line-height: 1.5; color: inherit; }
-  .logo { display: block; height: 3rem; width: auto; margin-bottom: var(--sp-5); }
+  .logo { display: block; margin-bottom: var(--sp-5); }
+  .logo img { display: block; height: 2.5rem; width: auto; }
 </style>
 </head>
 <body>

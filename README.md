@@ -90,6 +90,26 @@ comment it carries, so a real submission is never mistaken for one by its
 wording. A file that is empty or is not an HTML document is counted as pending
 too, and named in the build output, so an upload that went wrong is noticed.
 
+## Brand
+
+The site carries the University of Finance and Economics brand. Everything
+about it lives in `scripts/brand.mjs` — the university's names and website,
+the logo files, and the whole colour palette for light and dark schemes — and
+in three files under `public/assets/`:
+
+| File | Used for |
+| --- | --- |
+| `ufe-logo.png` | The logo on light backgrounds (sidebar, placeholder, 404) |
+| `ufe-logo-white.png` | The same logo, white, swapped in by `<picture>` in dark mode |
+| `ufe-mark.png` | The shield emblem, inlined as the favicon of every page |
+
+The brand blue, `#0045e7`, is read from the logo itself; the dark scheme lifts
+it to `#7fa3ff` so it still reads as text. After changing anything in
+`brand.mjs` or replacing a logo file, run `npm run scaffold -- --refresh` (the
+placeholder pages inline the palette and favicon) and then `npm run index`.
+Keep every text/background pair at or above 4.5:1 — the comment at the top of
+`brand.mjs` lists which pairs matter.
+
 ## Local preview
 
 ```bash

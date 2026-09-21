@@ -9,7 +9,7 @@
 // (code, notes). `tokens` holds the palette and scales; the placeholder page
 // reuses it so the self-contained pages stay in step with the stylesheet.
 
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { esc, setUrl, PUBLIC_DIR } from './roster.mjs'
 import { brand } from './brand.mjs'
@@ -23,12 +23,18 @@ const FAVICON_SVG =
   `<text x="32" y="46" font-family="Charter,Georgia,serif" font-size="40" font-weight="600" text-anchor="middle" fill="${brand.colors.light.bg}">E</text>` +
   '</svg>'
 
+const markPath = join(PUBLIC_DIR, 'assets', brand.logo.mark)
+const favicon = existsSync(markPath)
+  ? `data:image/png;base64,${readFileSync(markPath).toString('base64')}`
+  : `data:image/svg+xml,${encodeURIComponent(FAVICON_SVG)}`
+
 // <head> lines shared by every page the site generates, self-contained ones
-// included: colour-scheme hints for the browser chrome and the favicon.
+// included: colour-scheme hints for the browser chrome and the favicon (the
+// university's emblem, inlined so no request is made for it).
 export const headMeta = `<meta name="color-scheme" content="light dark">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="${brand.colors.light.bg}">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="${brand.colors.dark.bg}">
-<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(FAVICON_SVG)}">`
+<link rel="icon" href="${favicon}">`
 
 // " lang=\"en\"" for a string with no Cyrillic in it, so screen readers switch
 // voice for the English parts of these lang="mn" pages; "" otherwise.
@@ -48,7 +54,7 @@ export const tokens = `:root {
   color-scheme: light dark;
 ${palette(brand.colors.light)}
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  --serif: Charter, "Bitstream Charter", Georgia, "Noto Serif", "Times New Roman", serif;
+  --display: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --t-1: .75rem;
   --t-2: .875rem;
@@ -90,7 +96,7 @@ body {
 a { color: var(--accent); text-underline-offset: .15em; }
 a:hover { color: var(--ink); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; letter-spacing: 0; overflow-wrap: anywhere; }
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: -.01em; overflow-wrap: anywhere; }
 .eyebrow {
   margin: 0 0 var(--sp-2);
   font: 700 var(--t-1)/1.4 var(--sans);
@@ -104,8 +110,15 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; letter-spacing: 0;
 // from the page to the site root: "/" for pages served by the site, a relative
 // "../" chain for the self-contained placeholder so it also works off disk.
 export const hasLogo = existsSync(join(PUBLIC_DIR, 'assets', brand.logo.file))
-export const logoTag = (prefix = '/', cls = 'brand-logo') =>
-  hasLogo ? `<img class="${cls}" src="${esc(prefix)}assets/${esc(brand.logo.file)}" alt="${esc(brand.logo.alt)}">` : ''
+const hasDarkLogo = brand.logo.dark && existsSync(join(PUBLIC_DIR, 'assets', brand.logo.dark))
+export const logoTag = (prefix = '/', cls = 'brand-logo') => {
+  if (!hasLogo) return ''
+  const src = (f) => `${esc(prefix)}assets/${esc(f)}`
+  const size = brand.logo.width && brand.logo.height ? ` width="${brand.logo.width}" height="${brand.logo.height}"` : ''
+  return `<picture class="${cls}">${
+    hasDarkLogo ? `<source srcset="${src(brand.logo.dark)}" media="(prefers-color-scheme: dark)">` : ''
+  }<img src="${src(brand.logo.file)}" alt="${esc(brand.logo.alt)}"${size}></picture>`
+}
 
 // The university line shown under the course name and in every footer.
 export const universityLink = (cls = 'uni') =>
@@ -140,7 +153,8 @@ html { scroll-padding-top: 4.5rem; }
   min-height: 3.5rem;
 }
 .brand { display: flex; flex-direction: column; justify-content: center; min-height: var(--tap); text-decoration: none; color: inherit; min-width: 0; }
-.brand-logo { display: block; height: 2.25rem; width: auto; max-width: 100%; margin-bottom: var(--sp-2); }
+.brand-logo { display: block; margin-bottom: var(--sp-3); }
+.brand-logo img { display: block; height: 2rem; width: auto; max-width: 100%; }
 .brand-uni { display: block; font-size: var(--t-1); line-height: 1.4; color: var(--muted); margin-top: var(--sp-1); }
 .navuni { margin: var(--sp-6) 0 0; padding-top: var(--sp-4); border-top: 1px solid var(--line); font-size: var(--t-1); line-height: 1.5; color: var(--muted); }
 .navuni a { color: inherit; font-weight: 600; text-decoration: none; }
@@ -148,7 +162,7 @@ html { scroll-padding-top: 4.5rem; }
 .sitefoot { margin-top: var(--sp-7); padding: var(--sp-4) 0 0; border-top: 1px solid var(--line); font-size: var(--t-1); color: var(--muted); display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); }
 .sitefoot a { color: inherit; font-weight: 600; text-decoration: none; }
 .sitefoot a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .15em; }
-.brand-class { display: block; font: 600 var(--t-4)/1.2 var(--serif); letter-spacing: .02em; }
+.brand-class { display: block; font: 700 var(--t-4)/1.2 var(--display); letter-spacing: -.01em; }
 .brand-course { display: block; font-size: var(--t-1); line-height: 1.4; color: var(--muted); }
 .navbtn {
   display: inline-flex; align-items: center; gap: var(--sp-2);
@@ -224,7 +238,7 @@ html { scroll-padding-top: 4.5rem; }
 .ledger-k { font-size: var(--t-2); font-weight: 600; color: var(--accent); }
 .ledger-k::after { content: " ↓" / ""; }
 .ledger-v { font-size: var(--t-2); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.ledger-v b { font: 600 var(--t-5)/1 var(--serif); color: var(--ink); }
+.ledger-v b { font: 600 var(--t-5)/1 var(--display); color: var(--ink); }
 .ledger-v .pct { margin-left: var(--sp-2); }
 @media (min-width: 44rem) {
   .ledger ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--sp-5); border-bottom: 1px solid var(--line); }
@@ -318,7 +332,7 @@ pre {
   display: flex; justify-content: space-between; align-items: baseline;
   gap: var(--sp-4); margin-bottom: var(--sp-2); font-size: var(--t-2); color: var(--muted);
 }
-.progress-head b { font: 600 var(--t-5)/1 var(--serif); color: var(--ink); }
+.progress-head b { font: 600 var(--t-5)/1 var(--display); color: var(--ink); }
 .progress-head .pct { font-variant-numeric: tabular-nums; }
 .progress.is-hero .progress-head b { font-size: var(--t-7); }
 .progress.is-hero .progress-head { font-size: var(--t-3); }
@@ -384,7 +398,7 @@ a.grouprow:hover .grouprow-name { color: var(--accent); text-decoration: underli
 .grouprow-name { font-weight: 600; }
 .grouprow-size { font-size: var(--t-2); color: var(--muted); }
 .grouprow-count { grid-column: 2; grid-row: 1; font-size: var(--t-2); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
-.grouprow-count b { font: 600 var(--t-4)/1 var(--serif); color: var(--ink); }
+.grouprow-count b { font: 600 var(--t-4)/1 var(--display); color: var(--ink); }
 .grouprow .bar { grid-column: 1 / -1; margin-top: var(--sp-2); }
 
 footer.page {
@@ -399,7 +413,7 @@ footer.page a { display: inline-block; min-height: var(--tap); line-height: var(
   .skip, .navbtn, .navtoggle, .nav, .tabinput, .tabs, .jump, .ledger { display: none; }
   .side { position: static; border: 0; }
   .panel { display: block; }
-  .panel::before { content: attr(aria-label); display: block; margin: var(--sp-5) 0 var(--sp-3); font: 600 var(--t-4)/1.25 var(--serif); }
+  .panel::before { content: attr(aria-label); display: block; margin: var(--sp-5) 0 var(--sp-3); font: 600 var(--t-4)/1.25 var(--display); }
   .roster { display: block; }
   .student, .setrow, .grouprow, .step { break-inside: avoid; }
   a { color: inherit; text-decoration: none; }
@@ -417,7 +431,7 @@ footer.page a { display: inline-block; min-height: var(--tap); line-height: var(
   .sidehead { display: block; padding: var(--sp-6) var(--sp-4) 0; }
   .brand-class { font-size: var(--t-5); }
   .brand-course { font-size: var(--t-2); }
-  .brand-logo { height: 3rem; }
+  .brand-logo img { height: 2.5rem; }
   .navbtn, .navtoggle { display: none; }
   .nav { display: block; position: static; max-height: none; overflow: visible; border-bottom: 0; box-shadow: none; }
   .wrap { padding: var(--sp-7) var(--sp-6) var(--sp-8); }
@@ -473,7 +487,7 @@ export function sidebar({ className, course, sets, current }) {
         <a class="brand" href="/">
           ${logoTag('/')}<span class="brand-class">${esc(className)}</span>
           <span class="brand-course"${langAttr(course)}>${esc(course)}</span>
-          <span class="brand-uni">${esc(brand.university.mnShort)} · <span lang="en">${esc(brand.university.enShort)}</span></span>
+          <span class="brand-uni">${esc(brand.university.mnShort)}</span>
         </a>
         <label class="navbtn" for="navtoggle">Цэс</label>
       </div>
@@ -542,14 +556,15 @@ ${headMeta}
 ${tokens}
 ${baseCss}
   .wrap { max-width: var(--measure); margin: 0 auto; padding: var(--sp-8) var(--sp-4); }
-  .code404 { margin: 0 0 var(--sp-2); font: 600 clamp(3rem, 2rem + 5vw, 5rem)/1 var(--serif); color: var(--accent); }
+  .code404 { margin: 0 0 var(--sp-2); font: 600 clamp(3rem, 2rem + 5vw, 5rem)/1 var(--display); color: var(--accent); }
   h1 { font-size: var(--t-6); margin: 0 0 var(--sp-2); line-height: 1.15; }
   p { color: var(--muted); margin: 0 0 var(--sp-4); font-size: var(--t-4); }
   footer { margin-top: var(--sp-6); padding-top: var(--sp-4); border-top: 1px solid var(--rule); }
   footer a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
   footer small { display: block; font-size: var(--t-1); color: var(--muted); }
   footer small a { min-height: 0; line-height: 1.5; color: inherit; }
-  .logo404 { display: block; height: 3rem; width: auto; margin-bottom: var(--sp-5); }
+  .logo404 { display: block; margin-bottom: var(--sp-5); }
+  .logo404 img { display: block; height: 2.5rem; width: auto; }
 </style>
 </head>
 <body>
