@@ -9,7 +9,7 @@
 // how the build tells a placeholder apart from a real submission.
 
 import { esc, PLACEHOLDER_MARKER, PLACEHOLDER_SENTENCE } from './roster.mjs'
-import { tokens, baseCss, headMeta, logoTag, universityLink } from './layout.mjs'
+import { tokens, baseCss, headMeta, logoTag, universityLink, madeByTag } from './layout.mjs'
 
 export function placeholderPage({ id, name, set }) {
   const path = `public/ps/${set.id}/${id}/index.html`
@@ -57,6 +57,11 @@ ${baseCss}
   footer a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
   footer small { display: block; font-size: var(--t-1); color: var(--muted); }
   footer small a { min-height: 0; line-height: 1.5; color: inherit; }
+  footer a.madeby { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-4); min-height: var(--tap); line-height: 1.5; font-size: var(--t-1); font-weight: 400; color: var(--muted); text-decoration: none; }
+  .madeby img { display: block; height: 2.25rem; width: auto; border-radius: var(--radius); }
+  .madeby b { font-weight: 600; color: var(--ink); }
+  .madeby:hover b { color: var(--accent); }
+  @media (prefers-color-scheme: dark) { .madeby img { background: #fff; padding: .2rem .35rem; } }
   .logo { display: block; margin-bottom: var(--sp-5); }
   .logo img { display: block; height: 2.5rem; width: auto; }
 </style>
@@ -79,7 +84,7 @@ ${baseCss}
         <code class="path">${esc(path)}</code>
       </div>
 
-      <footer><a href="../">← ${esc(setLabel)}</a><br><small>${universityLink()}</small></footer>
+      <footer><a href="../">← ${esc(setLabel)}</a><br><small>${universityLink()}</small>${madeByTag('../../../')}</footer>
     </article>
   </main>
 </body>

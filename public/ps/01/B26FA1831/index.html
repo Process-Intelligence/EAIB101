@@ -113,6 +113,11 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
   footer a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
   footer small { display: block; font-size: var(--t-1); color: var(--muted); }
   footer small a { min-height: 0; line-height: 1.5; color: inherit; }
+  footer a.madeby { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-4); min-height: var(--tap); line-height: 1.5; font-size: var(--t-1); font-weight: 400; color: var(--muted); text-decoration: none; }
+  .madeby img { display: block; height: 2.25rem; width: auto; border-radius: var(--radius); }
+  .madeby b { font-weight: 600; color: var(--ink); }
+  .madeby:hover b { color: var(--accent); }
+  @media (prefers-color-scheme: dark) { .madeby img { background: #fff; padding: .2rem .35rem; } }
   .logo { display: block; margin-bottom: var(--sp-5); }
   .logo img { display: block; height: 2.5rem; width: auto; }
 </style>
@@ -135,7 +140,7 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
         <code class="path">public/ps/01/B26FA1831/index.html</code>
       </div>
 
-      <footer><a href="../">← Бодлого 01 — Salary, Tax and Insurance</a><br><small><a class="uni" href="https://www.ufe.edu.mn/" rel="external">Санхүү эдийн засгийн их сургууль</a></small></footer>
+      <footer><a href="../">← Бодлого 01 — Salary, Tax and Insurance</a><br><small><a class="uni" href="https://www.ufe.edu.mn/" rel="external">Санхүү эдийн засгийн их сургууль</a></small><a class="madeby" href="https://prointel.tech/" rel="external"><img src="../../../assets/process-intelligence.png" alt="Process Intelligence" width="177" height="72"><span>Сайтыг <b lang="en">Process Intelligence LLC</b> бүтээв</span></a></footer>
     </article>
   </main>
 </body>

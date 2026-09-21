@@ -100,9 +100,18 @@ html { scroll-padding-top: 4.5rem; }
 .navuni { margin: var(--sp-6) 0 0; padding-top: var(--sp-4); border-top: 1px solid var(--line); font-size: var(--t-1); line-height: 1.5; color: var(--muted); }
 .navuni a { color: inherit; font-weight: 600; text-decoration: none; }
 .navuni a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .15em; }
-.sitefoot { margin-top: var(--sp-7); padding: var(--sp-4) 0 0; border-top: 1px solid var(--line); font-size: var(--t-1); color: var(--muted); display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); }
+.sitefoot { margin-top: var(--sp-7); padding: var(--sp-4) 0 0; border-top: 1px solid var(--line); font-size: var(--t-1); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--sp-3) var(--sp-5); }
+.sitefoot-uni { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); }
 .sitefoot a { color: inherit; font-weight: 600; text-decoration: none; }
 .sitefoot a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .15em; }
+.madeby { display: inline-flex; align-items: center; gap: var(--sp-3); min-height: var(--tap); font-weight: 400; }
+.madeby img { display: block; height: 2.25rem; width: auto; border-radius: var(--radius); }
+.madeby b { font-weight: 600; color: var(--ink); }
+.madeby:hover b { color: var(--accent); }
+@media (prefers-color-scheme: dark) {
+  /* the mark was drawn for a white ground */
+  .madeby img { background: #fff; padding: .2rem .35rem; }
+}
 .brand-class { display: block; font: 700 var(--t-4)/1.2 var(--display); letter-spacing: -.01em; }
 .brand-course { display: block; font-size: var(--t-1); line-height: 1.4; color: var(--muted); }
 .navbtn {

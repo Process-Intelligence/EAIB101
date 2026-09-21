@@ -30,6 +30,17 @@ export const brand = {
     alt: 'Санхүү эдийн засгийн их сургууль — UFE',
   },
 
+  // Who built the site — credited, with their mark, in the footer of every
+  // generated page. public/assets/<logo> is rendered when it exists.
+  madeBy: {
+    name: 'Process Intelligence LLC',
+    url: 'https://prointel.tech/',
+    logo: 'process-intelligence.png',
+    width: 177,
+    height: 72,
+    alt: 'Process Intelligence',
+  },
+
   // UFE blue, read from the logo itself: #0045e7. On dark backgrounds the same
   // hue is lifted so it still reads as text (7.4:1 on the dark background).
 

@@ -102,6 +102,11 @@ in three files under `public/assets/`:
 | `ufe-logo.png` | The logo on light backgrounds (sidebar, placeholder, 404) |
 | `ufe-logo-white.png` | The same logo, white, swapped in by `<picture>` in dark mode |
 | `ufe-mark.png` | The shield emblem, inlined as the favicon of every page |
+| `process-intelligence.png` | The site builder's mark, in every footer |
+
+`process-intelligence.png` is the mark of Process Intelligence LLC, who built
+the site; it is credited with a link to <https://prointel.tech/> in the footer
+of every generated page (`madeBy` in `brand.mjs`).
 
 The brand blue, `#0045e7`, is read from the logo itself; the dark scheme lifts
 it to `#7fa3ff` so it still reads as text. After changing anything in

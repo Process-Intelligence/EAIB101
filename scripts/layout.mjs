@@ -120,6 +120,18 @@ export const logoTag = (prefix = '/', cls = 'brand-logo') => {
   }<img src="${src(brand.logo.file)}" alt="${esc(brand.logo.alt)}"${size}></picture>`
 }
 
+// The credit line in every footer: who built the site, with their mark when
+// public/assets/<brand.madeBy.logo> exists. `prefix` as for logoTag.
+const hasMadeByLogo = brand.madeBy?.logo && existsSync(join(PUBLIC_DIR, 'assets', brand.madeBy.logo))
+export const madeByTag = (prefix = '/') => {
+  const m = brand.madeBy
+  if (!m) return ''
+  const img = hasMadeByLogo
+    ? `<img src="${esc(prefix)}assets/${esc(m.logo)}" alt="${esc(m.alt)}" width="${m.width}" height="${m.height}">`
+    : ''
+  return `<a class="madeby" href="${esc(m.url)}" rel="external">${img}<span>Сайтыг <b lang="en">${esc(m.name)}</b> бүтээв</span></a>`
+}
+
 // The university line shown under the course name and in every footer.
 export const universityLink = (cls = 'uni') =>
   `<a class="${cls}" href="${esc(brand.university.url)}" rel="external">${esc(brand.university.mn)}</a>`
@@ -159,9 +171,18 @@ html { scroll-padding-top: 4.5rem; }
 .navuni { margin: var(--sp-6) 0 0; padding-top: var(--sp-4); border-top: 1px solid var(--line); font-size: var(--t-1); line-height: 1.5; color: var(--muted); }
 .navuni a { color: inherit; font-weight: 600; text-decoration: none; }
 .navuni a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .15em; }
-.sitefoot { margin-top: var(--sp-7); padding: var(--sp-4) 0 0; border-top: 1px solid var(--line); font-size: var(--t-1); color: var(--muted); display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); }
+.sitefoot { margin-top: var(--sp-7); padding: var(--sp-4) 0 0; border-top: 1px solid var(--line); font-size: var(--t-1); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--sp-3) var(--sp-5); }
+.sitefoot-uni { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); }
 .sitefoot a { color: inherit; font-weight: 600; text-decoration: none; }
 .sitefoot a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .15em; }
+.madeby { display: inline-flex; align-items: center; gap: var(--sp-3); min-height: var(--tap); font-weight: 400; }
+.madeby img { display: block; height: 2.25rem; width: auto; border-radius: var(--radius); }
+.madeby b { font-weight: 600; color: var(--ink); }
+.madeby:hover b { color: var(--accent); }
+@media (prefers-color-scheme: dark) {
+  /* the mark was drawn for a white ground */
+  .madeby img { background: #fff; padding: .2rem .35rem; }
+}
 .brand-class { display: block; font: 700 var(--t-4)/1.2 var(--display); letter-spacing: -.01em; }
 .brand-course { display: block; font-size: var(--t-1); line-height: 1.4; color: var(--muted); }
 .navbtn {
@@ -528,8 +549,11 @@ ${side}
     <main class="main" id="main">
 ${main}
       <footer class="wrap sitefoot">
-        <span>${universityLink()}</span>
-        <span lang="en">${esc(brand.university.en)}</span>
+        <span class="sitefoot-uni">
+          <span>${universityLink()}</span>
+          <span lang="en">${esc(brand.university.en)}</span>
+        </span>
+        ${madeByTag('/')}
       </footer>
     </main>
   </div>
@@ -563,6 +587,11 @@ ${baseCss}
   footer a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
   footer small { display: block; font-size: var(--t-1); color: var(--muted); }
   footer small a { min-height: 0; line-height: 1.5; color: inherit; }
+  footer a.madeby { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-4); min-height: var(--tap); line-height: 1.5; font-size: var(--t-1); font-weight: 400; color: var(--muted); text-decoration: none; }
+  .madeby img { display: block; height: 2.25rem; width: auto; border-radius: var(--radius); }
+  .madeby b { font-weight: 600; color: var(--ink); }
+  .madeby:hover b { color: var(--accent); }
+  @media (prefers-color-scheme: dark) { .madeby img { background: #fff; padding: .2rem .35rem; } }
   .logo404 { display: block; margin-bottom: var(--sp-5); }
   .logo404 img { display: block; height: 2.5rem; width: auto; }
 </style>
@@ -573,7 +602,7 @@ ${baseCss}
     <p class="code404">404</p>
     <h1>Хуудас олдсонгүй</h1>
     <p>Хайсан хуудас байхгүй эсвэл хаяг буруу байна.</p>
-    <footer><a href="/">← Нүүр хуудас</a><br><small>${universityLink()}</small></footer>
+    <footer><a href="/">← Нүүр хуудас</a><br><small>${universityLink()}</small>${madeByTag('/')}</footer>
   </main>
 </body>
 </html>
