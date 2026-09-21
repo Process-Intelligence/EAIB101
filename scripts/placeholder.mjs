@@ -9,7 +9,7 @@
 // how the build tells a placeholder apart from a real submission.
 
 import { esc, PLACEHOLDER_MARKER, PLACEHOLDER_SENTENCE } from './roster.mjs'
-import { tokens, baseCss, headMeta } from './layout.mjs'
+import { tokens, baseCss, headMeta, logoTag, universityLink } from './layout.mjs'
 
 export function placeholderPage({ id, name, set }) {
   const path = `public/ps/${set.id}/${id}/index.html`
@@ -55,13 +55,16 @@ ${baseCss}
   }
   footer { margin-top: var(--sp-7); padding-top: var(--sp-4); border-top: 1px solid var(--rule); font-size: var(--t-2); color: var(--muted); }
   footer a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
+  footer small { display: block; font-size: var(--t-1); color: var(--muted); }
+  footer small a { min-height: 0; line-height: 1.5; color: inherit; }
+  .logo { display: block; height: 3rem; width: auto; margin-bottom: var(--sp-5); }
 </style>
 </head>
 <body>
   <main class="wrap">
     <article>
       <header>
-        <div class="badges">
+        ${logoTag('../../../', 'logo')}<div class="badges">
           <span class="badge id mono">${esc(id)}</span>
           <span class="badge set">${esc(setLabel)}</span>
         </div>
@@ -75,7 +78,7 @@ ${baseCss}
         <code class="path">${esc(path)}</code>
       </div>
 
-      <footer><a href="../">← ${esc(setLabel)}</a></footer>
+      <footer><a href="../">← ${esc(setLabel)}</a><br><small>${universityLink()}</small></footer>
     </article>
   </main>
 </body>

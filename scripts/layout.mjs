@@ -9,22 +9,25 @@
 // (code, notes). `tokens` holds the palette and scales; the placeholder page
 // reuses it so the self-contained pages stay in step with the stylesheet.
 
-import { esc, setUrl } from './roster.mjs'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
+import { esc, setUrl, PUBLIC_DIR } from './roster.mjs'
+import { brand } from './brand.mjs'
 
 export const STYLESHEET = '/assets/site.css'
 
 // A small course mark as the favicon — inline, so no request is made for it.
 const FAVICON_SVG =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
-  '<rect width="64" height="64" rx="12" fill="#a3461f"/>' +
-  '<text x="32" y="46" font-family="Charter,Georgia,serif" font-size="40" font-weight="600" text-anchor="middle" fill="#f5f4f0">E</text>' +
+  `<rect width="64" height="64" rx="12" fill="${brand.colors.light.accent}"/>` +
+  `<text x="32" y="46" font-family="Charter,Georgia,serif" font-size="40" font-weight="600" text-anchor="middle" fill="${brand.colors.light.bg}">E</text>` +
   '</svg>'
 
 // <head> lines shared by every page the site generates, self-contained ones
 // included: colour-scheme hints for the browser chrome and the favicon.
 export const headMeta = `<meta name="color-scheme" content="light dark">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f4f0">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#151511">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="${brand.colors.light.bg}">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="${brand.colors.dark.bg}">
 <link rel="icon" href="data:image/svg+xml,${encodeURIComponent(FAVICON_SVG)}">`
 
 // " lang=\"en\"" for a string with no Cyrillic in it, so screen readers switch
@@ -36,18 +39,14 @@ export const langAttr = (s) => (/[\u0400-\u04FF]/.test(String(s)) ? '' : ' lang=
 // Every text/background pair below meets WCAG AA (≥ 4.5:1) in both schemes:
 // ink, muted, accent and ok on bg, panel, accent-soft and ok-soft.
 
+const palette = (colors, indent = '  ') =>
+  Object.entries(colors)
+    .map(([name, value]) => `${indent}--${name}: ${value};`)
+    .join('\n')
+
 export const tokens = `:root {
   color-scheme: light dark;
-  --bg: #f5f4f0;
-  --panel: #ffffff;
-  --ink: #1c1b19;
-  --muted: #5f5d56;
-  --line: #e3e1da;
-  --rule: #b9b6ad;
-  --accent: #a3461f;
-  --accent-soft: #f8e8df;
-  --ok: #2b6743;
-  --ok-soft: #e3efe7;
+${palette(brand.colors.light)}
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --serif: Charter, "Bitstream Charter", Georgia, "Noto Serif", "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -73,16 +72,7 @@ export const tokens = `:root {
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #151511;
-    --panel: #1e1e19;
-    --ink: #ecebe5;
-    --muted: #a8a59c;
-    --line: #33322b;
-    --rule: #4d4b43;
-    --accent: #ec8d61;
-    --accent-soft: #33231b;
-    --ok: #8ccfa4;
-    --ok-soft: #1b2b22;
+${palette(brand.colors.dark, '    ')}
   }
 }`
 
@@ -109,6 +99,17 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; letter-spacing: 0;
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }`
+
+// The logo, when public/assets/<brand.logo.file> exists. `prefix` is the path
+// from the page to the site root: "/" for pages served by the site, a relative
+// "../" chain for the self-contained placeholder so it also works off disk.
+export const hasLogo = existsSync(join(PUBLIC_DIR, 'assets', brand.logo.file))
+export const logoTag = (prefix = '/', cls = 'brand-logo') =>
+  hasLogo ? `<img class="${cls}" src="${esc(prefix)}assets/${esc(brand.logo.file)}" alt="${esc(brand.logo.alt)}">` : ''
+
+// The university line shown under the course name and in every footer.
+export const universityLink = (cls = 'uni') =>
+  `<a class="${cls}" href="${esc(brand.university.url)}" rel="external">${esc(brand.university.mn)}</a>`
 
 // --- stylesheet -----------------------------------------------------------
 
@@ -139,6 +140,14 @@ html { scroll-padding-top: 4.5rem; }
   min-height: 3.5rem;
 }
 .brand { display: flex; flex-direction: column; justify-content: center; min-height: var(--tap); text-decoration: none; color: inherit; min-width: 0; }
+.brand-logo { display: block; height: 2.25rem; width: auto; max-width: 100%; margin-bottom: var(--sp-2); }
+.brand-uni { display: block; font-size: var(--t-1); line-height: 1.4; color: var(--muted); margin-top: var(--sp-1); }
+.navuni { margin: var(--sp-6) 0 0; padding-top: var(--sp-4); border-top: 1px solid var(--line); font-size: var(--t-1); line-height: 1.5; color: var(--muted); }
+.navuni a { color: inherit; font-weight: 600; text-decoration: none; }
+.navuni a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .15em; }
+.sitefoot { margin-top: var(--sp-7); padding: var(--sp-4) 0 0; border-top: 1px solid var(--line); font-size: var(--t-1); color: var(--muted); display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); }
+.sitefoot a { color: inherit; font-weight: 600; text-decoration: none; }
+.sitefoot a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .15em; }
 .brand-class { display: block; font: 600 var(--t-4)/1.2 var(--serif); letter-spacing: .02em; }
 .brand-course { display: block; font-size: var(--t-1); line-height: 1.4; color: var(--muted); }
 .navbtn {
@@ -408,6 +417,7 @@ footer.page a { display: inline-block; min-height: var(--tap); line-height: var(
   .sidehead { display: block; padding: var(--sp-6) var(--sp-4) 0; }
   .brand-class { font-size: var(--t-5); }
   .brand-course { font-size: var(--t-2); }
+  .brand-logo { height: 3rem; }
   .navbtn, .navtoggle { display: none; }
   .nav { display: block; position: static; max-height: none; overflow: visible; border-bottom: 0; box-shadow: none; }
   .wrap { padding: var(--sp-7) var(--sp-6) var(--sp-8); }
@@ -461,8 +471,9 @@ export function sidebar({ className, course, sets, current }) {
   return `    <aside class="side">
       <div class="sidehead">
         <a class="brand" href="/">
-          <span class="brand-class">${esc(className)}</span>
-          <span class="brand-course">${esc(course)}</span>
+          ${logoTag('/')}<span class="brand-class">${esc(className)}</span>
+          <span class="brand-course"${langAttr(course)}>${esc(course)}</span>
+          <span class="brand-uni">${esc(brand.university.mnShort)} · <span lang="en">${esc(brand.university.enShort)}</span></span>
         </a>
         <label class="navbtn" for="navtoggle">Цэс</label>
       </div>
@@ -474,6 +485,7 @@ ${navItem({ href: '/', label: 'Тойм', current: current === 'home' })}
         <ul class="navlist">
 ${items}
         </ul>
+        <p class="navuni">${universityLink()}<br><span lang="en">${esc(brand.university.en)}</span></p>
       </nav>
     </aside>`
 }
@@ -490,6 +502,7 @@ ${headMeta}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="${esc(brand.university.mnShort)} — EAIB101">
 <meta property="og:locale" content="mn_MN">
 <link rel="stylesheet" href="${esc(stylesheet)}">
 </head>
@@ -500,6 +513,10 @@ ${headMeta}
 ${side}
     <main class="main" id="main">
 ${main}
+      <footer class="wrap sitefoot">
+        <span>${universityLink()}</span>
+        <span lang="en">${esc(brand.university.en)}</span>
+      </footer>
     </main>
   </div>
 ${script}
@@ -530,15 +547,18 @@ ${baseCss}
   p { color: var(--muted); margin: 0 0 var(--sp-4); font-size: var(--t-4); }
   footer { margin-top: var(--sp-6); padding-top: var(--sp-4); border-top: 1px solid var(--rule); }
   footer a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
+  footer small { display: block; font-size: var(--t-1); color: var(--muted); }
+  footer small a { min-height: 0; line-height: 1.5; color: inherit; }
+  .logo404 { display: block; height: 3rem; width: auto; margin-bottom: var(--sp-5); }
 </style>
 </head>
 <body>
   <main class="wrap">
-    <p class="eyebrow">${esc(className)}</p>
+    ${logoTag('/', 'logo404')}<p class="eyebrow">${esc(className)}</p>
     <p class="code404">404</p>
     <h1>Хуудас олдсонгүй</h1>
     <p>Хайсан хуудас байхгүй эсвэл хаяг буруу байна.</p>
-    <footer><a href="/">← Нүүр хуудас</a></footer>
+    <footer><a href="/">← Нүүр хуудас</a><br><small>${universityLink()}</small></footer>
   </main>
 </body>
 </html>
