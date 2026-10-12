@@ -20,9 +20,8 @@ Every problem set page shows one tab per group:
 Student IDs are unique across both groups, so a student's URL never changes if
 they move groups — only their entry in `scripts/students.json` does.
 
-From Problem Set 02 on, the financial leadership group hands in **one page per
-team** — 7 teams, `FLP-1` … `FLP-7` — see [Teams](#teams). The entrepreneurship
-group still hands in one page per student.
+From Problem Set 02 on, both groups hand in **one page per team** — 7 teams
+each, `ENT-1` … `ENT-7` and `FLP-1` … `FLP-7` — see [Teams](#teams).
 
 ## URLs
 
@@ -59,7 +58,7 @@ public/                                  <- everything in here is published
     │   └── ...                          <- 55 folders
     ├── 02/
     │   ├── index.html                   <- problem set page (generated)
-    │   ├── B26FA1091/index.html         <- entrepreneurship: one folder per student
+    │   ├── ENT-1/ ... ENT-7/            <- one folder per team
     │   ├── FLP-1/
     │   │   ├── index.html               <- team page: members + work (generated)
     │   │   └── work.html                <- the team's own page, once handed in
