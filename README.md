@@ -20,6 +20,10 @@ Every problem set page shows one tab per group:
 Student IDs are unique across both groups, so a student's URL never changes if
 they move groups — only their entry in `scripts/students.json` does.
 
+From Problem Set 02 on, the financial leadership group hands in **one page per
+team** — 7 teams, `FLP-1` … `FLP-7` — see [Teams](#teams). The entrepreneurship
+group still hands in one page per student.
+
 ## URLs
 
 | Path | Serves |
@@ -28,6 +32,7 @@ they move groups — only their entry in `scripts/students.json` does.
 | `/ps/<SET_ID>/` | That problem set: both group tabs and the roster, then the guidance |
 | `/ps/<SET_ID>/#entrepreneur` | That problem set with a group tab pre-opened |
 | `/ps/<SET_ID>/<STUDENT_ID>/` | That student's submission for that problem set |
+| `/ps/<SET_ID>/<TEAM_ID>/` | A team's page for a set handed in by team: the members, then the team's work |
 | `/student/<STUDENT_ID>/…` | Redirects to `/ps/01/…` (see `public/_redirects`) |
 | anything else | `public/404.html` with a 404 status |
 
@@ -52,7 +57,14 @@ public/                                  <- everything in here is published
     │   ├── index.html                   <- problem set page (generated)
     │   ├── B26FA1091/index.html         <- one folder per student
     │   └── ...                          <- 55 folders
-    ├── 02/index.html                    <- planned set, no student folders yet
+    ├── 02/
+    │   ├── index.html                   <- problem set page (generated)
+    │   ├── B26FA1091/index.html         <- entrepreneurship: one folder per student
+    │   ├── FLP-1/
+    │   │   ├── index.html               <- team page: members + work (generated)
+    │   │   └── work.html                <- the team's own page, once handed in
+    │   └── ...
+    ├── 05/index.html                    <- planned set, no student folders yet
     └── ...                              <- 10 problem sets
 scripts/
 ├── students.json                        <- the roster, grouped by program
@@ -83,6 +95,12 @@ can go in the same folder and be referenced with relative paths, e.g.
 бөгөөд зөвхөн өөрийн фолдер дотор ажиллана. Нэмэлт файл (CSS, зураг, JS) -ыг мөн
 тэр фолдерт хийж, харьцангуй замаар холбоно, жишээ нь
 `<link rel="stylesheet" href="style.css">`.
+
+**Teams / Баг** — a team's work goes in `public/ps/<SET_ID>/<TEAM_ID>/work.html`,
+not `index.html`: the team's `index.html` is generated and shows the members
+above the work. Extra files go in the same folder, as above.
+Багийн ажлыг `public/ps/<БОДЛОГЫН_ДУГААР>/<БАГИЙН_КОД>/work.html` файлд
+байрлуулна; `index.html` нь багийн гишүүдийг харуулдаг автоматаар үүсгэгддэг хуудас.
 
 Folders that still hold the generated placeholder have not been submitted yet.
 The build recognises a placeholder by the `<!-- eaib101:placeholder -->`
@@ -202,7 +220,11 @@ count who has submitted.
 ## Receiving a submission
 
 Replace the whole of `public/ps/<SET_ID>/<STUDENT_ID>/index.html` with the
-student's file, then run `npm run index` so the counts update. The build
+student's file, then run `npm run index` so the counts update. For a team, save
+the team's file as `public/ps/<SET_ID>/<TEAM_ID>/work.html` instead and run
+`npm run index` — that also rebuilds the team page so it shows the work. If a
+team's work lands in its `index.html` by mistake, the build stops rather than
+overwrite it. The build
 prints a note for any submitted page that loads assets from the internet or
 has no viewport tag — worth a look, but it does not change the count.
 
@@ -234,7 +256,12 @@ Problem sets live in `scripts/problem-sets.json`. A set with
 roster, but no student folders and no links. To open one:
 
 1. Fill in its `title` and the guidance fields, and set `"status": "published"`.
-2. Run `npm run scaffold` to create the 55 student folders, then `npm run index`.
+   A set may open before its brief is written: without a title it is called
+   "Бодлого <id>", and without a task its page says the brief is still to come.
+2. Run `npm run scaffold` to create the student folders, then `npm run index`.
+
+Add `"submission": "team"` to a set that is handed in by team (see
+[Teams](#teams)); leave it out, or say `"individual"`, otherwise.
 
 The guidance fields are:
 
@@ -264,6 +291,29 @@ All guidance text is escaped when rendered, so it is plain text, not HTML.
 Every problem set page generates one tab per group, so no template edits are
 needed.
 
+## Teams
+
+A group can be split into teams by adding `teams` next to its `students` in
+`scripts/students.json`:
+
+```json
+"teams": [
+  { "id": "FLP-1", "name": "Баг 1", "members": ["B26FA1843", "B26FA1842", "B26FA1825"] }
+]
+```
+
+`members` are student IDs from the same group. In a problem set marked
+`"submission": "team"`, a group with teams hands in once per team and a group
+without teams carries on student by student. For each team the build writes
+`public/ps/<SET_ID>/<TEAM_ID>/index.html` — the team's name and members, then
+its `work.html` in a frame below them, or a "not handed in yet" note — so
+`scaffold` creates nothing for teams. A team's row on the problem set page lists
+its members, and students on no team are named under the group's roster.
+
+Team IDs share the folder namespace with student IDs, so they must not match a
+student ID. Changing `teams` changes every team set at once; the folder of a
+team that no longer exists is kept and reported as not belonging to the set.
+
 ## Validation
 
 `npm run scaffold` and `npm run index` both refuse to run when:
@@ -274,11 +324,15 @@ needed.
   digits, `_` and `-` only)
 - a student, group or problem set is missing its name, label or title, or a
   group has no students
-- a problem set is `published` with no title or task, a step has no `n` or
-  title, a list block has no items, or a code/note block has no text
+- a team ID is missing, not URL-safe or taken by a student or another team, a
+  team has no name or members, lists a student from another group, or shares a
+  student with another team
+- a problem set's `submission` is not `individual` or `team`, a step has no `n`
+  or title, a list block has no items, or a code/note block has no text
 
-Both also warn about: student folders under `public/ps/<SET_ID>/` that no
-group claims, stray files there, a planned set that still has student folders,
+Both also warn about: students on no team in a group that has teams, folders
+under `public/ps/<SET_ID>/` that are not a student or team of that set, stray
+files there, a planned set that still has student folders,
 two students in one group with the same name, a roster entry with no
 `index.html`, a folder holding files under another name (`index.htm`) — which
 `scaffold` leaves alone rather than covering with a placeholder — and, from

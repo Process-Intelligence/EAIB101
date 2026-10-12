@@ -1,0 +1,4 @@
+# Keep LF in every working copy. The build writes LF, and `npm run check`
+# compares byte for byte, so a CRLF checkout (core.autocrlf on Windows) would
+# report every generated page as out of date.
+* text=auto eol=lf

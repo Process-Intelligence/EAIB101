@@ -5,9 +5,10 @@
 //
 //   public/ps/<SET_ID>/index.html          the problem set page
 //   public/ps/<SET_ID>/<STUDENT_ID>/       that student's submission for it
+//   public/ps/<SET_ID>/<TEAM_ID>/          a team's, for a set handed in by team
 //
-// Student folders are flat inside a problem set, so student IDs must be unique
-// across *all* groups — that is checked here and is a hard error.
+// Student and team folders are flat inside a problem set, so their IDs must be
+// unique across *all* groups — that is checked here and is a hard error.
 
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -84,8 +85,26 @@ export function loadRoster() {
     throw new Error('scripts/students.json: "groups" must be a non-empty array')
   }
 
-  const seenStudent = new Map() // lower-cased id -> { id, group }
+  const seenId = new Map() // lower-cased student or team id -> { id, group, kind }
   const seenGroup = new Set()
+
+  // Students and teams share one folder namespace inside a problem set, so
+  // every id is checked against both.
+  const claim = (id, gid, kind) => {
+    const first = seenId.get(id.toLowerCase())
+    if (!first) {
+      seenId.set(id.toLowerCase(), { id, group: gid, kind })
+      return
+    }
+    problems.push(
+      first.id !== id
+        ? `ids "${first.id}" and "${id}" differ only by case — they would share one folder on macOS and Windows`
+        : first.kind === kind
+          ? `${kind} id "${id}" appears twice (groups "${first.group}" and "${gid}") — ` +
+            `IDs must be unique because every ${kind} has one folder per problem set`
+          : `"${id}" is both a ${first.kind} id and a ${kind} id — they would share one folder per problem set`
+    )
+  }
 
   for (const group of raw.groups) {
     const gid = group.id
@@ -108,17 +127,7 @@ export function loadRoster() {
         continue
       }
       if (!isText(s.name)) problems.push(`student "${s.id}" has no name`)
-      const first = seenStudent.get(s.id.toLowerCase())
-      if (first) {
-        problems.push(
-          first.id === s.id
-            ? `student id "${s.id}" appears twice (groups "${first.group}" and "${gid}") — ` +
-                'IDs must be unique because every student has one folder per problem set'
-            : `student ids "${first.id}" and "${s.id}" differ only by case — they would share one folder on macOS and Windows`
-        )
-      } else {
-        seenStudent.set(s.id.toLowerCase(), { id: s.id, group: gid })
-      }
+      claim(s.id, gid, 'student')
       if (isText(s.name)) {
         const name = s.name.trim()
         if (namesInGroup.has(name)) {
@@ -127,6 +136,40 @@ export function loadRoster() {
           namesInGroup.set(name, s.id)
         }
       }
+    }
+
+    // Teams are optional. Each lists its members by student id; a student is
+    // on at most one team, and only on a team in their own group.
+    if (group.teams === undefined) continue
+    if (!Array.isArray(group.teams)) {
+      problems.push(`group "${gid}": "teams" must be an array`)
+      continue
+    }
+    const inGroup = new Set(group.students.map((s) => s.id))
+    const onTeam = new Map() // student id -> team id
+    for (const t of group.teams) {
+      if (!isText(t.id) || !ID_RE.test(t.id)) {
+        problems.push(`team id ${JSON.stringify(t.id)} in group "${gid}" is missing or not URL-safe (letters, digits, _ and - only)`)
+        continue
+      }
+      claim(t.id, gid, 'team')
+      if (!isText(t.name)) problems.push(`team "${t.id}" has no name`)
+      if (!Array.isArray(t.members) || t.members.length === 0) {
+        problems.push(`team "${t.id}" has no members`)
+        continue
+      }
+      for (const m of t.members) {
+        if (!inGroup.has(m)) problems.push(`team "${t.id}" lists ${JSON.stringify(m)}, who is not a student in group "${gid}"`)
+        else if (onTeam.has(m)) problems.push(`student "${m}" is on two teams, "${onTeam.get(m)}" and "${t.id}"`)
+        else onTeam.set(m, t.id)
+      }
+    }
+    const loose = group.students.filter((s) => !onTeam.has(s.id))
+    if (group.teams.length && loose.length) {
+      warnings.push(
+        `group "${gid}": ${loose.length} student(s) on no team — ${loose.map((s) => s.id).join(', ')}; ` +
+          'they have nothing to hand in for a team problem set'
+      )
     }
   }
 
@@ -137,11 +180,25 @@ export function loadRoster() {
   return {
     class: raw.class ?? 'EAIB101',
     warnings,
-    groups: raw.groups.map((group) => ({
-      id: group.id,
-      label: group.label.trim(),
-      students: group.students.map(({ id, name }) => ({ id, name: name.trim(), group: group.id })),
-    })),
+    groups: raw.groups.map((group) => {
+      const students = group.students.map(({ id, name }) => ({ id, name: name.trim(), group: group.id }))
+      const byId = new Map(students.map((s) => [s.id, s]))
+      const teams = (group.teams ?? []).map((t) => ({
+        id: t.id,
+        name: t.name.trim(),
+        group: group.id,
+        members: t.members.map((m) => byId.get(m)),
+      }))
+      const teamed = new Set(teams.flatMap((t) => t.members.map((m) => m.id)))
+      return {
+        id: group.id,
+        label: group.label.trim(),
+        students,
+        teams,
+        // Students on no team: a team problem set has no page for them.
+        unassigned: teams.length ? students.filter((s) => !teamed.has(s.id)) : [],
+      }
+    }),
   }
 }
 
@@ -173,10 +230,11 @@ export function loadProblemSets() {
     if (set.sources !== undefined && !(Array.isArray(set.sources) && set.sources.every(isText))) {
       problems.push(`${where}: "sources" must be an array of strings`)
     }
-    if (set.status === 'published') {
-      if (!isText(set.title)) problems.push(`${where} is published but has no title`)
-      if (!isText(set.task)) problems.push(`${where} is published but has no task`)
+    if (set.submission !== undefined && !['individual', 'team'].includes(set.submission)) {
+      problems.push(`${where} has submission ${JSON.stringify(set.submission)} — expected "individual" or "team"`)
     }
+    // A published set may open before its brief is written: its page then
+    // shows "Бодлого <id>" as the title and says the task is still to come.
     if (set.steps !== undefined && !Array.isArray(set.steps)) {
       problems.push(`${where}: "steps" must be an array`)
       continue
@@ -247,6 +305,26 @@ export function submissionState(setId, studentId) {
   const html = readFileSync(page, 'utf8')
   if (html.includes(PLACEHOLDER_MARKER)) return { state: 'placeholder', exists: true, submitted: false, notes: [] }
   if (isLegacyPlaceholder(html)) return { state: 'legacy', exists: true, submitted: false, notes: [] }
+  return judge(html)
+}
+
+// The state of one team's work for one problem set. The team's index.html is
+// generated by the build — the members, then the work — so the work itself is
+// the file beside it, TEAM_WORK, and there is no placeholder to tell apart:
+//
+//   pending      no work.html yet
+//   broken       as for a student page
+//   submitted    anything else
+export function teamWorkState(setId, teamId) {
+  const file = join(studentDir(setId, teamId), TEAM_WORK)
+  if (!existsSync(file)) return { state: 'pending', exists: false, submitted: false, notes: [] }
+  if (!statSync(file).isFile()) return { state: 'broken', exists: true, submitted: false, notes: [`${TEAM_WORK} is not a file`] }
+  return judge(readFileSync(file, 'utf8'))
+}
+
+// Broken when a handed-in file is empty or not an HTML document, submitted
+// otherwise.
+function judge(html) {
   const text = html.trim()
   if (text.length < 200 || !/<(!doctype|html|head|body)\b/i.test(text)) {
     const why = text.length === 0 ? 'file is empty' : 'not an HTML document (no doctype, <html>, <head> or <body>)'
@@ -255,21 +333,36 @@ export function submissionState(setId, studentId) {
   return { state: 'submitted', exists: true, submitted: true, notes: lintSubmission(html) }
 }
 
-// Attaches per-student submission state for one problem set and counts it up.
-// `issues` lists every page that needs the maintainer's eye: missing, legacy
-// or broken files, and submitted pages with lint notes.
+// --- who hands in work ----------------------------------------------------
+//
+// A set with "submission": "team" is handed in once per team by every group
+// that has teams. A group without teams still hands it in student by student.
+
+export const TEAM_WORK = 'work.html'
+
+// Marker in every generated team page, so the build never overwrites a team's
+// work that was dropped in as index.html by mistake.
+export const TEAM_MARKER = '<!-- eaib101:team-page -->'
+
+export const byTeam = (set, group) => set.submission === 'team' && group.teams.length > 0
+export const entriesFor = (set, group) => (byTeam(set, group) ? group.teams : group.students)
+
+// Attaches the submission state of every student or team for one problem set
+// and counts it up. `issues` lists everything that needs the maintainer's eye:
+// missing, legacy or broken files, and submitted pages with lint notes.
 export function groupsFor(set, roster) {
   const issues = []
   const groups = roster.groups.map((group) => {
-    const students = group.students.map((s) => {
-      const st = submissionState(set.id, s.id)
-      if ((st.state !== 'submitted' && st.state !== 'placeholder') || st.notes.length) {
-        issues.push({ id: s.id, state: st.state, notes: st.notes })
+    const team = byTeam(set, group)
+    const entries = entriesFor(set, group).map((e) => {
+      const st = team ? teamWorkState(set.id, e.id) : submissionState(set.id, e.id)
+      if (!['submitted', 'placeholder', 'pending'].includes(st.state) || st.notes.length) {
+        issues.push({ id: team ? `${e.id}/${TEAM_WORK}` : e.id, state: st.state, notes: st.notes })
       }
-      return { ...s, ...st }
+      return { ...e, ...st }
     })
-    const done = students.filter((s) => s.submitted).length
-    return { ...group, students, done, total: students.length, pct: pct(done, students.length) }
+    const done = entries.filter((e) => e.submitted).length
+    return { ...group, byTeam: team, entries, done, total: entries.length, pct: pct(done, entries.length) }
   })
   const done = groups.reduce((n, g) => n + g.done, 0)
   const total = groups.reduce((n, g) => n + g.total, 0)
@@ -279,19 +372,20 @@ export function groupsFor(set, roster) {
 export const pct = (done, total) => (total ? Math.round((done / total) * 100) : 0)
 
 // What sits inside a problem set's folder besides its own index.html:
-// `orphans` are student folders no group claims (a typo or a removed student),
-// `strays` are loose files. Both are served, but nothing links to them.
-export function inspectSetDir(setId, roster) {
-  const dir = setDir(setId)
+// `orphans` are folders that are not a student or team of this set (a typo, a
+// removed student, a student folder in a set handed in by team), `strays` are
+// loose files. Both are served, but nothing links to them.
+export function inspectSetDir(set, roster) {
+  const dir = setDir(set.id)
   if (!existsSync(dir)) return { orphans: [], strays: [] }
-  const known = new Set(roster.groups.flatMap((g) => g.students.map((s) => s.id)))
+  const known = new Set(roster.groups.flatMap((g) => entriesFor(set, g).map((e) => e.id)))
   const entries = readdirSync(dir, { withFileTypes: true })
   return {
     orphans: entries.filter((e) => e.isDirectory() && !known.has(e.name)).map((e) => e.name),
     strays: entries.filter((e) => !e.isDirectory() && e.name !== 'index.html').map((e) => e.name),
   }
 }
-export const findOrphanFolders = (setId, roster) => inspectSetDir(setId, roster).orphans
+export const findOrphanFolders = (set, roster) => inspectSetDir(set, roster).orphans
 
 // The files in a student's folder, or null when the folder does not exist.
 export function studentFolderFiles(setId, studentId) {

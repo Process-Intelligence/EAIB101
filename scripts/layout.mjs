@@ -11,7 +11,7 @@
 
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { esc, setUrl, PUBLIC_DIR } from './roster.mjs'
+import { esc, setUrl, PUBLIC_DIR, TEAM_MARKER } from './roster.mjs'
 import { brand } from './brand.mjs'
 
 export const STYLESHEET = '/assets/site.css'
@@ -380,12 +380,42 @@ a.student:hover .name { color: var(--accent); text-decoration: underline; text-u
 .name { font-size: .9375rem; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
 .tag { font-size: var(--t-1); font-weight: 600; white-space: nowrap; color: var(--muted); }
 .is-submitted .tag { color: var(--ok); background: var(--ok-soft); padding: .1rem .5rem; border-radius: 999px; }
+/* A team row names its members on a second line, under the team name. */
+.student .members { grid-column: 3 / -1; margin-top: calc(-1 * var(--sp-2)); font-size: var(--t-2); line-height: 1.4; color: var(--muted); overflow-wrap: anywhere; }
+.panel-note { margin: 0 0 var(--sp-4); max-width: var(--measure); font-size: var(--t-2); color: var(--muted); }
+.roster + .panel-note { margin: var(--sp-4) 0 0; }
 @media (max-width: 40rem) {
   .student { gap: var(--sp-2); }
   .student .code, .student .tag { font-size: .6875rem; }
 }
 @media (min-width: 40rem) {
   .roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr)); column-gap: var(--sp-6); }
+}
+
+/* ---- team page: the members, then the team's work in a frame ----------- */
+body.viewer { display: flex; flex-direction: column; min-height: 100vh; }
+.vbar { border-bottom: 1px solid var(--line); }
+.vbar-in { max-width: 62rem; margin: 0 auto; padding: var(--sp-3) var(--sp-4) var(--sp-5); }
+.vback { margin: 0 0 var(--sp-2); font-size: var(--t-2); }
+.vback a, .vopen a { display: inline-block; min-height: var(--tap); line-height: var(--tap); font-weight: 600; }
+.vbar h1 { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--sp-1) var(--sp-3); margin: 0 0 var(--sp-3); font-size: var(--t-6); line-height: 1.15; }
+.vmembers { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.vmembers li {
+  display: inline-flex; align-items: baseline; gap: var(--sp-2);
+  padding: .2rem .6rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
+}
+.vmembers .name { font-size: var(--t-2); }
+.vopen { margin: var(--sp-3) 0 0; font-size: var(--t-2); }
+.vwork { flex: 1; display: flex; flex-direction: column; }
+/* The work is the team's own page, made for a white ground. */
+.vframe { flex: 1; display: block; width: 100%; min-height: 80vh; border: 0; background: #fff; }
+.vpending { width: 100%; }
+.vpending .note { margin-top: 0; }
+.vpending .note p + p { margin-top: var(--sp-2); }
+.vpending .path {
+  display: block; margin-top: var(--sp-3); padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); color: var(--ink);
+  font-size: var(--t-2); overflow-wrap: anywhere;
 }
 
 /* ---- overview: problem sets and programs as lists ---------------------- */
@@ -494,7 +524,7 @@ export function sidebar({ className, course, sets, current }) {
     .map((s) =>
       navItem({
         href: setUrl(s.id),
-        label: s.title || 'Удахгүй',
+        label: s.title || (s.status === 'published' ? `Бодлого ${s.id}` : 'Удахгүй'),
         num: s.id,
         count: s.status === 'published' ? `${s.done}/${s.total}` : '',
         current: current === s.id,
@@ -558,6 +588,42 @@ ${main}
     </main>
   </div>
 ${script}
+</body>
+</html>
+`
+}
+
+// A team's page: a slim header naming the team and its members, then the
+// team's work filling the rest of the window. No sidebar — the work is what
+// people came for, and the header links back to the problem set.
+export function teamDocument({ title, description, header, work, stylesheet = STYLESHEET }) {
+  return `<!doctype html>
+${TEAM_MARKER}
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+${headMeta}
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:site_name" content="${esc(brand.university.mnShort)} — EAIB101">
+<meta property="og:locale" content="mn_MN">
+<link rel="stylesheet" href="${esc(stylesheet)}">
+</head>
+<body class="viewer">
+${header}
+  <main class="vwork" id="main">
+${work}
+  </main>
+  <footer class="wrap sitefoot">
+    <span class="sitefoot-uni">
+      <span>${universityLink()}</span>
+      <span lang="en">${esc(brand.university.en)}</span>
+    </span>
+    ${madeByTag('/')}
+  </footer>
 </body>
 </html>
 `

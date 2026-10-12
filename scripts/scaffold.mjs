@@ -7,7 +7,9 @@
 //                                    placeholder.mjs reaches them
 //
 // Planned problem sets get no student folders — there is nothing to submit yet,
-// so the repo stays free of hundreds of empty pages.
+// so the repo stays free of hundreds of empty pages. Neither does a group that
+// hands a set in by team: a team's page is built by build-site.mjs from its
+// members and its work.html, so there is nothing to scaffold for it.
 //
 // A submitted page is never touched, with or without --refresh: only a file
 // that still carries the placeholder marker is ever rewritten. A folder that
@@ -22,6 +24,7 @@ import {
   loadRoster,
   loadProblemSets,
   inspectSetDir,
+  byTeam,
   studentDir,
   studentFolderFiles,
   isLegacyPlaceholder,
@@ -43,6 +46,7 @@ try {
 
   for (const set of published) {
     for (const group of roster.groups) {
+      if (byTeam(set, group)) continue
       for (const student of group.students) {
         const dir = studentDir(set.id, student.id)
         const page = join(dir, 'index.html')
@@ -79,8 +83,8 @@ try {
         created++
       }
     }
-    const { orphans, strays } = inspectSetDir(set.id, roster)
-    for (const o of orphans) console.warn(`  ! public/ps/${set.id}/${o}/ is not on any roster — nothing links to it`)
+    const { orphans, strays } = inspectSetDir(set, roster)
+    for (const o of orphans) console.warn(`  ! public/ps/${set.id}/${o}/ is not a student or team of this set — nothing links to it`)
     for (const f of strays) console.warn(`  ! public/ps/${set.id}/${f} is a stray file — published, but nothing links to it`)
   }
   for (const w of roster.warnings) console.warn(`  ! ${w}`)

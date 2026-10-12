@@ -3,13 +3,17 @@
 //   public/assets/site.css          the shared stylesheet
 //   public/index.html               course overview
 //   public/ps/<SET_ID>/index.html   one page per problem set
+//   public/ps/<SET_ID>/<TEAM_ID>/index.html
+//                                   one page per team, in a set handed in by
+//                                   team: its members, then its work.html
 //   public/404.html                 the not-found page
 //
 //   npm run index     write them
 //   npm run check     write nothing; exit 1 if any of them is out of date
 //
-// Student submissions under public/ps/<SET_ID>/<STUDENT_ID>/ are never written
-// here — they are read only, to count who has submitted.
+// Student submissions under public/ps/<SET_ID>/<STUDENT_ID>/, and a team's
+// work.html, are never written here — they are read only, to count who has
+// submitted.
 
 import { writeFileSync, mkdirSync, readFileSync, existsSync, readdirSync } from 'node:fs'
 import { createHash } from 'node:crypto'
@@ -19,16 +23,21 @@ import {
   loadProblemSets,
   groupsFor,
   inspectSetDir,
+  byTeam,
+  entriesFor,
   setDir,
   setUrl,
+  studentDir,
   studentUrl,
   esc,
   jsonForScript,
   pct,
   PUBLIC_DIR,
   ROOT,
+  TEAM_WORK,
+  TEAM_MARKER,
 } from './roster.mjs'
-import { css, tabRules, page, sidebar, langAttr, notFoundPage, STYLESHEET } from './layout.mjs'
+import { css, tabRules, page, sidebar, langAttr, notFoundPage, teamDocument, STYLESHEET } from './layout.mjs'
 
 const CHECK = process.argv.includes('--check')
 const STATUS = { published: 'Нээлттэй', planned: 'Нээгээгүй' }
@@ -58,12 +67,25 @@ function main() {
   const sheet = `${css}\n${tabRules(roster.groups)}\n`
   stylesheet = `${STYLESHEET}?v=${createHash('sha256').update(sheet).digest('hex').slice(0, 10)}`
 
+  const teamOutputs = sets.flatMap(teamPages)
   const outputs = [
     [join(PUBLIC_DIR, 'assets', 'site.css'), sheet],
     [join(PUBLIC_DIR, 'index.html'), overviewPage()],
     [join(PUBLIC_DIR, '404.html'), notFoundPage({ className: CLASS })],
     ...sets.map((set) => [join(setDir(set.id), 'index.html'), problemSetPage(set)]),
+    ...teamOutputs,
   ]
+
+  // A team's index.html belongs to the build. If the team's work was put there
+  // instead of in work.html, stop before it is overwritten.
+  for (const [path] of teamOutputs) {
+    if (existsSync(path) && !readFileSync(path, 'utf8').includes(TEAM_MARKER)) {
+      throw new Error(
+        `${relative(ROOT, path)} is not a generated team page — move the team's work to ${TEAM_WORK} ` +
+          'in the same folder, then run npm run index again'
+      )
+    }
+  }
 
   if (CHECK) {
     const stale = outputs.filter(([path, html]) => !existsSync(path) || readFileSync(path, 'utf8') !== html)
@@ -85,8 +107,8 @@ function main() {
   const openSets = sets.filter((s) => s.status === 'published')
   console.log(`${STYLESHEET} + ${outputs.length - 1} page(s) regenerated`)
   for (const s of openSets) {
-    console.log(`  ps/${s.id} ${s.title}: ${s.done}/${s.total} (${s.pct}%)`)
-    for (const g of s.groups) console.log(`    ${g.label}: ${g.done}/${g.total}`)
+    console.log(`  ps/${s.id} ${setName(s)}: ${s.done}/${s.total} (${s.pct}%)`)
+    for (const g of s.groups) console.log(`    ${g.label}: ${g.done}/${g.total}${g.byTeam ? ' teams' : ''}`)
   }
   console.log(`  ${sets.length - openSets.length} planned problem set(s) rendered as placeholders`)
 }
@@ -96,12 +118,12 @@ function main() {
 function warn() {
   for (const w of roster.warnings) console.warn(`  ! ${w}`)
   for (const set of sets) {
-    const { orphans, strays } = inspectSetDir(set.id, roster)
+    const { orphans, strays } = inspectSetDir(set, roster)
     if (set.status !== 'published') {
       const dir = setDir(set.id)
       const folders = existsSync(dir) ? readdirSync(dir, { withFileTypes: true }).filter((e) => e.isDirectory()).length : 0
       if (folders) {
-        console.warn(`  ! ps/${set.id} is planned but has ${folders} student folder(s) — they are served but nothing links to them; was it published before?`)
+        console.warn(`  ! ps/${set.id} is planned but has ${folders} folder(s) — they are served but nothing links to them; was it published before?`)
       }
       continue
     }
@@ -112,7 +134,7 @@ function warn() {
       else if (i.state === 'broken') console.warn(`  ! ${where}: ${i.notes.join('; ')} — counting as pending`)
       else for (const n of i.notes) console.warn(`  · ${where}: ${n}`)
     }
-    for (const o of orphans) console.warn(`  ! public/ps/${set.id}/${o}/ is not on any roster — nothing links to it`)
+    for (const o of orphans) console.warn(`  ! public/ps/${set.id}/${o}/ is not a student or team of this set — nothing links to it`)
     for (const f of strays) console.warn(`  ! public/ps/${set.id}/${f} is a stray file — published, but nothing links to it`)
   }
 }
@@ -120,6 +142,9 @@ function warn() {
 // --- shared fragments -----------------------------------------------------
 
 const nav = (current) => sidebar({ className: CLASS, course: COURSE, sets, current })
+
+// An open set may not have its title yet; it is then called by its number.
+const setName = (set) => set.title || `Бодлого ${set.id}`
 
 // Numbered section heading: "01  The task". The numeral is decoration for the
 // eye, so it is hidden from assistive tech and the heading reads as its title.
@@ -140,28 +165,42 @@ function progress(done, total, hero = false) {
       </div>`
 }
 
-function studentRow(student, set) {
-  // A planned problem set has no student pages to link to, so the row is
-  // rendered as plain text rather than a dead link.
+// One row of a group's roster: a student, or a team with its members named on
+// a second line.
+function entryRow(entry, set) {
+  const members = entry.members
+    ? `\n              <span class="members">${entry.members.map((m) => esc(m.name)).join(' · ')}</span>`
+    : ''
+  // A planned problem set has no pages to link to, so the row is rendered as
+  // plain text rather than a dead link.
   if (set.status !== 'published') {
     return `          <li>
             <div class="student is-locked">
-              <span class="code mono">${esc(student.id)}</span>
-              <span class="name">${esc(student.name)}</span>
-              <span class="tag">${STATUS.planned}</span>
+              <span class="code mono">${esc(entry.id)}</span>
+              <span class="name">${esc(entry.name)}</span>
+              <span class="tag">${STATUS.planned}</span>${members}
             </div>
           </li>`
   }
-  const state = student.submitted ? 'is-submitted' : 'is-pending'
-  const tag = student.submitted ? 'Илгээсэн' : 'Хүлээгдэж буй'
+  const state = entry.submitted ? 'is-submitted' : 'is-pending'
+  const tag = entry.submitted ? 'Илгээсэн' : 'Хүлээгдэж буй'
   return `          <li>
-            <a class="student ${state}" href="${esc(studentUrl(set.id, student.id))}">
-              <span class="code mono">${esc(student.id)}</span>
-              <span class="name">${esc(student.name)}</span>
-              <span class="tag">${tag}</span>
+            <a class="student ${state}" href="${esc(studentUrl(set.id, entry.id))}">
+              <span class="code mono">${esc(entry.id)}</span>
+              <span class="name">${esc(entry.name)}</span>
+              <span class="tag">${tag}</span>${members}
             </a>
           </li>`
 }
+
+// Under a group handed in by team: how it works, and who is on no team.
+const teamNote = '        <p class="panel-note">Энэ бодлогыг багаар гүйцэтгэнэ — баг бүр нэг HTML хуудас илгээнэ.</p>\n'
+const unassignedNote = (g) =>
+  g.unassigned.length
+    ? `        <p class="panel-note">Багт хуваарилагдаагүй: ${g.unassigned
+        .map((s) => `${esc(s.name)} <span class="mono">${esc(s.id)}</span>`)
+        .join(', ')}</p>\n`
+    : ''
 
 // The group tabs plus their rosters, for one problem set. Pure CSS: a visually
 // hidden radio per group drives both the tab and the panel (the rules live in
@@ -182,7 +221,7 @@ function groupTabs(set, groups) {
     .map(
       (g) => `        <label class="tab" id="${esc(g.id)}" for="tab-${esc(g.id)}">
           <span class="tab-name">${esc(g.label)}</span>
-          <span class="tab-count mono">${set.status === 'published' ? `${g.done}/${g.total}` : g.total}</span>
+          <span class="tab-count mono">${set.status === 'published' ? `${g.done}/${g.total}` : g.byTeam ? `${g.total} баг` : g.total}</span>
         </label>`
     )
     .join('\n')
@@ -190,10 +229,10 @@ function groupTabs(set, groups) {
   const panels = groups
     .map(
       (g) => `      <section class="panel" id="panel-${esc(g.id)}" aria-label="${esc(g.label)}">
-${set.status === 'published' ? progress(g.done, g.total) + '\n' : ''}        <ul class="roster">
-${g.students.map((s) => studentRow(s, set)).join('\n')}
+${set.status === 'published' ? progress(g.done, g.total) + '\n' : ''}${g.byTeam ? teamNote : ''}        <ul class="roster">
+${g.entries.map((e) => entryRow(e, set)).join('\n')}
         </ul>
-      </section>`
+${g.byTeam ? unassignedNote(g) : ''}      </section>`
     )
     .join('\n\n')
 
@@ -285,20 +324,40 @@ ${set.groups.map((g) => tile(`#${esc(g.id)}`, esc(g.label), g.done, g.total, g.p
 // to click, so its introduction comes first.
 function problemSetPage(set) {
   const open = set.status === 'published'
-  const heading = open ? set.title : `Бодлого ${set.id}`
-  const groups = open ? set.groups : roster.groups.map((g) => ({ ...g, done: 0, total: g.students.length }))
-  const students = groups.reduce((n, g) => n + g.total, 0)
+  const heading = open ? setName(set) : `Бодлого ${set.id}`
+  const groups = open
+    ? set.groups
+    : roster.groups.map((g) => {
+        const entries = entriesFor(set, g)
+        return { ...g, byTeam: byTeam(set, g), entries, done: 0, total: entries.length }
+      })
+  const students = roster.groups.reduce((n, g) => n + g.students.length, 0)
 
   const rosterSection = `      <section class="sec" id="${SEC.roster}">
 ${sectionHeading(open ? '01' : '02', open ? 'Илгээсэн ажлууд' : 'Оюутнууд', open ? `${set.done}/${set.total}` : `${students} оюутан`)}
 ${open ? `        <p class="jump"><a href="#${SEC.task}">Даалгавар ба алхмууд ↓</a></p>\n` : ''}${groupTabs(set, groups)}
       </section>`
 
+  // A set opened before its brief was written says so, and has no steps yet.
+  const brief = set.task
+    ? `          <p${langAttr(set.task)}>${esc(set.task)}</p>`
+    : '          <p>Даалгаврын тайлбар удахгүй нэмэгдэнэ.</p>'
+  const steps = set.steps?.length
+    ? `
+
+      <section class="sec" id="${SEC.steps}">
+${sectionHeading('03', 'Алхмууд')}
+        <div class="steps">
+${set.steps.map(step).join('\n')}
+        </div>
+      </section>`
+    : ''
+
   const guidance = open
     ? `      <section class="sec brief" id="${SEC.task}">
 ${sectionHeading('02', 'The task')}
         <div class="prose">
-          <p${langAttr(set.task)}>${esc(set.task)}</p>
+${brief}
 ${
   set.sources?.length
     ? `          <h3 lang="en">Where to look</h3>
@@ -308,14 +367,7 @@ ${set.sources.map((s) => `            <span class="chip"${langAttr(s)}>${esc(s)}
     : ''
 }
         </div>
-      </section>
-
-      <section class="sec" id="${SEC.steps}">
-${sectionHeading('03', 'Алхмууд')}
-        <div class="steps">
-${(set.steps ?? []).map(step).join('\n')}
-        </div>
-      </section>`
+      </section>${steps}`
     : `      <section class="sec" id="${SEC.intro}">
 ${sectionHeading('01', 'Танилцуулга')}
         <div class="prose">
@@ -338,13 +390,64 @@ ${open ? `${rosterSection}\n\n${guidance}` : `${guidance}\n\n${rosterSection}`}
       <footer class="page"><a href="/">← Тойм</a></footer>`
 
   return page({
-    title: `Бодлого ${set.id}${open ? ` — ${set.title}` : ''} | ${CLASS}`,
+    title: `Бодлого ${set.id}${open && set.title ? ` — ${set.title}` : ''} | ${CLASS}`,
     description: open
-      ? `${CLASS} — Бодлого ${set.id}: ${set.title}. ${set.done}/${set.total} илгээсэн.`
+      ? `${CLASS} — Бодлого ${set.id}${set.title ? `: ${set.title}` : ''}. ${set.done}/${set.total} илгээсэн.`
       : `${CLASS} — Бодлого ${set.id} хараахан нээгдээгүй байна.`,
     side: nav(set.id),
     main: `      <div class="wrap">\n${main}\n      </div>`,
     script: tabScript(groups),
+    stylesheet,
+  })
+}
+
+// --- team pages -----------------------------------------------------------
+//
+// public/ps/<SET_ID>/<TEAM_ID>/index.html: who is on the team, then the team's
+// work. The work is the team's own work.html in the same folder, served as
+// handed in and shown in a frame, so its styles and ours never mix.
+
+function teamPages(set) {
+  if (set.status !== 'published') return []
+  return set.groups
+    .filter((g) => g.byTeam)
+    .flatMap((g) => g.entries.map((team) => [join(studentDir(set.id, team.id), 'index.html'), teamPage(set, g, team)]))
+}
+
+function teamPage(set, group, team) {
+  const label = `Бодлого ${set.id}${set.title ? ` — ${set.title}` : ''}`
+  const members = team.members
+    .map((m) => `        <li><span class="code mono">${esc(m.id)}</span><span class="name">${esc(m.name)}</span></li>`)
+    .join('\n')
+
+  const header = `  <header class="vbar">
+    <div class="vbar-in">
+      <p class="vback"><a href="${esc(setUrl(set.id))}#${esc(group.id)}">← ${esc(label)}</a></p>
+      <p class="eyebrow">${esc(group.label)}</p>
+      <h1>${esc(team.name)} <span class="code mono">${esc(team.id)}</span></h1>
+      <ul class="vmembers" aria-label="Багийн гишүүд">
+${members}
+      </ul>
+${team.submitted ? `      <p class="vopen"><a href="${TEAM_WORK}" target="_blank" rel="noopener">Ажлыг шинэ цонхонд нээх ↗</a></p>\n` : ''}    </div>
+  </header>`
+
+  const work = team.submitted
+    ? `    <iframe class="vframe" src="${TEAM_WORK}" title="${esc(team.name)} — ${esc(label)}"></iframe>`
+    : `    <div class="wrap vpending">
+      <div class="note">
+        <p><strong>Хүлээгдэж буй.</strong> Энэ баг энэ бодлогын ажлаа хараахан илгээгээгүй байна.</p>
+        <p>Багийн HTML хуудсыг дараах файлд байрлуулна:</p>
+        <code class="path">public/ps/${esc(set.id)}/${esc(team.id)}/${TEAM_WORK}</code>
+      </div>
+    </div>`
+
+  return teamDocument({
+    title: `${team.name} — ${label} | ${CLASS}`,
+    description:
+      `${CLASS} — ${label}, ${group.label}: ${team.name} (${team.members.map((m) => m.name).join(', ')}). ` +
+      (team.submitted ? 'Илгээсэн.' : 'Хүлээгдэж буй.'),
+    header,
+    work,
     stylesheet,
   })
 }
@@ -370,7 +473,7 @@ function overviewPage() {
       }
       return `        <li><a class="setrow is-open" href="${esc(setUrl(s.id))}">
           <span class="num mono">${esc(s.id)}</span>
-          <span class="title"${langAttr(s.title)}>${esc(s.title)}</span>
+          <span class="title"${langAttr(setName(s))}>${esc(setName(s))}</span>
           <span class="gauge">
             <span class="bar" aria-hidden="true"><span style="width: ${s.pct}%"></span></span>
             <span class="count mono">${s.done}/${s.total}</span>
@@ -386,7 +489,7 @@ function overviewPage() {
       const gDone = openSets.reduce((n, s) => n + (s.groups.find((x) => x.id === g.id)?.done ?? 0), 0)
       const gTotal = openSets.reduce((n, s) => n + (s.groups.find((x) => x.id === g.id)?.total ?? 0), 0)
       const inner = `            <span class="grouprow-name">${esc(g.label)}</span>
-            <span class="grouprow-size">${g.students.length} оюутан</span>
+            <span class="grouprow-size">${g.students.length} оюутан${g.teams.length ? ` · ${g.teams.length} баг` : ''}</span>
 ${
   latest
     ? `            <span class="grouprow-count"><b>${gDone}</b> / ${gTotal} илгээсэн</span>

@@ -163,9 +163,9 @@
         }
       ]
     },
-    { "id": "02", "title": "", "status": "planned" },
-    { "id": "03", "title": "", "status": "planned" },
-    { "id": "04", "title": "", "status": "planned" },
+    { "id": "02", "title": "", "status": "published", "submission": "team" },
+    { "id": "03", "title": "", "status": "published", "submission": "team" },
+    { "id": "04", "title": "", "status": "published", "submission": "team" },
     { "id": "05", "title": "", "status": "planned" },
     { "id": "06", "title": "", "status": "planned" },
     { "id": "07", "title": "", "status": "planned" },
