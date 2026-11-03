@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UF Salon — Маркетингийн санал</title>
+<style>
+:root {
+  --cream: #f4eee5; --beige: #d8c6b0; --brown: #6f4e37;
+  --dark: #2f261f; --muted: #8e7b6a; --white: #fffdf9;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--cream); color: var(--dark);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+header {
+  position: sticky; top: 0; z-index: 5; background: rgba(244,238,229,.94);
+  backdrop-filter: blur(8px); border-bottom: 1px solid #dfd1c1;
+  padding: 12px clamp(16px, 4vw, 52px); display: flex;
+  align-items: center; justify-content: space-between; gap: 12px;
+}
+.brand { font-weight: 800; letter-spacing: .12em; color: var(--brown); }
+.controls { display: flex; gap: 8px; align-items: center; }
+button {
+  border: 1px solid var(--brown); border-radius: 999px; padding: 9px 14px;
+  color: var(--brown); background: var(--white); cursor: pointer; font-weight: 600;
+}
+button:hover { background: var(--brown); color: white; }
+main { width: min(100% - 28px, 1040px); margin: 28px auto 60px; }
+.slide {
+  min-height: min(70vh, 620px); margin: 0 auto 28px; padding: clamp(28px, 6vw, 76px);
+  background: var(--white); border: 1px solid #e2d4c4; border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(69, 47, 31, .08); position: relative;
+  display: flex; align-items: center; overflow: hidden;
+}
+.slide::before {
+  content: ""; position: absolute; width: 250px; height: 250px; border-radius: 50%;
+  right: -85px; top: -95px; background: #e9dccd; opacity: .55;
+}
+.slide::after {
+  content: ""; position: absolute; width: 150px; height: 150px; border-radius: 50%;
+  left: -75px; bottom: -75px; background: #c6a98d; opacity: .25;
+}
+.slide-content { position: relative; z-index: 1; width: 100%; }
+.text-block { margin: 0 0 16px; line-height: 1.55; white-space: normal; }
+.text-block:first-child { color: var(--brown); font-weight: 750; }
+.slide-number { position: absolute; right: 24px; bottom: 18px; color: var(--muted); font-size: 12px; letter-spacing: .12em; }
+footer { text-align: center; color: var(--muted); padding: 0 16px 36px; }
+@media (max-width: 600px) {
+  header { align-items: flex-start; flex-direction: column; }
+  .controls { flex-wrap: wrap; }
+  .slide { min-height: 58vh; }
+}
+@media print {
+  header, footer, .slide-number { display: none; }
+  body { background: white; }
+  main { width: 100%; margin: 0; }
+  .slide { page-break-after: always; min-height: 95vh; box-shadow: none; border-radius: 0; margin: 0; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">UF SALON</div>
+  <div class="controls">
+    <button onclick="document.getElementById('slide-1').scrollIntoView({behavior:'smooth'})">Эхлэл</button>
+    <button onclick="window.print()">Хэвлэх / PDF</button>
+  </div>
+</header>
+<main>
+
+    <section class="slide" id="slide-1">
+      <div class="slide-number">01 / 08</div>
+      <div class="slide-content">
+      <div class="text-block" style="font-size:38px">UF salon</div>
+      </div>
+    </section>
+    <section class="slide" id="slide-2">
+      <div class="slide-number">02 / 08</div>
+      <div class="slide-content">
+      <div class="text-block" style="font-size:38px">Танилцуулга</div>
+      <div class="text-block" style="font-size:38px">Анх 2016 онд байгуулагдсан.UF Salon нь үс болон гоо сайхны үйлчилгээг нэг дороос авах боломжтой салон юм.</div>
+      </div>
+    </section>
+    <section class="slide" id="slide-3">
+      <div class="slide-number">03 / 08</div>
+      <div class="slide-content">
+      <div class="text-block" style="font-size:38px">Үйлчилгээний төрөл</div>
+      <div class="text-block" style="font-size:38px">1.<br>
+2.<br>
+3.<br>
+4.<br>
+5.</div>
+      <div class="text-block" style="font-size:38px">6.</div>
+      <div class="text-block" style="font-size:38px">Үсчин<br>
+Гоо сайхан<br>
+Маникюр<br>
+Педикюр<br>
+Сормуус</div>
+      <div class="text-block" style="font-size:38px">Хөмсөг</div>
+      </div>
+    </section>
+    <section class="slide" id="slide-4">
+      <div class="slide-number">04 / 08</div>
+      <div class="slide-content">
+      <div class="text-block" style="font-size:38px">Одоогийн нөхцөл байдал</div>
+      <div class="text-block" style="font-size:38px">Facebook хуудас нээж, хөгжүүлэх</div>
+      <div class="text-block" style="font-size:38px">Instagram дээр салоны үйлчилгээг тогтмол, сонирхолтой байдлаар харуулах контент харьцангуй бага</div>
+      <div class="text-block" style="font-size:38px">Үйлчлүүлэгчид цөөн</div>
+      </div>
+    </section>
+    <section class="slide" id="slide-5">
+      <div class="slide-number">05 / 08</div>
+      <div class="slide-content">
+      <div class="text-block" style="font-size:38px">Маркетингийн   зорилго</div>
+      <div class="text-block" style="font-size:38px">- UF Salon-ийн танигдалтыг нэмэгдүүлэх<br>
+- Шинэ хэрэглэгч татах<br>
+- Instagram болон Facebook идэвхийг нэмэгдүүлэх<br>
+- Давтан үйлчлүүлэгчдийн тоог өсгөх<br>
+- Үйлчилгээний талаарх эерэг сэтгэгдлийг нэмэгдүүлэх</div>
+      </div>
+    </section>
+    <section class="slide" id="slide-6">
+      <div class="slide-number">06 / 08</div>
+      <div class="slide-content">
+      <div class="text-block" style="font-size:38px">Маркетингийн хэрхэн хийх вэ?</div>
+      <div class="text-block" style="font-size:38px">Reels<br>
+Before / After<br>
+Үйлчилгээний танилцуулга<br>
+Fun video<br>
+Богино hairstyle бичлэг<br>
+Trend Үйлчилгээ туршуулж review авах<br>
+контент<br>
+Үр дүнгийн зураг</div>
+      </div>
+    </section>
+    <section class="slide" id="slide-7">
+      <div class="slide-number">07 / 08</div>
+      <div class="slide-content">
+      <div class="text-block" style="font-size:38px">ҮР ДҮН</div>
+      <div class="text-block" style="font-size:38px">Сошиал хуудасны хандалтыг нэмэгдүүлэх</div>
+      <div class="text-block" style="font-size:38px">Эерэг review болон санал хүсэлтийг нэмэгдүүлэх</div>
+      <div class="text-block" style="font-size:38px">Шинэ хэрэглэгчийн тоог өсгөх</div>
+      <div class="text-block" style="font-size:38px">UF Salon-ийг сошиал орчинд илүү танигдсан салон болгох</div>
+      <div class="text-block" style="font-size:38px">Давтан үйлчлүүлэгч нэмэгдүүлэх</div>
+      </div>
+    </section>
+    <section class="slide" id="slide-8">
+      <div class="slide-number">08 / 08</div>
+      <div class="slide-content">
+      <div class="text-block" style="font-size:38px">Баярлалаа</div>
+      </div>
+    </section>
+</main>
+<footer>UF Salon · Маркетингийн санал</footer>
+</body>
+</html>

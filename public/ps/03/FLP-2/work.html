@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="mn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You & Me Travel - Үзэсгэлэнт Дэлхийг Хамтдаа</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ocean: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        coral: {
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        },
+                        navy: {
+                            800: '#0f172a',
+                            900: '#090d16',
+                            950: '#04070d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Outfit', 'sans-serif'],
+                        display: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-header {
+            background: rgba(4, 7, 13, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(8, 47, 73, 0.4) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-modal {
+            background: rgba(9, 13, 22, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-slide {
+            transition: opacity 1.2s ease-in-out, transform 10s ease-out;
+        }
+
+        /* SVG Logo Hover Effects */
+        .logo-compass-ring {
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: center;
+        }
+        .group:hover .logo-compass-ring {
+            transform: rotate(180deg);
+        }
+
+        .logo-plane {
+            transition: transform 0.5s ease;
+            transform-origin: center;
+        }
+        .group:hover .logo-plane {
+            transform: translate(4px, -4px) scale(1.08);
+        }
+
+        .gradient-text-ocean {
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #04070d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-navy-950 text-slate-100 font-sans antialiased selection:bg-ocean-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-3">
+            <div class="glass-header rounded-2xl px-5 py-3 flex items-center justify-between shadow-2xl">
+                
+                <!-- Custom SVG Vector Brand Logo -->
+                <a href="#home" class="group flex items-center gap-3.5">
+                    <div class="relative w-12 h-12 flex items-center justify-center bg-gradient-to-tr from-navy-900 via-ocean-950 to-ocean-900 rounded-2xl border border-ocean-500/40 shadow-lg shadow-ocean-500/20 group-hover:border-ocean-400 transition-all">
+                        <svg class="w-9 h-9" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Outer Compass Ring -->
+                            <circle class="logo-compass-ring" cx="50" cy="50" r="42" stroke="url(#logo_grad_ocean)" stroke-width="3" stroke-dasharray="6 3"/>
+                            
+                            <!-- Mountains Silhouette -->
+                            <path d="M20 68 L42 40 L56 58 L78 28 L90 68 Z" fill="url(#logo_grad_mountain)" opacity="0.88"/>
+                            <path d="M14 70 L34 46 L46 62 L64 36 L84 70 Z" fill="url(#logo_grad_sub)" opacity="0.45"/>
+                            
+                            <!-- Sun/Horizon Marker -->
+                            <circle cx="50" cy="28" r="5" fill="#F59E0B" />
+                            
+                            <!-- Jet Plane Streak -->
+                            <path class="logo-plane" d="M28 66 C 45 60, 60 38, 78 20 M78 20 L68 22 M78 20 L76 30" stroke="#38BDF8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <defs>
+                                <linearGradient id="logo_grad_ocean" x1="0" y1="0" x2="100" y2="100">
+                                    <stop offset="0%" stop-color="#38BDF8"/>
+                                    <stop offset="50%" stop-color="#0284C7"/>
+                                    <stop offset="100%" stop-color="#F97316"/>
+                                </linearGradient>
+                                <linearGradient id="logo_grad_mountain" x1="0" y1="0" x2="0" y2="100">
+                                    <stop offset="0%" stop-color="#38BDF8"/>
+                                    <stop offset="100%" stop-color="#075985"/>
+                                </linearGradient>
+                                <linearGradient id="logo_grad_sub" x1="0" y1="0" x2="0" y2="100">
+                                    <stop offset="0%" stop-color="#F97316"/>
+                                    <stop offset="100%" stop-color="#0ea5e9"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- Typography -->
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-1.5 leading-none">
+                            <span class="text-2xl font-extrabold text-white font-display tracking-tight">You</span>
+                            <span class="text-lg font-black text-coral-500">&amp;</span>
+                            <span class="text-2xl font-extrabold text-white font-display tracking-tight">Me</span>
+                        </div>
+                        <span class="text-[10px] font-bold text-ocean-400 uppercase tracking-widest mt-1 block font-mono">TRAVEL &amp; TOURS</span>
+                    </div>
+                </a>
+
+                <!-- Nav Menu Desktop -->
+                <nav class="hidden lg:flex items-center gap-8 font-medium text-slate-200 text-sm">
+                    <a href="#home" class="hover:text-ocean-400 transition-colors">Нүүр</a>
+                    <a href="#tours" class="hover:text-ocean-400 transition-colors">Аяллууд</a>
+                    <a href="#calculator" class="hover:text-ocean-400 transition-colors">Үнийн бодолт</a>
+                    <a href="#pricing" class="hover:text-ocean-400 transition-colors">Үнийн жагсаалт</a>
+                    <a href="#gallery" class="hover:text-ocean-400 transition-colors">Зургийн сан</a>
+                    <a href="#reviews" class="hover:text-ocean-400 transition-colors">Сэтгэгдэл</a>
+                    <a href="#faq" class="hover:text-ocean-400 transition-colors">Асуултууд</a>
+                </nav>
+
+                <!-- Phone CTA & Booking Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="tel:+97685050200" class="flex items-center gap-2 text-xs font-bold text-white bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-xl backdrop-blur-md transition-all border border-white/10">
+                        <i class="fa-solid fa-phone text-coral-400"></i>
+                        <span>+976 8505 0200</span>
+                    </a>
+                    <button onclick="openBookingModal()" class="bg-gradient-to-r from-ocean-500 via-ocean-600 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-lg shadow-ocean-500/25 transition-all transform hover:-translate-y-0.5">
+                        Аялал захиалах
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white text-xl p-2 hover:text-ocean-400 transition-colors">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden mx-4 my-2 bg-navy-900/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-6 space-y-4 shadow-2xl">
+            <a href="#home" class="block text-slate-200 font-semibold hover:text-ocean-400 py-1">Нүүр</a>
+            <a href="#tours" class="block text-slate-200 font-semibold hover:text-ocean-400 py-1">Аяллууд</a>
+            <a href="#calculator" class="block text-slate-200 font-semibold hover:text-ocean-400 py-1">Үнийн бодолт</a>
+            <a href="#pricing" class="block text-slate-200 font-semibold hover:text-ocean-400 py-1">Үнийн жагсаалт</a>
+            <a href="#gallery" class="block text-slate-200 font-semibold hover:text-ocean-400 py-1">Зургийн сан</a>
+            <a href="#reviews" class="block text-slate-200 font-semibold hover:text-ocean-400 py-1">Сэтгэгдэл</a>
+            <a href="#faq" class="block text-slate-200 font-semibold hover:text-ocean-400 py-1">Асуултууд</a>
+            <div class="pt-4 border-t border-white/10 flex flex-col gap-3">
+                <a href="tel:+97685050200" class="flex items-center justify-center gap-2 text-sm font-bold text-white bg-white/10 py-3 rounded-xl border border-white/10">
+                    <i class="fa-solid fa-phone text-coral-400"></i> +976 8505 0200
+                </a>
+                <button onclick="openBookingModal()" class="w-full bg-gradient-to-r from-ocean-500 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white font-bold py-3 rounded-xl shadow-md">
+                    Захиалга өгөх
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden">
+        <!-- Hero Dynamic Background Slideshow -->
+        <div class="absolute inset-0 z-0">
+            <div id="hero-bg-1" class="hero-slide absolute inset-0 bg-cover bg-center opacity-100 scale-100" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=80');"></div>
+            <div id="hero-bg-2" class="hero-slide absolute inset-0 bg-cover bg-center opacity-0 scale-105" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80');"></div>
+            <div id="hero-bg-3" class="hero-slide absolute inset-0 bg-cover bg-center opacity-0 scale-105" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2000&q=80');"></div>
+            <!-- Rich Ocean Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-900/50"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center py-12">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-navy-900/80 backdrop-blur-md border border-ocean-500/30 text-ocean-300 text-xs sm:text-sm font-semibold mb-6 shadow-2xl">
+                <i class="fa-solid fa-compass text-coral-400 text-base animate-spin" style="animation-duration: 12s;"></i>
+                <span>Таны Мөрөөдлийн Аяллын Найдвартай Түнш</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight max-w-5xl mx-auto font-display drop-shadow-2xl">
+                Үзэсгэлэнт Дэлхийг <span class="gradient-text-ocean">You &amp; Me Travel</span>-тэй Хамтдаа
+            </h1>
+
+            <p class="text-base sm:text-xl text-slate-200 max-w-3xl mx-auto mt-6 font-normal leading-relaxed drop-shadow">
+                Монгол орны болон дэлхийн өнцөг булан бүрийн байгалийн гайхамшигт газрууд руу аялах хамгийн тухтай, аюулгүй, мартагдашгүй аяллууд.
+            </p>
+
+            <!-- Dynamic Search Panel -->
+            <div class="mt-10 max-w-4xl mx-auto glass-card p-5 sm:p-7 rounded-3xl shadow-2xl text-left">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-ocean-300 mb-2 uppercase tracking-wider">Хаашаа аялах?</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-location-dot absolute left-3.5 top-3.5 text-coral-400"></i>
+                            <select id="heroDestSelect" class="w-full bg-navy-900/90 text-white rounded-xl pl-10 pr-4 py-2.5 text-sm border border-white/15 focus:outline-none focus:border-ocean-400">
+                                <option value="all">Бүх чиглэл</option>
+                                <option value="Солонгос">Өмнөд Солонгос (Сөүл)</option>
+                                <option value="Хайнань">Хайнань арал</option>
+                                <option value="Бээжин">Жининь - Бээжин</option>
+                                <option value="Криуз">Азийн 3 улс (Криуз)</option>
+                                <option value="Хөвсгөл">Хөвсгөл нуур (Дотоод)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-ocean-300 mb-2 uppercase tracking-wider">Аяллын төрөл</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-plane-departure absolute left-3.5 top-3.5 text-ocean-400"></i>
+                            <select id="heroTypeSelect" class="w-full bg-navy-900/90 text-white rounded-xl pl-10 pr-4 py-2.5 text-sm border border-white/15 focus:outline-none focus:border-ocean-400">
+                                <option value="all">Бүх төрөл</option>
+                                <option value="flight">Нислэгтэй аялал</option>
+                                <option value="bus">Автобустай аялал</option>
+                                <option value="cruise">Усан онгоцны аялал</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-ocean-300 mb-2 uppercase tracking-wider">Төсөв (Нэг хүний)</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-wallet absolute left-3.5 top-3.5 text-gold-400"></i>
+                            <select id="heroBudgetSelect" class="w-full bg-navy-900/90 text-white rounded-xl pl-10 pr-4 py-2.5 text-sm border border-white/15 focus:outline-none focus:border-ocean-400">
+                                <option value="all">Хязгааргүй</option>
+                                <option value="2000000">2 сая ₮ хүртэл</option>
+                                <option value="4000000">4 сая ₮ хүртэл</option>
+                                <option value="6000000">6 сая ₮ хүртэл</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="executeHeroSearch()" class="w-full bg-gradient-to-r from-coral-500 to-amber-500 hover:from-coral-400 hover:to-amber-400 text-white font-bold py-2.5 px-4 rounded-xl transition-all shadow-lg shadow-coral-500/25 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass"></i> Хайх
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Badge Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-12">
+                <div class="glass-card p-4 rounded-2xl text-center">
+                    <div class="text-3xl font-black text-ocean-400 font-display">100%</div>
+                    <div class="text-xs text-slate-300 font-semibold mt-1">Сэтгэл ханамж</div>
+                </div>
+                <div class="glass-card p-4 rounded-2xl text-center">
+                    <div class="text-3xl font-black text-coral-400 font-display">15+</div>
+                    <div class="text-xs text-slate-300 font-semibold mt-1">Аяллын чиглэл</div>
+                </div>
+                <div class="glass-card p-4 rounded-2xl text-center">
+                    <div class="text-3xl font-black text-gold-400 font-display">4,200+</div>
+                    <div class="text-xs text-slate-300 font-semibold mt-1">Аз жаргалтай аялагч</div>
+                </div>
+                <div class="glass-card p-4 rounded-2xl text-center">
+                    <div class="text-3xl font-black text-emerald-400 font-display">24/7</div>
+                    <div class="text-xs text-slate-300 font-semibold mt-1">Шуурхай зөвлөгөө</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tours" class="relative py-24 bg-navy-900 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-bold text-ocean-400 uppercase tracking-widest bg-ocean-950/80 px-4 py-1.5 rounded-full border border-ocean-500/30 inline-block">
+                    Үзэсгэлэнт Байгалийн Маршрут
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white font-display">Онцлох Аяллын Багцууд</h2>
+                <p class="text-slate-300 text-base">
+                    Таны сэтгэлийг сэргээх байгалийн сайхан болон соёл урлаг хосолсон шилдэг аяллууд.
+                </p>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap justify-center gap-2.5 pt-4">
+                    <button onclick="filterToursCategory('all')" class="tour-cat-btn active px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-ocean-500 to-ocean-600 text-white shadow-lg shadow-ocean-500/20 transition-all">Бүх аялал</button>
+                    <button onclick="filterToursCategory('flight')" class="tour-cat-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-slate-300 border border-white/10 hover:bg-navy-800 transition-all">Нислэгтэй</button>
+                    <button onclick="filterToursCategory('bus')" class="tour-cat-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-slate-300 border border-white/10 hover:bg-navy-800 transition-all">Автобустай</button>
+                    <button onclick="filterToursCategory('cruise')" class="tour-cat-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-slate-300 border border-white/10 hover:bg-navy-800 transition-all">Усан онгоц</button>
+                </div>
+            </div>
+
+            <!-- Tours Cards Grid -->
+            <div id="toursContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tour 1 -->
+                <div class="tour-card group rounded-3xl overflow-hidden bg-navy-950 border border-white/10 hover:border-ocean-500/50 transition-all duration-300 shadow-2xl flex flex-col" data-cat="flight" data-price="5550000" data-name="Солонгос аялал">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=900&q=80" alt="Солонгос аялал" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-ocean-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Нислэгтэй</span>
+                        <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-200 bg-navy-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
+                                <i class="fa-regular fa-clock mr-1 text-ocean-400"></i> 5 шөнө / 6 өдөр
+                            </span>
+                            <span class="text-xs font-bold text-gold-400 bg-navy-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
+                                <i class="fa-solid fa-star"></i> 4.9
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="text-xs font-bold text-ocean-400 uppercase tracking-widest font-mono">Өмнөд Солонгос • Сөүл</div>
+                            <h3 class="text-xl font-extrabold text-white mt-1 font-display">Солонгос аялал (Сөүл хот)</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                N-Tower, Лотте Ворлд парк, Мёндон худалдааны гудамж болон түүхэн дурсгалт газруудаар аялах иж бүрэн багц.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase font-semibold block">Багцын үнэ</span>
+                                <span class="text-xl font-black text-emerald-400 font-display">5,550,000₮</span>
+                            </div>
+                            <button onclick="openBookingModalWithTour('Солонгос аялал', 5550000)" class="bg-gradient-to-r from-ocean-500 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-ocean-500/20">
+                                Захиалах
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 2 -->
+                <div class="tour-card group rounded-3xl overflow-hidden bg-navy-950 border border-white/10 hover:border-ocean-500/50 transition-all duration-300 shadow-2xl flex flex-col" data-cat="flight" data-price="3850000" data-name="Хайнань аялал">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Хайнань аялал" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-ocean-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Нислэгтэй</span>
+                        <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-200 bg-navy-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
+                                <i class="fa-regular fa-clock mr-1 text-ocean-400"></i> 6 шөнө / 7 өдөр
+                            </span>
+                            <span class="text-xs font-bold text-gold-400 bg-navy-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
+                                <i class="fa-solid fa-star"></i> 5.0
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="text-xs font-bold text-ocean-400 uppercase tracking-widest font-mono">Хятад улс • Санья</div>
+                            <h3 class="text-xl font-extrabold text-white mt-1 font-display">Хайнань Арлын Далайн Аялал</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                Тропикийн цагаан элсэн эрэг, тунгалаг цэнхэр далай, 5 одтой зочид буудлын тав тухтай орчин.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase font-semibold block">Багцын үнэ</span>
+                                <span class="text-xl font-black text-emerald-400 font-display">3,850,000₮</span>
+                            </div>
+                            <button onclick="openBookingModalWithTour('Хайнань аялал', 3850000)" class="bg-gradient-to-r from-ocean-500 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-ocean-500/20">
+                                Захиалах
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 3 -->
+                <div class="tour-card group rounded-3xl overflow-hidden bg-navy-950 border border-white/10 hover:border-ocean-500/50 transition-all duration-300 shadow-2xl flex flex-col" data-cat="bus" data-price="1790000" data-name="Жининь-Утай-Бээжин">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=900&q=80" alt="Жининь Бээжин" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-coral-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Автобустай</span>
+                        <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-200 bg-navy-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
+                                <i class="fa-regular fa-clock mr-1 text-ocean-400"></i> 4 шөнө / 5 өдөр
+                            </span>
+                            <span class="text-xs font-bold text-gold-400 bg-navy-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
+                                <i class="fa-solid fa-star"></i> 4.8
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="text-xs font-bold text-ocean-400 uppercase tracking-widest font-mono">БНХАУ • Түүхэн аялал</div>
+                            <h3 class="text-xl font-extrabold text-white mt-1 font-display">Жининь - Утай - Бээжин</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                Их цагаан хэрэм, Хориотой хот, сүм хийд болон худалдааны томоохон төвүүдээр аялах боломж.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase font-semibold block">Багцын үнэ</span>
+                                <span class="text-xl font-black text-emerald-400 font-display">1,790,000₮</span>
+                            </div>
+                            <button onclick="openBookingModalWithTour('Жининь-Утай-Бээжин', 1790000)" class="bg-gradient-to-r from-ocean-500 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-ocean-500/20">
+                                Захиалах
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 4 -->
+                <div class="tour-card group rounded-3xl overflow-hidden bg-navy-950 border border-white/10 hover:border-ocean-500/50 transition-all duration-300 shadow-2xl flex flex-col" data-cat="cruise" data-price="4990000" data-name="3 Улсын Криуз Усан Онгоц">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548574505-5e2386903d8f?auto=format&fit=crop&w=900&q=80" alt="Криуз усан онгоц" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-gold-500 text-navy-950 text-xs font-extrabold px-3 py-1 rounded-full shadow">Усан онгоц</span>
+                        <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-200 bg-navy-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
+                                <i class="fa-regular fa-clock mr-1 text-ocean-400"></i> 7 хоног
+                            </span>
+                            <span class="text-xs font-bold text-gold-400 bg-navy-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
+                                <i class="fa-solid fa-star"></i> 5.0
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="text-xs font-bold text-ocean-400 uppercase tracking-widest font-mono">Сингапур • Малайз • Тайланд</div>
+                            <h3 class="text-xl font-extrabold text-white mt-1 font-display">3 Улсын Криуз Усан Онгоц</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                Дэлхийн зэрэглэлийн тансаг усан онгоцон дээр амарч, 3 өөр улсын соёлтой танилцах онцгой аялал.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase font-semibold block">Багцын үнэ</span>
+                                <span class="text-xl font-black text-emerald-400 font-display">4,990,000₮</span>
+                            </div>
+                            <button onclick="openBookingModalWithTour('3 Улсын Криуз Усан Онгоц', 4990000)" class="bg-gradient-to-r from-ocean-500 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-ocean-500/20">
+                                Захиалах
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 5 -->
+                <div class="tour-card group rounded-3xl overflow-hidden bg-navy-950 border border-white/10 hover:border-ocean-500/50 transition-all duration-300 shadow-2xl flex flex-col" data-cat="bus" data-price="2490000" data-name="Утай Гүмбэн - Ордос">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=80" alt="Утай Ордос" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-coral-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Автобустай</span>
+                        <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-200 bg-navy-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
+                                <i class="fa-regular fa-clock mr-1 text-ocean-400"></i> 5 шөнө / 6 өдөр
+                            </span>
+                            <span class="text-xs font-bold text-gold-400 bg-navy-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
+                                <i class="fa-solid fa-star"></i> 4.7
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="text-xs font-bold text-ocean-400 uppercase tracking-widest font-mono">Өвөр Монгол • Түүх ба байгаль</div>
+                            <h3 class="text-xl font-extrabold text-white mt-1 font-display">Утай Гүмбэн - Ордос Аялал</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                Ариун сүм хийд, говийн элсэн тасархай, Ордос хотын бүтээн байгуулалттай танилцах сүсэг бишрэлийн аялал.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase font-semibold block">Багцын үнэ</span>
+                                <span class="text-xl font-black text-emerald-400 font-display">2,490,000₮</span>
+                            </div>
+                            <button onclick="openBookingModalWithTour('Утай Гүмбэн - Ордос', 2490000)" class="bg-gradient-to-r from-ocean-500 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-ocean-500/20">
+                                Захиалах
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 6 -->
+                <div class="tour-card group rounded-3xl overflow-hidden bg-navy-950 border border-white/10 hover:border-ocean-500/50 transition-all duration-300 shadow-2xl flex flex-col" data-cat="bus" data-price="950000" data-name="Хөвсгөл Нуурын Аялал">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80" alt="Хөвсгөл нуур" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Дотоодын аялал</span>
+                        <div class="absolute bottom-4 left-4 flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-200 bg-navy-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
+                                <i class="fa-regular fa-clock mr-1 text-ocean-400"></i> 3 шөнө / 4 өдөр
+                            </span>
+                            <span class="text-xs font-bold text-gold-400 bg-navy-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1">
+                                <i class="fa-solid fa-star"></i> 4.9
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="text-xs font-bold text-ocean-400 uppercase tracking-widest font-mono">Монгол • Хөвсгөл аймаг</div>
+                            <h3 class="text-xl font-extrabold text-white mt-1 font-display">Хөвсгөл Нуурын Амралт</h3>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                Хөвсгөл далайн цэнгэг усанд завиар аялах, тайга ба цаатан ардын ахуй амьдралтай танилцах.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase font-semibold block">Багцын үнэ</span>
+                                <span class="text-xl font-black text-emerald-400 font-display">950,000₮</span>
+                            </div>
+                            <button onclick="openBookingModalWithTour('Хөвсгөл Нуурын Аялал', 950000)" class="bg-gradient-to-r from-ocean-500 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-ocean-500/20">
+                                Захиалах
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="relative py-24 bg-navy-950 border-t border-white/10 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-white/15 shadow-2xl">
+                <div class="text-center mb-10 space-y-3">
+                    <span class="text-xs font-bold text-coral-400 uppercase tracking-widest bg-coral-950/80 px-4 py-1.5 rounded-full border border-coral-500/30 inline-block font-mono">
+                        Шуурхай Бодолт
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display">Аяллын Үнэ Тооцоологч</h2>
+                    <p class="text-sm text-slate-300">Аялагчдын тоо болон нэмэлт сонголтуудаа тохируулан нийт зардлаа шууд бодож үзээрэй.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-2 font-mono">Аялал Сонгох</label>
+                            <select id="calcTour" onchange="calculateLivePrice()" class="w-full bg-navy-900 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-ocean-400">
+                                <option value="5550000">Солонгос аялал - 5,550,000₮</option>
+                                <option value="3850000">Хайнань аялал - 3,850,000₮</option>
+                                <option value="1790000">Жининь - Бээжин - 1,790,000₮</option>
+                                <option value="4990000">3 Улсын Криуз - 4,990,000₮</option>
+                                <option value="2490000">Утай Гүмбэн - 2,490,000₮</option>
+                                <option value="950000">Хөвсгөл нуур - 950,000₮</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-300 uppercase mb-2 font-mono">
+                                <span>Аялагчдын Тоо</span>
+                                <span id="calcCountLabel" class="text-ocean-400">1 хүн</span>
+                            </div>
+                            <input type="range" id="calcCount" min="1" max="10" value="1" oninput="calculateLivePrice()" class="w-full h-2.5 bg-navy-800 rounded-lg appearance-none cursor-pointer accent-ocean-400">
+                        </div>
+
+                        <div class="space-y-3 pt-2">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="calcInsurance" onchange="calculateLivePrice()" class="w-4 h-4 rounded text-ocean-500 focus:ring-0 bg-navy-900 border-white/20">
+                                <span class="text-xs text-slate-300">Даатгал болон визний зөвлөгөө (+50,000₮ / хүн)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="calcVIP" onchange="calculateLivePrice()" class="w-4 h-4 rounded text-ocean-500 focus:ring-0 bg-navy-900 border-white/20">
+                                <span class="text-xs text-slate-300">VIP Зочид буудлын өрөө (+250,000₮ / хүн)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Result Box -->
+                    <div class="bg-navy-900/90 border border-white/15 rounded-2xl p-6 text-center space-y-4 shadow-xl">
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider font-mono">Нийт тооцоолсон дүн</span>
+                        <div id="calcTotal" class="text-3xl sm:text-4xl font-black text-emerald-400 font-display">5,550,000 ₮</div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Энэ нь урьдчилсан бодолт бөгөөд группын хөнгөлөлт болон урамшууллыг авах боломжтой.
+                        </p>
+                        <button onclick="bookingFromCalculator()" class="w-full bg-gradient-to-r from-coral-500 to-amber-500 hover:from-coral-400 hover:to-amber-400 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-coral-500/25">
+                            Энэ тооцоогоор захиалах
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 bg-navy-900 relative border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-xs font-bold text-gold-400 uppercase tracking-widest bg-gold-950/80 px-4 py-1.5 rounded-full border border-gold-500/30 inline-block font-mono">
+                    Тодорхой & Нээлттэй Үнэ
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white font-display">Аяллын Нийт Үнийн Жагсаалт</h2>
+                <p class="text-slate-300 text-sm">Бүх аяллын хуваарь, үйлчилгээ болон үнийн дэлгэрэнгүй харьцуулалт.</p>
+            </div>
+
+            <div class="bg-navy-950 rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-navy-900 text-ocean-300 border-b border-white/10 font-bold uppercase text-xs font-mono">
+                                <th class="py-5 px-6">Чиглэл</th>
+                                <th class="py-5 px-6">Төрөл</th>
+                                <th class="py-5 px-6">Хугацаа</th>
+                                <th class="py-5 px-6">Багтсан зүйлс</th>
+                                <th class="py-5 px-6">Үнэ (₮)</th>
+                                <th class="py-5 px-6 text-right">Захиалга</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300">
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="py-5 px-6 font-bold text-white flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-ocean-500/20 text-ocean-400 flex items-center justify-center font-black text-xs font-mono">
+                                        KR
+                                    </div>
+                                    <span>Солонгос аялал (Сөүл)</span>
+                                </td>
+                                <td class="py-5 px-6"><span class="bg-ocean-950 text-ocean-400 px-3 py-1 rounded-full text-xs border border-ocean-500/30 font-semibold">Нислэгтэй</span></td>
+                                <td class="py-5 px-6">5 шөнө / 6 өдөр</td>
+                                <td class="py-5 px-6 text-xs text-slate-400">Зочид буудал, Нислэг, Хөтөч, Хоол</td>
+                                <td class="py-5 px-6 font-black text-emerald-400 font-display">5,550,000₮</td>
+                                <td class="py-5 px-6 text-right">
+                                    <button onclick="openBookingModalWithTour('Солонгос аялал', 5550000)" class="text-ocean-400 hover:text-ocean-300 font-bold">Захиалах &rarr;</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="py-5 px-6 font-bold text-white flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-black text-xs font-mono">
+                                        HN
+                                    </div>
+                                    <span>Хайнань арал</span>
+                                </td>
+                                <td class="py-5 px-6"><span class="bg-ocean-950 text-ocean-400 px-3 py-1 rounded-full text-xs border border-ocean-500/30 font-semibold">Нислэгтэй</span></td>
+                                <td class="py-5 px-6">6 шөнө / 7 өдөр</td>
+                                <td class="py-5 px-6 text-xs text-slate-400">5-одтой буудал, Чөлөөт хөтөлбөр</td>
+                                <td class="py-5 px-6 font-black text-emerald-400 font-display">3,850,000₮</td>
+                                <td class="py-5 px-6 text-right">
+                                    <button onclick="openBookingModalWithTour('Хайнань аялал', 3850000)" class="text-ocean-400 hover:text-ocean-300 font-bold">Захиалах &rarr;</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="py-5 px-6 font-bold text-white flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-coral-500/20 text-coral-400 flex items-center justify-center font-black text-xs font-mono">
+                                        BJ
+                                    </div>
+                                    <span>Жининь - Утай - Бээжин</span>
+                                </td>
+                                <td class="py-5 px-6"><span class="bg-coral-950 text-coral-400 px-3 py-1 rounded-full text-xs border border-coral-500/30 font-semibold">Автобустай</span></td>
+                                <td class="py-5 px-6">4 шөнө / 5 өдөр</td>
+                                <td class="py-5 px-6 text-xs text-slate-400">Автобус, Зочид буудал, Хөтөч</td>
+                                <td class="py-5 px-6 font-black text-emerald-400 font-display">1,790,000₮</td>
+                                <td class="py-5 px-6 text-right">
+                                    <button onclick="openBookingModalWithTour('Жининь-Утай-Бээжин', 1790000)" class="text-ocean-400 hover:text-ocean-300 font-bold">Захиалах &rarr;</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="py-5 px-6 font-bold text-white flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center font-black text-xs font-mono">
+                                        CR
+                                    </div>
+                                    <span>3 Улсын Криуз Усан Онгоц</span>
+                                </td>
+                                <td class="py-5 px-6"><span class="bg-gold-950 text-gold-400 px-3 py-1 rounded-full text-xs border border-gold-500/30 font-semibold">Усан онгоц</span></td>
+                                <td class="py-5 px-6">7 хоног</td>
+                                <td class="py-5 px-6 text-xs text-slate-400">Тансаг кабин, Бүх хоол, Энтертайнмент</td>
+                                <td class="py-5 px-6 font-black text-emerald-400 font-display">4,990,000₮</td>
+                                <td class="py-5 px-6 text-right">
+                                    <button onclick="openBookingModalWithTour('3 Улсын Криуз Усан Онгоц', 4990000)" class="text-ocean-400 hover:text-ocean-300 font-bold">Захиалах &rarr;</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="py-5 px-6 font-bold text-white flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center font-black text-xs font-mono">
+                                        MN
+                                    </div>
+                                    <span>Хөвсгөл Нуурын Амралт</span>
+                                </td>
+                                <td class="py-5 px-6"><span class="bg-teal-950 text-teal-400 px-3 py-1 rounded-full text-xs border border-teal-500/30 font-semibold">Дотоод</span></td>
+                                <td class="py-5 px-6">3 шөнө / 4 өдөр</td>
+                                <td class="py-5 px-6 text-xs text-slate-400">Гэр бааз, Завины аялал, Хоол</td>
+                                <td class="py-5 px-6 font-black text-emerald-400 font-display">950,000₮</td>
+                                <td class="py-5 px-6 text-right">
+                                    <button onclick="openBookingModalWithTour('Хөвсгөл Нуурын Аялал', 950000)" class="text-ocean-400 hover:text-ocean-300 font-bold">Захиалах &rarr;</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-24 bg-navy-950 relative border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-xs font-bold text-ocean-400 uppercase tracking-widest bg-ocean-950/80 px-4 py-1.5 rounded-full border border-ocean-500/30 inline-block font-mono">
+                    Аяллын Агшин
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white font-display">Үзэсгэлэнт Байгалийн Зургийн Сан</h2>
+                <p class="text-slate-300 text-sm">You &amp; Me Travel-ийн аялагчдын буулгасан сэтгэл татам зургууд.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80', 'Уул ба Байгаль')" class="relative group rounded-2xl overflow-hidden h-64 border border-white/10 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Landscape" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-expand mr-2 text-ocean-400"></i>Уул ба Байгаль</span>
+                    </div>
+                </div>
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80', 'Далайн Эрэг')" class="relative group rounded-2xl overflow-hidden h-64 border border-white/10 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Sea Coast" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-expand mr-2 text-ocean-400"></i>Далайн Эрэг</span>
+                    </div>
+                </div>
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80', 'Цэнгэг Нуур')" class="relative group rounded-2xl overflow-hidden h-64 border border-white/10 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Lake" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-expand mr-2 text-ocean-400"></i>Цэнгэг Нуур</span>
+                    </div>
+                </div>
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=1600&q=80', 'Сөүл Хот')" class="relative group rounded-2xl overflow-hidden h-64 border border-white/10 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=800&q=80" alt="City Scape" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-expand mr-2 text-ocean-400"></i>Сөүл Хот</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-24 bg-navy-900 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-xs font-bold text-coral-400 uppercase tracking-widest bg-coral-950/80 px-4 py-1.5 rounded-full border border-coral-500/30 inline-block font-mono">
+                    Сэтгэгдлүүд
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white font-display">Аялагчдын Сэтгэгдэл</h2>
+                <p class="text-slate-300 text-sm">You &amp; Me Travel-ээр аялсан хэрэглэгчдийн сэтгэгдлээс.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-6 rounded-3xl space-y-4 border border-white/10">
+                    <div class="flex items-center gap-1 text-gold-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed italic">
+                        "Солонгос аяллын багц үнэхээр сэтгэлд нийцсэн. Буудал болон хөтчийн үйлчилгээ маш өндөр түвшинд байлаа. Дараа дахин You &amp; Me Travel-тэй аялна!"
+                    </p>
+                    <div class="pt-4 border-t border-white/10 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-ocean-500/20 text-ocean-400 flex items-center justify-center font-bold text-sm">
+                            ББ
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Бат-Эрдэнэ</h4>
+                            <span class="text-[10px] text-slate-400">Сөүл аялал • 2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl space-y-4 border border-white/10">
+                    <div class="flex items-center gap-1 text-gold-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed italic">
+                        "Хайнань арлын аялал гэр бүлээрээ амархад үнэхээр сайхан байлаа. Далайн эрэг, буудлын хоол, зохион байгуулалт бүгд сайн."
+                    </p>
+                    <div class="pt-4 border-t border-white/10 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-coral-500/20 text-coral-400 flex items-center justify-center font-bold text-sm">
+                            НМ
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Наранцэцэг</h4>
+                            <span class="text-[10px] text-slate-400">Хайнань аялал • 2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl space-y-4 border border-white/10">
+                    <div class="flex items-center gap-1 text-gold-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed italic">
+                        "Бээжингийн автобустай аялал их хэмнэлттэй бас сонирхолтой байсан. Хөтөч залуу их тустай, зөвлөгөө сайн өгсөн."
+                    </p>
+                    <div class="pt-4 border-t border-white/10 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+                            ГБ
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Ганболд</h4>
+                            <span class="text-[10px] text-slate-400">Жининь - Бээжин • 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-navy-950 border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-xs font-bold text-ocean-400 uppercase tracking-widest bg-ocean-950/80 px-4 py-1.5 rounded-full border border-ocean-500/30 inline-block font-mono">
+                    Түгээмэл Асуултууд
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white font-display">Түгээмэл Асуулт Хариулт</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full text-left p-5 text-sm font-bold text-white flex justify-between items-center">
+                        <span>Аялалд бүртгүүлэхэд ямар бичиг баримт шаардлагатай вэ?</span>
+                        <i class="fa-solid fa-chevron-down text-ocean-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-ans hidden p-5 pt-0 text-xs text-slate-300 leading-relaxed border-t border-white/5">
+                        Гадаад паспорт нь аялах өдрөөс хойш доод тал нь 6 сарын хүчинтэй хугацаатай байх шаардлагатай. Визтэй улс орнуудын хувьд манай ажилтан холбогдох материалын жагсаалтыг өгнө.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full text-left p-5 text-sm font-bold text-white flex justify-between items-center">
+                        <span>Урьдчилгаа төлбөр болон цуцлах нөхцөл ямар байдаг вэ?</span>
+                        <i class="fa-solid fa-chevron-down text-ocean-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-ans hidden p-5 pt-0 text-xs text-slate-300 leading-relaxed border-t border-white/5">
+                        Захиалга баталгаажуулахад аяллын төлбөрийн 30-50%-ийн урьдчилгаа төлнө. Аялал эхлэхээс 14 хоногийн өмнө цуцалбал урьдчилгааг бүрэн буцаан олгоно.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full text-left p-5 text-sm font-bold text-white flex justify-between items-center">
+                        <span>Хүүхэд болон группын хөнгөлөлт байгаа юу?</span>
+                        <i class="fa-solid fa-chevron-down text-ocean-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-ans hidden p-5 pt-0 text-xs text-slate-300 leading-relaxed border-t border-white/5">
+                        2 хүртэлх насны нярай хүүхэд үнэгүй, 2-11 насны хүүхэд 20-30% хөнгөлөлттэй. Мөн 4-өөс дээш ам бүлтэй групп аялагчдад онцгой хөнгөлөлт үзүүлдэг.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-navy-950 text-white border-t border-white/10 pt-20 pb-12 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+                <!-- Col 1 -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-navy-900 to-ocean-950 rounded-xl border border-ocean-500/40">
+                            <svg class="w-7 h-7" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="42" stroke="#38BDF8" stroke-width="3" stroke-dasharray="6 3"/>
+                                <path d="M22 68 L42 42 L55 58 L78 30 L88 68 Z" fill="#0284C7"/>
+                                <path d="M30 65 C 45 60, 60 40, 78 22 M78 22 L68 23 M78 22 L77 32" stroke="#38BDF8" stroke-width="4" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="flex items-center gap-1 leading-none">
+                            <span class="text-xl font-black text-white font-display">You</span>
+                            <span class="text-lg font-black text-coral-500">&amp;</span>
+                            <span class="text-xl font-black text-white font-display">Me Travel</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Та сонголтоо хийгээд л болоо, үлдсэнийг нь You &amp; Me Travel бид хариуцна.
+                    </p>
+                    <div class="pt-2 flex items-center gap-3">
+                        <a href="https://www.facebook.com/youme.travel" target="_blank" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-ocean-500 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="tel:+97685050200" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-coral-500 flex items-center justify-center transition-colors">
+                            <i class="fa-solid fa-phone text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="space-y-3">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-ocean-400 font-mono">Холбоо Барих</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-coral-400"></i> +976 8505 0200
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-ocean-400"></i> youmetourmongolia@gmail.com
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-gold-400"></i> Улаанбаатар хот, Монгол улс
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="space-y-3">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-ocean-400 font-mono">Шуурхай холбоос</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#tours" class="hover:text-white transition-colors">Аяллын багцууд</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">Үнийн мэдээлэл</a></li>
+                        <li><a href="#calculator" class="hover:text-white transition-colors">Бодолт тооцоолуур</a></li>
+                        <li><a href="https://www.facebook.com/youme.travel" target="_blank" class="hover:text-white transition-colors">Facebook Хуудас</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div class="space-y-3">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-ocean-400 font-mono">Facebook Хуудас</h4>
+                    <p class="text-xs text-slate-400">Шинэ аялал болон онцгой хямдралын мэдээллийг шууд авах.</p>
+                    <a href="https://www.facebook.com/youme.travel" target="_blank" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-lg shadow-blue-600/25">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span>Facebook хуудас зочлох</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 text-center text-xs text-slate-500">
+                &copy; 2026 You &amp; Me Travel (Аялал Жуулчлалын Агентлаг). Бүх эрх хуулиар хамгаалагдсан.
+            </div>
+        </div>
+    </footer>
+
+    <div id="bookingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-navy-950/85 backdrop-blur-md hidden p-4">
+        <div class="glass-modal rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden">
+            <div class="bg-gradient-to-r from-ocean-600 via-ocean-500 to-coral-500 p-6 text-white flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold font-display">Аялал Захиалах Маягт</h3>
+                    <p class="text-xs text-ocean-100 mt-1">Та мэдээллээ үлдээвэл манай ажилтан холбогдох болно.</p>
+                </div>
+                <button onclick="closeBookingModal()" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 uppercase mb-1 font-mono">Сонгосон Аялал</label>
+                    <select id="modalTourSelect" class="w-full bg-navy-900 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-ocean-400">
+                        <option value="Солонгос аялал">Солонгос аялал (5,550,000₮)</option>
+                        <option value="Хайнань аялал">Хайнань аялал (3,850,000₮)</option>
+                        <option value="Жининь-Утай-Бээжин">Жининь - Утай - Бээжин (1,790,000₮)</option>
+                        <option value="3 Улсын Криуз Усан Онгоц">3 Улсын Криуз Усан Онгоц (4,990,000₮)</option>
+                        <option value="Утай Гүмбэн - Ордос">Утай Гүмбэн - Ордос (2,490,000₮)</option>
+                        <option value="Хөвсгөл Нуурын Аялал">Хөвсгөл Нуурын Аялал (950,000₮)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 uppercase mb-1 font-mono">Овог Нэр</label>
+                    <input type="text" id="modalName" required placeholder="Нэрээ оруулна уу" class="w-full bg-navy-900 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-ocean-400">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 uppercase mb-1 font-mono">Утасны Дугаар</label>
+                    <input type="tel" id="modalPhone" required placeholder="88112233" class="w-full bg-navy-900 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-ocean-400">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 uppercase mb-1 font-mono">Төлбөрийн Сонголт</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="border border-white/20 rounded-xl p-2.5 text-center cursor-pointer hover:border-ocean-400 bg-navy-900">
+                            <input type="radio" name="pay" value="qpay" checked class="hidden">
+                            <span class="text-xs font-bold text-ocean-400 block font-mono">QPay</span>
+                        </label>
+                        <label class="border border-white/20 rounded-xl p-2.5 text-center cursor-pointer hover:border-ocean-400 bg-navy-900">
+                            <input type="radio" name="pay" value="socialpay" class="hidden">
+                            <span class="text-xs font-bold text-ocean-400 block font-mono">SocialPay</span>
+                        </label>
+                        <label class="border border-white/20 rounded-xl p-2.5 text-center cursor-pointer hover:border-ocean-400 bg-navy-900">
+                            <input type="radio" name="pay" value="bank" class="hidden">
+                            <span class="text-xs font-bold text-ocean-400 block font-mono">Дансаар</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-gradient-to-r from-ocean-500 to-coral-500 hover:from-ocean-400 hover:to-coral-400 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-ocean-500/25 transition-all">
+                        Захиалга Илгээх
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-navy-950/85 backdrop-blur-md hidden p-4">
+        <div class="glass-modal rounded-3xl shadow-2xl max-w-sm w-full p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center text-3xl mx-auto border border-emerald-500/30">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h4 class="text-xl font-black text-white font-display">Захиалга Хүлээн Авлаа!</h4>
+            <p class="text-xs text-slate-300">Баярлалаа. You &amp; Me Travel-ийн ажилтан тун удахгүй таны утас руу холбогдох болно.</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-navy-800 hover:bg-navy-700 text-white font-bold py-2.5 rounded-xl transition-colors text-xs">
+                Хаах
+            </button>
+        </div>
+    </div>
+
+    <!-- Gallery Lightbox Modal -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 flex items-center justify-center bg-navy-950/90 backdrop-blur-md hidden p-4" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="Gallery Preview" class="w-full h-auto rounded-2xl border border-white/20 shadow-2xl">
+            <div id="lightboxCap" class="mt-3 text-center text-sm font-bold text-white"></div>
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-2xl hover:text-ocean-400">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Hero Background Slideshow Loop
+        let currentSlide = 1;
+        setInterval(() => {
+            document.getElementById(`hero-bg-${currentSlide}`).classList.remove('opacity-100', 'scale-100');
+            document.getElementById(`hero-bg-${currentSlide}`).classList.add('opacity-0', 'scale-105');
+            currentSlide = (currentSlide % 3) + 1;
+            document.getElementById(`hero-bg-${currentSlide}`).classList.remove('opacity-0', 'scale-105');
+            document.getElementById(`hero-bg-${currentSlide}`).classList.add('opacity-100', 'scale-100');
+        }, 5000);
+
+        // Mobile drawer toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Booking Modal functions
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function openBookingModalWithTour(tourName, price) {
+            const select = document.getElementById('modalTourSelect');
+            for (let i = 0; i < select.options.length; i++) {
+                if (select.options[i].value.includes(tourName)) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+            openBookingModal();
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            closeBookingModal();
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('bookingForm').reset();
+        }
+
+        // Live Estimator Calculator
+        function calculateLivePrice() {
+            const basePrice = parseInt(document.getElementById('calcTour').value);
+            const count = parseInt(document.getElementById('calcCount').value);
+            const hasInsurance = document.getElementById('calcInsurance').checked;
+            const hasVIP = document.getElementById('calcVIP').checked;
+
+            document.getElementById('calcCountLabel').innerText = `${count} хүн`;
+
+            let perPersonExtra = 0;
+            if (hasInsurance) perPersonExtra += 50000;
+            if (hasVIP) perPersonExtra += 250000;
+
+            const total = (basePrice + perPersonExtra) * count;
+            document.getElementById('calcTotal').innerText = `${total.toLocaleString()} ₮`;
+        }
+
+        function bookingFromCalculator() {
+            const tourSelect = document.getElementById('calcTour');
+            const selectedText = tourSelect.options[tourSelect.selectedIndex].text.split(' - ')[0];
+            openBookingModalWithTour(selectedText);
+        }
+
+        // Tour Category Filter Buttons
+        function filterToursCategory(cat) {
+            const buttons = document.querySelectorAll('.tour-cat-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-gradient-to-r', 'from-ocean-500', 'to-ocean-600', 'text-white', 'shadow-lg');
+                btn.classList.add('bg-navy-950', 'text-slate-300');
+            });
+            event.target.classList.remove('bg-navy-950', 'text-slate-300');
+            event.target.classList.add('bg-gradient-to-r', 'from-ocean-500', 'to-ocean-600', 'text-white', 'shadow-lg');
+
+            const cards = document.querySelectorAll('.tour-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Hero Search Execute
+        function executeHeroSearch() {
+            const dest = document.getElementById('heroDestSelect').value;
+            const type = document.getElementById('heroTypeSelect').value;
+            const maxBudget = document.getElementById('heroBudgetSelect').value;
+
+            const cards = document.querySelectorAll('.tour-card');
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-cat');
+                const cardPrice = parseInt(card.getAttribute('data-price'));
+                const cardName = card.getAttribute('data-name');
+
+                let match = true;
+
+                if (dest !== 'all' && !cardName.includes(dest)) match = false;
+                if (type !== 'all' && cardCat !== type) match = false;
+                if (maxBudget !== 'all' && cardPrice > parseInt(maxBudget)) match = false;
+
+                if (match) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('tours').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Gallery Lightbox
+        function openLightbox(url, title) {
+            document.getElementById('lightboxImg').src = url;
+            document.getElementById('lightboxCap').innerText = title;
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+
+        // FAQ Toggle
+        function toggleFaq(btn) {
+            const ans = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            ans.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html>

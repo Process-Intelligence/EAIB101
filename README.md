@@ -63,7 +63,7 @@ public/                                  <- everything in here is published
     │   │   ├── index.html               <- team page: members + work (generated)
     │   │   └── work.html                <- the team's own page, once handed in
     │   └── ...
-    ├── 05/index.html                    <- planned set, no student folders yet
+    ├── 07/index.html                    <- planned set, no student folders yet
     └── ...                              <- 10 problem sets
 scripts/
 ├── students.json                        <- the roster, grouped by program
